@@ -30,7 +30,7 @@ public class CameraFollow : MonoBehaviour
     {
         Vector3 localPos = transform.localPosition;
         Vector3 targetLocalPos = t.transform.localPosition;
-        transform.localPosition = Vector3.SmoothDamp(localPos, new Vector3(targetLocalPos.x + offset.x, targetLocalPos.y + offset.y, localPos.z), ref velocity, smoothTime);
+        transform.localPosition = Vector3.SmoothDamp(localPos, new Vector3(targetLocalPos.x + offset.x, targetLocalPos.y + offset.y, targetLocalPos.z + offset.z), ref velocity, smoothTime);
     }
 
     private void OnDrawGizmos()
