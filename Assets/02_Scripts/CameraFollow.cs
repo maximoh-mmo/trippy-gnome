@@ -1,15 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
     [SerializeField] Transform target;
-    private Vector3 offset = Vector3.zero;
+    [SerializeField] Vector3 offset = Vector3.zero;
     private Vector3 velocity = Vector3.zero;
     public Vector2 limits = new Vector2(5, 3);
-    float smoothTime =1f;
+    float smoothTime = .5f;
     private void Update()
     {
         if (!Application.isPlaying)
