@@ -2,15 +2,16 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    float xySpeedMultiplier = 18f;
+    [SerializeField]float xySpeedMultiplier = 18f;
     float rollSpeed = 200;
-    float forwardSpeed = 1f;
+    [SerializeField]float forwardSpeed = 1f;
     float leanLimit = 75f;
     [SerializeField] Transform aimTarget;
-    
-    
-     void Update()
-    {   float x = Input.GetAxis("Horizontal");
+    [SerializeField] private float minHeight = 1f;
+
+    void Update()
+    {
+        float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
         LocalMove(x, y, forwardSpeed, xySpeedMultiplier);
         CraftRoll(x, y);
@@ -30,8 +31,7 @@ public class PlayerMovement : MonoBehaviour
         pos.y = Mathf.Clamp01(pos.y);
         transform.localPosition = Camera.main.ViewportToWorldPoint(pos);
     }
-
-    void CraftRoll(float h, float v)
+        void CraftRoll(float h, float v)
     {
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(aimTarget.position), Mathf.Deg2Rad * rollSpeed * Time.deltaTime);
     }
@@ -40,10 +40,25 @@ public class PlayerMovement : MonoBehaviour
         Vector3 targetEulerAngels = target.localEulerAngles;
         target.localEulerAngles = new Vector3(targetEulerAngels.x, targetEulerAngels.y, Mathf.LerpAngle(targetEulerAngels.z, -axis * leanLimit, lerpTime));
     }
+    private float GetHeightFromGround()
+    {
+        Physics.Raycast(transform.position, Vector3.down, out RaycastHit hitInfo);
+        if (hitInfo.collider == null)
+        {
+            return 100f;
+        }
+        else
+        {
+            return hitInfo.distance;
+        }
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(aimTarget.position, 0.5f);
         Gizmos.DrawSphere(aimTarget.position, 0.15f);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(aimTarget.position + Vector3.forward * 2, 0.25f);
+        Gizmos.DrawSphere(aimTarget.position + Vector3.forward *2, 0.05f);
     }
 }
