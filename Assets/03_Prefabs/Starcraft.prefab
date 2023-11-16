@@ -226,7 +226,7 @@ Transform:
   - {fileID: 8845885562724045579}
   - {fileID: 3528069763842359599}
   m_Father: {fileID: 740882545402819218}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4981052755751506883
 GameObject:
@@ -316,7 +316,7 @@ Transform:
   m_Children:
   - {fileID: 401952537129397053}
   m_Father: {fileID: 740882545402819218}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7147189333276942108
 GameObject:
@@ -404,6 +404,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: spaceship_ufo
       objectReference: {fileID: 0}
+    - target: {fileID: 6311019528494241710, guid: 5610a30094dc1944e89020560341a70e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5610a30094dc1944e89020560341a70e, type: 3}
 --- !u!1 &73170383317362728 stripped
@@ -432,3 +436,60 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 557524601057911121, guid: 5610a30094dc1944e89020560341a70e, type: 3}
   m_PrefabInstance: {fileID: 1005601327589135299}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2311759672132186886
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 740882545402819218}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_Name
+      value: spaceship_ufo_2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
