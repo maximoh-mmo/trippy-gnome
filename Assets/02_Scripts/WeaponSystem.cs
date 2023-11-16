@@ -42,7 +42,6 @@ public class WeaponSystem : MonoBehaviour
         readyToShoot = false;
         if (Physics.Raycast(attackPoint.position, attackPoint.forward, out raycastHit, range) && raycastHit.collider.CompareTag("Enemy"))
         {
-            Debug.Log(raycastHit.collider.name);
             raycastHit.collider.GetComponent<HealthManager>().TakeDamage(damage);
         }
         HandleVisuals();
