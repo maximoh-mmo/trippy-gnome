@@ -20,11 +20,12 @@ public class WeaponSystem : MonoBehaviour
     private void Update()
     {
         TriggerPressed();
+        Debug.Log(Input.GetAxis("Fire1"));
     }
     private void TriggerPressed()
     {
-        if (allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
-        else shooting = Input.GetKeyDown(KeyCode.Mouse0);
+        if (allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0) || Input.GetAxis("Fire1")!=0;
+        else shooting = Input.GetKeyDown(KeyCode.Mouse0) || Input.GetAxis("Fire1") != 0;
 
         if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && reloading != true) Reload();
 
@@ -39,7 +40,6 @@ public class WeaponSystem : MonoBehaviour
     private void Shoot()
     {
         readyToShoot = false;
-        Debug.Log("Trying to shoot");
         if (Physics.Raycast(attackPoint.position, attackPoint.forward, out raycastHit, range))
         {
             Debug.Log(raycastHit.collider.name);

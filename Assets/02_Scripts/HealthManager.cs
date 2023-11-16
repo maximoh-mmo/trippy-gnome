@@ -10,7 +10,7 @@ public class HealthManager : MonoBehaviour
     {
         if (currentHealth < 1)
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
     public void TakeDamage(int dmg)
