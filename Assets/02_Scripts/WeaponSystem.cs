@@ -7,6 +7,7 @@ public class WeaponSystem : MonoBehaviour
     public int magazineSize, bulletsPerTap;
     public bool allowButtonHold;
     int bulletsLeft, bulletsShot;
+    public GameObject BulletPrefab;
 
     bool shooting, readyToShoot, reloading;
     public Transform attackPoint;
@@ -20,7 +21,6 @@ public class WeaponSystem : MonoBehaviour
     private void Update()
     {
         TriggerPressed();
-        Debug.Log(Input.GetAxis("Fire1"));
     }
     private void TriggerPressed()
     {
@@ -40,15 +40,12 @@ public class WeaponSystem : MonoBehaviour
     private void Shoot()
     {
         readyToShoot = false;
-        if (Physics.Raycast(attackPoint.position, attackPoint.forward, out raycastHit, range))
+        if (Physics.Raycast(attackPoint.position, attackPoint.forward, out raycastHit, range) && raycastHit.collider.CompareTag("Enemy"))
         {
             Debug.Log(raycastHit.collider.name);
-            if (raycastHit.collider.CompareTag("Enemy"))
-            {
-                raycastHit.collider.GetComponent<HealthManager>().TakeDamage(damage);
-            }
+            raycastHit.collider.GetComponent<HealthManager>().TakeDamage(damage);
         }
-        
+        HandleVisuals();
         bulletsLeft--;
         Invoke("ResetShot", cooldown);
     }
@@ -59,6 +56,14 @@ public class WeaponSystem : MonoBehaviour
         bulletsLeft = magazineSize;
         reloading = false;
     }
+    private void HandleVisuals()
+    {
+        GameObject newObject = Instantiate(BulletPrefab, attackPoint.position, attackPoint.rotation);
+        Bullet bullet = newObject.GetComponent<Bullet>();
+        bullet.Damage = damage;
+        bullet.Range = range;
+    }
+
     private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;

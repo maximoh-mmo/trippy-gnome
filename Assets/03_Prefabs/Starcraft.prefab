@@ -281,6 +281,7 @@ MonoBehaviour:
   magazineSize: 15
   bulletsPerTap: 1
   allowButtonHold: 1
+  BulletPrefab: {fileID: 3501081324992355716, guid: fd431c8e24f90ec4d86b3ee856f44dc0, type: 3}
   attackPoint: {fileID: 3528069763842359599}
   layerMask:
     serializedVersion: 2

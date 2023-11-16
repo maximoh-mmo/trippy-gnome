@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class HealthManager : MonoBehaviour
 {
-    [SerializeField] int startingHealth;
-    [SerializeField] int maxHealth;
-    [SerializeField] int currentHealth;
+    [SerializeField] float startingHealth;
+    [SerializeField] float maxHealth;
+    [SerializeField] float currentHealth;
 
     private void Update()
     {
@@ -13,11 +13,11 @@ public class HealthManager : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    public void TakeDamage(int dmg)
+    public void TakeDamage(float dmg)
     {
         currentHealth -= dmg;
     }
-    public void HealDamage(int dmg)
+    public void HealDamage(float dmg)
     {
         if (currentHealth < maxHealth)
         {
