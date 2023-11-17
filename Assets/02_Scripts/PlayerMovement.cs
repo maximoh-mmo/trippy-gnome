@@ -8,9 +8,15 @@ public class PlayerMovement : MonoBehaviour
     float leanLimit = 75f;
     [SerializeField] Transform aimTarget;
     [SerializeField] private float minHeight = 1f;
-
+    [SerializeField]GameObject menu;
+    
     void Update()
     {
+        if (Input.GetKey(KeyCode.Escape) == true)
+        {
+            Time.timeScale = 0f;
+            menu.SetActive(true);
+        }
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
         LocalMove(x, y, forwardSpeed, xySpeedMultiplier);
