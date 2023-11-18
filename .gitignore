@@ -70,3 +70,16 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/04_Graphics/Enemies.meta
+Assets/04_Graphics/Enemies/Enemy Eyes.fbx.meta
+Assets/04_Graphics/Ground.meta
+Assets/04_Graphics/Ground/Testers.meta
+Assets/04_Graphics/Ground/Testers/Blue.png.meta
+Assets/04_Graphics/Ground/Testers/Green.png.meta
+Assets/04_Graphics/Ground/Testers/Orange.png.meta
+Assets/04_Graphics/Ground/Testers/Purple.png.meta
+Assets/04_Graphics/Ship.meta
+Assets/04_Graphics/Ship/spaceship_ufo.fbx.meta
+Assets/New Terrain 1.asset
+Assets/New Terrain 1.asset.meta
+ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json
