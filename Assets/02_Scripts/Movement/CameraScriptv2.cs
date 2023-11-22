@@ -10,16 +10,20 @@ public class CameraScriptv2 : MonoBehaviour
     [SerializeField] Transform _transform;
     [SerializeField] Terrain _terrain;
     float offset = -5f;
-    float minHeight = 1f;
+    [SerializeField]float minHeight = 3f;
+    float groundHeight;
+    Vector3 camCentre = Vector3.zero;
+
     private void Update()
     {
+        groundHeight = GetGroundLevel();
+        camCentre = new Vector3(_transform.position.x, groundHeight, _transform.position.z);
         FollowTarget(_transform);
     }
 
     void LateUpdate()
     {
         Vector3 localPos = transform.localPosition;
-        float groundHeight = GetGroundLevel();
         transform.localPosition = new Vector3(Mathf.Clamp(localPos.x, -limits.x, limits.x),Mathf.Clamp(localPos.y, groundHeight + minHeight, groundHeight + minHeight + limits.y), localPos.z);
     }
 
@@ -32,14 +36,14 @@ public class CameraScriptv2 : MonoBehaviour
 
     public float GetGroundLevel()
     {
-        return _terrain.SampleHeight(transform.position);
+        return _terrain.SampleHeight(_transform.position);
     }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawLine(new Vector3(-limits.x, -limits.y, transform.position.z), new Vector3(limits.x, -limits.y, transform.position.z));
-        Gizmos.DrawLine(new Vector3(-limits.x, limits.y, transform.position.z), new Vector3(limits.x, limits.y, transform.position.z));
-        Gizmos.DrawLine(new Vector3(-limits.x, -limits.y, transform.position.z), new Vector3(-limits.x, limits.y, transform.position.z));
-        Gizmos.DrawLine(new Vector3(limits.x, -limits.y, transform.position.z), new Vector3(limits.x, limits.y, transform.position.z));
+        Gizmos.DrawLine(new Vector3(transform.position.x -limits.x, groundHeight, transform.position.z), new Vector3(transform.position.x + limits.x, groundHeight, transform.position.z));
+        Gizmos.DrawLine(new Vector3(transform.position.x -limits.x, groundHeight + 2*limits.y, transform.position.z), new Vector3(transform.position.x  + limits.x, groundHeight + 2*limits.y, transform.position.z));
+        Gizmos.DrawLine(new Vector3(transform.position.x -limits.x, groundHeight, transform.position.z), new Vector3(transform.position.x - limits.x, groundHeight + 2*limits.y, transform.position.z));
+        Gizmos.DrawLine(new Vector3(transform.position.x +limits.x, groundHeight, transform.position.z), new Vector3(transform.position.x + limits.x, transform.position.y + 2*limits.y, transform.position.z));
     }
 }

@@ -7,7 +7,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]float forwardSpeed = 1f;
     float leanLimit = 75f;
     [SerializeField] Transform aimTarget;
-    [SerializeField] private float minHeight = 1f;
     [SerializeField]GameObject menu;
     
     void Update()
