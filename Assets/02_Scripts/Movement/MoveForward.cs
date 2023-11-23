@@ -1,48 +1,59 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class MoveForward : MonoBehaviour
 {
     [SerializeField] Terrain terrain; 
     [SerializeField] float speed=10f;
     [SerializeField] float minHeight = 3f;
-    [SerializeField] Vector2 cameraLimits = new Vector2(5, 3);
-
+    [SerializeField] float rotationSpeed =10f;
+    [SerializeField] float slerpDistance = 100f;
     Vector3 aimPoint = Vector3.zero;
     WayPoint wayPoint = null;
     int wayPointNumber = 0;
-    public float GetMinLevel(Vector3 position)
-    {
-        return terrain.SampleHeight(position) + minHeight;
-    }
-    public float GetMaxLevel(Vector3 position)
-    {
-        return terrain.SampleHeight(position) + minHeight + cameraLimits.y * 2;
-    }
-    public float GetCameraMidPoint(Vector3 position)
-    {
-        return GetMinLevel(position) + GetMaxLevel(position) / 2;
-    }
-    public void SetAimPoint(int wpNum) { 
-        aimPoint = wayPoint.GetItem(wpNum); 
-        aimPoint.y = 0;
+    public float MapheightAtPos(Vector3 position) { return terrain.SampleHeight(position); }
+    public Vector3 GetAimPoint(int wpNum)
+    { 
+        Vector3 ap = wayPoint.GetItem(wpNum);
+        ap.y = 0;
+        return ap;
     }
     private void Start()
     {
         wayPoint = GetComponent<WayPoint>();
-        SetAimPoint(wayPointNumber);
-        transform.position = new Vector3(aimPoint.x, GetCameraMidPoint(aimPoint), aimPoint.z);
-        transform.LookAt(new Vector3(aimPoint.x, GetCameraMidPoint(aimPoint), aimPoint.z));
+        aimPoint = GetAimPoint(wayPointNumber);
+        transform.position = new Vector3(aimPoint.x, MapheightAtPos(aimPoint), aimPoint.z);
+        wayPointNumber++;
+        aimPoint = GetAimPoint(wayPointNumber);
     }
     void Update()
     {
-        if (transform.position.z > aimPoint.z) {
-            wayPointNumber++; SetAimPoint(wayPointNumber);
-            transform.LookAt(new Vector3(aimPoint.x, GetCameraMidPoint(aimPoint), aimPoint.z));
+        if (NextWP()) { wayPointNumber++; aimPoint = GetAimPoint(wayPointNumber); }
+        Aim();
+        Vector3 target = transform.position + transform.forward * Time.deltaTime * speed;
+        target.y = MapheightAtPos(transform.position) + minHeight;
+        transform.position = Vector3.Slerp(transform.position, target, speed);
+    }
+    void Aim()
+    {
+        Vector3 relativePos = aimPoint - transform.position;
+        Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+        rotation.z = 0;
+        rotation.x = 0;
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed * Quaternion.Angle(transform.rotation, rotation));        
+    }
+    float GetHorizontalDistanceToWP()
+    {
+        Debug.Log(wayPointNumber);
+        if (wayPointNumber < 1) { return 0; }
+        else
+        {
+            float distanceBetweenLastAndNextAimPoint = Vector2.Distance(new Vector2(GetAimPoint(wayPointNumber).x, GetAimPoint(wayPointNumber).z), new Vector2(GetAimPoint(wayPointNumber - 1).x, GetAimPoint(wayPointNumber - 1).z));
+            float currentDistance = Vector2.Distance(new Vector2(aimPoint.x, aimPoint.z), new Vector2(transform.position.x, transform.position.z));
+            return (distanceBetweenLastAndNextAimPoint - currentDistance) / distanceBetweenLastAndNextAimPoint;
         }
-        transform.position += transform.forward * Time.deltaTime * speed;
-        transform.position = (new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, GetMinLevel(transform.position), GetMaxLevel(transform.position)), transform.position.z));
+    }
+    bool NextWP() 
+    {
+        return GetHorizontalDistanceToWP() > .9f; 
     }
 }

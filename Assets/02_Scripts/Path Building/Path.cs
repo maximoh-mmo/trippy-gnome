@@ -1,6 +1,4 @@
-using System;
 using UnityEditor;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 
 [CustomEditor(typeof(WayPoint))]
@@ -8,7 +6,7 @@ using UnityEngine;
 public class Path : Editor
 {
     WayPoint wayPoints; 
-    private const float handleSize = 0.075f;
+    private const float handleSize = 0.05f;
     private const float pickSize = 0.1f;
 
     private int selectedIndex = -1;
@@ -30,7 +28,7 @@ public class Path : Editor
     {
         Vector3 point = wayPoints.GetItem(index);
         float size = HandleUtility.GetHandleSize(point);
-        Handles.color = Color.blue;
+        Handles.color = Color.cyan;
         if (Handles.Button(point, Quaternion.identity, size * handleSize, size * pickSize, Handles.DotHandleCap))
         {
             selectedIndex = index;
@@ -44,7 +42,7 @@ public class Path : Editor
             {
                 Undo.RecordObject(wayPoints, "Moved Waypoint");
                 EditorUtility.SetDirty(wayPoints);
-                wayPoints.SetItem(index, point);
+                wayPoints.SetItem(index, new Vector3(point.x,0,point.z));
             }
         }
         return point;
@@ -52,6 +50,6 @@ public class Path : Editor
     private void DrawLine()
     {
         Handles.color = Color.green;
-        Handles.DrawAAPolyLine(3f, wayPoints.ToArray()); //draw a line between each point*
+        Handles.DrawAAPolyLine(3f, wayPoints.ToArray());
     }
 }
