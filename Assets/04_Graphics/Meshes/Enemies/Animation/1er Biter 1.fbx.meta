@@ -1,32 +1,9 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/04_Graphics/Meshes/Enemies/Animation/1er Biter.fbx.meta
-guid: 9e8b67be43ccaf9499b9c5e2669ed7bf
+guid: 4130a06c4849bbb4c9e7170c3ed4d154
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
   externalObjects: {}
-========
-guid: 38e4488ca85075548b418d0786672210
-ModelImporter:
-  serializedVersion: 21300
-  internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Eyes
-    second: {fileID: 2100000, guid: aa0f3c6c044c32d4f93de9165dcdfb9a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Torso
-    second: {fileID: 2100000, guid: 29137af4d78da7340b5ff6ba9de9bcbf, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Wings
-    second: {fileID: 2100000, guid: f36b000d67cf4f849a3aa13bae3bbac8, type: 2}
->>>>>>>> 86f84914d1fb8faf0c69629c5020d3f03661b115:Assets/04_Graphics/Meshes/Enemies/Animation/untitled.fbx.meta
   materials:
     materialImportMode: 2
     materialName: 0
@@ -68,11 +45,7 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-<<<<<<<< HEAD:Assets/04_Graphics/Meshes/Enemies/Animation/1er Biter.fbx.meta
-      loopBlend: 1
-========
       loopBlend: 0
->>>>>>>> 86f84914d1fb8faf0c69629c5020d3f03661b115:Assets/04_Graphics/Meshes/Enemies/Animation/untitled.fbx.meta
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
