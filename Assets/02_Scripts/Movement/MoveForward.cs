@@ -17,7 +17,7 @@ public class MoveForward : MonoBehaviour
     public Vector3 GetAimPoint(int wpNum) { return wayPoint.GetItem(wpNum); }
     private void Start()
     {
-        terrain = GetComponentInChildren<Terrain>();
+        terrain = GetComponentInParent<Terrain>();
         wayPoint = GetComponent<WayPoint>();
         aimPoint = GetAimPoint(wayPointNumber);
         //transform.position = new Vector3(aimPoint.x, MapheightAtPos(aimPoint), aimPoint.z);
