@@ -20,7 +20,7 @@ public class MoveForward : MonoBehaviour
         terrain = GetComponentInParent<Terrain>();
         wayPoint = GetComponent<WayPoint>();
         aimPoint = GetAimPoint(wayPointNumber);
-        //transform.position = new Vector3(aimPoint.x, MapheightAtPos(aimPoint), aimPoint.z);
+        transform.position = new Vector3(aimPoint.x, MapheightAtPos(aimPoint), aimPoint.z);
         wayPointNumber++;
         aimPoint = GetAimPoint(wayPointNumber);
     }
