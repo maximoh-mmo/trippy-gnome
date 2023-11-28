@@ -385,6 +385,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 761417066335372562, guid: a652c1cbd8f68094f924e2ac54dc7399, type: 3}
+      propertyPath: minHeight
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 761417066335372562, guid: a652c1cbd8f68094f924e2ac54dc7399, type: 3}
       propertyPath: terrainTiles
       value: 
       objectReference: {fileID: 761417065866503561, guid: a652c1cbd8f68094f924e2ac54dc7399, type: 3}
