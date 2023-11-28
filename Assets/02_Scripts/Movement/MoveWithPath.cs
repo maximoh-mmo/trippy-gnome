@@ -1,22 +1,23 @@
 using UnityEngine;
 
-public class MoveForward : MonoBehaviour
+public class MoveWithPath : MonoBehaviour
 {
     [SerializeField] bool loop = false;
     [SerializeField] float speed = 10f;
     [SerializeField] float minHeight = 3f;
     [SerializeField] float rotationSpeed =10f;
-    [SerializeField] float slerpDistance = 100f;
     [SerializeField] GameObject terrainTiles;
     Terrain terrain;
     GameObject NextTile;
     Vector3 aimPoint = Vector3.zero;
     WayPoint wayPoint = null;
     int wayPointNumber, tileNumber = 1;
+    public float Speed {  get { return speed; } set {  speed = value; } }
     public float MapheightAtPos(Vector3 position) { return terrain.SampleHeight(position); }
     public Vector3 GetAimPoint(int wpNum) { return wayPoint.GetItem(wpNum); }
     private void Start()
     {
+
         terrain = terrainTiles.GetComponentInChildren<Terrain>();
         wayPoint = FindObjectOfType<WayPoint>();
         aimPoint = GetAimPoint(wayPointNumber);

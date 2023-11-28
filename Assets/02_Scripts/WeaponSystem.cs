@@ -66,7 +66,7 @@ public class WeaponSystem : MonoBehaviour
     private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
-        Gizmos.DrawRay(attackPoint.position, attackPoint.forward * range);
+            //Gizmos.DrawRay(attackPoint.position, attackPoint.forward * range);
 
     }
 }

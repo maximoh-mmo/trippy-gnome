@@ -5,7 +5,7 @@ public class HealthManager : MonoBehaviour
     [SerializeField] float startingHealth;
     [SerializeField] float maxHealth;
     [SerializeField] float currentHealth;
-
+    public float CurrentHealth {  get { return currentHealth; } }
     private void Update()
     {
         if (currentHealth < 1)
