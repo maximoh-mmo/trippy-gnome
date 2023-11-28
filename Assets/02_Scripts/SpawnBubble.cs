@@ -1,24 +1,29 @@
-
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpawnBubble : MonoBehaviour
 {
     //Make sure there is a BoxCollider component attached to your GameObject
-    BoxCollider spawnArea;
     [SerializeField] int numberToSpawn;
     [SerializeField] Vector3 size;
     bool spawned = true;
+    BoxCollider spawnArea;
+    MoveWithPath moveWithPath;
+    float minHeight;
+    float maxHeight = 10f;
     void Start()
     {
+        moveWithPath = FindObjectOfType<MoveWithPath>();
+        minHeight = moveWithPath.MinHeight;
+        maxHeight = moveWithPath.MaxHeight;
+        gameObject.AddComponent<BoxCollider>();
         spawnArea = GetComponent<BoxCollider>();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) { spawned = false; }
         spawnArea.size = size;
-        spawnArea.center = new Vector3(0, 0, size.z / 2);
+        spawnArea.center = new Vector3(0, 0, (size.z/2));
+        if (Input.GetKeyDown(KeyCode.Space)) { spawned = false; }
         if (spawned == false) { Test(); }
     }
 
@@ -27,29 +32,20 @@ public class SpawnBubble : MonoBehaviour
         spawned = true;
         for (int i = 0; i < numberToSpawn; i++)
             {
+                Vector3 SpawnPoint = RandomSpawnPoint();
                 GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                cube.transform.position = RandomSpawnPoint();
+                cube.transform.position = SpawnPoint;
                 cube.tag = "Enemy";
-            }
-        
+            }        
     }
 
     Vector3 RandomSpawnPoint()
     {
-        var point = new Vector3(
-            Random.Range(spawnArea.bounds.min.x, spawnArea.bounds.max.x),
-            Random.Range(spawnArea.bounds.min.y, spawnArea.bounds.max.y),
-            Random.Range(spawnArea.bounds.min.z, spawnArea.bounds.max.z)
-        );
-
-        if (point != spawnArea.ClosestPoint(point) && point.y > GetComponent<MoveWithPath>().MapheightAtPos(point))
-        {
-            Debug.Log("Out of the collider! Looking for other point...");
-            point = RandomSpawnPoint();
-        }
-        return point;
+        var sp = new Vector3(Random.Range(spawnArea.bounds.min.x, spawnArea.bounds.max.x),0,Random.Range(spawnArea.bounds.min.z, spawnArea.bounds.max.z));
+        var h = moveWithPath.MapheightAtPos(sp);
+        sp.y = Random.Range(h + minHeight, h + maxHeight);
+        return sp;
     }
-
     int CountSpawns()
     {
         return 0;

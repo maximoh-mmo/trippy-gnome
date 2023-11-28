@@ -3,21 +3,24 @@ using UnityEngine;
 public class MoveWithPath : MonoBehaviour
 {
     [SerializeField] bool loop = false;
-    [SerializeField] float speed = 10f;
-    [SerializeField] float minHeight = 3f;
-    [SerializeField] float rotationSpeed =10f;
+    float speed = 10f;
+    [SerializeField] float minHeight = 1f;
+    [SerializeField] float maxHeight = 11f;
+    [SerializeField] float rotationSpeed = 10f;
     [SerializeField] GameObject terrainTiles;
+    [SerializeField][Range(0, 1)] float ratio;
     Terrain terrain;
     GameObject NextTile;
     Vector3 aimPoint = Vector3.zero;
     WayPoint wayPoint = null;
     int wayPointNumber, tileNumber = 1;
-    public float Speed {  get { return speed; } set {  speed = value; } }
+    public float MinHeight { get { return minHeight; } }
+    public float MaxHeight { get { return maxHeight; } }
+    public float Speed { get { return speed; } set { speed = value; } }
     public float MapheightAtPos(Vector3 position) { return terrain.SampleHeight(position); }
     public Vector3 GetAimPoint(int wpNum) { return wayPoint.GetItem(wpNum); }
     private void Start()
     {
-
         terrain = terrainTiles.GetComponentInChildren<Terrain>();
         wayPoint = FindObjectOfType<WayPoint>();
         aimPoint = GetAimPoint(wayPointNumber);
@@ -31,33 +34,44 @@ public class MoveWithPath : MonoBehaviour
             if (wayPointNumber < wayPoint.lastElement) { wayPointNumber++; }
             else if (loop) { wayPointNumber = 0; }
             else HandleNextTerrainTile();
-            aimPoint = GetAimPoint(wayPointNumber); 
+            aimPoint = GetAimPoint(wayPointNumber);
         }
-        Aim();
+        //face aimPoint ignoring y axis as aimpoint always y = 0
+        Quaternion aimPointHorizontalRotation = Quaternion.LookRotation(new Vector3(aimPoint.x, transform.position.y, aimPoint.z) - transform.position);
+        transform.rotation = Quaternion.Slerp(transform.rotation, aimPointHorizontalRotation, ratio * Time.deltaTime);
+        
+        //move toward target using newly calculated forward direction.
         Vector3 target = transform.position + transform.forward * Time.deltaTime * speed;
-        target.y = MapheightAtPos(transform.position) + minHeight;
+        target.y = MapheightAtPos(transform.position) + ((minHeight + maxHeight )/2);
         transform.position = Vector3.Slerp(transform.position, target, speed);
-    }
-    void Aim()
-    {
-        Vector3 relativePos = aimPoint - transform.position;
-        Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
-        rotation.z = 0;
-        rotation.x = 0;
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed * Quaternion.Angle(transform.rotation, rotation));        
-    }
+
+        //set tilt? if so normalize terrain gradient to set current tilt
+     
+        }
+
     float GetHorizontalDistanceToWP()
     {
         Debug.Log(wayPointNumber);
         if (wayPointNumber == 0) {
-            float distanceBetweenLastAndNextAimPoint = Vector2.Distance(new Vector2(GetAimPoint(wayPointNumber).x, GetAimPoint(wayPointNumber).z), new Vector2(GetAimPoint(wayPoint.lastElement).x, GetAimPoint(wayPoint.lastElement).z));
-            float currentDistance = Vector2.Distance(new Vector2(aimPoint.x, aimPoint.z), new Vector2(transform.position.x, transform.position.z));
+            float distanceBetweenLastAndNextAimPoint = Vector2.Distance(
+                new Vector2(GetAimPoint(wayPointNumber).x, GetAimPoint(wayPointNumber).z), 
+                new Vector2(GetAimPoint(wayPoint.lastElement).x, GetAimPoint(wayPoint.lastElement).z));
+
+            float currentDistance = Vector2.Distance(
+                new Vector2(aimPoint.x, aimPoint.z), 
+                new Vector2(transform.position.x, transform.position.z));
+
             return (distanceBetweenLastAndNextAimPoint - currentDistance) / distanceBetweenLastAndNextAimPoint;
         }
         else
         {
-            float distanceBetweenLastAndNextAimPoint = Vector2.Distance(new Vector2(GetAimPoint(wayPointNumber).x, GetAimPoint(wayPointNumber).z), new Vector2(GetAimPoint(wayPointNumber - 1).x, GetAimPoint(wayPointNumber - 1).z));
-            float currentDistance = Vector2.Distance(new Vector2(aimPoint.x, aimPoint.z), new Vector2(transform.position.x, transform.position.z));
+            float distanceBetweenLastAndNextAimPoint = Vector2.Distance(
+                new Vector2(GetAimPoint(wayPointNumber).x, GetAimPoint(wayPointNumber).z), 
+                new Vector2(GetAimPoint(wayPointNumber - 1).x, GetAimPoint(wayPointNumber - 1).z));
+            float currentDistance = Vector2.Distance(
+                new Vector2(aimPoint.x, aimPoint.z), 
+                new Vector2(transform.position.x, transform.position.z));
+
             return (distanceBetweenLastAndNextAimPoint - currentDistance) / distanceBetweenLastAndNextAimPoint;
         }
     }
@@ -65,6 +79,7 @@ public class MoveWithPath : MonoBehaviour
     {
         return GetHorizontalDistanceToWP() > .9f; 
     }
+
     void HandleNextTerrainTile() {
         Debug.Log("ChangeScene");
         NextTile = Instantiate(terrainTiles, new Vector3(0, 0, terrain.terrainData.size.z), Quaternion.identity);
