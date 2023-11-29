@@ -12,13 +12,28 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Eyes Purple
+    second: {fileID: 2100000, guid: 6772f20cfceefdd4bb73045bc4a6ca5d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Torso
     second: {fileID: 2100000, guid: 755b2b7ad27868b43b4e1acde5700adf, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Torso Purple
+    second: {fileID: 2100000, guid: ea4e7905e6392434680c3f59c52e4a75, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Wings
     second: {fileID: 2100000, guid: f36b000d67cf4f849a3aa13bae3bbac8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wings Purple
+    second: {fileID: 2100000, guid: 2af09c57fe7ef344f90ca2508e8036b1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -5,9 +5,9 @@ public class EnemyBehaviour : MonoBehaviour
     Transform player = null;
     void Start()
     {
-        if (GameObject.Find("Starcraft").transform != null)
+        if (GameObject.Find("spaceship_ufo_2").transform != null)
         {
-            player = GameObject.Find("Starcraft").transform;
+            player = GameObject.Find("spaceship_ufo_2").transform;
         }
     }
 
@@ -21,9 +21,6 @@ public class EnemyBehaviour : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other != null)
-        {
-            if (other.gameObject.name == "Sweeper") { Destroy(this.gameObject); }            
-        }
+        if (other != null && other.gameObject.name == "Sweeper") { Destroy(this.gameObject); }            
     }
 }

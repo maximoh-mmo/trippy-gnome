@@ -7,11 +7,11 @@ public class Bullet : MonoBehaviour
     int damage = 0;
     Vector3 startPos = Vector3.zero;
     string targetTag = string.Empty;
-
-    public string TargetTag { set { tag = value; } }
+    bool hit = false;
+    public string TargetTag { set { targetTag = value; } }
     public float Range { set { range = value; } }
     public float Speed { set { speed = value; } }
-    public int Damage { set { range = value; } }
+    public int Damage { set { damage = value; } }
 
     private void Start()
     {
@@ -23,19 +23,22 @@ public class Bullet : MonoBehaviour
             float currentRange = Vector3.Distance(startPos, transform.position);
             if (currentRange > range)
             {
-                Debug.Log(range);
                 Destroy(gameObject);
             }
         }
-    
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(" I hit a thing!!!! woooooo: " + collision.gameObject.name);
-        if (collision.gameObject.CompareTag(targetTag))
+        if (collision != null && hit ==false)
         {
-            collision.gameObject.GetComponent<HealthManager>().TakeDamage(damage);
+            hit = true;
+            Debug.Log(" I hit a thing!!!! woooooo: " + collision.gameObject.name);
+            Debug.Log((collision.gameObject.CompareTag(targetTag)));
+            if (collision.gameObject.CompareTag(targetTag))
+            {
+                collision.gameObject.GetComponent<HealthManager>().TakeDamage(damage);
+            }
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
     }
 }

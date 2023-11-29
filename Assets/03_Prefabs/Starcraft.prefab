@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3204001034484421307}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 8.37}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -179,12 +179,12 @@ MonoBehaviour:
   range: 500
   reloadTime: 0
   fireRate: 3
-  projectileSpeed: 0
-  magazineSize: 15
+  projectileSpeed: 1000
+  magazineSize: 1000000
   bulletsPerTap: 1
   allowButtonHold: 1
-  BulletPrefab: {fileID: 3501081324992355716, guid: fd431c8e24f90ec4d86b3ee856f44dc0, type: 3}
-  attackPoint: {fileID: 3528069763842359599}
+  BulletPrefab: {fileID: 2033890919814722285, guid: f732c060d688e7749a88915f61530193, type: 3}
+  attackPoint: {fileID: 401952537129397053}
   layerMask:
     serializedVersion: 2
     m_Bits: 128
@@ -409,7 +409,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 934330927246048235, guid: 5610a30094dc1944e89020560341a70e, type: 3}
   m_PrefabInstance: {fileID: 1005601327589135299}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3766982290169790782
+--- !u!114 &1911995246
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -418,11 +418,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 73170383317362728}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4191326f3753cae4ba18be250f03cf92, type: 3}
+  m_Script: {fileID: 11500000, guid: 15f9c4842a9e0524dbd30de0b3081bea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   xySpeedMultiplier: 18
-  forwardSpeed: 1
   aimTarget: {fileID: 401952537129397053}
   menu: {fileID: 0}
 --- !u!4 &740882545402819218 stripped
@@ -583,21 +582,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
---- !u!1 &3230326668955356759 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
-  m_PrefabInstance: {fileID: 2311759672132186886}
-  m_PrefabAsset: {fileID: 0}
---- !u!135 &5571032287371413300
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3230326668955356759}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.017567798
-  m_Center: {x: -0.000020438432, y: -0.0008248901, z: 0.015562027}

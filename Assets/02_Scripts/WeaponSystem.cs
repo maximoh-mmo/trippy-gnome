@@ -13,7 +13,7 @@ public class WeaponSystem : MonoBehaviour
     public Transform attackPoint;
     public RaycastHit raycastHit;
     public LayerMask layerMask;
-    private void Awake()
+    private void Start()
     {
         bulletsLeft = magazineSize;
         readyToShoot = true;
@@ -42,10 +42,10 @@ public class WeaponSystem : MonoBehaviour
     private void Shoot()
     {
         readyToShoot = false;
-        if (Physics.Raycast(attackPoint.position, attackPoint.forward, out raycastHit, range) && raycastHit.collider.CompareTag(enemyType))
-        {
-            raycastHit.collider.GetComponent<HealthManager>().TakeDamage(damage);
-        }
+        //if (Physics.Raycast(attackPoint.position, attackPoint.forward, out raycastHit, range) && raycastHit.collider.CompareTag(enemyType))
+        //{
+        //    raycastHit.collider.GetComponent<HealthManager>().TakeDamage(damage);
+        //}
         HandleVisuals();
         bulletsLeft--;
         Invoke("ResetShot", cooldown);
@@ -61,7 +61,7 @@ public class WeaponSystem : MonoBehaviour
     {
         //GameObject newObject = Instantiate(BulletPrefab, attackPoint.position, attackPoint.rotation);
         Bullet bullet = Instantiate(BulletPrefab, attackPoint.position, attackPoint.rotation).GetComponent<Bullet>();
-        bullet.TargetTag = this.gameObject.tag;
+        bullet.TargetTag = enemyType;
         bullet.Damage = damage;
         bullet.Range = range;
         bullet.Speed = projectileSpeed;

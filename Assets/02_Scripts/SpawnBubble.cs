@@ -8,7 +8,6 @@ public class SpawnBubble : MonoBehaviour
     [SerializeField] GameObject EnemyPrefab;
     [SerializeField] LayerMask LayerMask;
     bool spawned = true;
-    bool Started = false;
     BoxCollider spawnArea;
     MoveWithPath moveWithPath;
     float minHeight;
@@ -33,7 +32,6 @@ public class SpawnBubble : MonoBehaviour
     void Update()
     {   if (Input.GetKeyDown(KeyCode.Space)) { spawned = false; }
         if (spawned == false) { Test(); }
-        Started= true;
     }
 
     void Test()
@@ -43,7 +41,7 @@ public class SpawnBubble : MonoBehaviour
         {
             SpawnEnemy(RandomSpawnPoint());
         }
-        Debug.Log(CountSpawns());
+        //Debug.Log(CountSpawns());
     }
 
     Vector3 RandomSpawnPoint()
