@@ -8,7 +8,7 @@ public class WeaponSystem : MonoBehaviour
     public bool allowButtonHold;
     int bulletsLeft, bulletsShot;
     public GameObject BulletPrefab;
-    string enemyType;
+    string enemyType = string.Empty;
     bool shooting, readyToShoot, reloading;
     public Transform attackPoint;
     public RaycastHit raycastHit;
@@ -42,7 +42,7 @@ public class WeaponSystem : MonoBehaviour
     private void Shoot()
     {
         readyToShoot = false;
-        if (Physics.Raycast(attackPoint.position, attackPoint.forward, out raycastHit, range) && raycastHit.collider.CompareTag("Enemy"))
+        if (Physics.Raycast(attackPoint.position, attackPoint.forward, out raycastHit, range) && raycastHit.collider.CompareTag(enemyType))
         {
             raycastHit.collider.GetComponent<HealthManager>().TakeDamage(damage);
         }
@@ -59,8 +59,8 @@ public class WeaponSystem : MonoBehaviour
     }
     private void HandleVisuals()
     {
-        GameObject newObject = Instantiate(BulletPrefab, attackPoint.position, attackPoint.rotation);
-        Bullet bullet = newObject.GetComponent<Bullet>();
+        //GameObject newObject = Instantiate(BulletPrefab, attackPoint.position, attackPoint.rotation);
+        Bullet bullet = Instantiate(BulletPrefab, attackPoint.position, attackPoint.rotation).GetComponent<Bullet>();
         bullet.TargetTag = this.gameObject.tag;
         bullet.Damage = damage;
         bullet.Range = range;
