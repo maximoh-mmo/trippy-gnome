@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 401952537129397053}
   m_Layer: 6
   m_Name: AimPoint
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71,9 +71,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3309588703233267718}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Starcraft
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -179,6 +179,7 @@ MonoBehaviour:
   range: 500
   reloadTime: 0
   fireRate: 3
+  projectileSpeed: 0
   magazineSize: 15
   bulletsPerTap: 1
   allowButtonHold: 1
@@ -198,7 +199,7 @@ GameObject:
   - component: {fileID: 1523939930762489177}
   m_Layer: 6
   m_Name: AimPointParent
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -230,7 +231,7 @@ GameObject:
   - component: {fileID: 5267903728298007694}
   - component: {fileID: 8633989246734623111}
   - component: {fileID: 969504993024966251}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -389,6 +390,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: spaceship_ufo
       objectReference: {fileID: 0}
+    - target: {fileID: 934330927246048235, guid: 5610a30094dc1944e89020560341a70e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 934330927246048235, guid: 5610a30094dc1944e89020560341a70e, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 6311019528494241710, guid: 5610a30094dc1944e89020560341a70e, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -472,9 +481,123 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8283613124832353626, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -8283613124832353626, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: -8278638104407951220, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -8278638104407951220, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: -8103559197538108131, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -8103559197538108131, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: -3535146418668252372, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -3535146418668252372, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: -2908412746790366956, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -2908412746790366956, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: -2484056756732590441, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -2484056756732590441, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 150585836851173383, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 150585836851173383, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 329111104556720423, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 329111104556720423, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 831436099761308531, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 831436099761308531, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
       propertyPath: m_Name
       value: spaceship_ufo_2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4482001755097797937, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4482001755097797937, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6442179785704060473, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6442179785704060473, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+--- !u!1 &3230326668955356759 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: eab4fa00fb8c9534880672180ec3102c, type: 3}
+  m_PrefabInstance: {fileID: 2311759672132186886}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &5571032287371413300
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3230326668955356759}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.017567798
+  m_Center: {x: -0.000020438432, y: -0.0008248901, z: 0.015562027}

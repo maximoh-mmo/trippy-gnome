@@ -3,9 +3,7 @@ using UnityEngine;
 public class PlayerMovementv2 : MonoBehaviour
 {
     [SerializeField]float xySpeedMultiplier = 18f;
-    float rollSpeed = 200;
     float leanLimit = 75f;
-    [SerializeField] Transform forwardDirection = null;
     [SerializeField] Transform aimTarget;
     [SerializeField] GameObject menu;
     

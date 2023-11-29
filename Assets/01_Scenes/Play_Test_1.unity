@@ -231,39 +231,39 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 401952537129397053, guid: 63d8911cdad8b114e9c92b35ca194e44, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.218
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 401952537129397053, guid: 63d8911cdad8b114e9c92b35ca194e44, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.479
+      value: 8.37
       objectReference: {fileID: 0}
     - target: {fileID: 401952537129397053, guid: 63d8911cdad8b114e9c92b35ca194e44, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99491704
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 401952537129397053, guid: 63d8911cdad8b114e9c92b35ca194e44, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.098349735
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 401952537129397053, guid: 63d8911cdad8b114e9c92b35ca194e44, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0059260167
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 401952537129397053, guid: 63d8911cdad8b114e9c92b35ca194e44, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.020792957
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 401952537129397053, guid: 63d8911cdad8b114e9c92b35ca194e44, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 11.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 401952537129397053, guid: 63d8911cdad8b114e9c92b35ca194e44, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.45
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 401952537129397053, guid: 63d8911cdad8b114e9c92b35ca194e44, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 2.35
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3309588703233267717, guid: 63d8911cdad8b114e9c92b35ca194e44, type: 3}
       propertyPath: m_Name
@@ -450,7 +450,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xySpeedMultiplier: 18
-  forwardDirection: {fileID: 1926103172}
   aimTarget: {fileID: 1629454780}
   menu: {fileID: 0}
 --- !u!1 &1926103171
@@ -464,6 +463,8 @@ GameObject:
   - component: {fileID: 1926103172}
   - component: {fileID: 1926103173}
   - component: {fileID: 1926103174}
+  - component: {fileID: 1926103175}
+  - component: {fileID: 1926103176}
   m_Layer: 0
   m_Name: PathWalker
   m_TagString: Untagged
@@ -519,5 +520,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberToSpawn: 1
-  size: {x: 36.6, y: 45.6, z: 89}
+  size: {x: 36.6, y: 45.6, z: 100.88}
   EnemyPrefab: {fileID: 8559769834634278210, guid: 96db0bda51f037d4d973766a86aa9970, type: 3}
+  LayerMask:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!114 &1926103175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926103171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da643f6a58692c64689204aeec8d3c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingHealth: 3
+  maxHealth: 11
+  currentHealth: 3
+--- !u!114 &1926103176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926103171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eea24440bb722c64180119aec3e19512, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: {x: 302.52, y: 237.22, z: 992.2}

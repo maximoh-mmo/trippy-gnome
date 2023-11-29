@@ -19,4 +19,11 @@ public class EnemyBehaviour : MonoBehaviour
             transform.LookAt(player.position);
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other != null)
+        {
+            if (other.gameObject.name == "Sweeper") { Destroy(this.gameObject); }            
+        }
+    }
 }
