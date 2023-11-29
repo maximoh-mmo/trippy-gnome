@@ -3,7 +3,7 @@ using UnityEngine;
 public class WeaponSystem : MonoBehaviour
 {
     public int damage;
-    public float cooldown, spread, range, reloadTime, fireRate;
+    public float cooldown, spread, range, reloadTime, fireRate, projectileSpeed;
     public int magazineSize, bulletsPerTap;
     public bool allowButtonHold;
     int bulletsLeft, bulletsShot;
@@ -64,6 +64,7 @@ public class WeaponSystem : MonoBehaviour
         bullet.TargetTag = this.gameObject.tag;
         bullet.Damage = damage;
         bullet.Range = range;
+        bullet.Speed = projectileSpeed;
     }
 
     private void OnDrawGizmos()

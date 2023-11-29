@@ -1,27 +1,30 @@
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
     private Transform StartTransform;
-    float range = 0f;
+    float range, speed = 0f;
     int damage = 0;
     Vector3 startPos = Vector3.zero;
     string targetTag = string.Empty;
 
     public string TargetTag { set { tag = value; } }
     public float Range { set { range = value; } }
+    public float Speed { set { range = value; } }
     public int Damage { set { range = value; } }
 
     private void Start()
     {
         StartTransform = transform;
-        startPos = StartTransform.position;
+        startPos = StartTransform.position; 
+        if (speed == 0) { speed = 1; }
     }
 
     private void Update()
-    {
-        transform.position += transform.forward;
+    {        
+        transform.position += transform.forward * Time.deltaTime * speed;
         float currentRange = Vector3.Distance(startPos, transform.position);
         if (currentRange > range)
         {
