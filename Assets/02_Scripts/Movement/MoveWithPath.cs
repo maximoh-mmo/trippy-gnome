@@ -3,7 +3,7 @@ using UnityEngine;
 public class MoveWithPath : MonoBehaviour
 {
     [SerializeField] bool loop = false;
-    float speed = 10f;
+    [SerializeField] float speed = 10f;
     [SerializeField] float minHeight = 1f;
     [SerializeField] float maxHeight = 11f;
     [SerializeField] float rotationSpeed = 10f;

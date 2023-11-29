@@ -8,17 +8,17 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Eyes
-    second: {fileID: 2100000, guid: 9b9b1f1742c888a40a8cbbf5637eb9d9, type: 2}
+    second: {fileID: 2100000, guid: 9299432e901b36948a9514c9bac79065, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Torso
-    second: {fileID: 2100000, guid: 09284bfbf5f95d2419db327f237ac230, type: 2}
+    second: {fileID: 2100000, guid: 755b2b7ad27868b43b4e1acde5700adf, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Wings
-    second: {fileID: 2100000, guid: c811b62a3fbf6104c8053d47bff91c22, type: 2}
+    second: {fileID: 2100000, guid: f36b000d67cf4f849a3aa13bae3bbac8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
