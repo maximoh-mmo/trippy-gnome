@@ -5,6 +5,7 @@ public class SpawnBubble : MonoBehaviour
     //Make sure there is a BoxCollider component attached to your GameObject
     [SerializeField] int numberToSpawn;
     [SerializeField] Vector3 size;
+    [SerializeField] GameObject EnemyPrefab;
     bool spawned = true;
     BoxCollider spawnArea;
     MoveWithPath moveWithPath;
@@ -32,10 +33,7 @@ public class SpawnBubble : MonoBehaviour
         spawned = true;
         for (int i = 0; i < numberToSpawn; i++)
             {
-                Vector3 SpawnPoint = RandomSpawnPoint();
-                GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                cube.transform.position = SpawnPoint;
-                cube.tag = "Enemy";
+                SpawnEnemy(RandomSpawnPoint());
             }        
     }
 
@@ -49,5 +47,20 @@ public class SpawnBubble : MonoBehaviour
     int CountSpawns()
     {
         return 0;
+    }
+    void SpawnEnemy(Vector3 pos)
+    {
+        GameObject newEnemy = Instantiate(EnemyPrefab, pos,Quaternion.identity);
+    }
+    public Vector3 GetRandomPointInsideCollider(BoxCollider boxCollider)
+    {
+        Vector3 extents = boxCollider.size / 2f;
+        Vector3 point = new Vector3(
+            Random.Range(-extents.x, extents.x),
+            Random.Range(-extents.y, extents.y),
+            Random.Range(-extents.z, extents.z)
+        );
+
+        return boxCollider.transform.TransformPoint(point);
     }
 }
