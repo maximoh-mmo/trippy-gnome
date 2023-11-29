@@ -7,6 +7,9 @@ public class Bullet : MonoBehaviour
     float range = 0f;
     int damage = 0;
     Vector3 startPos = Vector3.zero;
+    string targetTag = string.Empty;
+
+    public string TargetTag { set { tag = value; } }
     public float Range { set { range = value; } }
     public int Damage { set { range = value; } }
 
@@ -29,7 +32,7 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log(" I hit a thing!!!! woooooo: " + collision.gameObject.name);
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag(targetTag))
         {
             collision.gameObject.GetComponent<HealthManager>().TakeDamage(damage);
         }
