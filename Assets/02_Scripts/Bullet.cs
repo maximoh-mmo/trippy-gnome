@@ -27,18 +27,23 @@ public class Bullet : MonoBehaviour
             }
         }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision != null && hit ==false)
-        {
-            hit = true;
-            Debug.Log(" I hit a thing!!!! woooooo: " + collision.gameObject.name);
-            Debug.Log((collision.gameObject.CompareTag(targetTag)));
-            if (collision.gameObject.CompareTag(targetTag))
-            {
-                collision.gameObject.GetComponent<HealthManager>().TakeDamage(damage);
-            }
-            Destroy(gameObject);
-        }
+        if (other.gameObject.CompareTag(targetTag) && other.gameObject.GetComponent<HealthManager>()!=null){
+            other.gameObject.GetComponent<HealthManager>().TakeDamage(damage); }
     }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision != null && hit ==false)
+    //    {
+    //        hit = true;
+    //        Debug.Log(" I hit a thing!!!! woooooo: " + collision.gameObject.name);
+    //        Debug.Log((collision.gameObject.CompareTag(targetTag)));
+    //        if (collision.gameObject.CompareTag(targetTag))
+    //        {
+    //            collision.gameObject.GetComponent<HealthManager>().TakeDamage(damage);
+    //        }
+    //        Destroy(gameObject);
+    //    }
+    //}
 }

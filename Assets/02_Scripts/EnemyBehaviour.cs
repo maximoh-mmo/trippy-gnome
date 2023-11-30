@@ -1,7 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyBehaviour : MonoBehaviour
 {
+    //[SerializeField]Dictionary<GameObject,float> Drops;
+
     Transform player = null;
     void Start()
     {
@@ -22,5 +26,9 @@ public class EnemyBehaviour : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other != null && other.gameObject.name == "Sweeper") { Destroy(this.gameObject); }            
+    }
+    private void OnDestroy()
+    {
+        
     }
 }
