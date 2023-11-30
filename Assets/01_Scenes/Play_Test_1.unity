@@ -255,7 +255,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.011804473
   m_Center: {x: 0.0007479751, y: -0.00061048986, z: 0.0124261025}
---- !u!54 &1339536547
+--- !u!54 &1339536549
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -267,7 +267,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -278,6 +278,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1926103172}
     m_Modifications:
+    - target: {fileID: 1911995246, guid: 63d8911cdad8b114e9c92b35ca194e44, type: 3}
+      propertyPath: xySpeedMultiplier
+      value: 35
+      objectReference: {fileID: 0}
     - target: {fileID: 3309588703233267717, guid: 63d8911cdad8b114e9c92b35ca194e44, type: 3}
       propertyPath: m_Name
       value: Starcraft
