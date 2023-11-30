@@ -24,4 +24,5 @@ public class HealthManager : MonoBehaviour
             currentHealth += dmg;
         }
     }
+
 }

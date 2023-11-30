@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class EnemyBehaviour : MonoBehaviour
 {
@@ -29,6 +27,6 @@ public class EnemyBehaviour : MonoBehaviour
     }
     private void OnDestroy()
     {
-        
+        GetComponent<Loot>().GetLoot(this.transform.position);
     }
 }

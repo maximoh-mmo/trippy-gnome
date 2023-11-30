@@ -22,7 +22,10 @@ public class WeaponSystem : MonoBehaviour
     }
     private void Update()
     {
-        TriggerPressed();
+        if (Time.timeScale != 0)
+        {
+            TriggerPressed();
+        }
     }
     private void TriggerPressed()
     {

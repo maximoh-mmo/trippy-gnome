@@ -1,10 +1,9 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpawnBubble : MonoBehaviour
 {
     [SerializeField] int numberToSpawn;
-    [SerializeField] Vector3 size;
+    [SerializeField] Vector3 size, center;
     [SerializeField] GameObject EnemyPrefab;
     [SerializeField] LayerMask LayerMask;
     bool spawned = true;
@@ -25,12 +24,14 @@ public class SpawnBubble : MonoBehaviour
         spawnArea = child.GetComponent<BoxCollider>();
         spawnArea.isTrigger = true;
         spawnArea.size = size;
-        spawnArea.center = new Vector3(0, 0, (size.z / 2));
-
+        spawnArea.center = center;
     }
 
     void Update()
-    {   if (Input.GetKeyDown(KeyCode.Space)) { spawned = false; }
+    {
+        spawnArea.size = size;
+        spawnArea.center = center; 
+        if (Input.GetKeyDown(KeyCode.Space)) { spawned = false; }
         if (spawned == false) { Test(); }
     }
 

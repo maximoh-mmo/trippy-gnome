@@ -6,7 +6,7 @@ public class PlayerMovementv2 : MonoBehaviour
     float leanLimit = 75f;
     [SerializeField] Transform aimTarget;
     [SerializeField] GameObject menu;
-    
+
     void Update()
     {
         if (Input.GetKey(KeyCode.Escape) == true)
@@ -14,10 +14,13 @@ public class PlayerMovementv2 : MonoBehaviour
             Time.timeScale = 0f;
             menu.SetActive(true);
         }
-        float x = Input.GetAxis("Horizontal");
-        float y = Input.GetAxis("Vertical");
-        LocalMove(x, y, xySpeedMultiplier);
-        HorizontalLean(transform, x, .1f);
+        if (Time.timeScale != 0)
+        {
+            float x = Input.GetAxis("Horizontal");
+            float y = Input.GetAxis("Vertical");
+            LocalMove(x, y, xySpeedMultiplier);
+            HorizontalLean(transform, x, .1f);
+        }
     }
 
     void LocalMove(float x, float y, float speed)

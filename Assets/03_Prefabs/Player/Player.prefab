@@ -46,7 +46,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberToSpawn: 4
   size: {x: 24.5, y: 13.9, z: 50.21}
-  maxHeight: 10
+  center: {x: 0, y: 0, z: 0}
+  EnemyPrefab: {fileID: 0}
+  LayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1311754776716958337
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,6 +163,7 @@ MonoBehaviour:
   range: 500
   reloadTime: 0
   fireRate: 3
+  projectileSpeed: 0
   magazineSize: 15
   bulletsPerTap: 1
   allowButtonHold: 1
@@ -177,7 +182,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6797661458692304955}
   - component: {fileID: 583029243}
-  - component: {fileID: 396496035793481314}
   - component: {fileID: 3073864978430771918}
   - component: {fileID: 1405080806}
   m_Layer: 0
@@ -221,18 +225,6 @@ MonoBehaviour:
   startingHealth: 3
   maxHealth: 10
   currentHealth: 3
---- !u!114 &396496035793481314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6797661458692304953}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23362b939ca262c419dd7b7a9ff6ed55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3073864978430771918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,6 +243,7 @@ MonoBehaviour:
   range: 500
   reloadTime: 0
   fireRate: 3
+  projectileSpeed: 0
   magazineSize: 15
   bulletsPerTap: 1
   allowButtonHold: 1
@@ -274,5 +267,7 @@ MonoBehaviour:
   loop: 1
   speed: 10
   minHeight: 10
+  maxHeight: 11
   rotationSpeed: 10
   terrainTiles: {fileID: 0}
+  ratio: 0

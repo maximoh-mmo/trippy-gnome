@@ -6,7 +6,6 @@ public class MoveWithPath : MonoBehaviour
     [SerializeField] float speed = 10f;
     [SerializeField] float minHeight = 1f;
     [SerializeField] float maxHeight = 11f;
-    [SerializeField] float rotationSpeed = 10f;
     [SerializeField] GameObject terrainTiles;
     [SerializeField][Range(0, 1)] float ratio;
     Terrain terrain;
