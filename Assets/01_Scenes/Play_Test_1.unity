@@ -449,6 +449,100 @@ MonoBehaviour:
   startingHealth: 3
   maxHealth: 11
   currentHealth: 3
+  pointValue: 0
+--- !u!114 &1865110839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865110831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d209ff25cd0587f40b839e8f8c6a29c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combos:
+  - killsNeeded: 10
+    scoreMultiplier: 1
+  - killsNeeded: 10
+    scoreMultiplier: 2
+  - killsNeeded: 10
+    scoreMultiplier: 3
+  - killsNeeded: 10
+    scoreMultiplier: 4
+  - killsNeeded: 10
+    scoreMultiplier: 5
+  - killsNeeded: 10
+    scoreMultiplier: 6
+  - killsNeeded: 10
+    scoreMultiplier: 7
+  - killsNeeded: 10
+    scoreMultiplier: 8
+  - killsNeeded: 10
+    scoreMultiplier: 9
+  - killsNeeded: 10
+    scoreMultiplier: 10
+  stepDownTime: 10
+--- !u!114 &1865110840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865110831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23e08de4aa500a340a152dd005bbc490, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 2
+  cooldown: 0
+  spread: 0
+  range: 500
+  reloadTime: 0
+  fireRate: 3
+  projectileSpeed: 1000
+  magazineSize: 1000000
+  bulletsPerTap: 1
+  allowButtonHold: 1
+  BulletPrefab: {fileID: 2033890919814722285, guid: f732c060d688e7749a88915f61530193, type: 3}
+  attackPoint: {fileID: 1629454780}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!114 &1865110841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865110831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eea24440bb722c64180119aec3e19512, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: {x: 302.52, y: 237.22, z: 992.2}
+--- !u!114 &1865110842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865110831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa70aaa155e18264bbbddc1b72371bc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberToSpawn: 1
+  size: {x: 36.6, y: 45.6, z: 100.88}
+  center: {x: 0, y: 0, z: 36.57}
+  EnemyPrefab: {fileID: 744851290034003747, guid: 13fc4d34d198ff6468a40ced187bb983, type: 3}
+  LayerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &1926103171
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,9 +553,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1926103172}
   - component: {fileID: 1926103173}
-  - component: {fileID: 1926103174}
-  - component: {fileID: 1926103176}
-  - component: {fileID: 1926103179}
   m_Layer: 0
   m_Name: PathWalker
   m_TagString: Player
@@ -503,62 +594,3 @@ MonoBehaviour:
   maxHeight: 11
   terrainTiles: {fileID: 1271528318}
   ratio: 0.79
---- !u!114 &1926103174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1926103171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa70aaa155e18264bbbddc1b72371bc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  numberToSpawn: 1
-  size: {x: 36.6, y: 45.6, z: 100.88}
-  center: {x: 0, y: 0, z: 36.57}
-  EnemyPrefab: {fileID: 744851290034003747, guid: 13fc4d34d198ff6468a40ced187bb983, type: 3}
-  LayerMask:
-    serializedVersion: 2
-    m_Bits: 128
---- !u!114 &1926103176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1926103171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eea24440bb722c64180119aec3e19512, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: {x: 302.52, y: 237.22, z: 992.2}
---- !u!114 &1926103179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1926103171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23e08de4aa500a340a152dd005bbc490, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 2
-  cooldown: 0
-  spread: 0
-  range: 500
-  reloadTime: 0
-  fireRate: 3
-  projectileSpeed: 1000
-  magazineSize: 1000000
-  bulletsPerTap: 1
-  allowButtonHold: 1
-  BulletPrefab: {fileID: 2033890919814722285, guid: f732c060d688e7749a88915f61530193, type: 3}
-  attackPoint: {fileID: 1629454780}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 128

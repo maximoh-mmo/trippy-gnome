@@ -177,7 +177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loots:
   - PowerUp: {fileID: 51314535475245761, guid: c70dbe17af39d164aaf96e2e20b287db, type: 3}
-    chance: 48
+    chance: 4.3
 --- !u!1 &5522098191010700669
 GameObject:
   m_ObjectHideFlags: 0

@@ -31,15 +31,4 @@ public class Bullet : MonoBehaviour
         if (other.gameObject.CompareTag(targetTag) && other.gameObject.GetComponent<HealthManager>()!=null){
             other.gameObject.GetComponent<HealthManager>().TakeDamage(damage); }
     }
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision != null )
-    //    {
-    //        if (collision.gameObject.CompareTag(targetTag))
-    //        {
-    //            collision.gameObject.GetComponent<HealthManager>().TakeDamage(damage);
-    //        }
-    //        Destroy(gameObject);
-    //    }
-    //}
 }

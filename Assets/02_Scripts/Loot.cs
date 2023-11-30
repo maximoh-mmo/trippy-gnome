@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class Loot:MonoBehaviour
@@ -7,7 +6,6 @@ public class Loot:MonoBehaviour
     public void GetLoot(Vector3 position)
     {
         float drawn = Random.Range(0f, 100f);
-        int i=1;
         foreach (LootItem loot in loots)
         {
             if (drawn <= loot.chance)
@@ -17,7 +15,6 @@ public class Loot:MonoBehaviour
             }
         }
     }
-
 }
 [System.Serializable]
 public class LootItem
