@@ -30,5 +30,8 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.CompareTag(targetTag) && other.gameObject.GetComponent<HealthManager>()!=null){
             other.gameObject.GetComponent<HealthManager>().TakeDamage(damage); }
+        else if (other.gameObject.GetComponent<ComboCounter>() != null){
+            other.gameObject.GetComponent<ComboCounter>().ImHit();
+        }
     }
 }

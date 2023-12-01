@@ -50,7 +50,7 @@ public class MoveWithPath : MonoBehaviour
 
     float GetHorizontalDistanceToWP()
     {
-        Debug.Log(wayPointNumber);
+        //Debug.Log(wayPointNumber);
         if (wayPointNumber == 0) {
             float distanceBetweenLastAndNextAimPoint = Vector2.Distance(
                 new Vector2(GetAimPoint(wayPointNumber).x, GetAimPoint(wayPointNumber).z), 

@@ -7,24 +7,24 @@ public class HealthManager : MonoBehaviour
     [SerializeField] float currentHealth;
     [SerializeField] int pointValue;
     ComboCounter counter;
-    bool enemy = false;
+    //bool enemy = false;
     public float CurrentHealth {  get { return currentHealth; } }
     private void Start()
     {
         counter = FindObjectOfType<ComboCounter>();
-        enemy = CompareTag("Enemy");
+    //    enemy = CompareTag("Enemy");
     }
     private void Update()
     {
         if (currentHealth < 1)
         {
-            if (enemy==true) { counter.AddKill(pointValue); }
+            counter.AddKill(pointValue);
             Destroy(this.gameObject);
         }
     }
     public void TakeDamage(float dmg)
     {
-        if (enemy==false) { counter.ImHit(); }
+        //if (enemy==false) { counter.ImHit(); }
         currentHealth -= dmg;
     }
     public void HealDamage(float dmg)

@@ -47,7 +47,7 @@ public class SpawnBubble : MonoBehaviour
 
     Vector3 RandomSpawnPoint()
     {
-        var sp = transform.TransformPoint(new Vector3(Random.Range(-size.x / 2, size.x / 2), 0, Random.Range(0, size.z)));
+        var sp = transform.TransformPoint(new Vector3(Random.Range(-size.x / 2, size.x / 2), 0, Random.Range(0, size.z))+center/2);
         var h = moveWithPath.MapheightAtPos(sp);
         sp.y = Random.Range(h + minHeight, h + maxHeight);
         return sp;

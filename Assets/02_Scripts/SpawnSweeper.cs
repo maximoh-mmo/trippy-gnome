@@ -11,7 +11,6 @@ public class SpawnSweeper : MonoBehaviour
         child.transform.parent = transform;
         child.transform.position = transform.position;
         child.transform.rotation = transform.rotation;
-        child.transform.SetParent(this.transform);
         sweepArea = child.GetComponent<BoxCollider>();
         sweepArea.isTrigger = true;
         sweepArea.size = size;
@@ -21,5 +20,13 @@ public class SpawnSweeper : MonoBehaviour
     {
         sweepArea.size = size;
         sweepArea.center = new Vector3(0, 0, (-size.z / 2));
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer != 3)
+        {
+            Debug.Log("Time to sweep " + other);
+            //Destroy(other.gameObject);
+        }
     }
 }
