@@ -46,8 +46,9 @@ public class CameraScriptv2 : MonoBehaviour
     {
         Vector3 localPos = transform.position;
         Vector3 targetLocalPos = t.transform.position;
-        transform.position = Vector3.SmoothDamp(localPos, new Vector3(targetLocalPos.x + offset.x, targetLocalPos.y + offset.y, targetLocalPos.z), ref velocity, smoothTime);
-        transform.position = new Vector3(transform.position.x,transform.position.y,targetLocalPos.z + offset.z);
+        localPos = Vector3.SmoothDamp(localPos, new Vector3(targetLocalPos.x + offset.x, targetLocalPos.y + offset.y, targetLocalPos.z), ref velocity, smoothTime);
+        localPos = new Vector3(localPos.x,localPos.y,targetLocalPos.z + offset.z);
+        transform.position = localPos;
     }
 
     private void OnDrawGizmos()

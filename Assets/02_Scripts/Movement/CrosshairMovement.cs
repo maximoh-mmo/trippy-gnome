@@ -5,18 +5,19 @@ public class CrosshairMovement : MonoBehaviour
     private float xMovement, yMovement;
     [SerializeField] private float xySpeedMultiple;
     [SerializeField] private Vector2 boundary;
-    private Vector2 shipSize = Vector2.zero;
+    CraftFollowCrosshair CraftFollowCrosshair;
     private Vector2 screenBounds;
-
-    public Vector2 ShipSize {  get { return shipSize; } }
+    private Vector2 shipSize;
     public Vector2 Boundry { get { return boundary; } }
-    void Start()
+    void Awake()
     {
         if (xySpeedMultiple==0) { xySpeedMultiple = 1; }
-        shipSize = GetShipSize();
-        Debug.Log(shipSize);
+        CraftFollowCrosshair = GameObject.FindFirstObjectByType<CraftFollowCrosshair>();
     }
-
+    private void Start()
+    {
+        shipSize = CraftFollowCrosshair.ShipSize;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -44,15 +45,6 @@ public class CrosshairMovement : MonoBehaviour
     {
         Vector3 clampedTargetPosition = new Vector3(Mathf.Clamp(targetPosition.x, -xClamp + shipSize.x, xClamp - shipSize.x),Mathf.Clamp(targetPosition.y, -yClamp + shipSize.y,yClamp - shipSize.y),targetPosition.z);
         return clampedTargetPosition;
-    }
-    private Vector2 GetShipSize()
-    {
-        float maxSizeX = 0;
-        float maxSizeY = 0;
-        Renderer renderer = GetComponent<Renderer>();
-        maxSizeX = renderer.bounds.size.x;
-        maxSizeY = renderer.bounds.size.y;
-        return new Vector2(maxSizeX/2,maxSizeY/2);
     }
     private void OnDrawGizmos()
     {

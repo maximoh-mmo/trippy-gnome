@@ -476,7 +476,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetToFollow: {fileID: 1838675148}
-  moveSpeed: 3
+  moveSpeed: 5
+  clampMultiplier: 2
   crosshairMovement: {fileID: 1838675149}
   cameraScriptv2: {fileID: 1390929235}
 --- !u!1 &1838675147
