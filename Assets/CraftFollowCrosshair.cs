@@ -1,11 +1,12 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CraftFollowCrosshair : MonoBehaviour
 {
     [SerializeField] private Transform targetToFollow;
     [SerializeField] private float moveSpeed, clampMultiplier, leanLimit, lerpTime;
     [SerializeField] private CrosshairMovement crosshairMovement;
-    [SerializeField] private CameraScriptv2 cameraScriptv2;
+    [FormerlySerializedAs("cameraScriptv2")] [SerializeField] private DynamicChaseCamera dynamicChaseCamera;
     private Vector2 clampLimit = Vector2.zero;
     private float offset;
     public Vector2 ShipSize { get; private set; } = Vector2.zero;
@@ -18,7 +19,7 @@ public class CraftFollowCrosshair : MonoBehaviour
     private void Start()
     {
         offset = transform.position.z;
-        clampLimit = CalculateLimitBasedOnDistance(crosshairMovement.Boundry, cameraScriptv2.Limits);
+        clampLimit = CalculateLimitBasedOnDistance(crosshairMovement.Boundry, dynamicChaseCamera.Limits);
         clampLimit -= ShipSize * clampMultiplier;
     }
 
