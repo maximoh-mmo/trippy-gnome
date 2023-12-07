@@ -25,7 +25,7 @@ public class CraftFollowCrosshair : MonoBehaviour
 
     private void Update()
     {
-        transform.position = HandleMovement(targetToFollow.position);
+        transform.localPosition = HandleMovement(targetToFollow.localPosition);
         transform.LookAt(targetToFollow);
         HandleTilt();
     }
@@ -38,7 +38,7 @@ public class CraftFollowCrosshair : MonoBehaviour
 
     private Vector3 HandleMovement(Vector3 currentPosition)
     {
-        var moveGoal = Vector3.Lerp(transform.position, new Vector3(currentPosition.x, currentPosition.y, currentPosition.z+offset), moveSpeed * Time.deltaTime);
+        var moveGoal = Vector3.Lerp(transform.localPosition, new Vector3(currentPosition.x, currentPosition.y, currentPosition.z+offset), moveSpeed * Time.deltaTime);
         return new Vector3(Mathf.Clamp(moveGoal.x, -clampLimit.x, clampLimit.x), Mathf.Clamp(moveGoal.y, -clampLimit.y, clampLimit.y), currentPosition.z+offset);
     }
     /// <summary>

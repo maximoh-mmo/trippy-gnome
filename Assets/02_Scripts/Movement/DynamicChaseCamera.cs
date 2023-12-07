@@ -38,23 +38,23 @@ public class DynamicChaseCamera : MonoBehaviour
 
     void LateUpdate()
     {
-        Vector3 localPos = transform.position;
-        transform.position = new Vector3(Mathf.Clamp(localPos.x, -limits.x, limits.x), Mathf.Clamp(localPos.y, -limits.y, limits.y), localPos.z);
+        Vector3 localPos = transform.localPosition;
+        transform.localPosition = new Vector3(Mathf.Clamp(localPos.x, -limits.x, limits.x), Mathf.Clamp(localPos.y, -limits.y, limits.y), localPos.z);
     }
 
     public void FollowTarget(Transform t)
     {
-        Vector3 localPos = transform.position;
-        Vector3 targetLocalPos = t.transform.position;
+        Vector3 localPos = transform.localPosition;
+        Vector3 targetLocalPos = t.transform.localPosition;
         localPos = Vector3.SmoothDamp(localPos, new Vector3(targetLocalPos.x + offset.x, targetLocalPos.y + offset.y, targetLocalPos.z), ref velocity, smoothTime);
         localPos = new Vector3(localPos.x,localPos.y,targetLocalPos.z + offset.z);
-        transform.position = localPos;
+        transform.localPosition = localPos;
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        var positionZ = transform.position.z;
+        var positionZ = transform.localPosition.z;
         Gizmos.DrawLine(new Vector3(-limits.x, -limits.y, positionZ), new Vector3(limits.x, -limits.y, positionZ));
         Gizmos.DrawLine(new Vector3(-limits.x, limits.y, positionZ), new Vector3(limits.x, limits.y, positionZ));
         Gizmos.DrawLine(new Vector3(-limits.x, -limits.y, positionZ), new Vector3(-limits.x, limits.y, positionZ));
