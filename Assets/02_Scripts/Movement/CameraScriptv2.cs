@@ -13,7 +13,10 @@ public class CameraScriptv2 : MonoBehaviour
     public Vector2 Limits { get { return limits; } }
     private void Start()
     {
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+        if (Camera.main != null)
+            screenBounds =
+                Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height,
+                    Camera.main.transform.position.z));
         offset = transform.position;
         limits = target.GetComponent<CrosshairMovement>().Boundry;
         if (limits.x + screenBounds.x < 0) limits.x = 0;
@@ -54,9 +57,10 @@ public class CameraScriptv2 : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawLine(new Vector3(-limits.x, -limits.y, transform.position.z), new Vector3(limits.x, -limits.y, transform.position.z));
-        Gizmos.DrawLine(new Vector3(-limits.x, limits.y, transform.position.z), new Vector3(limits.x, limits.y, transform.position.z));
-        Gizmos.DrawLine(new Vector3(-limits.x, -limits.y, transform.position.z), new Vector3(-limits.x, limits.y, transform.position.z));
-        Gizmos.DrawLine(new Vector3(limits.x, -limits.y, transform.position.z), new Vector3(limits.x, limits.y, transform.position.z));
+        var positionZ = transform.position.z;
+        Gizmos.DrawLine(new Vector3(-limits.x, -limits.y, positionZ), new Vector3(limits.x, -limits.y, positionZ));
+        Gizmos.DrawLine(new Vector3(-limits.x, limits.y, positionZ), new Vector3(limits.x, limits.y, positionZ));
+        Gizmos.DrawLine(new Vector3(-limits.x, -limits.y, positionZ), new Vector3(-limits.x, limits.y, positionZ));
+        Gizmos.DrawLine(new Vector3(limits.x, -limits.y, positionZ), new Vector3(limits.x, limits.y, positionZ));
     }
 }

@@ -3,35 +3,42 @@ using UnityEngine;
 public class CraftFollowCrosshair : MonoBehaviour
 {
     [SerializeField] private Transform targetToFollow;
-    [SerializeField] private float moveSpeed, clampMultiplier;
+    [SerializeField] private float moveSpeed, clampMultiplier, leanLimit, lerpTime;
     [SerializeField] private CrosshairMovement crosshairMovement;
     [SerializeField] private CameraScriptv2 cameraScriptv2;
-    private Vector2 shipSize = Vector2.zero;
     private Vector2 clampLimit = Vector2.zero;
     private float offset;
-    public Vector2 ShipSize { get { return shipSize; } }
+    public Vector2 ShipSize { get; private set; } = Vector2.zero;
 
     private void Awake()
     {
-        shipSize = GetShipSize();
+        ShipSize = GetShipSize();
     }
     
     private void Start()
     {
         offset = transform.position.z;
         clampLimit = CalculateLimitBasedOnDistance(crosshairMovement.Boundry, cameraScriptv2.Limits);
-        clampLimit -= shipSize * clampMultiplier;
+        clampLimit -= ShipSize * clampMultiplier;
     }
 
     private void Update()
     {
-        HandleMovement();
+        transform.position = HandleMovement(targetToFollow.position);
+        transform.LookAt(targetToFollow);
+        HandleTilt();
     }
-
-    void HandleMovement()
+    private void HandleTilt()
     {
-        Vector3 moveGoal = Vector3.Lerp(transform.position, new Vector3(targetToFollow.position.x, targetToFollow.position.y, targetToFollow.position.z+offset), moveSpeed * Time.deltaTime);
-        transform.position = new Vector3(Mathf.Clamp(moveGoal.x, -clampLimit.x, clampLimit.x), Mathf.Clamp(moveGoal.y, -clampLimit.y, clampLimit.y), targetToFollow.position.z+offset);
+        var currentRoll = transform.localEulerAngles;
+        transform.localEulerAngles = new Vector3( currentRoll.x,  currentRoll.y, Mathf.Lerp(currentRoll.z, -crosshairMovement.XMovement * leanLimit, lerpTime)); 
+    }
+        
+
+    private Vector3 HandleMovement(Vector3 currentPosition)
+    {
+        var moveGoal = Vector3.Lerp(transform.position, new Vector3(currentPosition.x, currentPosition.y, currentPosition.z+offset), moveSpeed * Time.deltaTime);
+        return new Vector3(Mathf.Clamp(moveGoal.x, -clampLimit.x, clampLimit.x), Mathf.Clamp(moveGoal.y, -clampLimit.y, clampLimit.y), currentPosition.z+offset);
     }
     /// <summary>
     /// Uses Pythagorean Trigonometry to calculate a Vector 2 between two parallel sets of limits (Vector2 A and Vector2 B)
@@ -42,23 +49,18 @@ public class CraftFollowCrosshair : MonoBehaviour
     /// <returns>Vector2</returns>
     Vector2 CalculateLimitBasedOnDistance(Vector2 a, Vector2 b)
     {
-        if (Camera.main != null)
-        {
-            Vector2 returnVector;
-            var camPosZ = Camera.main.transform.position.z;
-            var adjacent = GetLengthBetween(camPosZ,crosshairMovement.gameObject.transform.position.z);
-            var oppositeX = GetLengthBetween(a.x, b.x);
-            var oppositeY = GetLengthBetween(a.y, b.y);
-            var angleX = Mathf.Atan2(oppositeX, adjacent); 
-            var angleY = Mathf.Atan2(oppositeY, adjacent);
-            var cameraToShipAdj = GetLengthBetween(camPosZ, this.transform.position.z);
-            returnVector.x = Mathf.Tan(angleX) * cameraToShipAdj + Mathf.Abs(b.x);
-            returnVector.y = Mathf.Tan(angleY) * cameraToShipAdj + Mathf.Abs(b.y);
-            return returnVector;
-        }
-
-        return Vector2.zero;
-        
+        if (Camera.main == null) return Vector2.zero;
+        Vector2 returnVector;
+        var camPosZ = Camera.main.transform.position.z;
+        var adjacent = GetLengthBetween(camPosZ,crosshairMovement.gameObject.transform.position.z);
+        var oppositeX = GetLengthBetween(a.x, b.x);
+        var oppositeY = GetLengthBetween(a.y, b.y);
+        var angleX = Mathf.Atan2(oppositeX, adjacent); 
+        var angleY = Mathf.Atan2(oppositeY, adjacent);
+        var cameraToShipAdj = GetLengthBetween(camPosZ, transform.position.z);
+        returnVector.x = Mathf.Tan(angleX) * cameraToShipAdj + Mathf.Abs(b.x);
+        returnVector.y = Mathf.Tan(angleY) * cameraToShipAdj + Mathf.Abs(b.y);
+        return returnVector;
     }
     
     /// <summary>
@@ -70,11 +72,11 @@ public class CraftFollowCrosshair : MonoBehaviour
         float maxSizeX = 0;
         float maxSizeY = 0;
         Renderer[] renderers = this.gameObject.GetComponentsInChildren<Renderer>();
-        foreach (Renderer renderer in renderers)
+        foreach (Renderer r in renderers)
         {
-            Debug.Log(renderer.gameObject);
-            if (renderer.bounds.size.x > maxSizeX) maxSizeX = renderer.bounds.size.x;
-            if (renderer.bounds.size.y > maxSizeY) maxSizeY = renderer.bounds.size.y;
+            Debug.Log(r.gameObject);
+            if (r.bounds.size.x > maxSizeX) maxSizeX = r.bounds.size.x;
+            if (r.bounds.size.y > maxSizeY) maxSizeY = r.bounds.size.y;
         }
         return new Vector2(maxSizeX, maxSizeY)/2;
     }
@@ -84,12 +86,16 @@ public class CraftFollowCrosshair : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        var position = gameObject.transform.position;
+        var positionZ = gameObject.transform.position.z;
         Gizmos.color = Color.cyan;
         
-        Gizmos.DrawLine(new Vector3(clampLimit.x, clampLimit.y, position.z), new Vector3(clampLimit.x, -clampLimit.y, position.z));
-        Gizmos.DrawLine(new Vector3(-clampLimit.x, clampLimit.y, position.z), new Vector3(clampLimit.x, clampLimit.y, position.z));
-        Gizmos.DrawLine(new Vector3(-clampLimit.x, clampLimit.y, position.z), new Vector3(-clampLimit.x, -clampLimit.y, position.z));
-        Gizmos.DrawLine(new Vector3(-clampLimit.x, -clampLimit.y, position.z), new Vector3(clampLimit.x, -clampLimit.y, position.z));
+        Gizmos.DrawLine(new Vector3(clampLimit.x, clampLimit.y, positionZ), new Vector3(clampLimit.x, -clampLimit.y, positionZ));
+        Gizmos.DrawLine(new Vector3(-clampLimit.x, clampLimit.y, positionZ), new Vector3(clampLimit.x, clampLimit.y, positionZ));
+        Gizmos.DrawLine(new Vector3(-clampLimit.x, clampLimit.y, positionZ), new Vector3(-clampLimit.x, -clampLimit.y, positionZ));
+        Gizmos.DrawLine(new Vector3(-clampLimit.x, -clampLimit.y, positionZ), new Vector3(clampLimit.x, -clampLimit.y, positionZ));
+        
+       
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, transform.forward * 1000);
     }
 }

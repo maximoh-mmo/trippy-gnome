@@ -5,30 +5,34 @@ public class CrosshairMovement : MonoBehaviour
     private float xMovement, yMovement;
     [SerializeField] private float xySpeedMultiple;
     [SerializeField] private Vector2 boundary;
-    CraftFollowCrosshair CraftFollowCrosshair;
+    CraftFollowCrosshair craftFollowCrosshair;
     private Vector2 screenBounds;
     private Vector2 shipSize;
-    public Vector2 Boundry { get { return boundary; } }
+    private Camera camera1;
+    public Vector2 Boundry => boundary;
+    public float XMovement => xMovement;
+
     void Awake()
     {
         if (xySpeedMultiple==0) { xySpeedMultiple = 1; }
-        CraftFollowCrosshair = GameObject.FindFirstObjectByType<CraftFollowCrosshair>();
+        craftFollowCrosshair = GameObject.FindFirstObjectByType<CraftFollowCrosshair>();
     }
     private void Start()
     {
-        shipSize = CraftFollowCrosshair.ShipSize;
+        camera1 = Camera.main;
+        shipSize = craftFollowCrosshair.ShipSize;
     }
     // Update is called once per frame
     void Update()
     {
-        screenBounds =  Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+        screenBounds =  camera1.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, camera1.transform.position.z));
         xMovement = Input.GetAxis("Horizontal");
         yMovement = Input.GetAxis("Vertical");
         ProcessMovement();
     }
     private void ProcessMovement()
     {
-        Vector3 targetPosition = transform.position + new Vector3(xMovement,yMovement) * Time.deltaTime * xySpeedMultiple;
+        Vector3 targetPosition = transform.position + new Vector3(xMovement,yMovement) * (Time.deltaTime * xySpeedMultiple);
         Vector3 clampedTargetPosition = ClampPosition(targetPosition, boundary.x, boundary.y);
         //Vector3 clampedTargetPosition = ScreenClampPosition(targetPosition);
         transform.position = clampedTargetPosition;
@@ -49,9 +53,10 @@ public class CrosshairMovement : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(new Vector3(boundary.x, boundary.y,transform.position.z), new Vector3(boundary.x, -boundary.y, transform.position.z));
-        Gizmos.DrawLine(new Vector3(-boundary.x, boundary.y, transform.position.z), new Vector3(boundary.x, boundary.y, transform.position.z));
-        Gizmos.DrawLine(new Vector3(-boundary.x, boundary.y, transform.position.z), new Vector3(-boundary.x, -boundary.y, transform.position.z));
-        Gizmos.DrawLine(new Vector3(-boundary.x, -boundary.y, transform.position.z), new Vector3(boundary.x, -boundary.y, transform.position.z));
+        var positionZ = transform.position.z;
+        Gizmos.DrawLine(new Vector3(boundary.x, boundary.y,positionZ), new Vector3(boundary.x, -boundary.y, positionZ));
+        Gizmos.DrawLine(new Vector3(-boundary.x, boundary.y, positionZ), new Vector3(boundary.x, boundary.y, positionZ));
+        Gizmos.DrawLine(new Vector3(-boundary.x, boundary.y, positionZ), new Vector3(-boundary.x, -boundary.y, positionZ));
+        Gizmos.DrawLine(new Vector3(-boundary.x, -boundary.y, positionZ), new Vector3(boundary.x, -boundary.y, positionZ));
     }
 }
