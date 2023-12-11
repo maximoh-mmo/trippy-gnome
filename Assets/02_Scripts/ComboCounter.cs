@@ -15,6 +15,7 @@ public class ComboCounter : MonoBehaviour
     {
         //create text elements for currentComboKills and points?
         TestHUD = new GameObject("TestHUD", typeof(TextMeshPro));
+        TestHUD.transform.SetParent(GameObject.Find("PathWalker").transform);
         scorekills = GameObject.Find("TestHUD").GetComponent<TextMeshPro>();
         StartCoroutine("ComboStepDown");
     }

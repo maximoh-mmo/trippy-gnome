@@ -6,7 +6,7 @@ public class CraftFollowCrosshair : MonoBehaviour
     [SerializeField] private Transform targetToFollow;
     [SerializeField] private float moveSpeed, clampMultiplier, leanLimit, lerpTime;
     [SerializeField] private CrosshairMovement crosshairMovement;
-    [FormerlySerializedAs("cameraScriptv2")] [SerializeField] private DynamicChaseCamera dynamicChaseCamera;
+    [SerializeField] private DynamicChaseCamera dynamicChaseCamera;
     private Vector2 clampLimit = Vector2.zero;
     private float offset;
     public Vector2 ShipSize { get; private set; } = Vector2.zero;
