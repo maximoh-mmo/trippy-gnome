@@ -22,6 +22,7 @@ public class Bullet : MonoBehaviour
         var currentRange = Vector3.Distance(startPos, transform.position);
         if (currentRange > range)
         {
+            Debug.Log("out of range");
             Destroy(gameObject);
         }
     }
@@ -33,11 +34,12 @@ public class Bullet : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        else if (other.gameObject.CompareTag(targetTag) && other.gameObject.GetComponent<HealthManager>() != null)
+        if (other.gameObject.CompareTag(targetTag) && other.gameObject.GetComponent<HealthManager>() != null)
         {
             other.gameObject.GetComponent<HealthManager>().TakeDamage(damage);
         }
-        else if (other.gameObject.GetComponent<ComboCounter>() != null)
+
+        if (other.gameObject.GetComponent<ComboCounter>() != null)
         {
             other.gameObject.GetComponent<ComboCounter>().ImHit();
         }

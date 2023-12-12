@@ -1,23 +1,23 @@
 using System;
-using UnityEditor;
 using UnityEngine;
+
 public class WeaponSystem : MonoBehaviour
 {
     [SerializeField] private Weapon[] Weapons;
-    public int damage;
-    public float cooldown, range,  fireRate, projectileSpeed;
+    private int damage = 1;
+    public float fireRate;
+    public float range, projectileSpeed;
     public bool allowButtonHold;
-    public GameObject BulletPrefab;
-    string enemyType = string.Empty;
-    bool shooting, readyToShoot, reloading;
+    [SerializeField] GameObject BulletPrefab;
+    private string enemyType = string.Empty;
+    private bool shooting, readyToShoot, reloading;
     public Transform[] attackPoints;
     public RaycastHit raycastHit;
     public LayerMask layerMask;
     private void Start()
     {
         readyToShoot = true;
-        if (gameObject.CompareTag("Enemy") == true) { enemyType = "Player"; }
-        else { enemyType = "Enemy"; }
+        enemyType = gameObject.CompareTag("Enemy") == true ? "Player" : "Enemy";
     }
     private void Update()
     {
@@ -36,26 +36,32 @@ public class WeaponSystem : MonoBehaviour
     private void Shoot()
     {
         readyToShoot = false;
+        HandleVisuals();
+        Invoke("ResetShot", fireRate);
+        
         //if (Physics.Raycast(attackPoint.position, attackPoint.forward, out raycastHit, range) && raycastHit.collider.CompareTag(enemyType))
         //{
         //    raycastHit.collider.GetComponent<HealthManager>().TakeDamage(damage);
         //}
-        HandleVisuals();
-        Invoke("ResetShot", cooldown);
     }
     private void ResetShot() { readyToShoot = true; }
 
     private void HandleVisuals()
-    {
-        //GameObject newObject = Instantiate(BulletPrefab, attackPoint.position, attackPoint.rotation);
-        foreach (var attackPoint in attackPoints)
+    {   foreach (var attackPoint in attackPoints)
         {
             Bullet bullet = Instantiate(BulletPrefab, attackPoint.position, attackPoint.rotation).GetComponent<Bullet>();
+            Debug.Log(bullet);
             bullet.TargetTag = enemyType;
             bullet.Damage = damage;
             bullet.Range = range;
             bullet.Speed = projectileSpeed;
         }
+    }
+    public void SwitchGun(int id)
+    {
+        damage = Weapons[id].damage;
+        BulletPrefab = Weapons[id].projectile;
+        attackPoints = Weapons[id].firePoints;
     }
 }
 [Serializable]

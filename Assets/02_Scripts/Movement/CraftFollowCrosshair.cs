@@ -74,7 +74,6 @@ public class CraftFollowCrosshair : MonoBehaviour
         Renderer[] renderers = this.gameObject.GetComponentsInChildren<Renderer>();
         foreach (Renderer r in renderers)
         {
-            Debug.Log(r.gameObject);
             if (r.bounds.size.x > maxSizeX) maxSizeX = r.bounds.size.x;
             if (r.bounds.size.y > maxSizeY) maxSizeY = r.bounds.size.y;
         }

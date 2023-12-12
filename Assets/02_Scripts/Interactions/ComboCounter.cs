@@ -11,15 +11,16 @@ public class ComboCounter : MonoBehaviour
     [SerializeField] private GameObject[] icons;
     [SerializeField] private float stepDownTime = 0;
     private int currentComboLevel, currentComboKills, totalKillCount, score, runningScore = 0;
-    TMP_Text HUDScore, HUDComboLvl, HUDComboScore;
+    private TMP_Text HUDScore, HUDComboLvl, HUDComboScore;
     private AutoSpawner autoSpawner;
+    private WeaponSystem weaponSystem;
     [SerializeField] bool CHEATER = false;
 
     private void Start()
     {
-        autoSpawner = GameObject.FindFirstObjectByType<AutoSpawner>();
-        autoSpawner.MinSpawns = combos[currentComboLevel].minEnemies;
-        autoSpawner.NumToSpawn = combos[currentComboLevel].enemiesToSpawn;
+        weaponSystem = FindFirstObjectByType<WeaponSystem>();
+        autoSpawner = FindFirstObjectByType<AutoSpawner>();
+        UpdateDependants();
         HUDScore = GameObject.Find("Score").GetComponent<TMP_Text>();
         HUDComboLvl = GameObject.Find("ComboLevel").GetComponent<TMP_Text>();
         HUDComboScore = GameObject.Find("RunningScore").GetComponent<TMP_Text>();
@@ -48,8 +49,7 @@ public class ComboCounter : MonoBehaviour
         ToggleIcon(currentComboLevel, true);
         currentComboKills = 0;
         runningScore = 0;
-        autoSpawner.MinSpawns = combos[currentComboLevel].minEnemies;
-        autoSpawner.NumToSpawn = combos[currentComboLevel].enemiesToSpawn;
+        UpdateDependants();
     }
 
     public void ImHit()
@@ -68,9 +68,14 @@ public class ComboCounter : MonoBehaviour
         {
             DeathHandler();
         }
+        UpdateDependants();
+    }
 
+    private void UpdateDependants()
+    {
         autoSpawner.MinSpawns = combos[currentComboLevel].minEnemies;
         autoSpawner.NumToSpawn = combos[currentComboLevel].enemiesToSpawn;
+        weaponSystem.SwitchGun(currentComboLevel);
     }
 
     private int CalculateScore(int points)
@@ -98,10 +103,10 @@ public class ComboCounter : MonoBehaviour
         Debug.Log("you died");
     }
 
-    private void ToggleIcon(int id, bool enabled)
+    private void ToggleIcon(int id, bool setTo)
     {
         var spritImage = icons[id].GetComponent<Image>();
-        spritImage.enabled = enabled;
+        spritImage.enabled = setTo;
     }
 }
 [Serializable]

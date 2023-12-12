@@ -3,6 +3,7 @@ using UnityEngine;
 public class Loot:MonoBehaviour
 {
     public LootItem[] loots;
+    public float scale = 1f;
     public void GetLoot(Vector3 position)
     {
         float drawn = Random.Range(0f, 100f);
@@ -12,6 +13,7 @@ public class Loot:MonoBehaviour
             {
                 GameObject powerup = Instantiate(loot.PowerUp);
                 powerup.transform.position = position;
+                powerup.transform.localScale = Vector3.one * scale;
             }
         }
     }
