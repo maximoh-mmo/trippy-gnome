@@ -19,19 +19,26 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {   transform.position += transform.forward * speed * Time.deltaTime;
-            float currentRange = Vector3.Distance(startPos, transform.position);
-            if (currentRange > range)
-            {
-                Destroy(gameObject);
-            }
+        var currentRange = Vector3.Distance(startPos, transform.position);
+        if (currentRange > range)
+        {
+            Destroy(gameObject);
         }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag(targetTag) && other.gameObject.GetComponent<HealthManager>()!=null){
+        if (other == null) return;
+        if (other.gameObject.name == "Sweeper")
+        {
+            Destroy(this.gameObject);
+        }
+        else if (other.gameObject.CompareTag(targetTag) && other.gameObject.GetComponent<HealthManager>() != null)
+        {
             other.gameObject.GetComponent<HealthManager>().TakeDamage(damage);
         }
-        else if (other.gameObject.GetComponent<ComboCounter>() != null){
+        else if (other.gameObject.GetComponent<ComboCounter>() != null)
+        {
             other.gameObject.GetComponent<ComboCounter>().ImHit();
         }
     }

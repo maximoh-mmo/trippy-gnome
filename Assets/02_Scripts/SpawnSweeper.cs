@@ -21,12 +21,4 @@ public class SpawnSweeper : MonoBehaviour
         sweepArea.size = size;
         sweepArea.center = new Vector3(0, 0, (-size.z / 2));
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer != 3)
-        {
-            Debug.Log("Time to sweep " + other);
-            //Destroy(other.gameObject);
-        }
-    }
 }
