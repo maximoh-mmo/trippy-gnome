@@ -907,8 +907,39 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &433003308
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 433003309}
+  m_Layer: 6
+  m_Name: LeftAimPoint
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &433003309
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433003308}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.488, y: -0.45, z: 2.424}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1260513707}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &511988709
 GameObject:
   m_ObjectHideFlags: 0
@@ -2234,6 +2265,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1253140428}
   m_CullTransparentMesh: 1
+--- !u!4 &1260513707 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6261156371011990142, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+  m_PrefabInstance: {fileID: 1964191059}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1262515784
 GameObject:
   m_ObjectHideFlags: 0
@@ -2496,7 +2532,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1530044746
 GameObject:
@@ -2974,8 +3010,20 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: fireRate
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: projectileSpeed
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
       propertyPath: Weapons.Array.size
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
       propertyPath: attackPoints.Array.size
@@ -2985,6 +3033,106 @@ PrefabInstance:
       propertyPath: attackPoints.Array.data[0]
       value: 
       objectReference: {fileID: 580552116}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: Weapons.Array.data[0].damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: Weapons.Array.data[1].damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: Weapons.Array.data[2].damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: Weapons.Array.data[3].damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: Weapons.Array.data[0].projectile
+      value: 
+      objectReference: {fileID: 2033890919814722285, guid: f732c060d688e7749a88915f61530193, type: 3}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: Weapons.Array.data[0].weaponName
+      value: MG0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: Weapons.Array.data[1].projectile
+      value: 
+      objectReference: {fileID: 2033890919814722285, guid: f732c060d688e7749a88915f61530193, type: 3}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: Weapons.Array.data[1].weaponName
+      value: MG1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: Weapons.Array.data[2].projectile
+      value: 
+      objectReference: {fileID: 2033890919814722285, guid: f732c060d688e7749a88915f61530193, type: 3}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: Weapons.Array.data[2].weaponName
+      value: MG2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: Weapons.Array.data[3].projectile
+      value: 
+      objectReference: {fileID: 2033890919814722285, guid: f732c060d688e7749a88915f61530193, type: 3}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: Weapons.Array.data[3].weaponName
+      value: Laser0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: Weapons.Array.data[0].firePoints.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: Weapons.Array.data[1].firePoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: Weapons.Array.data[2].firePoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: Weapons.Array.data[3].firePoints.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: Weapons.Array.data[0].firePoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 580552116}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: Weapons.Array.data[1].firePoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 433003309}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: Weapons.Array.data[1].firePoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 2041172480}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: Weapons.Array.data[2].firePoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 433003309}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: Weapons.Array.data[2].firePoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 2041172480}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: Weapons.Array.data[2].firePoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 1974272572}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: Weapons.Array.data[3].firePoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 580552116}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: Weapons.Array.data[3].firePoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 2041172480}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: Weapons.Array.data[3].firePoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 1974272572}
     - target: {fileID: 4882473472293157231, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
       propertyPath: numberToSpawn
       value: 3
@@ -3003,7 +3151,7 @@ PrefabInstance:
       objectReference: {fileID: 1316456239}
     - target: {fileID: 4882473472349465809, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4882473472349465809, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3069,6 +3217,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 96dd507d6576400489909cb5ee8353d8, type: 3}
+    - target: {fileID: 5068241123216749594, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.4
+      objectReference: {fileID: 0}
     - target: {fileID: 5299086939695345077, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.67
@@ -3085,9 +3237,79 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6261156371011990142, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8049307156532153756, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: m_Name
+      value: CenterAimPoint
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4882473472293157217, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+--- !u!1 &1974272571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1974272572}
+  m_Layer: 6
+  m_Name: TopAimPoint
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1974272572
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974272571}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.45, z: 2.72}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1260513707}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2041172479
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2041172480}
+  m_Layer: 6
+  m_Name: RightAimPoint
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2041172480
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041172479}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.488, y: -0.45, z: 2.424}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1260513707}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2133909048
 GameObject:
   m_ObjectHideFlags: 0

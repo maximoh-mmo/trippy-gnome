@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class WeaponSystem : MonoBehaviour
 {
-    [SerializeField] private Weapon[] Weapons;
+    public Weapon[] Weapons;
     private int damage = 1;
     public float fireRate;
     public float range, projectileSpeed;
