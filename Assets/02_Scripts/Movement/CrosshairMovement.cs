@@ -41,7 +41,8 @@ public class CrosshairMovement : MonoBehaviour
 
     private Vector3 ClampPosition(Vector3 targetPosition, float xClamp, float yClamp)
     {
-        return new Vector3(Mathf.Clamp(targetPosition.x, -xClamp + shipSize.x, xClamp - shipSize.x),Mathf.Clamp(targetPosition.y, -yClamp + shipSize.y,yClamp - shipSize.y),targetPosition.z);
+        return new Vector3(Mathf.Clamp(targetPosition.x, -xClamp + shipSize.x, xClamp - shipSize.x),
+            Mathf.Clamp(targetPosition.y, -yClamp + shipSize.y,yClamp - shipSize.y),targetPosition.z);
     }
     private void OnDrawGizmos()
     {

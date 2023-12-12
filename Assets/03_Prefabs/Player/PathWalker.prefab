@@ -901,6 +901,19 @@ MonoBehaviour:
     scoreMultiplier: 10
   stepDownTime: 10
   CHEATER: 1
+--- !u!114 &4882473472293157228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4810393962034738959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eea24440bb722c64180119aec3e19512, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: {x: 302.52, y: 237.22, z: 992.2}
 --- !u!114 &4882473472293157229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -920,27 +933,12 @@ MonoBehaviour:
   reloadTime: 0
   fireRate: 3
   projectileSpeed: 1000
-  magazineSize: 1000000
-  bulletsPerTap: 1
   allowButtonHold: 1
   BulletPrefab: {fileID: 2033890919814722285, guid: f732c060d688e7749a88915f61530193, type: 3}
-  attackPoint: {fileID: 5068241123216749594}
+  attackPoints: []
   layerMask:
     serializedVersion: 2
     m_Bits: 128
---- !u!114 &4882473472293157228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4810393962034738959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eea24440bb722c64180119aec3e19512, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: {x: 302.52, y: 237.22, z: 992.2}
 --- !u!114 &4882473472293157231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -960,11 +958,6 @@ MonoBehaviour:
   LayerMask:
     serializedVersion: 2
     m_Bits: 128
---- !u!4 &5068241123216749594 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 401952537129397053, guid: 63d8911cdad8b114e9c92b35ca194e44, type: 3}
-  m_PrefabInstance: {fileID: 4882473471960309543}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7938723151270840097 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3309588703233267718, guid: 63d8911cdad8b114e9c92b35ca194e44, type: 3}

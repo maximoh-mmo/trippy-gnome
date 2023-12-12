@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class CraftFollowCrosshair : MonoBehaviour
 {

@@ -8,7 +8,9 @@ public class ComboCounter : MonoBehaviour
     public ComboLevel[] combos;
     [SerializeField] private float stepDownTime = 0;
     private int currentComboLevel, currentComboKills, totalKillCount, score = 0;
-    GameObject TestHUD;
+    private GameObject TestHUD;
+    private TextMeshPro HUDScore;
+    
     TextMeshPro scorekills;
     [SerializeField] bool CHEATER = false;
     private void Start()
@@ -44,6 +46,7 @@ public class ComboCounter : MonoBehaviour
     }
     private int CalculateScore(int points)
     {
+        Debug.Log("ScoreCalc = "+points +" "+ combos[currentComboLevel].scoreMultiplier);
         return points * combos[currentComboLevel].scoreMultiplier;
     }
     IEnumerator ComboStepDown()
