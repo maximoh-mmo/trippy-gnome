@@ -59,7 +59,7 @@ public class WeaponSystem : MonoBehaviour
     }
 }
 [Serializable]
-public class Weapon : Editor
+public class Weapon
 {
     public string weaponName;
     public int damage;

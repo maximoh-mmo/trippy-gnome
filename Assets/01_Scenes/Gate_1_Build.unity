@@ -1039,6 +1039,7 @@ GameObject:
   - component: {fileID: 537255602}
   - component: {fileID: 537255601}
   - component: {fileID: 537255600}
+  - component: {fileID: 537255603}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1096,6 +1097,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &537255603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537255599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b9cb5df270d10740a2f11b026f4dc5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &540216400
 GameObject:
   m_ObjectHideFlags: 0
@@ -2460,9 +2473,97 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157218, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: combos.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157218, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: combos.Array.data[0].minEnemies
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157218, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: combos.Array.data[1].minEnemies
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157218, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: combos.Array.data[2].minEnemies
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157218, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: combos.Array.data[3].minEnemies
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157218, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: combos.Array.data[4].minEnemies
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157218, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: combos.Array.data[5].minEnemies
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157218, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: combos.Array.data[6].minEnemies
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157218, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: combos.Array.data[7].minEnemies
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157218, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: combos.Array.data[8].minEnemies
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157218, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: combos.Array.data[0].enemiesToSpawn
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157218, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: combos.Array.data[1].enemiesToSpawn
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157218, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: combos.Array.data[2].enemiesToSpawn
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157218, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: combos.Array.data[3].enemiesToSpawn
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157218, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: combos.Array.data[4].enemiesToSpawn
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157218, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: combos.Array.data[5].enemiesToSpawn
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157218, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: combos.Array.data[6].enemiesToSpawn
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157218, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: combos.Array.data[7].enemiesToSpawn
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157218, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: combos.Array.data[8].enemiesToSpawn
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157218, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: combos.Array.data[6].scoreMultiplier
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157218, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: combos.Array.data[7].scoreMultiplier
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157218, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: combos.Array.data[8].scoreMultiplier
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
       propertyPath: Weapons.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
       propertyPath: attackPoints.Array.size
@@ -2572,7 +2673,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4882473472293157217, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
 --- !u!1 &2133909048
 GameObject:
