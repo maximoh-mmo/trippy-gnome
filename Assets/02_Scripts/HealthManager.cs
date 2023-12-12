@@ -2,15 +2,16 @@ using UnityEngine;
 
 public class HealthManager : MonoBehaviour
 {
-    [SerializeField] float startingHealth;
-    [SerializeField] float maxHealth;
-    [SerializeField] float currentHealth;
+    [SerializeField] int maxHealth;
+    float currentHealth;
     [SerializeField] int pointValue;
     ComboCounter counter;
     //bool enemy = false;
     public float CurrentHealth {  get { return currentHealth; } }
     private void Start()
     {
+        currentHealth = maxHealth;
+        pointValue = maxHealth;
         counter = FindObjectOfType<ComboCounter>();
     //    enemy = CompareTag("Enemy");
     }

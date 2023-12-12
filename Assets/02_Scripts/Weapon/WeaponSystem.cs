@@ -1,21 +1,20 @@
+using System;
+using UnityEditor;
 using UnityEngine;
-
 public class WeaponSystem : MonoBehaviour
 {
+    [SerializeField] private Weapon[] Weapons;
     public int damage;
-    public float cooldown, spread, range, reloadTime, fireRate, projectileSpeed;
-    public int magazineSize, bulletsPerTap;
+    public float cooldown, range,  fireRate, projectileSpeed;
     public bool allowButtonHold;
-    int bulletsLeft, bulletsShot;
     public GameObject BulletPrefab;
     string enemyType = string.Empty;
     bool shooting, readyToShoot, reloading;
-    public Transform attackPoint;
+    public Transform[] attackPoints;
     public RaycastHit raycastHit;
     public LayerMask layerMask;
     private void Start()
     {
-        bulletsLeft = magazineSize;
         readyToShoot = true;
         if (gameObject.CompareTag("Enemy") == true) { enemyType = "Player"; }
         else { enemyType = "Enemy"; }
@@ -32,15 +31,7 @@ public class WeaponSystem : MonoBehaviour
         if (allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0) || Input.GetAxis("Fire1") != 0;
         else shooting = Input.GetKeyDown(KeyCode.Mouse0) || Input.GetAxis("Fire1") != 0;
         if (gameObject.CompareTag("Enemy")==true) shooting = true;
-        if (gameObject.CompareTag("Enemy") == true && bulletsLeft < magazineSize && reloading != true) { Reload(); }
-        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && reloading != true) Reload();
-        if (readyToShoot == true && shooting == true && reloading != true && bulletsLeft> 0 ) { Shoot(); }
-    }
-
-    private void Reload() 
-    {
-        readyToShoot = true;
-        Invoke("ReloadFinished", reloadTime);
+        if (readyToShoot == true && shooting == true) { Shoot(); }
     }
     private void Shoot()
     {
@@ -50,30 +41,28 @@ public class WeaponSystem : MonoBehaviour
         //    raycastHit.collider.GetComponent<HealthManager>().TakeDamage(damage);
         //}
         HandleVisuals();
-        bulletsLeft--;
         Invoke("ResetShot", cooldown);
     }
     private void ResetShot() { readyToShoot = true; }
 
-    private void ReloadFinished()
-    {
-        bulletsLeft = magazineSize;
-        reloading = false;
-    }
     private void HandleVisuals()
     {
         //GameObject newObject = Instantiate(BulletPrefab, attackPoint.position, attackPoint.rotation);
-        Bullet bullet = Instantiate(BulletPrefab, attackPoint.position, attackPoint.rotation).GetComponent<Bullet>();
-        bullet.TargetTag = enemyType;
-        bullet.Damage = damage;
-        bullet.Range = range;
-        bullet.Speed = projectileSpeed;
-    }
-
-    private void OnDrawGizmos()
+        foreach (var attackPoint in attackPoints)
         {
-            Gizmos.color = Color.red;
-            //Gizmos.DrawRay(attackPoint.position, attackPoint.forward * range);
-
+            Bullet bullet = Instantiate(BulletPrefab, attackPoint.position, attackPoint.rotation).GetComponent<Bullet>();
+            bullet.TargetTag = enemyType;
+            bullet.Damage = damage;
+            bullet.Range = range;
+            bullet.Speed = projectileSpeed;
+        }
     }
+}
+[Serializable]
+public class Weapon : Editor
+{
+    public string weaponName;
+    public int damage;
+    public Transform[] firePoints;
+    public GameObject projectile;
 }
