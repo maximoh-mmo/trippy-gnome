@@ -79,10 +79,10 @@ MonoBehaviour:
   reloadTime: 0
   fireRate: 1
   projectileSpeed: 20
-  magazineSize: 10000
-  bulletsPerTap: 1
   allowButtonHold: 1
   BulletPrefab: {fileID: 2033890919814722285, guid: f732c060d688e7749a88915f61530193, type: 3}
+  attackPoints:
+  - {fileID: 5700009916288220465}
   attackPoint: {fileID: 5700009916288220465}
   layerMask:
     serializedVersion: 2

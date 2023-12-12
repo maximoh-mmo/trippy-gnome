@@ -5,7 +5,6 @@ public class SpawnBubble : MonoBehaviour
     [SerializeField] int numberToSpawn;
     [SerializeField] Vector3 size, center;
     [SerializeField] GameObject EnemyPrefab;
-    [SerializeField] LayerMask LayerMask;
     bool spawned = true;
     BoxCollider spawnArea;
     MoveWithPath moveWithPath;
@@ -32,35 +31,36 @@ public class SpawnBubble : MonoBehaviour
         spawnArea.size = size;
         spawnArea.center = center; 
         if (Input.GetKeyDown(KeyCode.Space)) { spawned = false; }
-        if (spawned == false) { Test(); }
+        if (spawned == false) { SpawnEnemies(numberToSpawn); }
     }
 
-    void Test()
+    public void SpawnEnemies(int number)
     {
         spawned = true;
-        for (int i = 0; i < numberToSpawn; i++)
+        for (int i = 0; i < number; i++)
         {
             SpawnEnemy(RandomSpawnPoint());
         }
         //Debug.Log(CountSpawns());
     }
 
-    Vector3 RandomSpawnPoint()
+    private Vector3 RandomSpawnPoint()
     {
         var sp = transform.TransformPoint(new Vector3(Random.Range(-size.x / 2, size.x / 2), 0, Random.Range(0, size.z))+center/2);
         var h = moveWithPath.MapheightAtPos(sp);
         sp.y = Random.Range(h + minHeight, h + maxHeight);
         return sp;
     }
-    int CountSpawns()
+    public int CountSpawns()
     {
-        var count = 0;
-        Collider[] hitColliders = Physics.OverlapBox(spawnArea.center, size / 2, Quaternion.identity, LayerMask);
-        foreach (Collider collider in hitColliders)
+        int i = 0;
+        var healthManagers = GameObject.FindObjectsOfType<HealthManager>();
+        foreach (var health in healthManagers)
         {
-            if (collider.gameObject.CompareTag("Enemy")) {  count++; }
+            i++;
         }
-        return count;
+
+        return i;
     }
     void SpawnEnemy(Vector3 pos)
     {
