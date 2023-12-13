@@ -64,6 +64,7 @@ public class ComboCounter : MonoBehaviour
         runningScore = 0;
         if (currentComboLevel < 0)
         {
+            Debug.Log("you died");
             DeathHandler();
         }
         UpdateHUD();
@@ -99,7 +100,6 @@ public class ComboCounter : MonoBehaviour
 
     private void DeathHandler()
     {
-        Debug.Log("you died");
         Time.timeScale = 0;
     }
 }
