@@ -25,9 +25,21 @@ public class HUDController : MonoBehaviour
         spriteImage.enabled = setTo;
     }
 
-    public void AddPowerUp(int id)
+    public void AddPowerUp(int type)
     {
-        
+        if (type > 1) return;
+        foreach (var pu in PowerUps)
+        {
+            if (pu.type == type)
+            {
+                if (pu.UIElement.GetComponent<Image>().enabled == false)
+                {
+                    pu.UIElement.GetComponent<Image>().enabled = true;
+                    return;
+                }
+            }   
+        } 
+        Debug.Log("full on powerups");
     }
 }
 

@@ -1066,6 +1066,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a1269b7684410d8868eca36b4531a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PowerUps:
+  - UIElement: {fileID: 1299838469}
+    type: 0
+  - UIElement: {fileID: 2134868314}
+    type: 0
+  - UIElement: {fileID: 1745163039}
+    type: 0
+  - UIElement: {fileID: 1047070920}
+    type: 1
+  - UIElement: {fileID: 1163916164}
+    type: 1
   Icons:
   - {fileID: 540216400}
   - {fileID: 1635621044}
@@ -3568,6 +3579,10 @@ PrefabInstance:
     - target: {fileID: 4882473471602539542, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157218, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: CHEATER
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4882473472293157218, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
       propertyPath: icons.Array.size
