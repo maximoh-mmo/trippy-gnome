@@ -60,13 +60,14 @@ public class ComboCounter : MonoBehaviour
         currentComboKills = 0;
         hudController.ToggleIcon(currentComboLevel, false);
         currentComboLevel -= 1;
-        hudController.ToggleIcon(currentComboLevel, true);
-        runningScore = 0;
         if (currentComboLevel < 0)
         {
-            Debug.Log("you died");
+            Debug.Log("You DIED!");
+            Time.timeScale = 0;
             DeathHandler();
         }
+        hudController.ToggleIcon(currentComboLevel, true);
+        runningScore = 0;
         UpdateHUD();
         UpdateDependants();
     }
