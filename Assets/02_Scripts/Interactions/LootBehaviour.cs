@@ -6,14 +6,14 @@ public class LootBehaviour : MonoBehaviour
     private SphereCollider sc;
     private bool flyToPlayer = false;
     private Transform player;
-    
+    private HUDController hud;
     [SerializeField] private float initialRadius, flyingRadius, speed;
     
     public int Type { set => type = value; }
     // Start is called before the first frame update
     void Start()
     {
-        // add a sphere collider that's big so that the player can collect from a distance
+        hud = FindObjectOfType<HUDController>();
         sc = gameObject.AddComponent(typeof(SphereCollider)) as SphereCollider;
         if (sc != null)
         {
@@ -36,11 +36,10 @@ public class LootBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other != null && other.gameObject.name == "Sweeper") { Debug.Log(other.name); Destroy(this.gameObject); }
+        if (other != null && other.gameObject.name == "Sweeper") { Destroy(this.gameObject); }
         if (!other.CompareTag("Player")) return;
         if (sc.radius == flyingRadius)
         {
-            Debug.Log(other.name);
             PickUpItem();
         }
         else if (sc.radius == initialRadius)
@@ -51,13 +50,12 @@ public class LootBehaviour : MonoBehaviour
 
     private void PickUpItem()
     {
-        Debug.Log("wooohoo you got me");
+        hud.AddPowerUp(type);
         Destroy(gameObject);
     }
 
     private void FlyToPlayer(Transform target)
     {
-        Debug.Log("I'm Flying to you");
         sc.radius = flyingRadius;
         flyToPlayer = true;
         player = target;
