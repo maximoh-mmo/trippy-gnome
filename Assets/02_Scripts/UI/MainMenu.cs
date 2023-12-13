@@ -4,12 +4,18 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameObject pauseMenu;
     public void StartGame()
     {
         SceneManager.LoadScene(1);
     }
     public void QuitGame()
     {
+        foreach (var go in FindObjectsOfType<Rigidbody>())
+        {
+            Destroy(go.gameObject);
+            continue;
+        }
         Application.Quit();
         Debug.Log("Quitting");
     }
@@ -21,10 +27,10 @@ public class MainMenu : MonoBehaviour
     {
         return;
     }
-    public void Play() { return; }
+    public void ReturnToMenu() { SceneManager.LoadScene(0); }
     public void Resume() 
     {
-        GameObject.Find("Main Menu").SetActive(false);
+        pauseMenu.SetActive(false);
         Time.timeScale = 1.0f;
     }
 }

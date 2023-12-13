@@ -35,8 +35,8 @@ public class CrosshairMovement : MonoBehaviour
         var targetPosition = transform.localPosition;
         var multiple = (Time.deltaTime * xySpeedMultiple);
         targetPosition += new Vector3(xMovement * multiple, yMovement * multiple);
-        transform.localPosition = new Vector3(Mathf.Clamp(targetPosition.x, -boundary.x + shipSize.x, boundary.x - shipSize.x),
-            Mathf.Clamp(targetPosition.y, -boundary.y + shipSize.y, boundary.y - shipSize.y), targetPosition.z);
+        transform.localPosition = new Vector3(Mathf.Clamp(targetPosition.x, -boundary.x, boundary.x),
+            Mathf.Clamp(targetPosition.y, -boundary.y, boundary.y), targetPosition.z);
     }
 
     private Vector3 ClampPosition(Vector3 targetPosition, float xClamp, float yClamp)

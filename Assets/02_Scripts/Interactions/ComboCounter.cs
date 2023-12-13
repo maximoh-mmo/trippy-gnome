@@ -22,6 +22,7 @@ public class ComboCounter : MonoBehaviour
         autoSpawner = FindFirstObjectByType<AutoSpawner>();
         UpdateDependants();
         StartCoroutine("ComboStepDown");
+        Time.timeScale = 1;
     }
 
     public void AddKill(int basePoints)
@@ -63,13 +64,16 @@ public class ComboCounter : MonoBehaviour
         if (currentComboLevel < 0)
         {
             Debug.Log("You DIED!");
-            Time.timeScale = 0;
             DeathHandler();
+            Time.timeScale = 0;
         }
-        hudController.ToggleIcon(currentComboLevel, true);
-        runningScore = 0;
-        UpdateHUD();
-        UpdateDependants();
+        else
+        {
+            hudController.ToggleIcon(currentComboLevel, true);
+            runningScore = 0;
+            UpdateHUD();
+            UpdateDependants();
+        }
     }
 
     private void UpdateDependants()
@@ -101,7 +105,7 @@ public class ComboCounter : MonoBehaviour
 
     private void DeathHandler()
     {
-        Time.timeScale = 0;
+        hudController.DeathScreen();
     }
 }
 [Serializable]
