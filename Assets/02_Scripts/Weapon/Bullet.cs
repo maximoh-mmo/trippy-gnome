@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    float range = 0;
-    float speed = 1f;
-    int damage = 0;
+    private float range = 0;
+    private float speed = 1f;
+    private int damage = 0;
     Vector3 startPos = Vector3.zero;
     string targetTag = string.Empty;
     public string TargetTag { set { targetTag = value; } }
@@ -18,27 +18,25 @@ public class Bullet : MonoBehaviour
     }
 
     private void Update()
-    {   transform.position += transform.forward * speed * Time.deltaTime;
-        var currentRange = Vector3.Distance(startPos, transform.position);
-        if (currentRange > range)
-        {
-            Debug.Log("out of range");
-            Destroy(gameObject);
-        }
+    {
+        var t = transform;
+        var tpos = t.position;
+        tpos += t.forward * (speed * Time.deltaTime);
+        var currentRange = Vector3.Distance(startPos, tpos);
+        if (currentRange > range) Destroy(gameObject);
+        transform.position = tpos;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other == null) return;
-        if (other.gameObject.name == "Sweeper")
-        {
-            Destroy(this.gameObject);
-        }
+        if (other.gameObject.name == "Sweeper") Destroy(this.gameObject);
+        
         if (other.gameObject.CompareTag(targetTag) && other.gameObject.GetComponent<HealthManager>() != null)
         {
             other.gameObject.GetComponent<HealthManager>().TakeDamage(damage);
         }
-
+        
         if (other.gameObject.GetComponent<ComboCounter>() != null)
         {
             other.gameObject.GetComponent<ComboCounter>().ImHit();

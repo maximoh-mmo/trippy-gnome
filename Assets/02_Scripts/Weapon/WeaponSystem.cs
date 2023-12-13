@@ -1,23 +1,25 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class WeaponSystem : MonoBehaviour
 {
-    public Weapon[] Weapons;
+    public Weapon[] weapons;
+    private Transform[] attackPoints;
     private int damage = 1;
-    public float fireRate;
-    public float range, projectileSpeed;
-    public bool allowButtonHold;
-    [SerializeField] GameObject BulletPrefab;
+    private float fireRate, range, projectileSpeed, reuseTime = 0;
+    public bool allowButtonHold = false;
     private string enemyType = string.Empty;
-    private bool shooting, readyToShoot, reloading;
-    public Transform[] attackPoints;
-    public RaycastHit raycastHit;
-    public LayerMask layerMask;
+    private bool shooting = false;
+    private GameObject bulletPrefab;
+    // public RaycastHit raycastHit;
+    // public LayerMask layerMask;
     private void Start()
     {
-        readyToShoot = true;
         enemyType = gameObject.CompareTag("Enemy") == true ? "Player" : "Enemy";
+        shooting = gameObject.CompareTag("Enemy") == true ? true : false;
+        reuseTime = Time.time;
+        SwitchGun(0);
     }
     private void Update()
     {
@@ -28,29 +30,26 @@ public class WeaponSystem : MonoBehaviour
     }
     private void TriggerPressed()
     {
-        if (allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0) || Input.GetAxis("Fire1") != 0;
-        else shooting = Input.GetKeyDown(KeyCode.Mouse0) || Input.GetAxis("Fire1") != 0;
-        if (gameObject.CompareTag("Enemy")==true) shooting = true;
-        if (readyToShoot == true && shooting == true) { Shoot(); }
+        if (enemyType == "Enemy")
+        {
+            if (allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0) || Input.GetAxis("Fire1") != 0;
+            else shooting = Input.GetKeyDown(KeyCode.Mouse0) || Input.GetAxis("Fire1") != 0;
+        }
+        if (shooting == true && Time.time>reuseTime) { Shoot(); }
     }
     private void Shoot()
     {
-        readyToShoot = false;
-        HandleVisuals();
-        Invoke("ResetShot", fireRate);
-        
+        HandleVisuals(); 
+        reuseTime = Time.time+fireRate;
         //if (Physics.Raycast(attackPoint.position, attackPoint.forward, out raycastHit, range) && raycastHit.collider.CompareTag(enemyType))
         //{
         //    raycastHit.collider.GetComponent<HealthManager>().TakeDamage(damage);
         //}
     }
-    private void ResetShot() { readyToShoot = true; }
-
     private void HandleVisuals()
     {   foreach (var attackPoint in attackPoints)
         {
-            Bullet bullet = Instantiate(BulletPrefab, attackPoint.position, attackPoint.rotation).GetComponent<Bullet>();
-            Debug.Log(bullet);
+            Bullet bullet = Instantiate(bulletPrefab, attackPoint.position, attackPoint.rotation).GetComponent<Bullet>();
             bullet.TargetTag = enemyType;
             bullet.Damage = damage;
             bullet.Range = range;
@@ -59,9 +58,13 @@ public class WeaponSystem : MonoBehaviour
     }
     public void SwitchGun(int id)
     {
-        damage = Weapons[id].damage;
-        BulletPrefab = Weapons[id].projectile;
-        attackPoints = Weapons[id].firePoints;
+        damage = weapons[id].damage;
+        bulletPrefab = weapons[id].projectile;
+        attackPoints = weapons[id].firePoints;
+        projectileSpeed = weapons[id].speed;
+        fireRate = weapons[id].rateOfFire;
+        range = weapons[id].range;
+        attackPoints = weapons[id].firePoints;
     }
 }
 [Serializable]
@@ -71,4 +74,5 @@ public class Weapon
     public int damage;
     public Transform[] firePoints;
     public GameObject projectile;
+    public float speed, rateOfFire, range;
 }

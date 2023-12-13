@@ -12,8 +12,10 @@ public class Loot:MonoBehaviour
             if (drawn <= loot.chance)
             {
                 GameObject powerup = Instantiate(loot.PowerUp);
+                powerup.GetComponent<LootBehaviour>().Type = loot.Type;
                 powerup.transform.position = position;
                 powerup.transform.localScale = Vector3.one * scale;
+                return;
             }
         }
     }
@@ -22,5 +24,6 @@ public class Loot:MonoBehaviour
 public class LootItem
 {
     public GameObject PowerUp;
+    [Range(0,2)]public int Type; 
     [Range(0,100)]public float chance;
 }

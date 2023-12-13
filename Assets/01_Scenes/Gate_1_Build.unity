@@ -225,7 +225,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75490889}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -7.2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.4470109, y: 0.4470109, z: 0.4470109}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -630,7 +630,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 244008029}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -7.2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.549734, y: 0.549734, z: 0.549734}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1024,6 +1024,73 @@ Transform:
   m_Father: {fileID: 1260513707}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &480956532
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 480956535}
+  - component: {fileID: 480956534}
+  - component: {fileID: 480956533}
+  m_Layer: 0
+  m_Name: Watcher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &480956533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480956532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b9cb5df270d10740a2f11b026f4dc5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &480956534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480956532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9a1269b7684410d8868eca36b4531a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Icons:
+  - {fileID: 540216400}
+  - {fileID: 1635621044}
+  - {fileID: 887797740}
+  - {fileID: 34319076}
+  - {fileID: 1253140428}
+  - {fileID: 228264766}
+  - {fileID: 214389251}
+  - {fileID: 1262515784}
+  - {fileID: 522918097}
+--- !u!4 &480956535
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480956532}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &511988709
 GameObject:
   m_ObjectHideFlags: 0
@@ -1048,7 +1115,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 511988709}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 5.3156}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.4765801, y: 2.4765801, z: 2.4765801}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1157,7 +1224,6 @@ GameObject:
   - component: {fileID: 537255602}
   - component: {fileID: 537255601}
   - component: {fileID: 537255600}
-  - component: {fileID: 537255603}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1215,18 +1281,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &537255603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 537255599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b9cb5df270d10740a2f11b026f4dc5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &540216400
 GameObject:
   m_ObjectHideFlags: 0
@@ -1320,7 +1374,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &572576532
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1332,7 +1386,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 857219750}
   m_Father: {fileID: 907847774}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1621,7 +1676,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 857219749}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.928, y: 1.928, z: 1.928}
   m_ConstrainProportionsScale: 0
@@ -1629,8 +1684,8 @@ RectTransform:
   - {fileID: 1521227011}
   - {fileID: 345763241}
   - {fileID: 1208847981}
-  m_Father: {fileID: 907847774}
-  m_RootOrder: 3
+  m_Father: {fileID: 572576532}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -1969,7 +2024,6 @@ RectTransform:
   - {fileID: 778418805}
   - {fileID: 872681526}
   - {fileID: 572576532}
-  - {fileID: 857219750}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2139,7 +2193,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1047070920}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -7.2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.549734, y: 0.549734, z: 0.549734}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2215,7 +2269,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1143111730}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -7.2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.4470109, y: 0.4470109, z: 0.4470109}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2291,7 +2345,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163916164}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -7.2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.549734, y: 0.549734, z: 0.549734}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2367,7 +2421,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1192553661}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -7.2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.4470109, y: 0.4470109, z: 0.4470109}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2819,7 +2873,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1299838469}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -7.2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.4470109, y: 0.4470109, z: 0.4470109}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3358,7 +3412,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1745163039}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -7.2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.4470109, y: 0.4470109, z: 0.4470109}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3434,7 +3488,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1847208999}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -7.2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.549734, y: 0.549734, z: 0.549734}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3608,6 +3662,10 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4882473472293157228, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: offset
+      value: 5.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157228, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
       propertyPath: size.z
       value: 178.8
       objectReference: {fileID: 0}
@@ -3628,6 +3686,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
       propertyPath: attackPoints.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -3635,6 +3697,46 @@ PrefabInstance:
       propertyPath: attackPoints.Array.data[0]
       value: 
       objectReference: {fileID: 580552116}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[0].range
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[0].speed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[1].range
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[1].speed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[2].range
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[2].speed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[3].range
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[3].speed
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[4].range
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[4].speed
+      value: 400
+      objectReference: {fileID: 0}
     - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
       propertyPath: Weapons.Array.data[0].damage
       value: 1
@@ -3653,6 +3755,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
       propertyPath: Weapons.Array.data[4].damage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[0].damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[1].damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[2].damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[3].damage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[4].damage
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
@@ -3696,6 +3818,66 @@ PrefabInstance:
       value: Laser1
       objectReference: {fileID: 0}
     - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[0].projectile
+      value: 
+      objectReference: {fileID: 2033890919814722285, guid: f732c060d688e7749a88915f61530193, type: 3}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[0].rateOfFire
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[0].weaponName
+      value: MG0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[1].projectile
+      value: 
+      objectReference: {fileID: 2033890919814722285, guid: f732c060d688e7749a88915f61530193, type: 3}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[1].rateOfFire
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[1].weaponName
+      value: MG1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[2].projectile
+      value: 
+      objectReference: {fileID: 2033890919814722285, guid: f732c060d688e7749a88915f61530193, type: 3}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[2].rateOfFire
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[2].weaponName
+      value: MG2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[3].projectile
+      value: 
+      objectReference: {fileID: 5580125614850984573, guid: e01807cade93a7a4fa65dac63501de89, type: 3}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[3].rateOfFire
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[3].weaponName
+      value: Laser0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[4].projectile
+      value: 
+      objectReference: {fileID: 5580125614850984573, guid: e01807cade93a7a4fa65dac63501de89, type: 3}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[4].rateOfFire
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[4].weaponName
+      value: Laser1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
       propertyPath: Weapons.Array.data[0].firePoints.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -3713,6 +3895,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
       propertyPath: Weapons.Array.data[4].firePoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[0].firePoints.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[1].firePoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[2].firePoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[3].firePoints.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[4].firePoints.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
@@ -3757,6 +3959,42 @@ PrefabInstance:
       objectReference: {fileID: 433003309}
     - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
       propertyPath: Weapons.Array.data[4].firePoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 2041172480}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[0].firePoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 580552116}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[1].firePoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 433003309}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[1].firePoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 2041172480}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[2].firePoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 433003309}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[2].firePoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 2041172480}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[2].firePoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 1974272572}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[3].firePoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 580552116}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[4].firePoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 433003309}
+    - target: {fileID: 4882473472293157229, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: weapons.Array.data[4].firePoints.Array.data[1]
       value: 
       objectReference: {fileID: 2041172480}
     - target: {fileID: 4882473472293157231, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
@@ -3826,6 +4064,10 @@ PrefabInstance:
     - target: {fileID: 4882473472349465814, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
       propertyPath: m_Name
       value: PathWalker
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473472349465814, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4882473473016517084, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
       propertyPath: m_LocalScale.x
@@ -4043,7 +4285,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2134868314}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -7.2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.4470109, y: 0.4470109, z: 0.4470109}
   m_ConstrainProportionsScale: 0
   m_Children: []

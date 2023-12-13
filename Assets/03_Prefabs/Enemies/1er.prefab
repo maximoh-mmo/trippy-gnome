@@ -70,19 +70,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23e08de4aa500a340a152dd005bbc490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Weapons: []
-  damage: 1
-  cooldown: 0.5
-  range: 50.83
-  fireRate: 1
-  projectileSpeed: 20
+  weapons:
+  - weaponName: MG
+    damage: 1
+    firePoints:
+    - {fileID: 5700009916288220465}
+    projectile: {fileID: 2033890919814722285, guid: f732c060d688e7749a88915f61530193, type: 3}
+    speed: 10
+    rateOfFire: 1
+    range: 50
   allowButtonHold: 1
-  BulletPrefab: {fileID: 2033890919814722285, guid: f732c060d688e7749a88915f61530193, type: 3}
-  attackPoints:
-  - {fileID: 5700009916288220465}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!114 &7596434589679192236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,6 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loots:
   - PowerUp: {fileID: 5211190968981285719, guid: 509183e5eb26d9c49b4f1d688f38539f, type: 3}
+    Type: 0
     chance: 47.6
   scale: 4
 --- !u!1 &5522098191010700669

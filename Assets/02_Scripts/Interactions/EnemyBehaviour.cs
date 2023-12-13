@@ -7,20 +7,14 @@ public class EnemyBehaviour : MonoBehaviour
     Transform player = null;
     void Start()
     {
-        if (GameObject.Find("spaceship_ufo_2").transform != null)
-        {
-            player = GameObject.Find("spaceship_ufo_2").transform;
-            transform.LookAt(player.position);
-        }
+        player = GameObject.Find("spaceship_ufo_2").transform;
+        transform.LookAt(player.position);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (player != null)
-        {
             transform.LookAt(player.position);
-        }
     }
     private void OnTriggerEnter(Collider other)
     {
