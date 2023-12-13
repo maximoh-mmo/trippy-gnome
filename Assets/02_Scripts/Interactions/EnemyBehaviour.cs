@@ -10,6 +10,7 @@ public class EnemyBehaviour : MonoBehaviour
         if (GameObject.Find("spaceship_ufo_2").transform != null)
         {
             player = GameObject.Find("spaceship_ufo_2").transform;
+            transform.LookAt(player.position);
         }
     }
 
