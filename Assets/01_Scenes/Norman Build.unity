@@ -778,6 +778,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8462843712342644542, guid: 7f725b65ac07b474fb28d4e6763e5753, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 1788269377728665300, guid: 7f725b65ac07b474fb28d4e6763e5753, type: 3}
     - target: {fileID: -4609680250133154068, guid: 7f725b65ac07b474fb28d4e6763e5753, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -786,6 +790,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: spaceship_ufo_clean
       objectReference: {fileID: 0}
+    - target: {fileID: 2147430312719166248, guid: 7f725b65ac07b474fb28d4e6763e5753, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -5035327011957794618, guid: 7f725b65ac07b474fb28d4e6763e5753, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f725b65ac07b474fb28d4e6763e5753, type: 3}
 --- !u!4 &522338278 stripped
@@ -1017,7 +1025,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 676920396}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.732, z: 0.624}
+  m_LocalPosition: {x: 0, y: 2.732, z: -0.809}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1873,6 +1881,32 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: c89c5f0ec076a63408926916193be699, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &1675791373 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7f725b65ac07b474fb28d4e6763e5753, type: 3}
+  m_PrefabInstance: {fileID: 522338277}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1675791374
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675791373}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 42b265a0f30f68543a5a4778970b499c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
