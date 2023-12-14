@@ -1,19 +1,18 @@
 using System;
 using System.Collections;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Serialization;
 
 public class ComboCounter : MonoBehaviour
 {
     public ComboLevel[] combos;
-    [SerializeField] private float stepDownTime = 0;
+    private bool isShielded;
     private int currentComboLevel, currentComboKills, totalKillCount, score, runningScore = 0;
     private AutoSpawner autoSpawner;
     private WeaponSystem weaponSystem;
     private HUDController hudController;
-    [SerializeField] bool CHEATER = false;
+    [SerializeField] bool isCheating = false;
+    [SerializeField] private float stepDownTime = 0;
 
     private void Start()
     {
@@ -53,8 +52,14 @@ public class ComboCounter : MonoBehaviour
 
     public void ImHit()
     {
-        if (CHEATER)
+        if (isCheating)
         {
+            return;
+        }
+
+        if (isShielded)
+        {
+            isShielded = false;
             return;
         }
 
