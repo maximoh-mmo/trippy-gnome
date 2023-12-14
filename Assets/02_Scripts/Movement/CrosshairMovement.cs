@@ -8,14 +8,11 @@ public class CrosshairMovement : MonoBehaviour
     CraftFollowCrosshair craftFollowCrosshair;
     private Vector2 screenBounds;
     private Vector2 shipSize;
-    private Transform relativeZero;
     public Vector2 Boundry => boundary;
-    public Transform RelativeZero => relativeZero;
     public float XMovement => xMovement;
 
     void Awake()
     {
-        relativeZero = GetComponentInParent<Transform>();
         if (xySpeedMultiple==0) { xySpeedMultiple = 1; }
         craftFollowCrosshair = GameObject.FindFirstObjectByType<CraftFollowCrosshair>();
     }

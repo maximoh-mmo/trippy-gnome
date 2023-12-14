@@ -6679,7 +6679,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4882473472293157218, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
       propertyPath: CHEATER
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4882473472293157218, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
       propertyPath: icons.Array.size
@@ -7185,6 +7185,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 4882473472475959886, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
     - target: {fileID: 4882473473016517084, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.15
@@ -7220,6 +7224,10 @@ PrefabInstance:
     - target: {fileID: 4882473473016517087, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
       propertyPath: m_Color.r
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882473473212518076, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4882473473561879417, guid: 029ee51a5ad22f0409789a389916db60, type: 3}
       propertyPath: m_Color.a

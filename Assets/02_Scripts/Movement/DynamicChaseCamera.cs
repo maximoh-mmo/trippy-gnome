@@ -8,7 +8,7 @@ public class DynamicChaseCamera : MonoBehaviour
     float smoothTime = .5f;
     Vector3 offset;
     public Vector2 Limits { get { return limits; } }
-    private void Start()
+    private void Awake()
     {
         if (Camera.main != null)
             screenBounds =

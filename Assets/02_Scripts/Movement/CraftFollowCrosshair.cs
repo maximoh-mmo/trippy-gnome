@@ -13,11 +13,11 @@ public class CraftFollowCrosshair : MonoBehaviour
     private void Awake()
     {
         ShipSize = GetShipSize();
+        offset = transform.position.z;
     }
     
     private void Start()
     {
-        offset = transform.position.z;
         clampLimit = CalculateLimitBasedOnDistance(crosshairMovement.Boundry, dynamicChaseCamera.Limits);
         clampLimit -= ShipSize * clampMultiplier;
     }
