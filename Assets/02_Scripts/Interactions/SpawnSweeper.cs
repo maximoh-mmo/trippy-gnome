@@ -3,7 +3,7 @@ using UnityEngine;
 public class SpawnSweeper : MonoBehaviour
 {
     [SerializeField] Vector3 size;
-    private float offset = 10;
+    private float offset = -15;
     private BoxCollider sweepArea;
     void Start()
     {

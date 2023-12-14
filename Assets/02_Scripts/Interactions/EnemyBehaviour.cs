@@ -7,7 +7,8 @@ public class EnemyBehaviour : MonoBehaviour
     Transform player = null;
     void Start()
     {
-        player = GameObject.Find("spaceship_ufo_2").transform;
+        
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         transform.LookAt(player.position);
     }
 
