@@ -30,8 +30,23 @@ public class ComboCounter : MonoBehaviour
     private void Update()
     {
         if (inputs.IsShieldPressed && hudController.PowerUpAvailable(0) && isShielded == false) AcivateShield();
+        if (inputs.IsBigBoomPressed && hudController.PowerUpAvailable(1)) BigBoom();
     }
 
+    private void BigBoom()
+    {
+        var enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        var bullets = GameObject.FindObjectsOfType<Bullet>();
+        foreach (var bullet in bullets)
+        {
+            Destroy(bullet.gameObject);
+        }
+        foreach (var enemy in enemies)
+        { 
+            if (enemy.GetComponent<HealthManager>()) enemy.GetComponent<HealthManager>().TakeDamage(100);
+        }
+        hudController.RemovePowerUp(1);
+    }
     private void AcivateShield()
     {
         shield.enabled = true;

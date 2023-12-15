@@ -12,7 +12,7 @@ public class PlayerInputListner : MonoBehaviour
     {
         movementInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         isShieldPressed = Input.GetKey(KeyCode.Alpha1);
-        isShootPressed = Input.GetKey(KeyCode.Mouse0);
-        isBigBoomPressed = Input.GetKey(KeyCode.Alpha2);
+        isShootPressed = Input.GetKeyDown(KeyCode.Mouse0);
+        isBigBoomPressed = Input.GetKeyDown(KeyCode.Alpha2);
     }
 }

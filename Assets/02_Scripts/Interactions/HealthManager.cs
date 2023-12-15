@@ -20,6 +20,7 @@ public class HealthManager : MonoBehaviour
         if (currentHealth < 1)
         {
             counter.AddKill(pointValue);
+            GetComponent<Loot>().GetLoot(transform.position);
             Destroy(this.gameObject);
         }
     }

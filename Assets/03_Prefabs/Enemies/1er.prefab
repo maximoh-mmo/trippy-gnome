@@ -175,7 +175,7 @@ MonoBehaviour:
     chance: 10
   - PowerUp: {fileID: 1688644051278918043, guid: f19e4d440132a974abbf1bcac3a062aa, type: 3}
     Type: 1
-    chance: 3.3
+    chance: 90.6
   - PowerUp: {fileID: 2041170997438138626, guid: b916f5c9add51de44937f01e20aeb1e6, type: 3}
     Type: 2
     chance: 5
