@@ -51,6 +51,41 @@ public class HUDController : MonoBehaviour
         } 
         Debug.Log("full on powerups");
     }
+    public void RemovePowerUp(int type)
+    {
+        Image lastelement=null;
+        if (type > 1) return;
+        foreach (var pu in PowerUps)
+        {
+            if (pu.type == type)
+            {
+                if (pu.UIElement.GetComponent<Image>().enabled == true)
+                {
+                    lastelement = pu.UIElement.GetComponent<Image>();
+                }
+            }   
+        }
+
+        if (lastelement != null)
+        {
+            lastelement.enabled = false;
+        }
+    }
+
+    public bool PowerUpAvailable(int type)
+    {
+        foreach (var pu in PowerUps)
+        {
+            if (pu.type == type)
+            {
+                if (pu.UIElement.GetComponent<Image>().enabled)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
 
 [Serializable]
