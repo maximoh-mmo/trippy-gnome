@@ -22,7 +22,7 @@ public class LootBehaviour : MonoBehaviour
             sc.radius = initialRadius;
             sc.isTrigger = true;
         }
-        else Destroy(this);
+        else Destroy(gameObject);
     }
 
     private void Update()
@@ -36,7 +36,9 @@ public class LootBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other != null && other.gameObject.name == "Sweeper") { Destroy(this.gameObject); }
+        if (other.gameObject.name == "Sweeper")
+        {
+            Debug.Log("Swept Up"); Destroy(gameObject); }
         if (!other.CompareTag("Player")) return;
         if (sc.radius == flyingRadius)
         {
@@ -50,6 +52,7 @@ public class LootBehaviour : MonoBehaviour
 
     private void PickUpItem()
     {
+        Debug.Log("Powerup added to UI, type = "+type);
         hud.AddPowerUp(type);
         Destroy(gameObject);
     }

@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class ComboCounter : MonoBehaviour
 {
@@ -11,11 +10,15 @@ public class ComboCounter : MonoBehaviour
     private AutoSpawner autoSpawner;
     private WeaponSystem weaponSystem;
     private HUDController hudController;
+    private MeshRenderer shield;
+    private PlayerInputListner inputs;
     [SerializeField] bool isCheating = false;
     [SerializeField] private float stepDownTime = 0;
 
     private void Start()
     {
+        shield = GameObject.Find("Shield").GetComponent<MeshRenderer>();
+        inputs= FindFirstObjectByType<PlayerInputListner>();
         hudController = FindFirstObjectByType<HUDController>();
         weaponSystem = FindFirstObjectByType<WeaponSystem>();
         autoSpawner = FindFirstObjectByType<AutoSpawner>();
@@ -24,6 +27,32 @@ public class ComboCounter : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    private void Update()
+    {
+        if (inputs.IsShieldPressed && hudController.PowerUpAvailable(0) && isShielded == false) AcivateShield();
+        if (inputs.IsBigBoomPressed && hudController.PowerUpAvailable(1)) BigBoom();
+    }
+
+    private void BigBoom()
+    {
+        var enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        var bullets = GameObject.FindObjectsOfType<Bullet>();
+        foreach (var bullet in bullets)
+        {
+            Destroy(bullet.gameObject);
+        }
+        foreach (var enemy in enemies)
+        { 
+            if (enemy.GetComponent<HealthManager>()) enemy.GetComponent<HealthManager>().TakeDamage(100);
+        }
+        hudController.RemovePowerUp(1);
+    }
+    private void AcivateShield()
+    {
+        shield.enabled = true;
+        isShielded = true;
+        hudController.RemovePowerUp(0);
+    }
     public void AddKill(int basePoints)
     {
         StopAllCoroutines();
@@ -59,6 +88,7 @@ public class ComboCounter : MonoBehaviour
 
         if (isShielded)
         {
+            shield.enabled = false;
             isShielded = false;
             return;
         }

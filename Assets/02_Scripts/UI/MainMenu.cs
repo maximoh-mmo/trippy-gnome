@@ -45,8 +45,9 @@ public class MainMenu : MonoBehaviour
     }
     
     public void ReloadCurrentLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    {        Time.timeScale = 1.0f;
+
+        Debug.Log("RELOAD");
     }
 
 }

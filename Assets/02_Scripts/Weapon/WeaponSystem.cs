@@ -65,7 +65,7 @@ public class WeaponSystem : MonoBehaviour
         fireRate = weapons[id].rateOfFire;
         range = weapons[id].range;
         attackPoints = weapons[id].firePoints;
-    }
+       }
 }
 [Serializable]
 public class Weapon
