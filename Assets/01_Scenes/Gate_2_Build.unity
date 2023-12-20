@@ -4082,6 +4082,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1155085758}
   m_CullTransparentMesh: 1
+--- !u!4 &1158003676 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1535389676230291990, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
+  m_PrefabInstance: {fileID: 1535389676875925712}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1159904316
 GameObject:
   m_ObjectHideFlags: 0
@@ -4317,6 +4322,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1164059933}
   m_CullTransparentMesh: 1
+--- !u!4 &1174527589 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1535389676032669079, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
+  m_PrefabInstance: {fileID: 1535389676875925712}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1192553661
 GameObject:
   m_ObjectHideFlags: 0
@@ -6919,6 +6929,54 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1809640131129847268, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
+      propertyPath: weapons.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1809640131129847268, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
+      propertyPath: weapons.Array.data[3].speed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 1809640131129847268, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
+      propertyPath: weapons.Array.data[4].speed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 1809640131129847268, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
+      propertyPath: weapons.Array.data[5].range
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1809640131129847268, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
+      propertyPath: weapons.Array.data[5].speed
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1809640131129847268, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
+      propertyPath: weapons.Array.data[5].damage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1809640131129847268, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
+      propertyPath: weapons.Array.data[5].projectile
+      value: 
+      objectReference: {fileID: 3738482407019022119, guid: f7f6d7419fc5781409db84abc78b03e5, type: 3}
+    - target: {fileID: 1809640131129847268, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
+      propertyPath: weapons.Array.data[5].rateOfFire
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1809640131129847268, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
+      propertyPath: weapons.Array.data[5].weaponName
+      value: Laser2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1809640131129847268, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
+      propertyPath: weapons.Array.data[5].firePoints.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1809640131129847268, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
+      propertyPath: weapons.Array.data[5].firePoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1158003676}
+    - target: {fileID: 1809640131129847268, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
+      propertyPath: weapons.Array.data[5].firePoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1174527589}
     - target: {fileID: 1809640131129847269, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
       propertyPath: isCheating
       value: 0
