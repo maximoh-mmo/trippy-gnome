@@ -1,0 +1,26 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/05_Sound/Music/Trippy Complete.mp3.meta
+guid: 8838df96a858fc14db01899e093a5044
+========
+guid: 4ab771140bfdb344dba34a4f76a0fcc9
+>>>>>>>> 2b85a2e (VFX test):Assets/05_Sound/Trippy Complete.mp3.meta
+AudioImporter:
+  externalObjects: {}
+  serializedVersion: 6
+  defaultSettings:
+    loadType: 0
+    sampleRateSetting: 0
+    sampleRateOverride: 44100
+    compressionFormat: 1
+    quality: 1
+    conversionMode: 0
+  platformSettingOverrides: {}
+  forceToMono: 0
+  normalize: 1
+  preloadAudioData: 1
+  loadInBackground: 0
+  ambisonic: 0
+  3D: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
