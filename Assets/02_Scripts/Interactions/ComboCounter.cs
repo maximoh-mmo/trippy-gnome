@@ -12,9 +12,10 @@ public class ComboCounter : MonoBehaviour
     private HUDController hudController;
     private MeshRenderer shield;
     private PlayerInputListner inputs;
-    [SerializeField] bool isCheating = false;
+    [SerializeField] private bool isCheating = false;
     [SerializeField] private float stepDownTime = 0;
 
+    public bool IsCheating { get { return isCheating; } set { isCheating = value; } }
     private void Start()
     {
         shield = GameObject.Find("Shield").GetComponent<MeshRenderer>();

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class HUDController : MonoBehaviour
@@ -9,20 +10,40 @@ public class HUDController : MonoBehaviour
     [SerializeField] private PowerUpUI[] PowerUps;
     [SerializeField] private GameObject[] Icons;
     [SerializeField] GameObject pauseMenu, deathScreen;
+    private PlayerInputSystem playerInputSystem;
     
     private void Awake()
     {
+        playerInputSystem = new PlayerInputSystem();
+        playerInputSystem.InGame.Enable();
+        playerInputSystem.InGame.Pause.performed += Pause;
         HUDScore = GameObject.Find("Score").GetComponent<TMP_Text>();
         HUDComboLvl = GameObject.Find("ComboLevel").GetComponent<TMP_Text>();
         HUDComboScore = GameObject.Find("RunningScore").GetComponent<TMP_Text>();
     }
 
-    private void Update()
+    public void Pause(InputAction.CallbackContext context)
     {
-        if (Input.GetKey(KeyCode.Escape) == true)
+        if (context.performed)
         {
             Time.timeScale = 0f;
             pauseMenu.SetActive(true);
+            playerInputSystem.UI.Enable();
+            playerInputSystem.InGame.Disable();
+            playerInputSystem.UI.UnPause.performed += UnPause;
+        }
+    }
+
+    public void UnPause(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            playerInputSystem.UI.Disable();
+            pauseMenu.SetActive(false);
+            Time.timeScale = 1f;
+            playerInputSystem.UI.Enable();
+            playerInputSystem.InGame.Pause.performed += Pause;
+
         }
     }
     public void DeathScreen() => deathScreen.SetActive(true);

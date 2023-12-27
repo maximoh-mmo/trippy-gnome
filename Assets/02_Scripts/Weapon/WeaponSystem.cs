@@ -1,9 +1,11 @@
 using System;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.InputSystem;
 
 public class WeaponSystem : MonoBehaviour
 {
+    private PlayerInputSystem playerInputSystem;
     public Weapon[] weapons;
     private Transform[] attackPoints;
     private int damage = 1;
@@ -14,6 +16,12 @@ public class WeaponSystem : MonoBehaviour
     private GameObject bulletPrefab;
     // public RaycastHit raycastHit;
     // public LayerMask layerMask;
+    private void Awake()
+    {
+        playerInputSystem = new PlayerInputSystem();
+        playerInputSystem.InGame.Enable();
+    }
+
     private void Start()
     {
         enemyType = gameObject.CompareTag("Enemy") == true ? "Player" : "Enemy";
@@ -23,32 +31,38 @@ public class WeaponSystem : MonoBehaviour
     }
     private void Update()
     {
-        if (Time.timeScale != 0)
+        if (Time.timeScale == 0) return;
+        if (enemyType == "Player") Shoot();
+        else
         {
-            TriggerPressed();
+            if (allowButtonHold == false)
+            {
+                if (playerInputSystem.FindAction("Fire").WasPressedThisFrame()) Shoot();
+            }
+            else
+            {
+                if (playerInputSystem.FindAction("Fire").IsPressed()) Shoot();
+            }
         }
-    }
-    private void TriggerPressed()
-    {
-        if (enemyType == "Enemy")
-        {
-            if (allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0) || Input.GetAxis("Fire1") != 0;
-            else shooting = Input.GetKeyDown(KeyCode.Mouse0) || Input.GetAxis("Fire1") != 0;
-        }
-        if (shooting == true && Time.time>reuseTime) { Shoot(); }
+        
     }
     private void Shoot()
     {
-        HandleVisuals(); 
+        if (!(Time.time>=reuseTime)) return;
+        HandleVisuals();
         reuseTime = Time.time+fireRate;
-        //if (Physics.Raycast(attackPoint.position, attackPoint.forward, out raycastHit, range) && raycastHit.collider.CompareTag(enemyType))
-        //{
-        //    raycastHit.collider.GetComponent<HealthManager>().TakeDamage(damage);
-        //}
     }
+   
+    // Raycast Shoot
+    //if (Physics.Raycast(attackPoint.position, attackPoint.forward, out raycastHit, range) && raycastHit.collider.CompareTag(enemyType))
+    //{
+    //    raycastHit.collider.GetComponent<HealthManager>().TakeDamage(damage);
+    //}
+    
     private void HandleVisuals()
     {   foreach (var attackPoint in attackPoints)
         {
+            if (attackPoints == null) return;
             Bullet bullet = Instantiate(bulletPrefab, attackPoint.position, attackPoint.rotation).GetComponent<Bullet>();
             bullet.TargetTag = enemyType;
             bullet.Damage = damage;

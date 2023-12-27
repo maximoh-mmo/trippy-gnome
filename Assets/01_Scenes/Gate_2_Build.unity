@@ -6979,7 +6979,7 @@ PrefabInstance:
       objectReference: {fileID: 1174527589}
     - target: {fileID: 1809640131129847269, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
       propertyPath: isCheating
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1809640131129847270, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
       propertyPath: m_Center.y

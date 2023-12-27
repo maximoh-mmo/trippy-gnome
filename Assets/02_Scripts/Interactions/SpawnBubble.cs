@@ -1,4 +1,7 @@
+using System;
+using System.Threading;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SpawnBubble : MonoBehaviour
 {
@@ -10,6 +13,15 @@ public class SpawnBubble : MonoBehaviour
     MoveWithPath moveWithPath;
     float minHeight;
     float maxHeight = 10f;
+    private PlayerInputSystem playerInputSystem;
+
+    private void Awake()
+    {        
+        playerInputSystem = new PlayerInputSystem();
+        if (!FindFirstObjectByType<ComboCounter>().IsCheating) return;
+        playerInputSystem.Cheater.Enable();
+    }
+
     void Start()
     {
         moveWithPath = FindObjectOfType<MoveWithPath>();
@@ -30,7 +42,7 @@ public class SpawnBubble : MonoBehaviour
     {
         spawnArea.size = size;
         spawnArea.center = center; 
-        if (Input.GetKeyDown(KeyCode.Space)) { spawned = false; }
+        if (playerInputSystem.Cheater.enabled && playerInputSystem.FindAction("SpawnAdds").WasPressedThisFrame()) { spawned = false; }
         if (spawned == false) { SpawnEnemies(numberToSpawn); }
     }
 
@@ -43,7 +55,7 @@ public class SpawnBubble : MonoBehaviour
         }
         //Debug.Log(CountSpawns());
     }
-
+    
     private Vector3 RandomSpawnPoint()
     {
         var sp = transform.TransformPoint(new Vector3(Random.Range(-size.x / 2, size.x / 2), 0, Random.Range(0, size.z))+center/2);
