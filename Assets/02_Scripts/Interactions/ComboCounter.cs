@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ComboCounter : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class ComboCounter : MonoBehaviour
     private WeaponSystem weaponSystem;
     private HUDController hudController;
     private MeshRenderer shield;
-    private PlayerInputListner inputs;
+    private PlayerInputSystem playerInputSystem;
     [SerializeField] private bool isCheating = false;
     [SerializeField] private float stepDownTime = 0;
 
@@ -19,23 +20,21 @@ public class ComboCounter : MonoBehaviour
     private void Start()
     {
         shield = GameObject.Find("Shield").GetComponent<MeshRenderer>();
-        inputs= FindFirstObjectByType<PlayerInputListner>();
         hudController = FindFirstObjectByType<HUDController>();
         weaponSystem = FindFirstObjectByType<WeaponSystem>();
         autoSpawner = FindFirstObjectByType<AutoSpawner>();
         UpdateDependants();
         StartCoroutine("ComboStepDown");
         Time.timeScale = 1;
+        playerInputSystem = new PlayerInputSystem();
+        playerInputSystem.InGame.Enable();
+        playerInputSystem.InGame.Boom.performed += BigBoom;
+        playerInputSystem.InGame.Shield.performed += AcivateShield;
     }
-
-    private void Update()
+    
+    private void BigBoom(InputAction.CallbackContext context)
     {
-        if (inputs.IsShieldPressed && hudController.PowerUpAvailable(0) && isShielded == false) AcivateShield();
-        if (inputs.IsBigBoomPressed && hudController.PowerUpAvailable(1)) BigBoom();
-    }
-
-    private void BigBoom()
-    {
+        if (!hudController.PowerUpAvailable(1)) return;
         var enemies = GameObject.FindGameObjectsWithTag("Enemy");
         var bullets = GameObject.FindObjectsOfType<Bullet>();
         foreach (var bullet in bullets)
@@ -48,8 +47,9 @@ public class ComboCounter : MonoBehaviour
         }
         hudController.RemovePowerUp(1);
     }
-    private void AcivateShield()
-    {
+    private void AcivateShield(InputAction.CallbackContext context)
+    {        
+        if (!(hudController.PowerUpAvailable(0) && isShielded == false)) return;
         shield.enabled = true;
         isShielded = true;
         hudController.RemovePowerUp(0);
