@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class ComboCounter : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class ComboCounter : MonoBehaviour
     private MeshRenderer shield;
     private PlayerInputSystem playerInputSystem;
     [SerializeField] private bool isCheating = false;
-    [SerializeField] private float stepDownTime = 0;
+    [FormerlySerializedAs("stepDownTime")] [SerializeField] private float comboLevelDownTime = 0;
 
     public bool IsCheating { get { return isCheating; } set { isCheating = value; } }
     private void Start()
@@ -24,7 +25,7 @@ public class ComboCounter : MonoBehaviour
         weaponSystem = FindFirstObjectByType<WeaponSystem>();
         autoSpawner = FindFirstObjectByType<AutoSpawner>();
         UpdateDependants();
-        StartCoroutine("ComboStepDown");
+        StartCoroutine("ComboLevelCountDown");
         Time.timeScale = 1;
         playerInputSystem = new PlayerInputSystem();
         playerInputSystem.InGame.Enable();
@@ -62,7 +63,7 @@ public class ComboCounter : MonoBehaviour
         var toAdd = CalculateScore(basePoints);
         score += toAdd;
         runningScore += toAdd;
-        StartCoroutine("ComboStepDown");
+        StartCoroutine("ComboLevelCountDown");
         if (currentComboLevel < combos.Length - 1 && currentComboKills >= combos[currentComboLevel].killsNeeded)
         {
             ComboLevelUp();
@@ -86,14 +87,12 @@ public class ComboCounter : MonoBehaviour
         {
             return;
         }
-
         if (isShielded)
         {
             shield.enabled = false;
             isShielded = false;
             return;
         }
-
         currentComboKills = 0;
         hudController.ToggleIcon(currentComboLevel, false);
         currentComboLevel -= 1;
@@ -125,10 +124,9 @@ public class ComboCounter : MonoBehaviour
         return points * combos[currentComboLevel].scoreMultiplier;
     }
 
-    IEnumerator ComboStepDown()
+    IEnumerator ComboLevelCountDown()
     {
-        yield return new WaitForSeconds(stepDownTime);
-        Debug.Log("Time's up loose a level");
+        yield return new WaitForSeconds(comboLevelDownTime);
         ImHit();
     }
 
