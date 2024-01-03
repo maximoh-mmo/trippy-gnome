@@ -1,3 +1,5 @@
+using Unity.VisualScripting;
+using UnityEditor.Search;
 using UnityEngine;
 
 public class CraftFollowCrosshair : MonoBehaviour
@@ -8,10 +10,13 @@ public class CraftFollowCrosshair : MonoBehaviour
     [SerializeField] private DynamicChaseCamera dynamicChaseCamera;
     private Vector2 clampLimit = Vector2.zero;
     private float offset;
+    private bool show = false;
     public Vector2 ShipSize { get; private set; } = Vector2.zero;
+    public Transform Ship { get; private set; }
 
     private void Awake()
     {
+        Ship = transform;
         ShipSize = GetShipSize();
         offset = transform.position.z;
     }
@@ -83,8 +88,10 @@ public class CraftFollowCrosshair : MonoBehaviour
     {
         return Mathf.Abs(a) - Mathf.Abs(b);
     }
+
     private void OnDrawGizmos()
     {
+        if (!show){return;}
         var positionZ = gameObject.transform.position.z;
         Gizmos.color = Color.cyan;
         

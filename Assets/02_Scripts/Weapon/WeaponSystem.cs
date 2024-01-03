@@ -14,6 +14,8 @@ public class WeaponSystem : MonoBehaviour
     private string enemyType = string.Empty;
     private bool shooting = false;
     private GameObject bulletPrefab;
+    public int numberOfProjectiles { get => attackPoints.Length; }
+
     // public RaycastHit raycastHit;
     // public LayerMask layerMask;
     private void Awake()
@@ -70,6 +72,7 @@ public class WeaponSystem : MonoBehaviour
             bullet.Speed = projectileSpeed;
         }
     }
+
     public void SwitchGun(int id)
     {
         damage = weapons[id].damage;
@@ -79,8 +82,9 @@ public class WeaponSystem : MonoBehaviour
         fireRate = weapons[id].rateOfFire;
         range = weapons[id].range;
         attackPoints = weapons[id].firePoints;
-       }
+    }
 }
+
 [Serializable]
 public class Weapon
 {
