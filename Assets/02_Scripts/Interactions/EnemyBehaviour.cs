@@ -5,7 +5,7 @@ public class EnemyBehaviour : MonoBehaviour
     Transform player = null;
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindFirstObjectByType<CrosshairMovement>().transform;
         transform.LookAt(player.position);
     }
 
