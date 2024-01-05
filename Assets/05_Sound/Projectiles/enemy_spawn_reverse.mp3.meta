@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/05_Sound/Music/Trippy Complete.mp3.meta
-guid: 8838df96a858fc14db01899e093a5044
-========
-guid: 4ab771140bfdb344dba34a4f76a0fcc9
->>>>>>>> 2b85a2e (VFX test):Assets/05_Sound/Trippy Complete.mp3.meta
+guid: 3fbfa0b32531b964993f08607ddcfe9b
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6
