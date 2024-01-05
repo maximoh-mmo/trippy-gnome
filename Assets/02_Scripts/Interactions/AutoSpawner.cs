@@ -6,7 +6,7 @@ public class AutoSpawner : MonoBehaviour
     private int minSpawns, numToSpawn;
     public int MinSpawns { set => minSpawns = value; }
     public int NumToSpawn { set => numToSpawn = value; }
-    // Start is called before the first frame update
+
     void Start()
     {
         spawnBubble = GameObject.FindFirstObjectByType<SpawnBubble>();

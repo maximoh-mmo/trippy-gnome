@@ -1,4 +1,5 @@
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GetNearestTarget : MonoBehaviour
@@ -11,15 +12,27 @@ public class GetNearestTarget : MonoBehaviour
 
    public Transform[] GetTargets(int numberToGet)
    {
-      var potentials = FindObjectsOfType<GameObject>();
+      var potentials = FindObjectsOfType<EnemyBehaviour>();
       var targets = potentials
-         .Select(t => t.GetComponent<HealthManager>())
-         .Where(t => t != null)
+         .Where(t => t.IsTargetted == false)
+         .Select(t => t.GetComponent<Transform>())
          .Distinct()
-         .Select(u => u.GetComponent<Transform>())
-         .OrderBy(u => Vector3.Dot(aimDirection.forward, u.transform.position))
+         .OrderBy(t => Vector3.Dot(aimDirection.forward, t.transform.position))
          .Take(numberToGet)
          .ToArray();
       return targets.Length > 0 ? targets : null;
+   }
+
+   public Transform GetTarget()
+   {
+      var potentials = FindObjectsOfType<EnemyBehaviour>();
+      var targets = potentials
+         .Where(t => t.IsTargetted == false)
+         .Select(t => t.GetComponent<Transform>())
+         .Distinct()
+         .OrderBy(t => Vector3.Dot(aimDirection.forward, t.transform.position))
+         .Take(1)
+         .ToArray();
+      return targets[0];
    }
 }

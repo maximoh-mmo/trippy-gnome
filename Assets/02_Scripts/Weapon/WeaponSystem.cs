@@ -10,16 +10,17 @@ public class WeaponSystem : MonoBehaviour
     private Transform[] attackPoints;
     private int damage = 1;
     private float fireRate, range, projectileSpeed, reuseTime = 0;
-    public bool allowButtonHold = false;
     private string enemyType = string.Empty;
-    private bool shooting = false;
+    private bool shooting, allowButtonHold = false;
     private GameObject bulletPrefab;
+    private GetNearestTarget getNearestTarget;
     public int numberOfProjectiles { get => attackPoints.Length; }
 
     // public RaycastHit raycastHit;
     // public LayerMask layerMask;
     private void Awake()
     {
+        getNearestTarget = FindFirstObjectByType<GetNearestTarget>();
         playerInputSystem = new PlayerInputSystem();
         playerInputSystem.InGame.Enable();
     }
@@ -65,11 +66,25 @@ public class WeaponSystem : MonoBehaviour
     {   foreach (var attackPoint in attackPoints)
         {
             if (attackPoints == null) return;
-            Bullet bullet = Instantiate(bulletPrefab, attackPoint.position, attackPoint.rotation).GetComponent<Bullet>();
-            bullet.TargetTag = enemyType;
-            bullet.Damage = damage;
-            bullet.Range = range;
-            bullet.Speed = projectileSpeed;
+            var projectile = Instantiate(bulletPrefab, attackPoint.position, attackPoint.rotation); 
+            if (projectile.TryGetComponent<Bullet>(out var bullet))
+            {
+                bullet.TargetTag = enemyType;
+                bullet.Damage = damage;
+                bullet.Range = range;
+                bullet.Speed = projectileSpeed;
+                return;
+            }
+            if (projectile.TryGetComponent<Rocket>(out var rocket))
+            {
+                var target = getNearestTarget.GetTarget();
+                rocket.TargetTag = enemyType;
+                rocket.Damage = damage;
+                rocket.Range = range;
+                rocket.Speed = projectileSpeed;
+                if (target!=null) rocket.Target = target;
+                return;
+            }
         }
     }
 
@@ -82,6 +97,7 @@ public class WeaponSystem : MonoBehaviour
         fireRate = weapons[id].rateOfFire;
         range = weapons[id].range;
         attackPoints = weapons[id].firePoints;
+        allowButtonHold = weapons[id].allowButtonHold;
     }
 }
 
@@ -93,4 +109,5 @@ public class Weapon
     public Transform[] firePoints;
     public GameObject projectile;
     public float speed, rateOfFire, range;
+    public bool allowButtonHold;
 }

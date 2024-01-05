@@ -1,7 +1,6 @@
-using System;
-using System.Threading;
+using System.Linq;
 using UnityEngine;
-using Random = UnityEngine.Random;
+using UnityEngine.InputSystem;
 
 public class SpawnBubble : MonoBehaviour
 {
@@ -14,14 +13,18 @@ public class SpawnBubble : MonoBehaviour
     float minHeight;
     float maxHeight = 10f;
     private PlayerInputSystem playerInputSystem;
-
+    private ComboCounter comboCounter;
     private void Awake()
     {        
         playerInputSystem = new PlayerInputSystem();
-        if (!FindFirstObjectByType<ComboCounter>().IsCheating) return;
         playerInputSystem.Cheater.Enable();
+        playerInputSystem.Cheater.SpawnAdds.performed += ManualSpawn;
+        comboCounter = FindFirstObjectByType<ComboCounter>();
     }
-
+    public void ManualSpawn(InputAction.CallbackContext context)
+    {
+        if (comboCounter.IsCheating) spawned = false;
+    }
     void Start()
     {
         moveWithPath = FindObjectOfType<MoveWithPath>();
@@ -42,7 +45,6 @@ public class SpawnBubble : MonoBehaviour
     {
         spawnArea.size = size;
         spawnArea.center = center; 
-        if (playerInputSystem.Cheater.enabled && playerInputSystem.FindAction("SpawnAdds").WasPressedThisFrame()) { spawned = false; }
         if (spawned == false) { SpawnEnemies(numberToSpawn); }
     }
 
@@ -65,14 +67,8 @@ public class SpawnBubble : MonoBehaviour
     }
     public int CountSpawns()
     {
-        int i = 0;
-        var healthManagers = GameObject.FindObjectsOfType<HealthManager>();
-        foreach (var health in healthManagers)
-        {
-            i++;
-        }
-
-        return i;
+        var enemies = GameObject.FindObjectsOfType<EnemyBehaviour>().Distinct();
+        return enemies.Count();
     }
     void SpawnEnemy(Vector3 pos)
     {

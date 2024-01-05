@@ -30,10 +30,17 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other == null) return;
-        if (other.gameObject.name == "Sweeper") Destroy(this.gameObject);
+        if (other.gameObject.name == "Sweeper") Destroy(gameObject);
         if (other.gameObject.CompareTag(targetTag) && other.gameObject.GetComponent<HealthManager>() != null)
+        {
             other.gameObject.GetComponent<HealthManager>().TakeDamage(damage);
+            Destroy(gameObject); 
+        }
+
         if (other.gameObject.GetComponent<ComboCounter>() != null)
+        {
             other.gameObject.GetComponent<ComboCounter>().ImHit();
+            Destroy(gameObject);
+        }
     }
 }

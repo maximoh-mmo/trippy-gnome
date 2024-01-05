@@ -554,9 +554,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Invulnerable",
+                    "name": "ToggleCheats",
                     "type": "Button",
                     "id": "f954ba2f-0a3d-4d9a-8f8c-bcb7baee1695",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ComboLevel",
+                    "type": "Button",
+                    "id": "fb01673f-4ba1-4b5a-9254-9494bcf235e7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Invulnerable",
+                    "type": "Button",
+                    "id": "903d858b-c94b-469a-a29e-c128e2d201a3",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -593,7 +611,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Invulnerable",
+                    "action": "ToggleCheats",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -601,6 +619,50 @@
                     "name": "",
                     "id": "58f2d337-7535-4ae3-9fd1-cfc0ee6bfaa7",
                     "path": "<Keyboard>/backquote",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleCheats",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "e8fea7db-6b3e-4e70-965e-5e31282f8299",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ComboLevel",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "f6e7b971-f8e9-42da-8bc4-b32243331499",
+                    "path": "<Keyboard>/numpadMinus",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ComboLevel",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "86c2e1e4-d078-4cdf-a829-d9ecd515b5ba",
+                    "path": "<Keyboard>/numpadPlus",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ComboLevel",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "f6eeb660-0a01-40c0-834b-c27d2e2cbda4",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

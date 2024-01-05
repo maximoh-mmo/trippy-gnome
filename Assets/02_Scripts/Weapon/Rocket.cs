@@ -8,6 +8,7 @@ public class Rocket : MonoBehaviour
         private Transform target = null;
         private Vector3 startPos = Vector3.zero;
         private string targetTag = string.Empty;
+        private Rigidbody rb;
         public string TargetTag { set { targetTag = value; } }
         public float Range { set { range = value; } }
         public float Speed { set { speed = value; } }
@@ -18,31 +19,32 @@ public class Rocket : MonoBehaviour
         private void Start()
         {
             startPos = transform.position;
+            if (target!=null) target.GetComponent<EnemyBehaviour>().IsTargetted = true;
+            rb = GetComponent<Rigidbody>();
         }
 
         private void Update()
         {
-            var t = transform;
-            var tpos = t.position;
-            tpos += t.forward * (speed * Time.deltaTime);
-            var currentRange = Vector3.Distance(startPos, tpos);
+            var currentRange = Vector3.Distance(startPos, transform.position);
             if (currentRange > range) Destroy(gameObject);
-            transform.position = tpos;
+            if (target!=null) transform.LookAt(target);
+            rb.velocity = transform.forward * speed;
         }
 
         private void OnTriggerEnter(Collider other)
         {
             if (other == null) return;
-            if (other.gameObject.name == "Sweeper") Destroy(this.gameObject);
-        
+            if (other.gameObject.name == "Sweeper") Destroy(gameObject);
             if (other.gameObject.CompareTag(targetTag) && other.gameObject.GetComponent<HealthManager>() != null)
             {
                 other.gameObject.GetComponent<HealthManager>().TakeDamage(damage);
+                Destroy(gameObject); 
             }
-        
+
             if (other.gameObject.GetComponent<ComboCounter>() != null)
             {
                 other.gameObject.GetComponent<ComboCounter>().ImHit();
+                Destroy(gameObject);
             }
         }
 }

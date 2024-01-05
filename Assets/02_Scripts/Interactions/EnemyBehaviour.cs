@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    Transform player = null;
+    private Transform player = null;
+    private bool isTargetted = false;
+    public bool IsTargetted { get => isTargetted; set => isTargetted = value; }
+
     void Start()
     {
         player = GameObject.FindFirstObjectByType<CrosshairMovement>().transform;
