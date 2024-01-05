@@ -7,14 +7,14 @@ using UnityEngine.Serialization;
 public class ComboCounter : MonoBehaviour
 {
     public ComboLevel[] combos;
-    private bool isShielded;
+    private bool isShielded, cheatsEnabled;
     private int currentComboLevel, currentComboKills, totalKillCount, score, runningScore = 0;
     private AutoSpawner autoSpawner;
     private WeaponSystem weaponSystem;
     private HUDController hudController;
     private MeshRenderer shield;
     private PlayerInputSystem playerInputSystem;
-    [SerializeField] private bool isCheating = false;
+    private bool isCheating = false;
     [FormerlySerializedAs("stepDownTime")] [SerializeField] private float comboLevelDownTime = 0;
 
     public bool IsCheating { get { return isCheating; } set { isCheating = value; } }
@@ -31,8 +31,27 @@ public class ComboCounter : MonoBehaviour
         playerInputSystem.InGame.Enable();
         playerInputSystem.InGame.Boom.performed += BigBoom;
         playerInputSystem.InGame.Shield.performed += AcivateShield;
+        playerInputSystem.Cheater.Enable();
+        playerInputSystem.Cheater.ComboLevel.performed += ChangeCombo;
+        playerInputSystem.Cheater.ToggleCheats.performed += ToggleCheats;
     }
-    
+
+    private void ToggleCheats(InputAction.CallbackContext context)
+    {
+        if (!isCheating)
+        {
+            isCheating = true;
+            return;
+        }
+        isCheating = false;
+    }
+    private void ChangeCombo(InputAction.CallbackContext context)
+    { 
+        if (!isCheating) return;
+        if (context.ReadValue<float>() == 0) return;
+        if (context.ReadValue<float>() > 0 && currentComboLevel < combos.Length-1) ComboLevelUp();
+        if (context.ReadValue<float>() < 0 && currentComboLevel > 0) ComboLevelDown();
+    }
     private void BigBoom(InputAction.CallbackContext context)
     {
         if (!hudController.PowerUpAvailable(1)) return;
@@ -94,6 +113,11 @@ public class ComboCounter : MonoBehaviour
             return;
         }
         currentComboKills = 0;
+        ComboLevelDown();
+    }
+
+    private void ComboLevelDown()
+    {
         hudController.ToggleIcon(currentComboLevel, false);
         currentComboLevel -= 1;
         if (currentComboLevel < 0)
@@ -145,5 +169,6 @@ public class ComboCounter : MonoBehaviour
 [Serializable]
 public class ComboLevel
 {
+    public string weapon = String.Empty;
     public int killsNeeded, scoreMultiplier, minEnemies, enemiesToSpawn;
 }

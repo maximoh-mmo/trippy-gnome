@@ -576,9 +576,27 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Invulnerable"",
+                    ""name"": ""ToggleCheats"",
                     ""type"": ""Button"",
                     ""id"": ""f954ba2f-0a3d-4d9a-8f8c-bcb7baee1695"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ComboLevel"",
+                    ""type"": ""Button"",
+                    ""id"": ""fb01673f-4ba1-4b5a-9254-9494bcf235e7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Invulnerable"",
+                    ""type"": ""Button"",
+                    ""id"": ""903d858b-c94b-469a-a29e-c128e2d201a3"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -615,7 +633,7 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Invulnerable"",
+                    ""action"": ""ToggleCheats"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -623,6 +641,50 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""58f2d337-7535-4ae3-9fd1-cfc0ee6bfaa7"",
                     ""path"": ""<Keyboard>/backquote"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleCheats"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""e8fea7db-6b3e-4e70-965e-5e31282f8299"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ComboLevel"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""f6e7b971-f8e9-42da-8bc4-b32243331499"",
+                    ""path"": ""<Keyboard>/numpadMinus"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ComboLevel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""86c2e1e4-d078-4cdf-a829-d9ecd515b5ba"",
+                    ""path"": ""<Keyboard>/numpadPlus"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ComboLevel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f6eeb660-0a01-40c0-834b-c27d2e2cbda4"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -650,6 +712,8 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
         // Cheater
         m_Cheater = asset.FindActionMap("Cheater", throwIfNotFound: true);
         m_Cheater_SpawnAdds = m_Cheater.FindAction("SpawnAdds", throwIfNotFound: true);
+        m_Cheater_ToggleCheats = m_Cheater.FindAction("ToggleCheats", throwIfNotFound: true);
+        m_Cheater_ComboLevel = m_Cheater.FindAction("ComboLevel", throwIfNotFound: true);
         m_Cheater_Invulnerable = m_Cheater.FindAction("Invulnerable", throwIfNotFound: true);
     }
 
@@ -853,12 +917,16 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Cheater;
     private List<ICheaterActions> m_CheaterActionsCallbackInterfaces = new List<ICheaterActions>();
     private readonly InputAction m_Cheater_SpawnAdds;
+    private readonly InputAction m_Cheater_ToggleCheats;
+    private readonly InputAction m_Cheater_ComboLevel;
     private readonly InputAction m_Cheater_Invulnerable;
     public struct CheaterActions
     {
         private @PlayerInputSystem m_Wrapper;
         public CheaterActions(@PlayerInputSystem wrapper) { m_Wrapper = wrapper; }
         public InputAction @SpawnAdds => m_Wrapper.m_Cheater_SpawnAdds;
+        public InputAction @ToggleCheats => m_Wrapper.m_Cheater_ToggleCheats;
+        public InputAction @ComboLevel => m_Wrapper.m_Cheater_ComboLevel;
         public InputAction @Invulnerable => m_Wrapper.m_Cheater_Invulnerable;
         public InputActionMap Get() { return m_Wrapper.m_Cheater; }
         public void Enable() { Get().Enable(); }
@@ -872,6 +940,12 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
             @SpawnAdds.started += instance.OnSpawnAdds;
             @SpawnAdds.performed += instance.OnSpawnAdds;
             @SpawnAdds.canceled += instance.OnSpawnAdds;
+            @ToggleCheats.started += instance.OnToggleCheats;
+            @ToggleCheats.performed += instance.OnToggleCheats;
+            @ToggleCheats.canceled += instance.OnToggleCheats;
+            @ComboLevel.started += instance.OnComboLevel;
+            @ComboLevel.performed += instance.OnComboLevel;
+            @ComboLevel.canceled += instance.OnComboLevel;
             @Invulnerable.started += instance.OnInvulnerable;
             @Invulnerable.performed += instance.OnInvulnerable;
             @Invulnerable.canceled += instance.OnInvulnerable;
@@ -882,6 +956,12 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
             @SpawnAdds.started -= instance.OnSpawnAdds;
             @SpawnAdds.performed -= instance.OnSpawnAdds;
             @SpawnAdds.canceled -= instance.OnSpawnAdds;
+            @ToggleCheats.started -= instance.OnToggleCheats;
+            @ToggleCheats.performed -= instance.OnToggleCheats;
+            @ToggleCheats.canceled -= instance.OnToggleCheats;
+            @ComboLevel.started -= instance.OnComboLevel;
+            @ComboLevel.performed -= instance.OnComboLevel;
+            @ComboLevel.canceled -= instance.OnComboLevel;
             @Invulnerable.started -= instance.OnInvulnerable;
             @Invulnerable.performed -= instance.OnInvulnerable;
             @Invulnerable.canceled -= instance.OnInvulnerable;
@@ -919,6 +999,8 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
     public interface ICheaterActions
     {
         void OnSpawnAdds(InputAction.CallbackContext context);
+        void OnToggleCheats(InputAction.CallbackContext context);
+        void OnComboLevel(InputAction.CallbackContext context);
         void OnInvulnerable(InputAction.CallbackContext context);
     }
 }
