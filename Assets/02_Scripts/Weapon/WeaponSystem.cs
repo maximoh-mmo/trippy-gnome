@@ -1,5 +1,7 @@
 using System;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WeaponSystem : MonoBehaviour
 {
@@ -7,13 +9,12 @@ public class WeaponSystem : MonoBehaviour
     public Weapon[] weapons;
     private Transform[] attackPoints;
     private int damage = 1;
-    private float fireRate, range, projectileSpeed, reuseTime;
+    private float fireRate, range, projectileSpeed, reuseTime = 0;
     private string enemyType = string.Empty;
-    private bool shooting, allowButtonHold, psychoRush;
+    private bool shooting, allowButtonHold = false;
     private GameObject bulletPrefab;
     private GetNearestTarget getNearestTarget;
-
-    public bool PsychoRush { set => psychoRush = value; }
+    public int numberOfProjectiles { get => attackPoints.Length; }
 
     // public RaycastHit raycastHit;
     // public LayerMask layerMask;
@@ -26,8 +27,8 @@ public class WeaponSystem : MonoBehaviour
 
     private void Start()
     {
-        enemyType = gameObject.CompareTag("Enemy") ? "Player" : "Enemy";
-        shooting = gameObject.CompareTag("Enemy");
+        enemyType = gameObject.CompareTag("Enemy") == true ? "Player" : "Enemy";
+        shooting = gameObject.CompareTag("Enemy") == true ? true : false;
         reuseTime = Time.time;
         SwitchGun(0);
     }
@@ -35,13 +36,18 @@ public class WeaponSystem : MonoBehaviour
     {
         if (Time.timeScale == 0) return;
         if (enemyType == "Player") Shoot();
-        if (psychoRush) return;
-        if (allowButtonHold == false)
+        else
         {
-            if (playerInputSystem.FindAction("Fire").WasPressedThisFrame()) Shoot();
-            return;
+            if (allowButtonHold == false)
+            {
+                if (playerInputSystem.FindAction("Fire").WasPressedThisFrame()) Shoot();
+            }
+            else
+            {
+                if (playerInputSystem.FindAction("Fire").IsPressed()) Shoot();
+            }
         }
-        if (playerInputSystem.FindAction("Fire").IsPressed()) Shoot(); 
+        
     }
     private void Shoot()
     {
@@ -67,6 +73,7 @@ public class WeaponSystem : MonoBehaviour
                 bullet.Damage = damage;
                 bullet.Range = range;
                 bullet.Speed = projectileSpeed;
+                return;
             }
             if (projectile.TryGetComponent<Rocket>(out var rocket))
             {
@@ -76,6 +83,7 @@ public class WeaponSystem : MonoBehaviour
                 rocket.Range = range;
                 rocket.Speed = projectileSpeed;
                 if (target!=null) rocket.Target = target;
+                return;
             }
         }
     }
