@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -58,15 +57,6 @@ public class SpawnBubble : MonoBehaviour
         }
         //Debug.Log(CountSpawns());
     }
-    public void SpawnEnemies(GameObject[] enemies)
-    {
-        spawned = true;
-        foreach (var enemy in enemies)
-        {
-            SpawnEnemy(RandomSpawnPoint(), enemy);
-        }
-        //Debug.Log(CountSpawns());
-    }
     
     private Vector3 RandomSpawnPoint()
     {
@@ -82,10 +72,6 @@ public class SpawnBubble : MonoBehaviour
     }
     void SpawnEnemy(Vector3 pos)
     {
-        Instantiate(EnemyPrefab, pos, Quaternion.identity);
-    }
-    void SpawnEnemy(Vector3 pos, GameObject enemyPrefab)
-    {
-        Instantiate(enemyPrefab, pos, Quaternion.identity);
+        GameObject newEnemy = Instantiate(EnemyPrefab, pos, Quaternion.identity);
     }
 }
