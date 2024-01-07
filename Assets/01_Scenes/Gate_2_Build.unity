@@ -7206,7 +7206,19 @@ PrefabInstance:
       value: DblRocket
       objectReference: {fileID: 0}
     - target: {fileID: 1809640131129847269, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
+      propertyPath: combos.Array.data[6].minEnemies
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1809640131129847269, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
+      propertyPath: combos.Array.data[7].minEnemies
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1809640131129847269, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
       propertyPath: combos.Array.data[7].enemiesToSpawn
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1809640131129847269, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
+      propertyPath: combos.Array.data[8].enemiesToSpawn
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1809640131129847270, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
