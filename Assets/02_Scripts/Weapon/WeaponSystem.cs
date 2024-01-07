@@ -73,7 +73,6 @@ public class WeaponSystem : MonoBehaviour
                 bullet.Damage = damage;
                 bullet.Range = range;
                 bullet.Speed = projectileSpeed;
-                return;
             }
             if (projectile.TryGetComponent<Rocket>(out var rocket))
             {
@@ -83,7 +82,6 @@ public class WeaponSystem : MonoBehaviour
                 rocket.Range = range;
                 rocket.Speed = projectileSpeed;
                 if (target!=null) rocket.Target = target;
-                return;
             }
         }
     }
