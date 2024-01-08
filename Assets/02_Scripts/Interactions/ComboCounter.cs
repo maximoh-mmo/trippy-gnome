@@ -14,8 +14,9 @@ public class ComboCounter : MonoBehaviour
     private HUDController hudController;
     private MeshRenderer shield;
     private PlayerInputSystem playerInputSystem;
-    private bool isCheating = false;
+    private bool isCheating, isPsychorushActive = false;
     [FormerlySerializedAs("stepDownTime")] [SerializeField] private float comboLevelDownTime = 0;
+    private float psychoTimer=0;
 
     public bool IsCheating { get { return isCheating; } set { isCheating = value; } }
     private void Start()
@@ -74,10 +75,12 @@ public class ComboCounter : MonoBehaviour
         isShielded = true;
         hudController.RemovePowerUp(0);
     }
+
     public void AddKill(int basePoints)
     {
-        StopAllCoroutines();
         totalKillCount += 1;
+        if (isPsychorushActive) return;
+        StopAllCoroutines();
         currentComboKills += 1;
         var toAdd = CalculateScore(basePoints);
         score += toAdd;
@@ -102,10 +105,7 @@ public class ComboCounter : MonoBehaviour
 
     public void ImHit()
     {
-        if (isCheating)
-        {
-            return;
-        }
+        if (isCheating || isPsychorushActive) return;
         if (isShielded)
         {
             shield.enabled = false;
@@ -164,6 +164,32 @@ public class ComboCounter : MonoBehaviour
     private void DeathHandler()
     {
         hudController.DeathScreen();
+    }
+
+    public void ActivatePsychoRush()
+    {
+        psychoTimer = Time.unscaledTime+10f;
+        isPsychorushActive = true;
+        StopAllCoroutines();
+    }
+
+    private void DeactivatePsychoRush()
+    {
+        isPsychorushActive = false;
+        psychoTimer = 0;
+    }
+
+    private void Update()
+    {
+        if (psychoTimer != 0)
+        {
+            if (Time.unscaledTime > psychoTimer)
+            {
+                psychoTimer = 0;
+                DeactivatePsychoRush();
+                StartCoroutine("ComboLevelCountDown");
+            } 
+        }
     }
 }
 [Serializable]
