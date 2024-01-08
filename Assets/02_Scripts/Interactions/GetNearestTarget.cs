@@ -32,6 +32,8 @@ public class GetNearestTarget : MonoBehaviour
          .OrderBy(t => Vector3.Dot(aimDirection.forward, t.transform.position))
          .Take(1)
          .ToArray();
+      Debug.Log(targets.Length);
+      if (targets.Length == 0) return null;
       return targets[0];
    }
 }
