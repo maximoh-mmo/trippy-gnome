@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -8,19 +9,26 @@ public class ComboCounter : MonoBehaviour
 {
     public ComboLevel[] combos;
     private bool isShielded, cheatsEnabled;
-    private int currentComboLevel, currentComboKills, totalKillCount, score, runningScore = 0;
+    private int currentComboLevel, currentComboKills, totalKillCount, score, runningScore;
     private AutoSpawner autoSpawner;
     private WeaponSystem weaponSystem;
     private HUDController hudController;
     private MeshRenderer shield;
+    private MeshRenderer[] meshRenderers;
     private PlayerInputSystem playerInputSystem;
-    private bool isCheating, isPsychorushActive = false;
-    [FormerlySerializedAs("stepDownTime")] [SerializeField] private float comboLevelDownTime = 0;
-    private float psychoTimer=0;
+    private Coroutine coroutine;
+    private bool isCheating, isPsychorushActive;
+    [FormerlySerializedAs("stepDownTime")] [SerializeField] private float comboLevelDownTime;
+    private float psychoTimer, flashTimer;
+    [SerializeField] private float flashDelay = 0.3f;
 
     public bool IsCheating { get { return isCheating; } set { isCheating = value; } }
     private void Start()
     {
+        var mesherenderers = GetComponentsInChildren<MeshRenderer>();
+        meshRenderers = mesherenderers
+            .Where(mr => mr.enabled)
+            .ToArray();
         shield = GameObject.Find("Shield").GetComponent<MeshRenderer>();
         hudController = FindFirstObjectByType<HUDController>();
         weaponSystem = FindFirstObjectByType<WeaponSystem>();
@@ -36,7 +44,6 @@ public class ComboCounter : MonoBehaviour
         playerInputSystem.Cheater.ComboLevel.performed += ChangeCombo;
         playerInputSystem.Cheater.ToggleCheats.performed += ToggleCheats;
     }
-
     private void ToggleCheats(InputAction.CallbackContext context)
     {
         if (!isCheating)
@@ -75,7 +82,6 @@ public class ComboCounter : MonoBehaviour
         isShielded = true;
         hudController.RemovePowerUp(0);
     }
-
     public void AddKill(int basePoints)
     {
         totalKillCount += 1;
@@ -92,7 +98,6 @@ public class ComboCounter : MonoBehaviour
         }
         UpdateHUD();
     }
-
     private void ComboLevelUp()
     {
         hudController.ToggleIcon(currentComboLevel, false);
@@ -102,7 +107,6 @@ public class ComboCounter : MonoBehaviour
         runningScore = 0;
         UpdateDependants();
     }
-
     public void ImHit()
     {
         if (isCheating || isPsychorushActive) return;
@@ -115,7 +119,6 @@ public class ComboCounter : MonoBehaviour
         currentComboKills = 0;
         ComboLevelDown();
     }
-
     private void ComboLevelDown()
     {
         hudController.ToggleIcon(currentComboLevel, false);
@@ -134,7 +137,6 @@ public class ComboCounter : MonoBehaviour
             UpdateDependants();
         }
     }
-
     private void UpdateDependants()
     {
         autoSpawner.MinSpawns = combos[currentComboLevel].minEnemies;
@@ -142,43 +144,36 @@ public class ComboCounter : MonoBehaviour
         weaponSystem.SwitchGun(currentComboLevel);
         UpdateHUD();
     }
-
     private int CalculateScore(int points)
     {
         return points * combos[currentComboLevel].scoreMultiplier;
     }
-
     IEnumerator ComboLevelCountDown()
     {
         yield return new WaitForSeconds(comboLevelDownTime);
         ImHit();
     }
-
     private void UpdateHUD()
     {
         hudController.Score(score);
         hudController.ComboLvl((currentComboLevel + 1));
         hudController.RunningScore(runningScore);
     }
-
     private void DeathHandler()
     {
         hudController.DeathScreen();
     }
-
     public void ActivatePsychoRush()
     {
         psychoTimer = Time.unscaledTime+10f;
         isPsychorushActive = true;
         StopAllCoroutines();
     }
-
     private void DeactivatePsychoRush()
     {
         isPsychorushActive = false;
         psychoTimer = 0;
     }
-
     private void Update()
     {
         if (psychoTimer != 0)
@@ -188,10 +183,20 @@ public class ComboCounter : MonoBehaviour
                 psychoTimer = 0;
                 DeactivatePsychoRush();
                 StartCoroutine("ComboLevelCountDown");
-            } 
+                foreach (var meshRenderer in meshRenderers)
+                {
+                    meshRenderer.enabled = true;
+                }
+            }
+            if (Time.unscaledTime > flashTimer)
+            {
+                foreach (var meshRenderer in meshRenderers) meshRenderer.enabled = !meshRenderer.enabled;
+                flashTimer = Time.unscaledTime + flashDelay;
+            }
         }
     }
 }
+
 [Serializable]
 public class ComboLevel
 {
