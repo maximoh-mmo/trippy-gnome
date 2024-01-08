@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/04_Graphics/Materials/Glow_mat.mat.meta
 guid: 975245dfc445eaf42b74e592785d111e
+========
+guid: d774aee0d4d1d1249ac8b6bc8cbaad31
+>>>>>>>> 6a07aa7 (add mushroom prefabs):Assets/04_Graphics/Materials/Shrooms/Materials/Thin Mushy Base Color.mat.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000
