@@ -7183,48 +7183,57 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combos:
-  - killsNeeded: 10
+  - weapon: 
+    killsNeeded: 10
     scoreMultiplier: 1
     minEnemies: 0
     enemiesToSpawn: 0
-  - killsNeeded: 10
+  - weapon: 
+    killsNeeded: 10
     scoreMultiplier: 2
     minEnemies: 0
     enemiesToSpawn: 0
-  - killsNeeded: 10
+  - weapon: 
+    killsNeeded: 10
     scoreMultiplier: 3
     minEnemies: 0
     enemiesToSpawn: 0
-  - killsNeeded: 10
+  - weapon: 
+    killsNeeded: 10
     scoreMultiplier: 4
     minEnemies: 0
     enemiesToSpawn: 0
-  - killsNeeded: 10
+  - weapon: 
+    killsNeeded: 10
     scoreMultiplier: 5
     minEnemies: 0
     enemiesToSpawn: 0
-  - killsNeeded: 10
+  - weapon: 
+    killsNeeded: 10
     scoreMultiplier: 6
     minEnemies: 0
     enemiesToSpawn: 0
-  - killsNeeded: 10
+  - weapon: 
+    killsNeeded: 10
     scoreMultiplier: 7
     minEnemies: 0
     enemiesToSpawn: 0
-  - killsNeeded: 10
+  - weapon: 
+    killsNeeded: 10
     scoreMultiplier: 8
     minEnemies: 0
     enemiesToSpawn: 0
-  - killsNeeded: 10
+  - weapon: 
+    killsNeeded: 10
     scoreMultiplier: 9
     minEnemies: 0
     enemiesToSpawn: 0
-  - killsNeeded: 10
+  - weapon: 
+    killsNeeded: 10
     scoreMultiplier: 10
     minEnemies: 0
     enemiesToSpawn: 0
-  isCheating: 0
-  stepDownTime: 10
+  comboLevelDownTime: 10
 --- !u!114 &1865110840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7238,7 +7247,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapons: []
-  allowButtonHold: 1
 --- !u!114 &1865110841
 MonoBehaviour:
   m_ObjectHideFlags: 0
