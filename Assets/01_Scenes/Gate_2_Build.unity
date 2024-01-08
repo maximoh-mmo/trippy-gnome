@@ -1548,6 +1548,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 346390822}
   m_CullTransparentMesh: 1
+--- !u!4 &378794963 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1535389676149112410, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
+  m_PrefabInstance: {fileID: 1535389676875925712}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &397024590
 GameObject:
   m_ObjectHideFlags: 0
@@ -6897,6 +6902,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1535389676790367315, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
+      propertyPath: EnemyPrefab
+      value: 
+      objectReference: {fileID: 744851290034003747, guid: faa51d6a8a9543546994bc83d70ea64a, type: 3}
+    - target: {fileID: 1535389676790367407, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 378794963}
     - target: {fileID: 1535389677198564988, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
       propertyPath: m_Name
       value: Player
@@ -7174,6 +7187,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1809640131129847269, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
+      propertyPath: combos.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1809640131129847269, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
       propertyPath: combos.Array.data[0].weapon
       value: MG
       objectReference: {fileID: 0}
@@ -7206,6 +7223,10 @@ PrefabInstance:
       value: DblRocket
       objectReference: {fileID: 0}
     - target: {fileID: 1809640131129847269, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
+      propertyPath: combos.Array.data[8].weapon
+      value: BFG
+      objectReference: {fileID: 0}
+    - target: {fileID: 1809640131129847269, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
       propertyPath: combos.Array.data[6].minEnemies
       value: 4
       objectReference: {fileID: 0}
@@ -7214,12 +7235,20 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1809640131129847269, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
+      propertyPath: combos.Array.data[8].minEnemies
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1809640131129847269, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
       propertyPath: combos.Array.data[7].enemiesToSpawn
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1809640131129847269, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
       propertyPath: combos.Array.data[8].enemiesToSpawn
-      value: 10
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1809640131129847269, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
+      propertyPath: combos.Array.data[8].scoreMultiplier
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1809640131129847270, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
       propertyPath: m_Center.y
