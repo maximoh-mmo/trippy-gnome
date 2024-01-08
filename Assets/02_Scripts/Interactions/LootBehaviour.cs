@@ -52,7 +52,6 @@ public class LootBehaviour : MonoBehaviour
 
     private void PickUpItem()
     {
-        Debug.Log("Powerup added to UI, type = "+type);
         hud.AddPowerUp(type);
         Destroy(gameObject);
     }

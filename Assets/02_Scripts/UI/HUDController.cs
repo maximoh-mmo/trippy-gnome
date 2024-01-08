@@ -11,9 +11,11 @@ public class HUDController : MonoBehaviour
     [SerializeField] private GameObject[] Icons;
     [SerializeField] GameObject pauseMenu, deathScreen;
     private PlayerInputSystem playerInputSystem;
+    private ComboCounter cc;
     
     private void Awake()
     {
+        cc = FindFirstObjectByType<ComboCounter>();
         playerInputSystem = new PlayerInputSystem();
         playerInputSystem.InGame.Enable();
         playerInputSystem.InGame.Pause.performed += Pause;
@@ -58,7 +60,8 @@ public class HUDController : MonoBehaviour
     }
     public void AddPowerUp(int type)
     {
-        if (type > 1) return;
+        if (type > 2) return;
+        if (type == 2) cc.ActivatePsychoRush();
         foreach (var pu in PowerUps)
         {
             if (pu.type == type)
