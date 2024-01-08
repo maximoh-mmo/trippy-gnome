@@ -73,7 +73,6 @@ public class HUDController : MonoBehaviour
                 }
             }   
         } 
-        Debug.Log("full on powerups");
     }
     public void RemovePowerUp(int type)
     {

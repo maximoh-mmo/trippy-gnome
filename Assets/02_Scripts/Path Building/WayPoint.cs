@@ -13,7 +13,6 @@ public class WayPoint : MonoBehaviour
         for (int i = 0; i < waypoints.Count; i++)
         {
             waypoints[i] = GetItem(i) + (tileNum *new Vector3(0,0,1000));
-            Debug.Log(waypoints[i]);
         }
     }
 }

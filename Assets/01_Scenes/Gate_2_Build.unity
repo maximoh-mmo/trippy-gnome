@@ -7188,7 +7188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1809640131129847269, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
       propertyPath: combos.Array.size
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1809640131129847269, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
       propertyPath: combos.Array.data[0].weapon
