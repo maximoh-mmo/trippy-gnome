@@ -76,7 +76,7 @@ MonoBehaviour:
     - {fileID: 5700009916288220465}
     projectile: {fileID: 6065058955878882625, guid: 78ccba50a945472479f002e9faecd374, type: 3}
     speed: 10
-    rateOfFire: 1
+    rateOfFire: 1.25
     range: 50
     allowButtonHold: 0
 --- !u!114 &7596434589679192236
