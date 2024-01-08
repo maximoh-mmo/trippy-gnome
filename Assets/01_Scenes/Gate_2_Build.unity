@@ -7060,7 +7060,7 @@ PrefabInstance:
       objectReference: {fileID: 3738482407019022119, guid: f7f6d7419fc5781409db84abc78b03e5, type: 3}
     - target: {fileID: 1809640131129847268, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
       propertyPath: weapons.Array.data[5].rateOfFire
-      value: 0.05
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 1809640131129847268, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
       propertyPath: weapons.Array.data[5].weaponName
