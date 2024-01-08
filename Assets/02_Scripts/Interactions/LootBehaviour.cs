@@ -10,7 +10,7 @@ public class LootBehaviour : MonoBehaviour
     [SerializeField] private float initialRadius, flyingRadius, speed;
     
     public int Type { set => type = value; }
-    // Start is called before the first frame update
+    
     void Start()
     {
         hud = FindObjectOfType<HUDController>();
@@ -36,18 +36,10 @@ public class LootBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Sweeper")
-        {
-            Debug.Log("Swept Up"); Destroy(gameObject); }
+        if (other.gameObject.name == "Sweeper") Destroy(gameObject);
         if (!other.CompareTag("Player")) return;
-        if (sc.radius == flyingRadius)
-        {
-            PickUpItem();
-        }
-        else if (sc.radius == initialRadius)
-        {
-            FlyToPlayer(other.gameObject.transform);
-        }
+        if (sc.radius == flyingRadius) PickUpItem();
+        else if (sc.radius == initialRadius) FlyToPlayer(other.gameObject.transform);
     }
 
     private void PickUpItem()
