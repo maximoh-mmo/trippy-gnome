@@ -83,3 +83,7 @@ Assets/04_Graphics/Ship/spaceship_ufo.fbx.meta
 Assets/New Terrain 1.asset
 Assets/New Terrain 1.asset.meta
 ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json
+Assets/05_Sound/Projectiles/Rocket.mp3.meta
+Assets/05_Sound/Projectiles/Laser.mp3.meta
+Assets/05_Sound/Projectiles/Explosion.mp3.meta
+Assets/05_Sound/Projectiles/Enemy_Kill.mp3.meta
