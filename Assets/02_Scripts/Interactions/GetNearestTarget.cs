@@ -1,5 +1,4 @@
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GetNearestTarget : MonoBehaviour
@@ -33,6 +32,7 @@ public class GetNearestTarget : MonoBehaviour
          .OrderBy(t => Vector3.Dot(aimDirection.forward, t.transform.position))
          .Take(1)
          .ToArray();
+      if (targets.Length == 0) return null;
       return targets[0];
    }
 }
