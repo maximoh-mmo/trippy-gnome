@@ -44,7 +44,6 @@ public class AutoSpawner : MonoBehaviour
                 enemiesToSpawn.Add(enemies[enemy]);
                 money -= cost;
             }
-            Debug.Log("money left = "+money);
         }
         spawnBubble.SpawnEnemies(enemiesToSpawn.ToArray());
     }
