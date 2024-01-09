@@ -85,6 +85,7 @@ public class ComboCounter : MonoBehaviour
     }
     public void AddKill(int basePoints)
     {
+        autoSpawner.AddMoney(basePoints);
         totalKillCount += 1;
         if (isPsychorushActive) return;
         StopAllCoroutines();
@@ -174,6 +175,7 @@ public class ComboCounter : MonoBehaviour
     private void DeactivatePsychoRush()
     {
         isPsychorushActive = false;
+        weaponSystem.PsychoRush = false;
         psychoTimer = 0;
     }
     private void Update()
