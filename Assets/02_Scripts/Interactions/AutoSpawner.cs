@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -5,7 +6,7 @@ using Random = UnityEngine.Random;
 public class AutoSpawner : MonoBehaviour
 {
     private SpawnBubble spawnBubble;
-    private int minSpawns, numToSpawn, extraCash;
+    private int minSpawns, numToSpawn;
     [SerializeField]private List<GameObject> enemies;
     [SerializeField] private int shopValue;
     [SerializeField]private bool useShop; 
@@ -31,8 +32,7 @@ public class AutoSpawner : MonoBehaviour
 
     private void ShopAndSpawn()
     {
-        var money = shopValue + extraCash;
-        extraCash = 0;
+        var money = shopValue;
         var enemiesToSpawn = new List<GameObject>();
         //create list based on price of enemies
         while (money > 0)
@@ -44,12 +44,8 @@ public class AutoSpawner : MonoBehaviour
                 enemiesToSpawn.Add(enemies[enemy]);
                 money -= cost;
             }
+            Debug.Log("money left = "+money);
         }
         spawnBubble.SpawnEnemies(enemiesToSpawn.ToArray());
-    }
-
-    public void AddMoney(int coins)
-    {
-         extraCash += coins;
     }
 }
