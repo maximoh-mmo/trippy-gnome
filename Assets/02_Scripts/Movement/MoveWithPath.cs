@@ -40,7 +40,7 @@ public class MoveWithPath : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, aimPointHorizontalRotation, ratio * Time.deltaTime);
         
         //move toward target using newly calculated forward direction.
-        Vector3 target = transform.position + transform.forward * Time.deltaTime * speed;
+        Vector3 target = transform.position + transform.forward * (Time.deltaTime * speed);
         target.y = MapheightAtPos(transform.position) + ((minHeight + maxHeight )/2);
         transform.position = Vector3.Slerp(transform.position, target, speed);
 
