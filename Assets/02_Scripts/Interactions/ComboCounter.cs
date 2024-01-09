@@ -23,6 +23,7 @@ public class ComboCounter : MonoBehaviour
     [SerializeField] private float flashDelay = 0.3f;
 
     public bool IsCheating { get { return isCheating; } set { isCheating = value; } }
+    
     private void Start()
     {
         var mesherenderers = GetComponentsInChildren<MeshRenderer>();
@@ -168,6 +169,7 @@ public class ComboCounter : MonoBehaviour
         psychoTimer = Time.unscaledTime+10f;
         isPsychorushActive = true;
         StopAllCoroutines();
+        weaponSystem.PsychoRush = true;
     }
     private void DeactivatePsychoRush()
     {
@@ -192,6 +194,11 @@ public class ComboCounter : MonoBehaviour
             {
                 foreach (var meshRenderer in meshRenderers) meshRenderer.enabled = !meshRenderer.enabled;
                 flashTimer = Time.unscaledTime + flashDelay;
+            }
+            var currentT = psychoTimer - Time.unscaledTime;
+            if (currentT <2)
+            {
+                flashDelay = Mathf.Sqrt(currentT/7);
             }
         }
     }
