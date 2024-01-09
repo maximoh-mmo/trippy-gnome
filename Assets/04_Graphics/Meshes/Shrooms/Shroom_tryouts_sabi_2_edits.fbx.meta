@@ -1,18 +1,9 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/04_Graphics/Meshes/Shrooms/Shroom_tryouts_sabi_2_edits.fbx.meta
 guid: 74f75ea35e6f10c419f07aece8e0f51f
-========
-guid: 6121616c0603f0944be9371b4a50ace2
->>>>>>>> 6a07aa7 (add mushroom prefabs):Assets/04_Graphics/Meshes/Shrooms/Mushroom Tree 3.fbx.meta
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: 2de34db78a6acc44c9c20637816f1ce6, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

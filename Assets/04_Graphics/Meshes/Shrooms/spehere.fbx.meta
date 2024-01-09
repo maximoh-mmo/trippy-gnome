@@ -1,18 +1,9 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/04_Graphics/Meshes/Shrooms/spehere.fbx.meta
 guid: 1d14d79807b815a4b900a29f56d6086a
-========
-guid: fa55f87c831aee24888bbe173b2f4364
->>>>>>>> 6a07aa7 (add mushroom prefabs):Assets/04_Graphics/Meshes/Shrooms/Mountain Mushroom 3.fbx.meta
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.001
-    second: {fileID: 2100000, guid: 952c6688ebe11804f925cd620656ebd8, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
