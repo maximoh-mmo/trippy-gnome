@@ -155,6 +155,9 @@ MonoBehaviour:
   - powerUp: {fileID: 0}
     type: 0
     chance: 5
+  - powerUp: {fileID: 0}
+    type: 0
+    chance: 5
   scale: 4
 --- !u!1 &5522098191010700669
 GameObject:
