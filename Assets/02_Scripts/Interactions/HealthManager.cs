@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class HealthManager : MonoBehaviour
 {
-    [SerializeField] int maxHealth;
+    [SerializeField] private int maxHealth;
     private float currentHealth;
     private int pointValue;
     ComboCounter counter;
-    public float CurrentHealth {  get { return currentHealth; } }
+    public int MaxHealth => maxHealth;
+
     private void Start()
     {
         currentHealth = maxHealth;
