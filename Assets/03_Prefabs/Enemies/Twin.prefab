@@ -266,13 +266,13 @@ MonoBehaviour:
   loots:
   - powerUp: {fileID: 5211190968981285719, guid: 509183e5eb26d9c49b4f1d688f38539f, type: 3}
     type: 0
-    chance: 7.5
+    chance: 5
   - powerUp: {fileID: 1688644051278918043, guid: f19e4d440132a974abbf1bcac3a062aa, type: 3}
     type: 1
-    chance: 5
+    chance: 3.3
   - powerUp: {fileID: 2041170997438138626, guid: b916f5c9add51de44937f01e20aeb1e6, type: 3}
     type: 2
-    chance: 3.3
+    chance: 0
   scale: 4
 --- !u!1 &1036422344773476022
 GameObject:
