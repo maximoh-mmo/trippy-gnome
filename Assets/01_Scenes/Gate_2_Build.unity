@@ -2025,6 +2025,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b9cb5df270d10740a2f11b026f4dc5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemies:
+  - {fileID: 744851290034003747, guid: d4a8904f82a337c40b9001d7cce81643, type: 3}
+  - {fileID: 744851290034003747, guid: 13fc4d34d198ff6468a40ced187bb983, type: 3}
+  - {fileID: 744851290034003747, guid: cb1fda0d8ae7d904a9dfae596c01fcf5, type: 3}
+  - {fileID: 744851290034003747, guid: 94cebc8b9cb1cf54aa4bbcf104938c15, type: 3}
+  shopValue: 10
+  useShop: 1
 --- !u!114 &480956534
 MonoBehaviour:
   m_ObjectHideFlags: 0
