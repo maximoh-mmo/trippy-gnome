@@ -16,9 +16,25 @@ public class EnemyBehaviour : MonoBehaviour
     void Update()
     {
             transform.LookAt(player.position);
+            MoveBackWithPath();
     }
+
+    private void MoveBackWithPath()
+    {
+        //calculate relative vector from path
+        
+        //take two nearest path points, draw a vector between them
+        
+        //see where on vector I sit
+        
+        //move forward direction at a speed equal to ship
+        
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other != null && other.gameObject.name == "Sweeper") { Destroy(gameObject); }            
     }
+    
+    
 }
