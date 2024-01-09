@@ -1,7 +1,5 @@
 using System;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class WeaponSystem : MonoBehaviour
 {
@@ -9,12 +7,13 @@ public class WeaponSystem : MonoBehaviour
     public Weapon[] weapons;
     private Transform[] attackPoints;
     private int damage = 1;
-    private float fireRate, range, projectileSpeed, reuseTime = 0;
+    private float fireRate, range, projectileSpeed, reuseTime;
     private string enemyType = string.Empty;
-    private bool shooting, allowButtonHold = false;
+    private bool shooting, allowButtonHold, psychoRush;
     private GameObject bulletPrefab;
     private GetNearestTarget getNearestTarget;
-    public int numberOfProjectiles { get => attackPoints.Length; }
+
+    public bool PsychoRush { set => psychoRush = value; }
 
     // public RaycastHit raycastHit;
     // public LayerMask layerMask;
@@ -27,8 +26,8 @@ public class WeaponSystem : MonoBehaviour
 
     private void Start()
     {
-        enemyType = gameObject.CompareTag("Enemy") == true ? "Player" : "Enemy";
-        shooting = gameObject.CompareTag("Enemy") == true ? true : false;
+        enemyType = gameObject.CompareTag("Enemy") ? "Player" : "Enemy";
+        shooting = gameObject.CompareTag("Enemy");
         reuseTime = Time.time;
         SwitchGun(0);
     }
@@ -36,18 +35,13 @@ public class WeaponSystem : MonoBehaviour
     {
         if (Time.timeScale == 0) return;
         if (enemyType == "Player") Shoot();
-        else
+        if (psychoRush) return;
+        if (allowButtonHold == false)
         {
-            if (allowButtonHold == false)
-            {
-                if (playerInputSystem.FindAction("Fire").WasPressedThisFrame()) Shoot();
-            }
-            else
-            {
-                if (playerInputSystem.FindAction("Fire").IsPressed()) Shoot();
-            }
+            if (playerInputSystem.FindAction("Fire").WasPressedThisFrame()) Shoot();
+            return;
         }
-        
+        if (playerInputSystem.FindAction("Fire").IsPressed()) Shoot(); 
     }
     private void Shoot()
     {
