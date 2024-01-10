@@ -14,7 +14,6 @@ public class MoveWithPath : MonoBehaviour
     WayPoint wayPoint = null;
     int wayPointNumber, tileNumber = 1;
     public float MinHeight { get { return minHeight; } }
-    public float MaxHeight { get { return maxHeight; } }
     public float Speed { get { return speed; } set { speed = value; } }
     public float MapheightAtPos(Vector3 position) { return terrain.SampleHeight(position); }
     public Vector3 GetAimPoint(int wpNum) { return wayPoint.GetItem(wpNum); }
@@ -48,9 +47,8 @@ public class MoveWithPath : MonoBehaviour
      
         }
 
-    float GetHorizontalDistanceToWP()
+    private float GetHorizontalDistanceToWP()
     {
-        //Debug.Log(wayPointNumber);
         if (wayPointNumber == 0) {
             float distanceBetweenLastAndNextAimPoint = Vector2.Distance(
                 new Vector2(GetAimPoint(wayPointNumber).x, GetAimPoint(wayPointNumber).z), 

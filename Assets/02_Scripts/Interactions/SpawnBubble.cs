@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -30,7 +29,6 @@ public class SpawnBubble : MonoBehaviour
     {
         moveWithPath = FindObjectOfType<MoveWithPath>();
         minHeight = moveWithPath.MinHeight;
-        maxHeight = moveWithPath.MaxHeight;
         GameObject child = new GameObject("SpawnArea", typeof(BoxCollider));
         child.transform.parent = transform;
         child.transform.position = transform.position;
@@ -72,7 +70,7 @@ public class SpawnBubble : MonoBehaviour
     {
         var sp = transform.TransformPoint(new Vector3(Random.Range(-size.x / 2, size.x / 2), 0, Random.Range(0, size.z))+center/2);
         var h = moveWithPath.MapheightAtPos(sp);
-        sp.y = Random.Range(h + minHeight, h + maxHeight);
+        sp.y = Random.Range(h + minHeight, h+(spawnArea.size.y/2));
         return sp;
     }
     public int CountSpawns()
