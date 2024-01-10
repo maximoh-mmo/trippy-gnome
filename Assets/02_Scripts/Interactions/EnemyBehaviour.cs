@@ -4,37 +4,31 @@ public class EnemyBehaviour : MonoBehaviour
 {
     private Transform player = null;
     private bool isTargetted = false;
+    private Rigidbody rigidbody;
+    private float speed;    
+    public float Speed { get { return speed; } set { speed = value; } }
     public bool IsTargetted { get => isTargetted; set => isTargetted = value; }
-
     void Start()
     {
+        speed = FindFirstObjectByType<MoveWithPath>().Speed;
+        rigidbody = GetComponent<Rigidbody>();
         player = GameObject.FindFirstObjectByType<CrosshairMovement>().transform;
         transform.LookAt(player.position);
     }
-
     // Update is called once per frame
     void Update()
     {
             transform.LookAt(player.position);
-            MoveBackWithPath();
+            //if (rigidbody != null) TravelInDirection(pathDirection());
     }
 
-    private void MoveBackWithPath()
+    void TravelInDirection(Vector3 pathDirection)
     {
-        //calculate relative vector from path
-        
-        //take two nearest path points, draw a vector between them
-        
-        //see where on vector I sit
-        
-        //move forward direction at a speed equal to ship
-        
+        rigidbody.velocity = pathDirection * speed;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other != null && other.gameObject.name == "Sweeper") { Destroy(gameObject); }            
     }
-    
-    
 }

@@ -1,12 +1,15 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class AutoSpawner : MonoBehaviour
 {
     private SpawnBubble spawnBubble;
-    private int minSpawns, numToSpawn, extraCash;
-    [SerializeField]private List<GameObject> enemies;
+    private int minSpawns, numToSpawn, extraCash, minCost;
+    [SerializeField] private List<Enemy> enemies;
+    private List<GameObject>enemiesToSpawn;
     [SerializeField] private int shopValue;
     [SerializeField]private bool useShop; 
     public int MinSpawns { set => minSpawns = value; }
@@ -16,6 +19,12 @@ public class AutoSpawner : MonoBehaviour
     void Start()
     {
         spawnBubble = GameObject.FindFirstObjectByType<SpawnBubble>();
+        enemiesToSpawn = new List<GameObject>();
+        minCost = enemies
+            .OrderBy(t => t.cost)
+            .FirstOrDefault()!
+            .cost;
+        //create list based on price of enemies
     }
     void Update()
     {
@@ -31,20 +40,20 @@ public class AutoSpawner : MonoBehaviour
 
     private void ShopAndSpawn()
     {
+        enemiesToSpawn.Clear();
         var money = shopValue + extraCash;
         extraCash = 0;
-        var enemiesToSpawn = new List<GameObject>();
-        //create list based on price of enemies
-        while (money > 0)
+        while (money > minCost)
         {
             var enemy = Random.Range(0, enemies.Count);
-            var cost = enemies[enemy].GetComponent<HealthManager>().MaxHealth;
+            var cost = enemies[enemy].cost;
             if (money - cost >=0)
             {
-                enemiesToSpawn.Add(enemies[enemy]);
+                enemiesToSpawn.Add(enemies[enemy].prefab);
                 money -= cost;
             }
         }
+        
         spawnBubble.SpawnEnemies(enemiesToSpawn.ToArray());
     }
 
@@ -52,4 +61,11 @@ public class AutoSpawner : MonoBehaviour
     {
          extraCash += coins;
     }
+}
+
+[Serializable]
+public class Enemy
+{
+    public GameObject prefab;
+    public int cost;
 }
