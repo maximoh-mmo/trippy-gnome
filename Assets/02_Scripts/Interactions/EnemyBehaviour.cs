@@ -1,20 +1,21 @@
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class EnemyBehaviour : MonoBehaviour
 {
     private Transform player = null;
     private bool isTargetted = false;
     private Rigidbody rigidbody;
-    private float speed;
+    [SerializeField] private float forwardMovementSpeed;
     private WayPoint wp;
     private int nearestWp;
-    public float Speed { get { return speed; } set { speed = value; } }
+    public float ForwardMovementSpeed { get { return forwardMovementSpeed; } set { forwardMovementSpeed = value; } }
     public bool IsTargetted { get => isTargetted; set => isTargetted = value; }
     void Start()
     {
         wp = FindFirstObjectByType<WayPoint>();
-        speed = FindFirstObjectByType<MoveWithPath>().Speed;
+        if (forwardMovementSpeed == 0) forwardMovementSpeed = FindFirstObjectByType<MoveWithPath>().Speed;
         rigidbody = GetComponent<Rigidbody>();
         player = GameObject.FindFirstObjectByType<CrosshairMovement>().transform;
         transform.LookAt(player.position);
@@ -29,18 +30,22 @@ public class EnemyBehaviour : MonoBehaviour
 
     void TravelInDirection(Vector3 pathDirection)
     {
-        rigidbody.velocity = pathDirection * speed;
+        rigidbody.velocity = pathDirection * (forwardMovementSpeed-2);
     }
 
     Vector3 PathDirection()
     {
-        if (Vector3.Dot(player.forward, transform.position - player.position) > 0)
-            Debug.Log("I'm in front of player");
-        else
+        if (Vector3.Dot(player.forward, transform.position - player.position) <= 0)
+            return Vector3.zero;
+        if (Vector3.Distance(wp.GetItem(nearestWp), transform.position) < .9f)
         {
-            Debug.Log("I'm behind player");
+            nearestWp = nearestWp > wp.waypoints.Count - 1 ? 0: nearestWp + 1 ;
         }
-        return Vector3.zero;
+
+        var fwd = nearestWp > wp.waypoints.Count - 1
+            ? Vector3.Normalize(wp.GetItem(0) - wp.GetItem(nearestWp) )
+            : Vector3.Normalize( wp.GetItem(nearestWp + 1) - wp.GetItem(nearestWp));
+        return fwd;
     }
 
     int GetNearestWp()
