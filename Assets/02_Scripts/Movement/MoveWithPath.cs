@@ -22,7 +22,8 @@ public class MoveWithPath : MonoBehaviour
         terrain = terrainTiles.GetComponentInChildren<Terrain>();
         wayPoint = FindObjectOfType<WayPoint>();
         aimPoint = GetAimPoint(wayPointNumber);
-        transform.position = new Vector3(aimPoint.x, MapheightAtPos(aimPoint), aimPoint.z);
+        transform.position = new Vector3(aimPoint.x, MapheightAtPos(aimPoint) + (minHeight + maxHeight )/2, aimPoint.z);
+        transform.LookAt(new Vector3(GetAimPoint(1).x,MapheightAtPos(GetAimPoint(1)) + (minHeight + maxHeight )/2, GetAimPoint(1).z));
         wayPointNumber++;
         aimPoint = GetAimPoint(wayPointNumber);
     }
@@ -47,11 +48,11 @@ public class MoveWithPath : MonoBehaviour
      
         }
 
-    private float GetHorizontalDistanceToWP()
+    private float GetHorizontalDistanceToNextWayPoint(int wpNumber)
     {
-        if (wayPointNumber == 0) {
+        if (wpNumber == 0) {
             float distanceBetweenLastAndNextAimPoint = Vector2.Distance(
-                new Vector2(GetAimPoint(wayPointNumber).x, GetAimPoint(wayPointNumber).z), 
+                new Vector2(GetAimPoint(wpNumber).x, GetAimPoint(wpNumber).z), 
                 new Vector2(GetAimPoint(wayPoint.lastElement).x, GetAimPoint(wayPoint.lastElement).z));
 
             float currentDistance = Vector2.Distance(
@@ -63,8 +64,8 @@ public class MoveWithPath : MonoBehaviour
         else
         {
             float distanceBetweenLastAndNextAimPoint = Vector2.Distance(
-                new Vector2(GetAimPoint(wayPointNumber).x, GetAimPoint(wayPointNumber).z), 
-                new Vector2(GetAimPoint(wayPointNumber - 1).x, GetAimPoint(wayPointNumber - 1).z));
+                new Vector2(GetAimPoint(wpNumber).x, GetAimPoint(wpNumber).z), 
+                new Vector2(GetAimPoint(wpNumber - 1).x, GetAimPoint(wpNumber - 1).z));
             float currentDistance = Vector2.Distance(
                 new Vector2(aimPoint.x, aimPoint.z), 
                 new Vector2(transform.position.x, transform.position.z));
@@ -74,7 +75,7 @@ public class MoveWithPath : MonoBehaviour
     }
     bool NextWP() 
     {
-        return GetHorizontalDistanceToWP() > .9f; 
+        return GetHorizontalDistanceToNextWayPoint(wayPointNumber) > .9f; 
     }
 
     void HandleNextTerrainTile() {
