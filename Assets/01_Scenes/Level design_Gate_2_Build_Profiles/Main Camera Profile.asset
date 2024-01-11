@@ -42,7 +42,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings:
   - {fileID: 2936576079616791025}
-  - {fileID: 5785011401848724262}
   - {fileID: 93786729477336377}
   - {fileID: 2948687062256875920}
   - {fileID: 7039171119001376212}
@@ -110,7 +109,7 @@ MonoBehaviour:
     value: {r: 1, g: 1, b: 1, a: 1}
   hueShift:
     overrideState: 0
-    value: -45
+    value: -180
   saturation:
     overrideState: 0
     value: -1
@@ -1380,10 +1379,10 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 0.58
+    value: 1
   color:
     overrideState: 1
-    value: {r: 1, g: 0.78564495, b: 0, a: 1}
+    value: {r: 1, g: 0.7087248, b: 0, a: 1}
   ambientOnly:
     overrideState: 0
     value: 1
@@ -1426,25 +1425,25 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 10.8
+    value: 8
   threshold:
     overrideState: 1
     value: 0.9
   softKnee:
     overrideState: 1
-    value: 0.439
+    value: 0.654
   clamp:
     overrideState: 0
-    value: 65472
+    value: 1
   diffusion:
-    overrideState: 0
-    value: 7
+    overrideState: 1
+    value: 3.34
   anamorphicRatio:
     overrideState: 0
     value: 0
   color:
     overrideState: 1
-    value: {r: 1, g: 0.9733098, b: 0, a: 1}
+    value: {r: 0.37647057, g: 0.39007157, b: 1, a: 1}
   fastMode:
     overrideState: 0
     value: 0
@@ -1482,12 +1481,12 @@ MonoBehaviour:
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0.3
+    value: 0.247
   smoothness:
-    overrideState: 0
-    value: 0.2
+    overrideState: 1
+    value: 0.371
   roundness:
-    overrideState: 0
+    overrideState: 1
     value: 1
   rounded:
     overrideState: 0
@@ -1499,28 +1498,6 @@ MonoBehaviour:
   opacity:
     overrideState: 0
     value: 1
---- !u!114 &5785011401848724262
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b94fcd11afffcb142908bfcb1e261fba, type: 3}
-  m_Name: MotionBlur
-  m_EditorClassIdentifier: 
-  active: 0
-  enabled:
-    overrideState: 1
-    value: 1
-  shutterAngle:
-    overrideState: 1
-    value: 15
-  sampleCount:
-    overrideState: 0
-    value: 10
 --- !u!114 &7039171119001376212
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1533,13 +1510,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b77c5407dc277943b591ade9e6b18c5, type: 3}
   m_Name: LensDistortion
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
   intensity:
     overrideState: 1
-    value: 61
+    value: 50
   intensityX:
     overrideState: 0
     value: 1

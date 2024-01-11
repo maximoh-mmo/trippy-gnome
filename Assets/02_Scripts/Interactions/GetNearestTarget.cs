@@ -6,17 +6,21 @@ public class GetNearestTarget : MonoBehaviour
    private Transform aimDirection;
    private void Awake()
    {
-      aimDirection = FindFirstObjectByType<CraftFollowCrosshair>().transform;
+      aimDirection = GameObject.Find("spaceship_ufo_clean").transform;
    }
 
    public Transform[] GetTargets(int numberToGet)
    {
       var potentials = FindObjectsOfType<EnemyBehaviour>();
       var targets = potentials
-         .Where(t => t.IsTargetted == false)
+         //.Where(t => t.IsTargetted == false)
          .Select(t => t.GetComponent<Transform>())
          .Distinct()
-         .OrderBy(t => Vector3.Dot(aimDirection.forward, t.transform.position))
+         .Where(t => Vector3.Dot(Vector3.Normalize(aimDirection.TransformDirection(Vector3.forward)),
+            Vector3.Normalize(t.transform.position - aimDirection.position)) > 0)
+         .OrderBy(t => Vector3.Dot(Vector3.Normalize(aimDirection.TransformDirection(Vector3.forward)),
+            Vector3.Normalize(t.transform.position - aimDirection.position)))
+         .Reverse()
          .Take(numberToGet)
          .ToArray();
       return targets.Length > 0 ? targets : null;
@@ -25,14 +29,13 @@ public class GetNearestTarget : MonoBehaviour
    public Transform GetTarget()
    {
       var potentials = FindObjectsOfType<EnemyBehaviour>();
-      var targets = potentials
-         .Where(t => t.IsTargetted == false)
-         .Select(t => t.GetComponent<Transform>())
-         .Distinct()
-         .OrderBy(t => Vector3.Dot(aimDirection.forward, t.transform.position))
-         .Take(1)
-         .ToArray();
-      if (targets.Length == 0) return null;
-      return targets[0];
+      var target = potentials
+         .Where(t => Vector3.Dot(Vector3.Normalize(aimDirection.TransformDirection(Vector3.forward)),
+            Vector3.Normalize(t.transform.position - aimDirection.position)) > 0)
+         .OrderBy(t => Vector3.Dot(Vector3.Normalize(aimDirection.TransformDirection(Vector3.forward)),
+            Vector3.Normalize(t.transform.position - aimDirection.position)))
+         //.Where(t => t.IsTargetted == false)
+         .Distinct();
+      return target.Last().transform;
    }
 }
