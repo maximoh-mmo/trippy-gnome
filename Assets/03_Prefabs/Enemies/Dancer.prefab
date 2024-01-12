@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da643f6a58692c64689204aeec8d3c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 10
   CoinsForSpawnSystem: 5
   lootDropOnBoom: 1
 --- !u!114 &7596434589679192236
@@ -246,7 +246,7 @@ MonoBehaviour:
   loots:
   - powerUp: {fileID: 5211190968981285719, guid: 509183e5eb26d9c49b4f1d688f38539f, type: 3}
     type: 0
-    chance: 1
+    chance: 2
   - powerUp: {fileID: 1688644051278918043, guid: f19e4d440132a974abbf1bcac3a062aa, type: 3}
     type: 1
     chance: 3.3
