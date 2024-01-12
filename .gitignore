@@ -89,3 +89,6 @@ Assets/05_Sound/Projectiles/Explosion.mp3.meta
 Assets/05_Sound/Projectiles/Enemy_Kill.mp3.meta
 Assets/03_Prefabs/Shrooms/Mushroom Tree.prefab
 Assets/03_Prefabs/Shrooms/Mushroom Tree.prefab.meta
+Assets/05_Sound/Speech/gnome_speech_ouchie.mp3.meta
+Assets/05_Sound/Projectiles/BFG.mp3.meta
+*.meta
