@@ -223,7 +223,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.15445887, g: 0.3679245, b: 0.23398529, a: 1}
+      maxColor: {r: 0.9303578, g: 0.9524487, b: 0.9528302, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -661,7 +661,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 4
+    type: 2
     angle: 9.662856
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -748,7 +748,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 0.05
       mode: 0
       spread: 0
       speed:
@@ -1305,7 +1305,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.38238072, g: 0.8867924, b: 0.18823427, a: 1}
+        key0: {r: 0.18823527, g: 0.8862745, b: 0.78842294, a: 1}
         key1: {r: 0.111320555, g: 0.18246394, b: 0.09538458, a: 0.84313726}
         key2: {r: 0.10645121, g: 0.16981131, b: 0.09371662, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -4866,7 +4866,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 853c9d5d8960971458fc24760144f781, type: 2}
+  - {fileID: 2100000, guid: d82258dd27d83f940b6ae29c5b54b81e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4931,7 +4931,7 @@ GameObject:
   - component: {fileID: 7190952852743195846}
   - component: {fileID: 2925544377738789908}
   m_Layer: 0
-  m_Name: Blob
+  m_Name: Blob 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
