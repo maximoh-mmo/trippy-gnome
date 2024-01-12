@@ -18,6 +18,7 @@ public class ComboCounter : MonoBehaviour
     private PlayerInputSystem playerInputSystem;
     private Coroutine coroutine;
     private bool isCheating, isPsychorushActive;
+    [SerializeField]private float secondsUntilNextRespawn;
     [FormerlySerializedAs("stepDownTime")] [SerializeField] private float comboLevelDownTime;
     private float psychoTimer, flashTimer;
     [SerializeField] private float flashDelay = 0.3f;
@@ -72,9 +73,18 @@ public class ComboCounter : MonoBehaviour
         }
         foreach (var enemy in enemies)
         { 
-            if (enemy.GetComponent<HealthManager>()) enemy.GetComponent<HealthManager>().TakeDamage(100);
+            if (enemy.GetComponent<HealthManager>()) enemy.GetComponent<HealthManager>().Kill();
         }
         hudController.RemovePowerUp(1);
+        StartCoroutine("PauseRespawn");
+
+    }
+    IEnumerator PauseRespawn()
+    {
+        var d = autoSpawner.MinSpawns;
+        autoSpawner.MinSpawns = 0;
+        yield return new WaitForSeconds(secondsUntilNextRespawn);
+        autoSpawner.MinSpawns = d;
     }
     private void AcivateShield(InputAction.CallbackContext context)
     {        
@@ -87,7 +97,7 @@ public class ComboCounter : MonoBehaviour
     {
         totalKillCount += 1;
         if (isPsychorushActive) return;
-        StopAllCoroutines();
+        StopCoroutine("ComboLevelCountDown");
         currentComboKills += 1;
         var toAdd = CalculateScore(basePoints);
         score += toAdd;

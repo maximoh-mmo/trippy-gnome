@@ -7,6 +7,7 @@ public class HealthManager : MonoBehaviour
     private float currentHealth;
     private int pointValue;
     private bool loot;
+    [SerializeField] private bool lootDropOnBoom = true;
     private AutoSpawner autoSpawner;
     private ComboCounter counter;
     public int MaxHealth => maxHealth;
@@ -31,6 +32,11 @@ public class HealthManager : MonoBehaviour
     public void TakeDamage(float dmg)
     {
         currentHealth -= dmg;
+    }public void Kill()
+    {
+        counter.AddKill(maxHealth);
+        if (loot && lootDropOnBoom) GetComponent<Loot>().GetLoot(transform.position);
+        Destroy(this.gameObject);
     }
     public void HealDamage(float dmg)
     {
