@@ -57,6 +57,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1
+  CoinsForSpawnSystem: 1
 --- !u!114 &1405487351327399711
 MonoBehaviour:
   m_ObjectHideFlags: 0

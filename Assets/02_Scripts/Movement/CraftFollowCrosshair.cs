@@ -31,12 +31,12 @@ public class CraftFollowCrosshair : MonoBehaviour
         transform.localPosition = HandleMovement(targetToFollow.localPosition);
         transform.LookAt(targetToFollow);
     }
-    private Vector3 HandleMovement(Vector3 currentPosition)
+    private Vector3 HandleMovement(Vector3 crosshairPosition)
     {
-        var moveGoal = Vector3.Lerp(transform.localPosition, new Vector3(currentPosition.x, currentPosition.y, currentPosition.z+offset), moveSpeed * Time.deltaTime);
+        var moveGoal = Vector3.Lerp(transform.localPosition, new Vector3(crosshairPosition.x, crosshairPosition.y, crosshairPosition.z+offset), moveSpeed * Time.deltaTime);
         var cl = clampLimit;
         if (cl.y + ShipSize.y/2 < moveWithPath.MapheightAtPos(transform.position) + ShipSize.y/2) cl.y =  moveWithPath.MapheightAtPos(transform.position) + ShipSize.y/2;
-        return new Vector3(Mathf.Clamp(moveGoal.x, -cl.x, cl.x), Mathf.Clamp(moveGoal.y, -cl.y, cl.y), currentPosition.z+offset);
+        return new Vector3(Mathf.Clamp(moveGoal.x, -cl.x, cl.x), Mathf.Clamp(moveGoal.y, -cl.y, cl.y), crosshairPosition.z+offset);
     }
     
     /// <summary>
