@@ -18,6 +18,7 @@ public class ComboCounter : MonoBehaviour
     private PlayerInputSystem playerInputSystem;
     private Coroutine coroutine;
     private bool isCheating, isPsychorushActive;
+    [SerializeField]private float secondsUntilNextRespawn;
     [FormerlySerializedAs("stepDownTime")] [SerializeField] private float comboLevelDownTime;
     private float psychoTimer, flashTimer;
     [SerializeField] private float flashDelay = 0.3f;
@@ -72,9 +73,18 @@ public class ComboCounter : MonoBehaviour
         }
         foreach (var enemy in enemies)
         { 
-            if (enemy.GetComponent<HealthManager>()) enemy.GetComponent<HealthManager>().TakeDamage(100);
+            if (enemy.GetComponent<HealthManager>()) enemy.GetComponent<HealthManager>().Kill();
         }
         hudController.RemovePowerUp(1);
+        StartCoroutine("PauseRespawn");
+
+    }
+    IEnumerator PauseRespawn()
+    {
+        var d = autoSpawner.MinSpawns;
+        autoSpawner.MinSpawns = 0;
+        yield return new WaitForSeconds(secondsUntilNextRespawn);
+        autoSpawner.MinSpawns = d;
     }
     private void AcivateShield(InputAction.CallbackContext context)
     {        
@@ -85,10 +95,9 @@ public class ComboCounter : MonoBehaviour
     }
     public void AddKill(int basePoints)
     {
-        autoSpawner.AddMoney(basePoints);
         totalKillCount += 1;
         if (isPsychorushActive) return;
-        StopAllCoroutines();
+        StopCoroutine("ComboLevelCountDown");
         currentComboKills += 1;
         var toAdd = CalculateScore(basePoints);
         score += toAdd;
@@ -153,6 +162,7 @@ public class ComboCounter : MonoBehaviour
     IEnumerator ComboLevelCountDown()
     {
         yield return new WaitForSeconds(comboLevelDownTime);
+        Debug.Log("CountDownTimer run out");
         ImHit();
     }
     private void UpdateHUD()
@@ -209,6 +219,6 @@ public class ComboCounter : MonoBehaviour
 [Serializable]
 public class ComboLevel
 {
-    public string weapon = String.Empty;
+    public string weapon = string.Empty;
     public int killsNeeded, scoreMultiplier, minEnemies, enemiesToSpawn;
 }

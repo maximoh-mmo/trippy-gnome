@@ -2,31 +2,22 @@ using UnityEngine;
 
 public class CrosshairMovement : MonoBehaviour
 {
-    private float xMovement, yMovement;
     [SerializeField] private float xySpeedMultiple;
     [SerializeField] private Vector2 boundary;
-    CraftFollowCrosshair craftFollowCrosshair;
-    private Vector2 shipSize;
+    private Vector2 inputVector;
     private PlayerInputSystem playerInputSystem;
     public Vector2 Boundry => boundary;
-    public float XMovement => xMovement;
-
+    public Vector2 InputVector => inputVector;
     void Awake()
     {
         playerInputSystem = new PlayerInputSystem();
         playerInputSystem.InGame.Enable();
         if (xySpeedMultiple==0) { xySpeedMultiple = 1; }
-        craftFollowCrosshair = GameObject.FindFirstObjectByType<CraftFollowCrosshair>();
-    }
-
-    private void Start()
-    {
-        shipSize = craftFollowCrosshair.ShipSize;
     }
     // Update is called once per frame
     void Update()
     {
-        Vector2 inputVector = playerInputSystem.InGame.Move.ReadValue<Vector2>();
+        inputVector = playerInputSystem.InGame.Move.ReadValue<Vector2>();
         var targetPosition = transform.localPosition;
         var multiple = (Time.deltaTime * xySpeedMultiple);
         targetPosition += new Vector3( inputVector.x * multiple,inputVector.y * multiple);

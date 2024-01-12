@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -35,6 +34,7 @@ public class MainMenu : MonoBehaviour
 
     public void ReturnToMenu()
     {
+        StopAllCoroutines();
         SceneManager.LoadScene(0);
     }
     
@@ -45,8 +45,7 @@ public class MainMenu : MonoBehaviour
     }
     
     public void ReloadCurrentLevel()
-    {        Time.timeScale = 1.0f;
-
+    {        
         Debug.Log("RELOAD");
     }
 

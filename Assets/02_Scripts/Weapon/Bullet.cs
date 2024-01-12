@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private float range = 0;
+    private float range;
     private float speed = 1f;
-    private int damage = 0;
+    private int damage;
     Vector3 startPos = Vector3.zero;
     string targetTag = string.Empty;
     private Rigidbody rb;
@@ -39,6 +39,7 @@ public class Bullet : MonoBehaviour
 
         if (other.gameObject.GetComponent<ComboCounter>() != null)
         {
+            Debug.Log(gameObject.name);
             other.gameObject.GetComponent<ComboCounter>().ImHit();
             Destroy(gameObject);
         }

@@ -1,17 +1,17 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class SpawnBubble : MonoBehaviour
 {
     [SerializeField] int numberToSpawn;
-    [SerializeField] Vector3 size, center;
-    [SerializeField] GameObject EnemyPrefab;
+    [FormerlySerializedAs("SpawnBoxSize")] [FormerlySerializedAs("size")] [SerializeField] Vector3 spawnBoxSize;
+    [SerializeField] Vector3 center;
+    [FormerlySerializedAs("EnemyPrefab")] [SerializeField] GameObject enemyPrefab;
     bool spawned = true;
     BoxCollider spawnArea;
     MoveWithPath moveWithPath;
-    float minHeight;
-    float maxHeight = 10f;
     private PlayerInputSystem playerInputSystem;
     private ComboCounter comboCounter;
     private void Awake()
@@ -28,21 +28,21 @@ public class SpawnBubble : MonoBehaviour
     void Start()
     {
         moveWithPath = FindObjectOfType<MoveWithPath>();
-        minHeight = moveWithPath.MinHeight;
         GameObject child = new GameObject("SpawnArea", typeof(BoxCollider));
-        child.transform.parent = transform;
-        child.transform.position = transform.position;
-        child.transform.rotation = transform.rotation;
-        child.transform.SetParent(this.transform); 
+        var t = transform;
+        child.transform.parent = t;
+        child.transform.position = t.position;
+        child.transform.rotation = t.rotation;
+        child.transform.SetParent(t); 
         spawnArea = child.GetComponent<BoxCollider>();
         spawnArea.isTrigger = true;
-        spawnArea.size = size;
+        spawnArea.size = spawnBoxSize;
         spawnArea.center = center;
     }
 
     void Update()
     {
-        spawnArea.size = size;
+        spawnArea.size = spawnBoxSize;
         spawnArea.center = center; 
         if (spawned == false) { SpawnEnemies(numberToSpawn); }
     }
@@ -52,7 +52,7 @@ public class SpawnBubble : MonoBehaviour
         spawned = true;
         for (int i = 0; i < number; i++)
         {
-            SpawnEnemy(RandomSpawnPoint());
+            SpawnEnemy(RandomSpawnPoint(GetSize(enemyPrefab).y));
         }
         //Debug.Log(CountSpawns());
     }
@@ -61,14 +61,14 @@ public class SpawnBubble : MonoBehaviour
         spawned = true;
         foreach (var enemy in enemies)
         {
-            SpawnEnemy(RandomSpawnPoint(), enemy);
+            SpawnEnemy(RandomSpawnPoint(GetSize(enemy).y), enemy);
         }
         //Debug.Log(CountSpawns());
     }
     
-    private Vector3 RandomSpawnPoint()
+    private Vector3 RandomSpawnPoint(float minHeight)
     {
-        var sp = transform.TransformPoint(new Vector3(Random.Range(-size.x / 2, size.x / 2), 0, Random.Range(0, size.z))+center/2);
+        var sp = transform.TransformPoint(new Vector3(Random.Range(-spawnBoxSize.x / 2, spawnBoxSize.x / 2), 0, Random.Range(0, spawnBoxSize.z))+center/2);
         var h = moveWithPath.MapheightAtPos(sp);
         sp.y = Random.Range(h + minHeight, h+(spawnArea.size.y/2));
         return sp;
@@ -80,10 +80,22 @@ public class SpawnBubble : MonoBehaviour
     }
     void SpawnEnemy(Vector3 pos)
     {
-        Instantiate(EnemyPrefab, pos, Quaternion.identity);
-    }
-    void SpawnEnemy(Vector3 pos, GameObject enemyPrefab)
-    {
         Instantiate(enemyPrefab, pos, Quaternion.identity);
+    }
+    void SpawnEnemy(Vector3 pos, GameObject prefabToSpawn)
+    {
+        Instantiate(prefabToSpawn, pos, Quaternion.identity);
+    }
+    private Vector3 GetSize(GameObject t)
+    {
+        Vector3 size = Vector3.zero;
+        Renderer[] renderers = t.GetComponentsInChildren<Renderer>();
+        foreach (Renderer r in renderers)
+        {
+            if (r.bounds.size.x > size.x) size.x = r.bounds.size.x;
+            if (r.bounds.size.y > size.y) size.y = r.bounds.size.y;
+            if (r.bounds.size.z > size.z) size.z = r.bounds.size.z;
+        }
+        return size/2;
     }
 }
