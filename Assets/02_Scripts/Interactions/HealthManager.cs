@@ -26,7 +26,7 @@ public class HealthManager : MonoBehaviour
             counter.AddKill(maxHealth);
             autoSpawner.AddMoney(CoinsForSpawnSystem);
             if (loot) GetComponent<Loot>().GetLoot(transform.position);
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
     public void TakeDamage(float dmg)
