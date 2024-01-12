@@ -174,10 +174,10 @@ MonoBehaviour:
     damage: 1
     firePoints:
     - {fileID: 5700009916288220465}
-    projectile: {fileID: 6065058955878882625, guid: 78ccba50a945472479f002e9faecd374, type: 3}
-    speed: 25
+    projectile: {fileID: 6065058955878882625, guid: e5e941130d61e3f4ea6ca18a4e87afe8, type: 3}
+    speed: 55
     rateOfFire: 2
-    range: 50
+    range: 125
     allowButtonHold: 0
 --- !u!1 &1132818387863206836
 GameObject:
