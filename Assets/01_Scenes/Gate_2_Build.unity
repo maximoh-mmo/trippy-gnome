@@ -8814,7 +8814,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 918939123}
-  m_RootOrder: 21
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &2075510059
 MeshRenderer:
@@ -9061,8 +9061,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1535389676149112412, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
+      propertyPath: boundary.x
+      value: 32
+      objectReference: {fileID: 0}
     - target: {fileID: 1535389676790367315, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
       propertyPath: EnemyPrefab
+      value: 
+      objectReference: {fileID: 744851290034003747, guid: faa51d6a8a9543546994bc83d70ea64a, type: 3}
+    - target: {fileID: 1535389676790367315, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
+      propertyPath: enemyPrefab
       value: 
       objectReference: {fileID: 744851290034003747, guid: faa51d6a8a9543546994bc83d70ea64a, type: 3}
     - target: {fileID: 1535389676790367405, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
@@ -9124,6 +9132,10 @@ PrefabInstance:
     - target: {fileID: 1535389677198564990, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1809640131129847267, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
+      propertyPath: clampMultiplier
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1809640131129847268, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
       propertyPath: allowButtonHold
@@ -9432,6 +9444,10 @@ PrefabInstance:
     - target: {fileID: 4603463834767388506, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8375209986392291193, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8687736161047655899, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

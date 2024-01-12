@@ -153,6 +153,7 @@ public class ComboCounter : MonoBehaviour
     IEnumerator ComboLevelCountDown()
     {
         yield return new WaitForSeconds(comboLevelDownTime);
+        Debug.Log("CountDownTimer run out");
         ImHit();
     }
     private void UpdateHUD()
