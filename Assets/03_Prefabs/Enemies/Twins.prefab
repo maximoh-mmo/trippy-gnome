@@ -53,8 +53,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da643f6a58692c64689204aeec8d3c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
-  CoinsForSpawnSystem: 5
+  maxHealth: 8
+  CoinsForSpawnSystem: 10
+  lootDropOnBoom: 1
 --- !u!114 &7596434589679192236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,10 +173,10 @@ MonoBehaviour:
   - weaponName: MG
     damage: 1
     firePoints:
-    - {fileID: 0}
+    - {fileID: 5700009916288220465}
     projectile: {fileID: 6065058955878882625, guid: 78ccba50a945472479f002e9faecd374, type: 3}
-    speed: 10
-    rateOfFire: 1
+    speed: 25
+    rateOfFire: 2
     range: 50
     allowButtonHold: 0
 --- !u!1 &1132818387863206836

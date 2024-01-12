@@ -138,8 +138,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da643f6a58692c64689204aeec8d3c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 8
-  CoinsForSpawnSystem: 8
+  maxHealth: 10
+  CoinsForSpawnSystem: 20
+  lootDropOnBoom: 1
 --- !u!114 &1405487351327399711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,8 +159,8 @@ MonoBehaviour:
     firePoints:
     - {fileID: 5700009916288220465}
     projectile: {fileID: 6065058955878882625, guid: 78ccba50a945472479f002e9faecd374, type: 3}
-    speed: 10
-    rateOfFire: 1
+    speed: 20
+    rateOfFire: 0.5
     range: 50
     allowButtonHold: 0
 --- !u!114 &7596434589679192236
