@@ -7,12 +7,13 @@ using Random = UnityEngine.Random;
 public class AutoSpawner : MonoBehaviour
 {
     private SpawnBubble spawnBubble;
-    private int minSpawns, numToSpawn, extraCash, minCost;
+    private int numToSpawn, extraCash, minCost;
     [SerializeField] private List<Enemy> enemies;
     private List<GameObject>enemiesToSpawn;
     [SerializeField] private int shopValue;
     [SerializeField]private bool useShop; 
-    public int MinSpawns { set => minSpawns = value; }
+    public int MinSpawns { get; set; }
+
     public int NumToSpawn { set => numToSpawn = value; }
     public int ShopValue { set => shopValue = value; }
 
@@ -28,7 +29,7 @@ public class AutoSpawner : MonoBehaviour
     }
     void Update()
     {
-        if (spawnBubble.CountSpawns() < minSpawns)
+        if (spawnBubble.CountSpawns() < MinSpawns)
         {
             if (useShop) ShopAndSpawn();
             else
