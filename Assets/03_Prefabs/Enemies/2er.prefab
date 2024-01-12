@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1
-  pointValue: 0
+  CoinsForSpawnSystem: 2
 --- !u!114 &7596434589679192236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,6 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 069f6f4f13bceb84ea3ad0b7e1a57bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forwardMovementSpeed: 0
 --- !u!136 &7247249892358998155
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -144,14 +145,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loots:
-  - PowerUp: {fileID: 5211190968981285719, guid: 509183e5eb26d9c49b4f1d688f38539f, type: 3}
-    Type: 0
+  - powerUp: {fileID: 0}
+    type: 0
     chance: 10
-  - PowerUp: {fileID: 1688644051278918043, guid: f19e4d440132a974abbf1bcac3a062aa, type: 3}
-    Type: 1
+  - powerUp: {fileID: 0}
+    type: 0
     chance: 3.3
-  - PowerUp: {fileID: 2041170997438138626, guid: b916f5c9add51de44937f01e20aeb1e6, type: 3}
-    Type: 2
+  - powerUp: {fileID: 0}
+    type: 0
     chance: 5
   scale: 4
 --- !u!1 &1132818387863206836

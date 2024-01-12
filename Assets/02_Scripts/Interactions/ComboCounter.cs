@@ -85,7 +85,6 @@ public class ComboCounter : MonoBehaviour
     }
     public void AddKill(int basePoints)
     {
-        autoSpawner.AddMoney(basePoints);
         totalKillCount += 1;
         if (isPsychorushActive) return;
         StopAllCoroutines();
@@ -210,6 +209,6 @@ public class ComboCounter : MonoBehaviour
 [Serializable]
 public class ComboLevel
 {
-    public string weapon = String.Empty;
+    public string weapon = string.Empty;
     public int killsNeeded, scoreMultiplier, minEnemies, enemiesToSpawn;
 }
