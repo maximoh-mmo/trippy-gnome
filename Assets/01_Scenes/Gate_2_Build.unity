@@ -9865,7 +9865,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapons:
   - weaponName: MG0
-    damage: 2
+    damage: 3
     firePoints:
     - {fileID: 713030342}
     projectile: {fileID: 2033890919814722285, guid: 00d2424bda8614b499174b1c99810c98, type: 3}
