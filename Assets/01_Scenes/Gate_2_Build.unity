@@ -9898,7 +9898,7 @@ MonoBehaviour:
     damage: 3
     firePoints:
     - {fileID: 713030342}
-    projectile: {fileID: 5580125614850984573, guid: e01807cade93a7a4fa65dac63501de89, type: 3}
+    projectile: {fileID: 5580125614850984573, guid: 3617efdf92c13604698e6ae95c3d5060, type: 3}
     speed: 200
     rateOfFire: 0.15
     range: 100
@@ -9908,7 +9908,7 @@ MonoBehaviour:
     firePoints:
     - {fileID: 440080261}
     - {fileID: 1044872519}
-    projectile: {fileID: 5580125614850984573, guid: e01807cade93a7a4fa65dac63501de89, type: 3}
+    projectile: {fileID: 5580125614850984573, guid: 3617efdf92c13604698e6ae95c3d5060, type: 3}
     speed: 200
     rateOfFire: 0.1
     range: 100
@@ -9917,7 +9917,7 @@ MonoBehaviour:
     damage: 2
     firePoints:
     - {fileID: 713030342}
-    projectile: {fileID: 3738482407019022119, guid: f7f6d7419fc5781409db84abc78b03e5, type: 3}
+    projectile: {fileID: 3738482407019022119, guid: 023c911e2f1e3524291a9a7fca0870ab, type: 3}
     speed: 75
     rateOfFire: 0.05
     range: 100
@@ -9955,7 +9955,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combos:
   - weapon: MG
-    killsNeeded: 10
+    killsNeeded: 5
     scoreMultiplier: 1
     minEnemies: 2
     enemiesToSpawn: 3
@@ -9965,27 +9965,27 @@ MonoBehaviour:
     minEnemies: 3
     enemiesToSpawn: 4
   - weapon: TripleMG
-    killsNeeded: 10
+    killsNeeded: 15
     scoreMultiplier: 3
     minEnemies: 4
     enemiesToSpawn: 4
   - weapon: Laser
-    killsNeeded: 10
+    killsNeeded: 20
     scoreMultiplier: 4
     minEnemies: 4
     enemiesToSpawn: 6
   - weapon: DblLaser
-    killsNeeded: 10
+    killsNeeded: 25
     scoreMultiplier: 5
     minEnemies: 5
     enemiesToSpawn: 7
   - weapon: RingLaser
-    killsNeeded: 10
+    killsNeeded: 30
     scoreMultiplier: 6
     minEnemies: 4
     enemiesToSpawn: 7
   - weapon: Rocket
-    killsNeeded: 10
+    killsNeeded: 40
     scoreMultiplier: 7
     minEnemies: 4
     enemiesToSpawn: 9
