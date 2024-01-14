@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -5754084199372789682}
   - component: {fileID: -7511558181221131132}
   - component: {fileID: 5613619946204094410}
+  - component: {fileID: 4843757325300601814}
   m_Layer: 0
   m_Name: Big_Mushroom Tree 4
   m_TagString: Untagged
@@ -114,6 +115,20 @@ LODGroup:
     renderers:
     - renderer: {fileID: 5041755428393543979}
   m_Enabled: 1
+--- !u!64 &4843757325300601814
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3519764617931045118}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6303315888758289189, guid: 6121616c0603f0944be9371b4a50ace2, type: 3}
 --- !u!1 &5434973467243246686
 GameObject:
   m_ObjectHideFlags: 0

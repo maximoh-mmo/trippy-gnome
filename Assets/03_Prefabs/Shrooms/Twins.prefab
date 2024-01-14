@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: -5754084199372789682}
   - component: {fileID: -7511558181221131132}
   - component: {fileID: -193218168186741388}
+  - component: {fileID: 619768520879215771}
+  - component: {fileID: 541554770212547781}
   m_Layer: 0
   m_Name: Twins
   m_TagString: Untagged
@@ -111,3 +113,30 @@ LODGroup:
     renderers:
     - renderer: {fileID: -7511558181221131132}
   m_Enabled: 1
+--- !u!65 &619768520879215771
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7932800204816381294}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.10495531, y: 0.03809369, z: 0.09864923}
+  m_Center: {x: -0.0004832497, y: 0.089153096, z: 0.00042736437}
+--- !u!136 &541554770212547781
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7932800204816381294}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.0255022
+  m_Height: 0.101556756
+  m_Direction: 1
+  m_Center: {x: 0.001865555, y: 0.049117807, z: 0.0019101315}

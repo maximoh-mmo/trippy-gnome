@@ -261,6 +261,7 @@ GameObject:
   - component: {fileID: -5754084199372789682}
   - component: {fileID: -7511558181221131132}
   - component: {fileID: 1589759217683035761}
+  - component: {fileID: 5799861852106499221}
   m_Layer: 0
   m_Name: Thin Mushy 3
   m_TagString: Untagged
@@ -363,3 +364,17 @@ LODGroup:
     renderers:
     - renderer: {fileID: 8546167808975244271}
   m_Enabled: 1
+--- !u!136 &5799861852106499221
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8820044599268589420}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.4872198
+  m_Height: 5.504071
+  m_Direction: 1
+  m_Center: {x: 0, y: 2.7700553, z: -0.00000017881393}

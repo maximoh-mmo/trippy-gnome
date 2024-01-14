@@ -261,6 +261,7 @@ GameObject:
   - component: {fileID: -5754084199372789682}
   - component: {fileID: -7511558181221131132}
   - component: {fileID: 3425135531940504836}
+  - component: {fileID: 7043306219203438100}
   m_Layer: 0
   m_Name: Mountain Mushroom
   m_TagString: Untagged
@@ -363,3 +364,17 @@ LODGroup:
     renderers:
     - renderer: {fileID: 5733538100312267153}
   m_Enabled: 1
+--- !u!136 &7043306219203438100
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4366615469917500724}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.2774866
+  m_Height: 1.844243
+  m_Direction: 1
+  m_Center: {x: 0.09114924, y: 0.18820238, z: -0.000000059604645}
