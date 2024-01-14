@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -5754084199372789682}
   - component: {fileID: -7511558181221131132}
   - component: {fileID: -9031596435445001679}
+  - component: {fileID: 5090505131665295229}
   m_Layer: 0
   m_Name: Mushroom Tree 2
   m_TagString: Untagged
@@ -114,6 +115,20 @@ LODGroup:
     renderers:
     - renderer: {fileID: 2847377561146843482}
   m_Enabled: 1
+--- !u!64 &5090505131665295229
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066269436097693002}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6303315888758289189, guid: 1bb6b66859aa75e449a3211fe4730e6b, type: 3}
 --- !u!1 &3302715975565735328
 GameObject:
   m_ObjectHideFlags: 0
