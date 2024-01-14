@@ -176,8 +176,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementPattern: 1
-  moveToPlayerSpeed: 2
-  movementPatternSpeed: 10
+  moveToPlayerSpeed: 4
+  movementPatternSpeed: 11.42
 --- !u!1 &5522098191010700669
 GameObject:
   m_ObjectHideFlags: 0

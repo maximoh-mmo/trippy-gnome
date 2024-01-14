@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour
@@ -32,27 +31,17 @@ public class EnemyBehaviour : MonoBehaviour
     void Update()
     {
             if (rb != null && Vector3.Dot(player.transform.forward, transform.position - player.transform.position) > 0) TravelInDirection(PathDirection());
+            if (movementPattern && Vector3.Dot(player.transform.forward, transform.position - player.transform.position) > 0)
+            {
+                movementPattern.ProcessMove(player.transform);
+            }
+            transform.LookAt(player.transform);
             MoveWithGround();
     }
-    private void FixedUpdate()
-    {
-        transform.LookAt(player.transform);
-    }
-
-    private void LateUpdate()
-    {
-        if (movementPattern && Vector3.Dot(player.transform.forward, transform.position - player.transform.position) > 0)
-        {
-            var t = transform.position;
-            t += movementPattern.ProcessMove(t, player.transform);
-            transform.position = t;
-        }
-    }
-
     private void MoveWithGround()
     {
         var currentHeight = moveWithPath.MapheightAtPos(transform.position);
-        var heightChange = currentHeight- previousGround;
+        var heightChange = currentHeight - previousGround;
         if (heightChange != 0) transform.position += new Vector3(0, heightChange, 0);
         previousGround = currentHeight;
     }
