@@ -171,7 +171,7 @@ public class ComboCounter : MonoBehaviour
         hudController.ComboLvl((currentComboLevel + 1));
         hudController.RunningScore(runningScore);
     }
-    private void DeathHandler()
+    public void DeathHandler()
     {
         hudController.DeathScreen();
     }
