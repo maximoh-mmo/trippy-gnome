@@ -8,7 +8,6 @@ public class EnemyBehaviour : MonoBehaviour
     private Vector3 startPosition;
     private float previousGround;
     private MoveWithPath moveWithPath;
-    private Rigidbody rb;
     private GameObject player = null;
     private WayPoint wp;
     private EnemyMovement movementPattern;
@@ -19,7 +18,6 @@ public class EnemyBehaviour : MonoBehaviour
     {
         wp = FindFirstObjectByType<WayPoint>();
         if (forwardMovementSpeed == 0) forwardMovementSpeed = FindFirstObjectByType<MoveWithPath>().Speed - 2;
-        rb = GetComponent<Rigidbody>();
         player = FindFirstObjectByType<ComboCounter>().gameObject;
         transform.LookAt(player.transform);
         nearestWp = GetNearestWpIndex();
@@ -30,7 +28,7 @@ public class EnemyBehaviour : MonoBehaviour
     }
     void Update()
     {
-            if (rb != null && Vector3.Dot(player.transform.forward, transform.position - player.transform.position) > 0) TravelInDirection(PathDirection());
+            if (Vector3.Dot(player.transform.forward, transform.position - player.transform.position) > 0) TravelInDirection(PathDirection());
             if (movementPattern && Vector3.Dot(player.transform.forward, transform.position - player.transform.position) > 0)
             {
                 movementPattern.ProcessMove(player.transform);

@@ -9,12 +9,14 @@ public class Rocket : MonoBehaviour
         private Vector3 startPos = Vector3.zero;
         private string targetTag = string.Empty;
         private Rigidbody rb;
-        public string TargetTag { set { targetTag = value; } }
-        public float Range { set { range = value; } }
-        public float Speed { set { speed = value; } }
-        public int Damage { set { damage = value; } }
         public Transform Target { set { target = value; } }
-
+        public void Setup(string tg, float rng, float spd, int dmg)
+        {
+            targetTag = tg;
+            range = rng;
+            speed = spd; 
+            damage = dmg; 
+        }
     
         private void Start()
         {
