@@ -261,6 +261,7 @@ GameObject:
   - component: {fileID: -5754084199372789682}
   - component: {fileID: -7511558181221131132}
   - component: {fileID: 1589759217683035761}
+  - component: {fileID: -1011153377352139457}
   m_Layer: 0
   m_Name: Big_Thin Mushy 4
   m_TagString: Untagged
@@ -363,3 +364,17 @@ LODGroup:
     renderers:
     - renderer: {fileID: 8546167808975244271}
   m_Enabled: 1
+--- !u!136 &-1011153377352139457
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8820044599268589420}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.4872198
+  m_Height: 5.660313
+  m_Direction: 1
+  m_Center: {x: 3.4705446e-24, y: 2.8481772, z: -0.00000019073487}

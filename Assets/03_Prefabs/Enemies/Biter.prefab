@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2907543291054174579}
   - component: {fileID: 4216934875241287664}
   - component: {fileID: -7228882026709010799}
+  - component: {fileID: 7735351057624735600}
   m_Layer: 7
   m_Name: Biter
   m_TagString: Enemy
@@ -162,6 +163,21 @@ MonoBehaviour:
     type: 0
     chance: 5
   scale: 4
+--- !u!114 &7735351057624735600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744851290034003747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1117a3b4b362fda408b82444d2b7b285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementPattern: 1
+  moveToPlayerSpeed: 4
+  movementPatternSpeed: 11.42
 --- !u!1 &5522098191010700669
 GameObject:
   m_ObjectHideFlags: 0

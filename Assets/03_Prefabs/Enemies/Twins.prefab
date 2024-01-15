@@ -107,7 +107,7 @@ Animator:
   m_GameObject: {fileID: 744851290034003747}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 78a6cb32fe12e024c956d90be988356e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 994e7dc8a35a6734ba286f3fb518c9cd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -174,7 +174,7 @@ MonoBehaviour:
     damage: 1
     firePoints:
     - {fileID: 5700009916288220465}
-    projectile: {fileID: 6065058955878882625, guid: 7c5fd906762d97a42800883ddc109f55, type: 3}
+    projectile: {fileID: 6065058955878882625, guid: e5e941130d61e3f4ea6ca18a4e87afe8, type: 3}
     speed: 55
     rateOfFire: 2
     range: 125

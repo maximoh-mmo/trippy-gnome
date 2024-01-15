@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: -5754084199372789682}
   - component: {fileID: -7511558181221131132}
   - component: {fileID: -3975796131322051659}
+  - component: {fileID: -4988022949777942043}
   m_Layer: 0
   m_Name: Big_Mountain Mushroom 4
   m_TagString: Untagged
@@ -280,6 +281,20 @@ LODGroup:
     renderers:
     - renderer: {fileID: 5730892232716923890}
   m_Enabled: 1
+--- !u!136 &-4988022949777942043
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6227809993434688755}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.30056968
+  m_Height: 1.844243
+  m_Direction: 1
+  m_Center: {x: 0.07851758, y: 0.18820238, z: -0.00000009536743}
 --- !u!1 &8790898834183501109
 GameObject:
   m_ObjectHideFlags: 0

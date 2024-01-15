@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 2907543291054174579}
   - component: {fileID: 4216934875241287664}
   - component: {fileID: -7228882026709010799}
+  - component: {fileID: 4602904122800230435}
   m_Layer: 7
   m_Name: Dancer
   m_TagString: Enemy
@@ -151,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 069f6f4f13bceb84ea3ad0b7e1a57bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardMovementSpeed: 2
+  forwardMovementSpeed: 1
 --- !u!136 &7247249892358998155
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -204,7 +205,7 @@ Animator:
   m_GameObject: {fileID: 744851290034003747}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 994e7dc8a35a6734ba286f3fb518c9cd, type: 2}
+  m_Controller: {fileID: 9100000, guid: 78a6cb32fe12e024c956d90be988356e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -254,6 +255,21 @@ MonoBehaviour:
     type: 2
     chance: 0
   scale: 4
+--- !u!114 &4602904122800230435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744851290034003747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1117a3b4b362fda408b82444d2b7b285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementPattern: 2
+  moveToPlayerSpeed: 3
+  movementPatternSpeed: 2
 --- !u!1 &1036422344773476022
 GameObject:
   m_ObjectHideFlags: 0

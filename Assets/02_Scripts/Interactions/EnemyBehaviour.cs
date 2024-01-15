@@ -8,9 +8,10 @@ public class EnemyBehaviour : MonoBehaviour
     private Vector3 startPosition;
     private float previousGround;
     private MoveWithPath moveWithPath;
-    private Rigidbody rigidbody;
+    private Rigidbody rb;
     private GameObject player = null;
     private WayPoint wp;
+    private EnemyMovement movementPattern;
     public float ForwardMovementSpeed => forwardMovementSpeed;
     public bool IsTargetted { get => isTargetted; set => isTargetted = value; }
     
@@ -18,27 +19,29 @@ public class EnemyBehaviour : MonoBehaviour
     {
         wp = FindFirstObjectByType<WayPoint>();
         if (forwardMovementSpeed == 0) forwardMovementSpeed = FindFirstObjectByType<MoveWithPath>().Speed - 2;
-        rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         player = FindFirstObjectByType<ComboCounter>().gameObject;
         transform.LookAt(player.transform);
         nearestWp = GetNearestWpIndex();
         startPosition = transform.position;
         moveWithPath = FindObjectOfType<MoveWithPath>();
         previousGround = moveWithPath.MapheightAtPos(startPosition);
+        if (GetComponent<EnemyMovement>() != null) movementPattern = GetComponent<EnemyMovement>();
     }
     void Update()
     {
-            if (rigidbody != null && Vector3.Dot(player.transform.forward, transform.position - player.transform.position) > 0) TravelInDirection(PathDirection());
+            if (rb != null && Vector3.Dot(player.transform.forward, transform.position - player.transform.position) > 0) TravelInDirection(PathDirection());
+            if (movementPattern && Vector3.Dot(player.transform.forward, transform.position - player.transform.position) > 0)
+            {
+                movementPattern.ProcessMove(player.transform);
+            }
+            transform.LookAt(player.transform);
             MoveWithGround();
-    }
-    private void FixedUpdate()
-    {
-        transform.LookAt(player.transform);
     }
     private void MoveWithGround()
     {
         var currentHeight = moveWithPath.MapheightAtPos(transform.position);
-        var heightChange = currentHeight- previousGround;
+        var heightChange = currentHeight - previousGround;
         if (heightChange != 0) transform.position += new Vector3(0, heightChange, 0);
         previousGround = currentHeight;
     }
@@ -50,8 +53,8 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (Vector3.Distance(wp.GetItem(nearestWp), transform.position) < .9f) nearestWp = nearestWp > wp.waypoints.Count - 1 ? 0: nearestWp + 1 ;
         var fwd = nearestWp > wp.waypoints.Count - 1
-            ? Vector3.Normalize(wp.GetItem(0) - wp.GetItem(nearestWp) )
-            : Vector3.Normalize( wp.GetItem(nearestWp + 1) - wp.GetItem(nearestWp));
+            ? Vector3.Normalize(wp.GetItem(0) - wp.GetItem(nearestWp))
+            : Vector3.Normalize(wp.GetItem(nearestWp + 1) - wp.GetItem(nearestWp));
         return fwd;
     }
     int GetNearestWpIndex()
@@ -63,6 +66,11 @@ public class EnemyBehaviour : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other != null && other.gameObject.name == "Sweeper") { Destroy(gameObject); }            
+        if (other != null && other.gameObject.name == "Sweeper") { Destroy(gameObject); } 
+        if (other.gameObject.GetComponent<ComboCounter>() != null)
+        {
+            other.gameObject.GetComponent<ComboCounter>().ImHit();
+            Destroy(gameObject);
+        }
     }
 }
