@@ -9,7 +9,7 @@ public class ComboCounter : MonoBehaviour
 {
     public ComboLevel[] combos;
     private bool isShielded, cheatsEnabled;
-    private int currentComboLevel, currentComboKills, totalKillCount, score, runningScore;
+    private int currentComboLevel, currentComboKills, totalKillCount, score, runningScore, shotsFired;
     private AutoSpawner autoSpawner;
     private WeaponSystem weaponSystem;
     private HUDController hudController;
@@ -24,6 +24,7 @@ public class ComboCounter : MonoBehaviour
     [SerializeField] private float flashDelay = 0.3f;
 
     public bool IsCheating { get { return isCheating; } set { isCheating = value; } }
+    public int ShotFired { get { return ShotFired; } set { shotsFired += 1; } }
     
     private void Start()
     {
@@ -173,6 +174,18 @@ public class ComboCounter : MonoBehaviour
     }
     public void DeathHandler()
     {
+        var enemies = FindObjectsByType<GameObject>(FindObjectsSortMode.None);
+            var todelete = enemies
+            .Where(t => t.CompareTag("Enemy"))
+            .Distinct();
+        foreach (var enemy in todelete)
+        {
+            Destroy(gameObject);
+        }
+        Debug.Log("Shots Fired = "+ shotsFired);
+        Debug.Log("Kills = " + totalKillCount);
+        Debug.Log("Score = " + score);
+        Debug.Log("Accuracy = "+ totalKillCount/shotsFired);
         hudController.DeathScreen();
     }
     public void ActivatePsychoRush()

@@ -12,6 +12,7 @@ public class WeaponSystem : MonoBehaviour
     private bool shooting, allowButtonHold, psychoRush;
     private GameObject bulletPrefab;
     private GetNearestTarget getNearestTarget;
+    private ComboCounter cc;
 
     public bool PsychoRush { set => psychoRush = value; }
 
@@ -22,6 +23,7 @@ public class WeaponSystem : MonoBehaviour
         getNearestTarget = FindFirstObjectByType<GetNearestTarget>();
         playerInputSystem = new PlayerInputSystem();
         playerInputSystem.InGame.Enable();
+        cc = GetComponent<ComboCounter>();
     }
 
     private void Start()
@@ -63,19 +65,22 @@ public class WeaponSystem : MonoBehaviour
             var projectile = Instantiate(bulletPrefab, attackPoint.position, attackPoint.rotation); 
             if (projectile.TryGetComponent<Bullet>(out var bullet))
             {
-                bullet.TargetTag = enemyType;
-                bullet.Damage = damage;
-                bullet.Range = range;
-                bullet.Speed = projectileSpeed;
+                if (bullet)
+                {
+                    bullet.Setup(enemyType, range, projectileSpeed, damage);
+                    if (cc) cc.ShotFired = 1;
+                }
             }
+            
             if (projectile.TryGetComponent<Rocket>(out var rocket))
             {
                 var target = getNearestTarget.GetTarget();
-                rocket.TargetTag = enemyType;
-                rocket.Damage = damage;
-                rocket.Range = range;
-                rocket.Speed = projectileSpeed;
-                if (target!=null) rocket.Target = target;
+                if (rocket)
+                {
+                    rocket.Setup(enemyType, range, projectileSpeed, damage);
+                    if (target != null && rocket != null) rocket.Target = target;
+                    if (cc) cc.ShotFired = 1;
+                }
             }
         }
     }
