@@ -42,3 +42,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Glow
+    uniqueID: 452488207
+    locked: 0
