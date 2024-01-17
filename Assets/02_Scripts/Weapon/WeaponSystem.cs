@@ -59,8 +59,10 @@ public class WeaponSystem : MonoBehaviour
     //}
     
     private void HandleVisuals()
-    {   foreach (var attackPoint in attackPoints)
+    {   
+        foreach (var attackPoint in attackPoints)
         {
+            if (!gameObject) return;
             if (attackPoints == null) return;
             var projectile = Instantiate(bulletPrefab, attackPoint.position, attackPoint.rotation); 
             if (projectile.TryGetComponent<Bullet>(out var bullet))
@@ -75,10 +77,14 @@ public class WeaponSystem : MonoBehaviour
             if (projectile.TryGetComponent<Rocket>(out var rocket))
             {
                 var target = getNearestTarget.GetTarget();
-                if (rocket)
+                if (rocket && target)
+                {
+                    rocket.Setup(enemyType, range, projectileSpeed, damage, target);
+                    if (cc) cc.ShotFired = 1;
+                }
+                else if (rocket)
                 {
                     rocket.Setup(enemyType, range, projectileSpeed, damage);
-                    if (target != null && rocket != null) rocket.Target = target;
                     if (cc) cc.ShotFired = 1;
                 }
             }

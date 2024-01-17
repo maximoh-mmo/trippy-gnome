@@ -11,14 +11,15 @@ public class AutoSpawner : MonoBehaviour
     [SerializeField] private List<Enemy> enemies;
     private List<GameObject>enemiesToSpawn;
     [SerializeField] private int shopValue;
-    [SerializeField]private bool useShop; 
+    [SerializeField] private bool useShop;
+    private ComboCounter player;
     public int MinSpawns { get; set; }
-
     public int NumToSpawn { set => numToSpawn = value; }
     public int ShopValue { set => shopValue = value; }
 
     void Start()
     {
+        player = FindFirstObjectByType<ComboCounter>();
         spawnBubble = GameObject.FindFirstObjectByType<SpawnBubble>();
         enemiesToSpawn = new List<GameObject>();
         minCost = enemies
@@ -29,6 +30,7 @@ public class AutoSpawner : MonoBehaviour
     }
     void Update()
     {
+        if (!player) Destroy(gameObject);
         if (spawnBubble.CountSpawns() < MinSpawns)
         {
             if (useShop) ShopAndSpawn();

@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 069f6f4f13bceb84ea3ad0b7e1a57bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardMovementSpeed: 0
+  forwardMovementSpeed: 1
 --- !u!136 &7247249892358998155
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -246,7 +246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementPattern: 2
-  moveToPlayerSpeed: 3
+  moveToPlayerSpeed: 2
   movementPatternSpeed: 3
 --- !u!1 &1036422344773476022
 GameObject:
