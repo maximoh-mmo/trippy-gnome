@@ -729,7 +729,7 @@ ParticleSystem:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-    m_Mesh: {fileID: -7051122085342986939, guid: b51fd3beb6d7cb74eb14a87d75e711c5, type: 3}
+    m_Mesh: {fileID: -7051122085342986939, guid: 2b4b6b7fa67ff384c82f464888a379d2, type: 3}
     m_MeshRenderer: {fileID: 0}
     m_SkinnedMeshRenderer: {fileID: 0}
     m_Sprite: {fileID: 0}
@@ -4761,7 +4761,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5a560fde40104a746b84a8da5122e249, type: 2}
+  - {fileID: 2100000, guid: dffe705649ff8c6499e0c557058d889f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
