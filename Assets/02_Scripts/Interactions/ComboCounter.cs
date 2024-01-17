@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class ComboCounter : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class ComboCounter : MonoBehaviour
     private bool isShielded, cheatsEnabled;
     private int currentComboLevel, currentComboKills, totalKillCount, score, runningScore, shotsFired,maxComboLevel;
     [SerializeField]private TMP_Text DSScore, DSComboLvl, DSKillCount, DSAccuracy;
+    [SerializeField]private GameObject[] WeaponIcons;
     private AutoSpawner autoSpawner;
     private WeaponSystem weaponSystem;
     private HUDController hudController;
@@ -64,7 +66,6 @@ public class ComboCounter : MonoBehaviour
         if (context.ReadValue<float>() == 0) return;
         if (context.ReadValue<float>() > 0 && currentComboLevel < combos.Length-1) ComboLevelUp();
         if (context.ReadValue<float>() < 0 && currentComboLevel > 0) ComboLevelDown();
-        if (maxComboLevel < currentComboLevel) maxComboLevel = currentComboLevel;
     }
     private void BigBoom(InputAction.CallbackContext context)
     {
@@ -118,6 +119,7 @@ public class ComboCounter : MonoBehaviour
         hudController.ToggleIcon(currentComboLevel, false);
         currentComboLevel++;
         hudController.ToggleIcon(currentComboLevel, true);
+        if (maxComboLevel < currentComboLevel) maxComboLevel = currentComboLevel;
         currentComboKills = 0;
         runningScore = 0;
         UpdateDependants();
@@ -186,9 +188,10 @@ public class ComboCounter : MonoBehaviour
             Destroy(gameObject);
         }
 
-        DSScore.SetText(score.ToString());
-        DSComboLvl.SetText(maxComboLevel.ToString());
-        DSKillCount.SetText(totalKillCount.ToString());
+        DSScore.SetText(score.ToString("#,#"));
+        DSComboLvl.SetText((maxComboLevel+1).ToString());
+        DSKillCount.SetText(totalKillCount.ToString("#,#"));
+        WeaponIcons[maxComboLevel].GetComponent<Image>().enabled = true;
         Debug.Log(shotsFired);
         if (shotsFired!=0) DSAccuracy.SetText(((100f*(float)totalKillCount/(float)shotsFired)).ToString("0.00") + "%");
         hudController.DeathScreen();
