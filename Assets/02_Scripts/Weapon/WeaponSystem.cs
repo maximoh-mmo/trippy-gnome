@@ -59,8 +59,10 @@ public class WeaponSystem : MonoBehaviour
     //}
     
     private void HandleVisuals()
-    {   foreach (var attackPoint in attackPoints)
+    {   
+        foreach (var attackPoint in attackPoints)
         {
+            if (!gameObject) return;
             if (attackPoints == null) return;
             var projectile = Instantiate(bulletPrefab, attackPoint.position, attackPoint.rotation); 
             if (projectile.TryGetComponent<Bullet>(out var bullet))

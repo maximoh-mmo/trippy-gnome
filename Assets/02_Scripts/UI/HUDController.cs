@@ -43,7 +43,7 @@ public class HUDController : MonoBehaviour
             playerInputSystem.UI.Disable();
             pauseMenu.SetActive(false);
             Time.timeScale = 1f;
-            playerInputSystem.UI.Enable();
+            playerInputSystem.InGame.Enable();
             playerInputSystem.InGame.Pause.performed += Pause;
 
         }

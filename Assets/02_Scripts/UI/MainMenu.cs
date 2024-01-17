@@ -41,12 +41,13 @@ public class MainMenu : MonoBehaviour
     public void Resume()
     {
         pauseMenu.SetActive(false);
-        Time.timeScale = 1.0f;
+        Time.timeScale = 1f;
     }
     
     public void ReloadCurrentLevel()
-    {        
-        Debug.Log("RELOAD");
+    {
+        StopAllCoroutines();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 }

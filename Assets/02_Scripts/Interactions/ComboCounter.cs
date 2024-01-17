@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -9,7 +10,8 @@ public class ComboCounter : MonoBehaviour
 {
     public ComboLevel[] combos;
     private bool isShielded, cheatsEnabled;
-    private int currentComboLevel, currentComboKills, totalKillCount, score, runningScore, shotsFired;
+    private int currentComboLevel, currentComboKills, totalKillCount, score, runningScore, shotsFired,maxComboLevel;
+    [SerializeField]private TMP_Text DSScore, DSComboLvl, DSKillCount, DSAccuracy;
     private AutoSpawner autoSpawner;
     private WeaponSystem weaponSystem;
     private HUDController hudController;
@@ -62,6 +64,7 @@ public class ComboCounter : MonoBehaviour
         if (context.ReadValue<float>() == 0) return;
         if (context.ReadValue<float>() > 0 && currentComboLevel < combos.Length-1) ComboLevelUp();
         if (context.ReadValue<float>() < 0 && currentComboLevel > 0) ComboLevelDown();
+        if (maxComboLevel < currentComboLevel) maxComboLevel = currentComboLevel;
     }
     private void BigBoom(InputAction.CallbackContext context)
     {
@@ -182,10 +185,12 @@ public class ComboCounter : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        Debug.Log("Shots Fired = "+ shotsFired);
-        Debug.Log("Kills = " + totalKillCount);
-        Debug.Log("Score = " + score);
-        Debug.Log("Accuracy = "+ totalKillCount/shotsFired);
+
+        DSScore.SetText(score.ToString());
+        DSComboLvl.SetText(maxComboLevel.ToString());
+        DSKillCount.SetText(totalKillCount.ToString());
+        Debug.Log(shotsFired);
+        if (shotsFired!=0) DSAccuracy.SetText(((100f*(float)totalKillCount/(float)shotsFired)).ToString("0.00") + "%");
         hudController.DeathScreen();
     }
     public void ActivatePsychoRush()
@@ -201,6 +206,7 @@ public class ComboCounter : MonoBehaviour
         weaponSystem.PsychoRush = false;
         psychoTimer = 0;
     }
+
     private void Update()
     {
         if (psychoTimer != 0)
@@ -215,15 +221,17 @@ public class ComboCounter : MonoBehaviour
                     meshRenderer.enabled = true;
                 }
             }
+
             if (Time.unscaledTime > flashTimer)
             {
                 foreach (var meshRenderer in meshRenderers) meshRenderer.enabled = !meshRenderer.enabled;
                 flashTimer = Time.unscaledTime + flashDelay;
             }
+
             var currentT = psychoTimer - Time.unscaledTime;
-            if (currentT <2)
+            if (currentT < 2)
             {
-                flashDelay = Mathf.Sqrt(currentT/7);
+                flashDelay = Mathf.Sqrt(currentT / 7);
             }
         }
     }
