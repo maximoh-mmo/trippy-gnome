@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CrosshairMovement : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class CrosshairMovement : MonoBehaviour
     {
         playerInputSystem = new PlayerInputSystem();
         playerInputSystem.InGame.Enable();
+        playerInputSystem.InGame.BarrelRoll.performed+=BarrelRoll;
         if (xySpeedMultiple==0) { xySpeedMultiple = 1; }
     }
     // Update is called once per frame
@@ -23,6 +25,12 @@ public class CrosshairMovement : MonoBehaviour
         targetPosition += new Vector3( inputVector.x * multiple,inputVector.y * multiple);
         transform.localPosition = new Vector3(Mathf.Clamp(targetPosition.x, -boundary.x, boundary.x),
             Mathf.Clamp(targetPosition.y, -boundary.y, boundary.y), targetPosition.z);
+    }
+
+    public void BarrelRoll(InputAction.CallbackContext context)
+    {
+        Debug.Log("BarrelRoll");
+        
     }
 
     private void OnDrawGizmos()
