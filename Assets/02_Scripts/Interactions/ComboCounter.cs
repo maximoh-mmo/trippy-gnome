@@ -141,19 +141,15 @@ public class ComboCounter : MonoBehaviour
     {
         hudController.ToggleIcon(currentComboLevel, false);
         currentComboLevel -= 1;
-        if (currentComboLevel < 0)
-        {
+        if (currentComboLevel < 0) {
             Debug.Log("You DIED!");
             DeathHandler();
-            Time.timeScale = 0;
-        }
-        else
-        {
+            Time.timeScale = 0; }
+        else {
             hudController.ToggleIcon(currentComboLevel, true);
             runningScore = 0;
             UpdateHUD();
-            UpdateDependants();
-        }
+            UpdateDependants(); }
     }
     private void UpdateDependants()
     {
@@ -181,24 +177,14 @@ public class ComboCounter : MonoBehaviour
 
     public void DeathHandler()
     {
-        var enemies = FindObjectsByType<GameObject>(FindObjectsSortMode.None);
-        var todelete = enemies
+        var toDelete =  FindObjectsByType<GameObject>(FindObjectsSortMode.None)
             .Where(t => t.CompareTag("Enemy"))
             .Distinct();
-        foreach (var enemy in todelete)
-        {
-            Destroy(gameObject);
-        }
-        if (score == 0) 
-        {
-            DSScore.SetText(score.ToString());
-            DSKillCount.SetText(totalKillCount.ToString());
-        }
-        else
-        {
-            DSScore.SetText(score.ToString("#,#"));
-            DSKillCount.SetText(totalKillCount.ToString("#,#"));
-        }
+        foreach (var enemy in toDelete) Destroy(gameObject);
+        if (score == 0) { DSScore.SetText(score.ToString());
+            DSKillCount.SetText(totalKillCount.ToString()); }
+        else { DSScore.SetText(score.ToString("#,#"));
+            DSKillCount.SetText(totalKillCount.ToString("#,#")); }
         DSComboLvl.SetText((maxComboLevel+1).ToString());
         WeaponIcons[maxComboLevel].GetComponent<Image>().enabled = true;
         if (shotsFired!=0) DSAccuracy.SetText(((100f*(float)totalKillCount/(float)shotsFired)).ToString("0.00") + "%");
@@ -220,31 +206,17 @@ public class ComboCounter : MonoBehaviour
 
     private void Update()
     {
-        if (psychoTimer != 0)
-        {
-            if (Time.unscaledTime > psychoTimer)
-            {
-                psychoTimer = 0;
-                DeactivatePsychoRush();
-                StartCoroutine("ComboLevelCountDown");
-                foreach (var meshRenderer in meshRenderers)
-                {
-                    meshRenderer.enabled = true;
-                }
-            }
-
-            if (Time.unscaledTime > flashTimer)
-            {
-                foreach (var meshRenderer in meshRenderers) meshRenderer.enabled = !meshRenderer.enabled;
-                flashTimer = Time.unscaledTime + flashDelay;
-            }
-
-            var currentT = psychoTimer - Time.unscaledTime;
-            if (currentT < 2)
-            {
-                flashDelay = Mathf.Sqrt(currentT / 7);
-            }
-        }
+        if (psychoTimer == 0) return;
+        if (Time.unscaledTime > psychoTimer) {
+            psychoTimer = 0;
+            DeactivatePsychoRush();
+            StartCoroutine("ComboLevelCountDown");
+            foreach (var meshRenderer in meshRenderers) meshRenderer.enabled = true; }
+        if (Time.unscaledTime > flashTimer) { 
+            foreach (var meshRenderer in meshRenderers) meshRenderer.enabled = !meshRenderer.enabled;
+            flashTimer = Time.unscaledTime + flashDelay; }
+        var currentT = psychoTimer - Time.unscaledTime;
+        if (currentT < 2) flashDelay = Mathf.Sqrt(currentT / 7);
     }
 }
 
