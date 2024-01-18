@@ -29,10 +29,10 @@ public class EnemyBehaviour : MonoBehaviour
     void Update()
     {
         if (!player) Destroy(gameObject);
-        if (Vector3.Dot(player.transform.forward, transform.position - player.transform.position) > 0) TravelInDirection(PathDirection());
-        if (movementPattern && Vector3.Dot(player.transform.forward, transform.position - player.transform.position) > 0)
+        if (Vector3.Dot(player.transform.forward, transform.position - player.transform.position) > 0)
         {
-            movementPattern.ProcessMove(player.transform);
+            TravelInDirection(PathDirection());
+            if (movementPattern) movementPattern.ProcessMove(player.transform);
         }
         transform.LookAt(player.transform);
         MoveWithGround();
