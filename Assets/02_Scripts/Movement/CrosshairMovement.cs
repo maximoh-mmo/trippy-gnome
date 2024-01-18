@@ -18,7 +18,6 @@ public class CrosshairMovement : MonoBehaviour
         playerInputSystem.InGame.BarrelRoll.performed += BarrelRoll;
         if (xySpeedMultiple==0) { xySpeedMultiple = 1; }
     }
-    // Update is called once per frame
     private void Update()
     {
         inputVector = playerInputSystem.InGame.Move.ReadValue<Vector2>();
@@ -34,6 +33,7 @@ public class CrosshairMovement : MonoBehaviour
         if (Time.time < BarrelRollReuseTime) return;
         var direction = inputVector.normalized;
         Debug.Log("BarrelRoll in direction "+direction);
+        
     }
 
     private void OnDrawGizmos()

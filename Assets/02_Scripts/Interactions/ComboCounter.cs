@@ -4,6 +4,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -177,22 +178,29 @@ public class ComboCounter : MonoBehaviour
         hudController.ComboLvl((currentComboLevel + 1));
         hudController.RunningScore(runningScore);
     }
+
     public void DeathHandler()
     {
         var enemies = FindObjectsByType<GameObject>(FindObjectsSortMode.None);
-            var todelete = enemies
+        var todelete = enemies
             .Where(t => t.CompareTag("Enemy"))
             .Distinct();
         foreach (var enemy in todelete)
         {
             Destroy(gameObject);
         }
-
-        DSScore.SetText(score.ToString("#,#"));
+        if (score == 0) 
+        {
+            DSScore.SetText(score.ToString());
+            DSKillCount.SetText(totalKillCount.ToString());
+        }
+        else
+        {
+            DSScore.SetText(score.ToString("#,#"));
+            DSKillCount.SetText(totalKillCount.ToString("#,#"));
+        }
         DSComboLvl.SetText((maxComboLevel+1).ToString());
-        DSKillCount.SetText(totalKillCount.ToString("#,#"));
         WeaponIcons[maxComboLevel].GetComponent<Image>().enabled = true;
-        Debug.Log(shotsFired);
         if (shotsFired!=0) DSAccuracy.SetText(((100f*(float)totalKillCount/(float)shotsFired)).ToString("0.00") + "%");
         hudController.DeathScreen();
     }
