@@ -5,19 +5,21 @@ public class CrosshairMovement : MonoBehaviour
 {
     [SerializeField] private float xySpeedMultiple;
     [SerializeField] private Vector2 boundary;
+    [SerializeField] private float barrelRollReuseTime;
     private Vector2 inputVector;
     private PlayerInputSystem playerInputSystem;
+    private float BarrelRollReuseTime { get { return barrelRollReuseTime; } set { barrelRollReuseTime = value; } }
     public Vector2 Boundry => boundary;
     public Vector2 InputVector => inputVector;
-    void Awake()
+    private void Awake()
     {
         playerInputSystem = new PlayerInputSystem();
         playerInputSystem.InGame.Enable();
-        playerInputSystem.InGame.BarrelRoll.performed+=BarrelRoll;
+        playerInputSystem.InGame.BarrelRoll.performed += BarrelRoll;
         if (xySpeedMultiple==0) { xySpeedMultiple = 1; }
     }
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         inputVector = playerInputSystem.InGame.Move.ReadValue<Vector2>();
         var targetPosition = transform.localPosition;
@@ -27,10 +29,11 @@ public class CrosshairMovement : MonoBehaviour
             Mathf.Clamp(targetPosition.y, -boundary.y, boundary.y), targetPosition.z);
     }
 
-    public void BarrelRoll(InputAction.CallbackContext context)
+    private void BarrelRoll(InputAction.CallbackContext context)
     {
-        Debug.Log("BarrelRoll");
-        
+        if (Time.time < BarrelRollReuseTime) return;
+        var direction = inputVector.normalized;
+        Debug.Log("BarrelRoll in direction "+direction);
     }
 
     private void OnDrawGizmos()
