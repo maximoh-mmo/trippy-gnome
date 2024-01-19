@@ -16,7 +16,6 @@ public class AutoSpawner : MonoBehaviour
     public int MinSpawns { get; set; }
     public int NumToSpawn { set => numToSpawn = value; }
     public int ShopValue { set => shopValue = value; }
-
     void Start()
     {
         player = FindFirstObjectByType<ComboCounter>();
@@ -31,7 +30,7 @@ public class AutoSpawner : MonoBehaviour
     void Update()
     {
         if (!player) Destroy(gameObject);
-        if (spawnBubble.CountSpawns() < MinSpawns)
+        if (spawnBubble.CountSpawns() < MinSpawns && !spawnBubble.SpawnStarted)
         {
             if (useShop) ShopAndSpawn();
             else

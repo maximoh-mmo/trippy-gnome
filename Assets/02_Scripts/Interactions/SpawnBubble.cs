@@ -2,19 +2,22 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 public class SpawnBubble : MonoBehaviour
 {
     [SerializeField] int numberToSpawn;
-    [FormerlySerializedAs("SpawnBoxSize")] [FormerlySerializedAs("size")] [SerializeField] Vector3 spawnBoxSize;
+    [SerializeField] Vector3 spawnBoxSize;
     [SerializeField] Vector3 center;
-    [FormerlySerializedAs("EnemyPrefab")] [SerializeField] GameObject enemyPrefab;
-    bool spawned = true;
+    [SerializeField] GameObject enemyPrefab;
+    [SerializeField] private GameObject vfxPrefab;
+    private bool spawned = true;
+    private bool spawnStarted = false;
     BoxCollider spawnArea;
     MoveWithPath moveWithPath;
     private PlayerInputSystem playerInputSystem;
     private ComboCounter comboCounter;
+
+    public bool SpawnStarted => spawnStarted;
     private void Awake()
     {        
         playerInputSystem = new PlayerInputSystem();
@@ -58,12 +61,11 @@ public class SpawnBubble : MonoBehaviour
     }
     public void SpawnEnemies(GameObject[] enemies)
     {
-        spawned = true;
+        spawnStarted = true;
         foreach (var enemy in enemies)
         {
-            SpawnEnemy(RandomSpawnPoint(GetSize(enemy).y), enemy);
+            StartCoroutine(SpawnEnemyWithDelay(RandomSpawnPoint(GetSize(enemy).y), enemy));
         }
-        //Debug.Log(CountSpawns());
     }
     
     private Vector3 RandomSpawnPoint(float minHeight)
@@ -93,6 +95,7 @@ public class SpawnBubble : MonoBehaviour
         yield return new WaitForSeconds(Random.Range(0, 0.5f));
         var enemy = Instantiate(prefabToSpawn, pos, Quaternion.identity);
         enemy.transform.LookAt(comboCounter.transform);
+        spawnStarted = false;
     }
     private Vector3 GetSize(GameObject t)
     {
