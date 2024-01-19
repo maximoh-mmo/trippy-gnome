@@ -32,7 +32,6 @@ public class ComboCounter : MonoBehaviour
     
     private void Start()
     {
-        Cursor.visible = false;
         var mesherenderers = GetComponentsInChildren<MeshRenderer>();
         meshRenderers = mesherenderers
             .Where(mr => mr.enabled)

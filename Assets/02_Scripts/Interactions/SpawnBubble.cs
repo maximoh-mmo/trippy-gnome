@@ -84,7 +84,8 @@ public class SpawnBubble : MonoBehaviour
     }
     void SpawnEnemy(Vector3 pos, GameObject prefabToSpawn)
     {
-        Instantiate(prefabToSpawn, pos, Quaternion.identity);
+        var enemy = Instantiate(prefabToSpawn, pos, Quaternion.identity);
+        enemy.transform.LookAt(comboCounter.transform);
     }
     private Vector3 GetSize(GameObject t)
     {

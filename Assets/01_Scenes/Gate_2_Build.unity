@@ -3183,7 +3183,7 @@ MonoBehaviour:
     cost: 2
   - prefab: {fileID: 744851290034003747, guid: 13fc4d34d198ff6468a40ced187bb983, type: 3}
     cost: 11
-  - prefab: {fileID: 744851290034003747, guid: a38b9d88780d8484a83890d2c0b6e262, type: 3}
+  - prefab: {fileID: 744851290034003747, guid: 642f9e8590f598d4b99dec649cbfe8f6, type: 3}
     cost: 5
   - prefab: {fileID: 744851290034003747, guid: 94cebc8b9cb1cf54aa4bbcf104938c15, type: 3}
     cost: 15
@@ -8584,7 +8584,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00012207031, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1357416256
