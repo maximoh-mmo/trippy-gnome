@@ -13,7 +13,6 @@ public class EnemyBehaviour : MonoBehaviour
     private EnemyMovement movementPattern;
     public float ForwardMovementSpeed => forwardMovementSpeed;
     public bool IsTargetted { get => isTargetted; set => isTargetted = value; }
-    
     void Start()
     {
         wp = FindFirstObjectByType<WayPoint>();
@@ -31,24 +30,21 @@ public class EnemyBehaviour : MonoBehaviour
         if (!player) Destroy(gameObject);
         if (Vector3.Dot(player.transform.forward, transform.position - player.transform.position) > 0)
         {
-            TravelInDirection(PathDirection());
-            if (movementPattern) movementPattern.ProcessMove(player.transform);
+            var forwardMotion = PathDirection() * (forwardMovementSpeed*Time.deltaTime);
+            var groundMotion = MoveWithGround();
+            if (movementPattern) transform.position += movementPattern.ProcessMove(player.transform);
+            transform.position += forwardMotion + groundMotion;
         }
         transform.LookAt(player.transform);
-        MoveWithGround();
     }
-    private void MoveWithGround()
+    private Vector3 MoveWithGround()
     {
         var currentHeight = moveWithPath.MapheightAtPos(transform.position);
         var heightChange = currentHeight - previousGround;
-        if (heightChange != 0) transform.position += new Vector3(0, heightChange, 0);
         previousGround = currentHeight;
+        return new Vector3(0, heightChange, 0);
     }
-    void TravelInDirection(Vector3 pathDirection)
-    {
-        transform.position += pathDirection * (forwardMovementSpeed*Time.deltaTime);
-    }
-    Vector3 PathDirection()
+    private Vector3 PathDirection()
     {
         if (Vector3.Distance(wp.GetItem(nearestWp), transform.position) < .9f) nearestWp = nearestWp > wp.waypoints.Count - 1 ? 0: nearestWp + 1 ;
         var fwd = nearestWp > wp.waypoints.Count - 1

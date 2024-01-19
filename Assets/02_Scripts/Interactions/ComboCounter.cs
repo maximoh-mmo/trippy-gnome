@@ -4,7 +4,6 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -33,6 +32,7 @@ public class ComboCounter : MonoBehaviour
     
     private void Start()
     {
+        Cursor.visible = false;
         var mesherenderers = GetComponentsInChildren<MeshRenderer>();
         meshRenderers = mesherenderers
             .Where(mr => mr.enabled)
