@@ -4761,7 +4761,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7d49943743c954446aa83baa1d44a164, type: 2}
+  - {fileID: 2100000, guid: 44e7d476373d6f044afd17fd8e8228d8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4868,7 +4868,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 501.8971
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -9704,7 +9704,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c1bdfe44a79c0ad43b5ba9bedc664478, type: 2}
+  - {fileID: 2100000, guid: 073e5f5d55bacca4f868ba091f0e72d3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9800,7 +9800,7 @@ Animator:
   m_GameObject: {fileID: 5048798298852910964}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2bb2e216be8f0024aafdde021f454caa, type: 2}
+  m_Controller: {fileID: 9100000, guid: d2c35d0118ac1f6448bd2a875ec1d15a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -9854,7 +9854,7 @@ Animator:
   m_GameObject: {fileID: 5048798298994663494}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2936d67b8943b9f4f806c6d559ad7192, type: 2}
+  m_Controller: {fileID: 9100000, guid: 20e25dc16dbdb9a41a191fac6c859b38, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

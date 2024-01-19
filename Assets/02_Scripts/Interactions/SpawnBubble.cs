@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -54,7 +55,6 @@ public class SpawnBubble : MonoBehaviour
         {
             SpawnEnemy(RandomSpawnPoint(GetSize(enemyPrefab).y));
         }
-        //Debug.Log(CountSpawns());
     }
     public void SpawnEnemies(GameObject[] enemies)
     {
@@ -84,6 +84,13 @@ public class SpawnBubble : MonoBehaviour
     }
     void SpawnEnemy(Vector3 pos, GameObject prefabToSpawn)
     {
+        var enemy = Instantiate(prefabToSpawn, pos, Quaternion.identity);
+        enemy.transform.LookAt(comboCounter.transform);
+    }
+
+    private IEnumerator SpawnEnemyWithDelay(Vector3 pos, GameObject prefabToSpawn)
+    {
+        yield return new WaitForSeconds(Random.Range(0, 0.5f));
         var enemy = Instantiate(prefabToSpawn, pos, Quaternion.identity);
         enemy.transform.LookAt(comboCounter.transform);
     }

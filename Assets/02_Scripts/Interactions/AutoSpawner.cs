@@ -56,7 +56,6 @@ public class AutoSpawner : MonoBehaviour
                 money -= cost;
             }
         }
-        
         spawnBubble.SpawnEnemies(enemiesToSpawn.ToArray());
     }
 

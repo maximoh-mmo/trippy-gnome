@@ -32,8 +32,12 @@ public class EnemyBehaviour : MonoBehaviour
         {
             var forwardMotion = PathDirection() * (forwardMovementSpeed*Time.deltaTime);
             var groundMotion = MoveWithGround();
-            if (movementPattern) transform.position += movementPattern.ProcessMove(player.transform);
-            transform.position += forwardMotion + groundMotion;
+            var sidewardMotion = Vector3.zero;
+            if (movementPattern) sidewardMotion += movementPattern.ProcessMove(player.transform);
+            var endPoint = transform.position + forwardMotion + groundMotion + sidewardMotion;
+            var minHeight = moveWithPath.MapheightAtPos(endPoint) + GetSize(gameObject).y;
+            if (endPoint.y < minHeight) endPoint.y = minHeight;
+            transform.position = endPoint;
         }
         transform.LookAt(player.transform);
     }
@@ -51,6 +55,18 @@ public class EnemyBehaviour : MonoBehaviour
             ? Vector3.Normalize(wp.GetItem(0) - wp.GetItem(nearestWp))
             : Vector3.Normalize(wp.GetItem(nearestWp + 1) - wp.GetItem(nearestWp));
         return fwd;
+    }
+    private Vector3 GetSize(GameObject t)
+    {
+        Vector3 size = Vector3.zero;
+        Renderer[] renderers = t.GetComponentsInChildren<Renderer>();
+        foreach (Renderer r in renderers)
+        {
+            if (r.bounds.size.x > size.x) size.x = r.bounds.size.x;
+            if (r.bounds.size.y > size.y) size.y = r.bounds.size.y;
+            if (r.bounds.size.z > size.z) size.z = r.bounds.size.z;
+        }
+        return size/2;
     }
     int GetNearestWpIndex()
     {
