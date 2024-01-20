@@ -70,25 +70,3 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
-Assets/04_Graphics/Enemies.meta
-Assets/04_Graphics/Enemies/Enemy Eyes.fbx.meta
-Assets/04_Graphics/Ground.meta
-Assets/04_Graphics/Ground/Testers.meta
-Assets/04_Graphics/Ground/Testers/Blue.png.meta
-Assets/04_Graphics/Ground/Testers/Green.png.meta
-Assets/04_Graphics/Ground/Testers/Orange.png.meta
-Assets/04_Graphics/Ground/Testers/Purple.png.meta
-Assets/04_Graphics/Ship.meta
-Assets/04_Graphics/Ship/spaceship_ufo.fbx.meta
-Assets/New Terrain 1.asset
-Assets/New Terrain 1.asset.meta
-ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json
-Assets/05_Sound/Projectiles/Rocket.mp3.meta
-Assets/05_Sound/Projectiles/Laser.mp3.meta
-Assets/05_Sound/Projectiles/Explosion.mp3.meta
-Assets/05_Sound/Projectiles/Enemy_Kill.mp3.meta
-Assets/03_Prefabs/Shrooms/Mushroom Tree.prefab
-Assets/03_Prefabs/Shrooms/Mushroom Tree.prefab.meta
-Assets/05_Sound/Speech/gnome_speech_ouchie.mp3.meta
-Assets/05_Sound/Projectiles/BFG.mp3.meta
-*.meta
