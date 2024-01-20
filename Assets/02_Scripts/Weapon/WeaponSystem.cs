@@ -36,7 +36,7 @@ public class WeaponSystem : MonoBehaviour
     private void Update()
     {
         if (Time.timeScale == 0) return;
-        if (enemyType == "Player") Shoot();
+        //if (enemyType == "Player") Shoot();
         if (psychoRush) return;
         if (allowButtonHold == false)
         {
@@ -45,7 +45,7 @@ public class WeaponSystem : MonoBehaviour
         }
         if (playerInputSystem.FindAction("Fire").IsPressed()) Shoot(); 
     }
-    private void Shoot()
+    public void Shoot()
     {
         if (!(Time.time>=reuseTime)) return;
         HandleVisuals();

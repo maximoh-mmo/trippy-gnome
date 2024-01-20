@@ -9,7 +9,6 @@ public class SpawnBubble : MonoBehaviour
     [SerializeField] Vector3 spawnBoxSize;
     [SerializeField] Vector3 center;
     [SerializeField] GameObject enemyPrefab;
-    [SerializeField] private GameObject vfxPrefab;
     private bool spawned = true;
     private bool spawnStarted = false;
     BoxCollider spawnArea;

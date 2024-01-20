@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     Vector3 startPos = Vector3.zero;
     string targetTag = string.Empty;
     private Rigidbody rb;
+    private GameObject projectileHit;
 
     public void Setup(string tg, float rng, float spd, int dmg)
     {
@@ -37,6 +38,7 @@ public class Bullet : MonoBehaviour
         if (other.gameObject.CompareTag(targetTag) && other.gameObject.GetComponent<HealthManager>() != null)
         {
             other.gameObject.GetComponent<HealthManager>().TakeDamage(damage);
+            if (projectileHit) Instantiate(projectileHit, other.ClosestPointOnBounds(transform.position) , Quaternion.identity);
             Destroy(gameObject); 
         }
 

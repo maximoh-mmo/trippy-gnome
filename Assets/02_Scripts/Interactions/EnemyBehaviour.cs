@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour
@@ -11,10 +12,14 @@ public class EnemyBehaviour : MonoBehaviour
     private GameObject player = null;
     private WayPoint wp;
     private EnemyMovement movementPattern;
+    private WeaponSystem ws;
+    [SerializeField]private GameObject spawn, die;
+    private bool spawned;
     public float ForwardMovementSpeed => forwardMovementSpeed;
     public bool IsTargetted { get => isTargetted; set => isTargetted = value; }
     void Start()
     {
+        ws = GetComponent<WeaponSystem>();
         wp = FindFirstObjectByType<WayPoint>();
         if (forwardMovementSpeed == 0) forwardMovementSpeed = FindFirstObjectByType<MoveWithPath>().Speed - 2;
         player = FindFirstObjectByType<ComboCounter>().gameObject;
@@ -24,10 +29,34 @@ public class EnemyBehaviour : MonoBehaviour
         moveWithPath = FindObjectOfType<MoveWithPath>();
         previousGround = moveWithPath.MapheightAtPos(startPosition);
         if (GetComponent<EnemyMovement>() != null) movementPattern = GetComponent<EnemyMovement>();
+        if (spawn) StartCoroutine(SpawnEntityWithDelay(spawn, transform.position, 0.75f));
+        else spawned = true;
+
+    }
+    
+    private IEnumerator SpawnEntityWithDelay(GameObject prefabToSpawn,Vector3 pos, float delayTime)
+    {
+        var c = GetComponentsInChildren<Renderer>();
+        foreach (var element in c) 
+        {
+            element.enabled = false;
+        } 
+        var spawner = Instantiate(prefabToSpawn, pos, Quaternion.identity);
+        spawner.transform.SetParent(null);
+        spawner.transform.localScale = Vector3.one * 20;
+        yield return new WaitForSeconds(delayTime);
+        Destroy(spawner);
+        foreach (var element in c)
+        {
+            element.enabled = true; 
+        }
+        spawned = true;
     }
     void Update()
     {
+        if (!spawned) return;
         if (!player) Destroy(gameObject);
+        if (ws) ws.Shoot();
         if (Vector3.Dot(player.transform.forward, transform.position - player.transform.position) > 0)
         {
             var forwardMotion = PathDirection() * (forwardMovementSpeed*Time.deltaTime);

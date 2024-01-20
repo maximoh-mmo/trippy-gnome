@@ -290,6 +290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xySpeedMultiple: 30
   boundary: {x: 32, y: 18}
+  barrelRollReuseTime: 0
 --- !u!212 &1535389676149112411
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -517,9 +518,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberToSpawn: 3
-  size: {x: 36.6, y: 45.6, z: 100.88}
+  spawnBoxSize: {x: 0, y: 0, z: 0}
   center: {x: 0, y: 0, z: 55.11}
-  EnemyPrefab: {fileID: 744851290034003747, guid: 13fc4d34d198ff6468a40ced187bb983, type: 3}
+  enemyPrefab: {fileID: 0}
+  vfxPrefab: {fileID: 0}
 --- !u!114 &1535389676790367314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1189,6 +1191,12 @@ MonoBehaviour:
     scoreMultiplier: 10
     minEnemies: 0
     enemiesToSpawn: 0
+  DSScore: {fileID: 0}
+  DSComboLvl: {fileID: 0}
+  DSKillCount: {fileID: 0}
+  DSAccuracy: {fileID: 0}
+  WeaponIcons: []
+  secondsUntilNextRespawn: 0
   comboLevelDownTime: 10
   flashDelay: 0.3
 --- !u!114 &1809640131129847268
@@ -1667,7 +1675,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -5035327011957794618, guid: 7f725b65ac07b474fb28d4e6763e5753, type: 3}
+  - {fileID: 2100000, guid: d707b0156e6879445969169681363e18, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

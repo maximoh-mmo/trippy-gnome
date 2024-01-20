@@ -36,14 +36,6 @@ public class HealthManager : MonoBehaviour
     {
         counter.AddKill(maxHealth);
         if (loot && lootDropOnBoom) GetComponent<Loot>().GetLoot(transform.position);
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
-    public void HealDamage(float dmg)
-    {
-        if (currentHealth < maxHealth)
-        {
-            currentHealth += dmg;
-        }
-    }
-
 }
