@@ -14,7 +14,7 @@ public class EnemyBehaviour : MonoBehaviour
     private EnemyMovement movementPattern;
     private WeaponSystem ws;
     [SerializeField]private GameObject spawn, die;
-    private bool spawned;
+    private bool spawned, readyToShoot;
     public float ForwardMovementSpeed => forwardMovementSpeed;
     public bool IsTargetted { get => isTargetted; set => isTargetted = value; }
     void Start()
@@ -29,9 +29,12 @@ public class EnemyBehaviour : MonoBehaviour
         moveWithPath = FindObjectOfType<MoveWithPath>();
         previousGround = moveWithPath.MapheightAtPos(startPosition);
         if (GetComponent<EnemyMovement>() != null) movementPattern = GetComponent<EnemyMovement>();
-        if (spawn) StartCoroutine(SpawnEntityWithDelay(spawn, transform.position, 0.75f));
-        else spawned = true;
-
+        if (spawn!=null) StartCoroutine(SpawnEntityWithDelay(spawn, transform.position, 0.75f));
+        else
+        {
+            readyToShoot = true;
+            spawned = true;
+        }
     }
     
     private IEnumerator SpawnEntityWithDelay(GameObject prefabToSpawn,Vector3 pos, float delayTime)
@@ -51,12 +54,14 @@ public class EnemyBehaviour : MonoBehaviour
             element.enabled = true; 
         }
         spawned = true;
+        yield return new WaitForSeconds(0.75f);
+        readyToShoot = true;
     }
     void Update()
     {
         if (!spawned) return;
         if (!player) Destroy(gameObject);
-        if (ws) ws.Shoot();
+        if (ws && readyToShoot) ws.Shoot();
         if (Vector3.Dot(player.transform.forward, transform.position - player.transform.position) > 0)
         {
             var forwardMotion = PathDirection() * (forwardMovementSpeed*Time.deltaTime);
