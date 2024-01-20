@@ -4888,6 +4888,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forwardMovementSpeed: 1
+  spawn: {fileID: 5048798298744062456, guid: cc6e8d5aa175acc41ba5f93067963380, type: 3}
+  die: {fileID: 0}
 --- !u!136 &7247249892358998155
 CapsuleCollider:
   m_ObjectHideFlags: 0
