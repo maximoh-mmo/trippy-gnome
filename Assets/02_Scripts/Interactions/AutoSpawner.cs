@@ -13,6 +13,7 @@ public class AutoSpawner : MonoBehaviour
     [SerializeField] private int shopValue;
     [SerializeField] private bool useShop;
     private ComboCounter player;
+    private bool isSpawning;
     public int MinSpawns { get; set; }
     public int NumToSpawn { set => numToSpawn = value; }
     public int ShopValue { set => shopValue = value; }
@@ -30,8 +31,9 @@ public class AutoSpawner : MonoBehaviour
     void Update()
     {
         if (!player) Destroy(gameObject);
-        if (spawnBubble.CountSpawns() < MinSpawns && !spawnBubble.SpawnStarted)
+        if (spawnBubble.CountSpawns() < MinSpawns && !spawnBubble.SpawnStarted && !isSpawning)
         {
+            isSpawning = true;
             if (useShop) ShopAndSpawn();
             else
             {
@@ -56,6 +58,7 @@ public class AutoSpawner : MonoBehaviour
             }
         }
         spawnBubble.SpawnEnemies(enemiesToSpawn.ToArray());
+        isSpawning = false;
     }
 
     public void AddMoney(int coins)
