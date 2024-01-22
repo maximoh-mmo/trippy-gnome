@@ -75,15 +75,10 @@ public class WeaponSystem : MonoBehaviour
             
             if (projectile.TryGetComponent<Rocket>(out var rocket))
             {
-                var target = getNearestTarget.GetTarget();
-                if (rocket && target)
-                {
-                    rocket.Setup(enemyType, range, projectileSpeed, damage, target);
-                    if (cc) cc.ShotFired = 1;
-                }
-                else if (rocket)
+                if (rocket)
                 {
                     rocket.Setup(enemyType, range, projectileSpeed, damage);
+                    if (getNearestTarget.GetTarget()) rocket.AddTarget(getNearestTarget.GetTarget());
                     if (cc) cc.ShotFired = 1;
                 }
             }

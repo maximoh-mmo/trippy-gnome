@@ -18,12 +18,8 @@ public class Rocket : MonoBehaviour
             speed = spd; 
             damage = dmg; 
         }
-        public void Setup(string tg, float rng, float spd, int dmg, Transform trg)
+        public void AddTarget(Transform trg)
         {
-            targetTag = tg;
-            range = rng;
-            speed = spd; 
-            damage = dmg;
             target = trg;
         }
     
