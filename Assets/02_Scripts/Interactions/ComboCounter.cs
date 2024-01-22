@@ -178,11 +178,17 @@ public class ComboCounter : MonoBehaviour
                 colorGrading.saturation.value = 5f * -t;
                 colorGrading.postExposure.value = 0.1f * -t;
             }
-            yield break;
         }
-        else yield return new WaitForSeconds(comboLevelDownTime);
-        Debug.Log("CountDownTimer run out");
-        ImHit();
+        if (currentComboLevel > 0)
+        {
+            for (float t = 0; t <= comboLevelDownTime; t += 0.5f)
+            {
+                yield return new WaitForSeconds(.5f);
+                hudController.Timer(comboLevelDownTime - t);
+            }
+            Debug.Log("CountDownTimer run out");
+            ImHit();
+        }
     }
     private void UpdateHUD()
     {
