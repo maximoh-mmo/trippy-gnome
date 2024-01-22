@@ -178,6 +178,7 @@ public class ComboCounter : MonoBehaviour
                 colorGrading.saturation.value = 5f * -t;
                 colorGrading.postExposure.value = 0.1f * -t;
             }
+            yield break;
         }
         else yield return new WaitForSeconds(comboLevelDownTime);
         Debug.Log("CountDownTimer run out");
