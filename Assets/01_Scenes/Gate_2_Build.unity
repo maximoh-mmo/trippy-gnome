@@ -6355,8 +6355,8 @@ MonoBehaviour:
   xySpeedMultiple: 30
   boundary: {x: 32, y: 18}
   barrelRollReuseTime: 2
-  barrelRollSpeed: 20
-  barrelRollDistance: 4
+  barrelRollSpeed: 10
+  barrelRollDistance: 2
 --- !u!1001 &959350062
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12805,7 +12805,7 @@ MonoBehaviour:
     minEnemies: 5
     enemiesToSpawn: 10
   secondsUntilNextRespawn: 0
-  psychoRushDuration: 0
+  psychoRushDuration: 5
   comboLevelDownTime: 10
   DSScore: {fileID: 95082797}
   DSComboLvl: {fileID: 113185776}
