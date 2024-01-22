@@ -2,20 +2,16 @@ using System;
 using System.Collections;
 using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.PostProcessing;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ComboCounter : MonoBehaviour
 {
     public ComboLevel[] combos;
-    private bool isShielded, cheatsEnabled;
+    private bool isShielded, cheatsEnabled, isCheating, isPsychorushActive;
     private int currentComboLevel, currentComboKills, totalKillCount, score, runningScore, shotsFired,maxComboLevel;
-    [SerializeField]private TMP_Text DSScore, DSComboLvl, DSKillCount, DSAccuracy;
-    [SerializeField]private GameObject[] WeaponIcons;
     private AutoSpawner autoSpawner;
     private WeaponSystem weaponSystem;
     private HUDController hudController;
@@ -23,13 +19,17 @@ public class ComboCounter : MonoBehaviour
     private MeshRenderer[] meshRenderers;
     private PlayerInputSystem playerInputSystem;
     private Coroutine coroutine;
-    private bool isCheating, isPsychorushActive;
+    
     [SerializeField]private float secondsUntilNextRespawn;
-    [FormerlySerializedAs("stepDownTime")] [SerializeField] private float comboLevelDownTime;
+    [SerializeField] private float psychoRushDuration;
+    [SerializeField] private float comboLevelDownTime;
+    [SerializeField]private TMP_Text DSScore, DSComboLvl, DSKillCount, DSAccuracy;
+    [SerializeField]private GameObject[] WeaponIcons;
+    
     private float psychoTimer, hueShiftVal;
     private ColorGrading colorGrading;
     private PostProcessVolume ppv;
-    private float hueShiftMin = -179f;
+    private float hueShiftMin = -180f;
     private float hueShiftMax = 180f;
 
     public bool IsCheating { get { return isCheating; } set { isCheating = value; } }
@@ -193,7 +193,7 @@ public class ComboCounter : MonoBehaviour
     }
     public void ActivatePsychoRush()
     {
-        psychoTimer = Time.unscaledTime+10f;
+        psychoTimer = Time.unscaledTime + psychoRushDuration;
         isPsychorushActive = true;
         StopAllCoroutines();
         weaponSystem.PsychoRush = true;

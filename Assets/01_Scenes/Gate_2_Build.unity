@@ -6354,9 +6354,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xySpeedMultiple: 30
   boundary: {x: 32, y: 18}
-  barrelRollReuseTime: 0
-  barrelRollSpeed: 0
-  barrelRollDistance: 0
+  barrelRollReuseTime: 2
+  barrelRollSpeed: 20
+  barrelRollDistance: 4
 --- !u!1001 &959350062
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12804,6 +12804,9 @@ MonoBehaviour:
     scoreMultiplier: 8
     minEnemies: 5
     enemiesToSpawn: 10
+  secondsUntilNextRespawn: 0
+  psychoRushDuration: 0
+  comboLevelDownTime: 10
   DSScore: {fileID: 95082797}
   DSComboLvl: {fileID: 113185776}
   DSKillCount: {fileID: 719447695}
@@ -12818,8 +12821,6 @@ MonoBehaviour:
   - {fileID: 1582634375}
   - {fileID: 462819708}
   - {fileID: 426532611}
-  secondsUntilNextRespawn: 0
-  comboLevelDownTime: 10
 --- !u!135 &888316172577334582
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -13099,6 +13100,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7022367312767008681}
+  - component: {fileID: 7022367312767008682}
   m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
@@ -13854,7 +13856,24 @@ Transform:
   - {fileID: 8202879603934043618}
   m_Father: {fileID: 511227236918280072}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -252}
+--- !u!111 &7022367312767008682
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2162663722589188978}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 842871fe1be01a741b049c0cad9b6d7c, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 97bc865be0723bf4b9d15e03bdb2e0fe, type: 2}
+  - {fileID: 7400000, guid: 842871fe1be01a741b049c0cad9b6d7c, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!23 &7197436148105979500
 MeshRenderer:
   m_ObjectHideFlags: 0
