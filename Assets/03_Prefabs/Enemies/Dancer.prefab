@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 4216934875241287664}
   - component: {fileID: -7228882026709010799}
   - component: {fileID: 4602904122800230435}
+  - component: {fileID: 2630479866221258157}
   m_Layer: 7
   m_Name: Dancer
   m_TagString: Enemy
@@ -251,6 +252,18 @@ MonoBehaviour:
   moveToPlayerSpeed: 2
   movementPatternSpeed: 3
   direction: 1
+--- !u!114 &2630479866221258157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744851290034003747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98504be446f70574b822b251518fe1fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1036422344773476022
 GameObject:
   m_ObjectHideFlags: 0
