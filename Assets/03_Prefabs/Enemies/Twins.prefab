@@ -180,8 +180,8 @@ MonoBehaviour:
     - {fileID: 380433323089557528}
     - {fileID: 4431100348748369086}
     projectile: {fileID: 6065058955878882625, guid: 340efc0d807ab9646b7841f03669c6a0, type: 3}
-    speed: 55
-    rateOfFire: 2
+    speed: 50
+    rateOfFire: 4
     range: 125
     allowButtonHold: 0
 --- !u!136 &4718912865392371367
@@ -10427,8 +10427,8 @@ MonoBehaviour:
     - {fileID: 5700009916288220465}
     - {fileID: 859482761485424993}
     projectile: {fileID: 6065058955878882625, guid: 340efc0d807ab9646b7841f03669c6a0, type: 3}
-    speed: 55
-    rateOfFire: 2
+    speed: 50
+    rateOfFire: 3
     range: 125
     allowButtonHold: 0
 --- !u!136 &6988047473257594596

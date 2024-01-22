@@ -58,6 +58,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 1
   CoinsForSpawnSystem: 1
+  lootDropOnBoom: 1
 --- !u!114 &1405487351327399711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,16 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23e08de4aa500a340a152dd005bbc490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapons:
-  - weaponName: MG
-    damage: 1
-    firePoints:
-    - {fileID: 5700009916288220465}
-    projectile: {fileID: 6065058955878882625, guid: 78ccba50a945472479f002e9faecd374, type: 3}
-    speed: 10
-    rateOfFire: 1.25
-    range: 50
-    allowButtonHold: 0
+  weapons: []
 --- !u!114 &7596434589679192236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,6 +85,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forwardMovementSpeed: 1
+  spawn: {fileID: 0}
+  die: {fileID: 0}
 --- !u!136 &7247249892358998155
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -173,13 +167,13 @@ MonoBehaviour:
   loots:
   - powerUp: {fileID: 5211190968981285719, guid: 509183e5eb26d9c49b4f1d688f38539f, type: 3}
     type: 0
-    chance: 10
+    chance: 33
   - powerUp: {fileID: 1688644051278918043, guid: f19e4d440132a974abbf1bcac3a062aa, type: 3}
     type: 1
-    chance: 3.3
+    chance: 33
   - powerUp: {fileID: 2041170997438138626, guid: b916f5c9add51de44937f01e20aeb1e6, type: 3}
     type: 2
-    chance: 5
+    chance: 33
   scale: 4
 --- !u!1 &5522098191010700669
 GameObject:
