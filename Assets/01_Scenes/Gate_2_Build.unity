@@ -6356,6 +6356,7 @@ MonoBehaviour:
   boundary: {x: 32, y: 18}
   barrelRollReuseTime: 0
   barrelRollSpeed: 0
+  barrelRollDistance: 0
 --- !u!1001 &959350062
 PrefabInstance:
   m_ObjectHideFlags: 0

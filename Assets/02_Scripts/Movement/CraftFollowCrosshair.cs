@@ -39,13 +39,6 @@ public class CraftFollowCrosshair : MonoBehaviour
         return new Vector3(Mathf.Clamp(moveGoal.x, -cl.x, cl.x), Mathf.Clamp(moveGoal.y, -cl.y, cl.y), crosshairPosition.z+offset);
     }
     
-    /// <summary>
-    /// Uses Pythagorean Trigonometry to calculate a Vector 2 between two parallel sets of limits (Vector2 A and Vector2 B)
-    /// take the lengths, calculate the angle of the triangle then use this to calculate the distance
-    /// </summary>
-    /// <param name="a"></param>
-    /// <param name="b"></param>
-    /// <returns>Vector2</returns>
     Vector2 CalculateLimitBasedOnDistance(Vector2 a, Vector2 b)
     {
         if (Camera.main == null) return Vector2.zero;
@@ -62,11 +55,6 @@ public class CraftFollowCrosshair : MonoBehaviour
         return returnVector;
     }
     
-    /// <summary>
-    /// Iterates through renderers to get size of rendered object in child objects.
-    /// </summary>
-    /// <returns>Vector2</returns>
-    ///
     private Vector3 GetSize(GameObject t)
     {
         Vector3 size = Vector3.zero;

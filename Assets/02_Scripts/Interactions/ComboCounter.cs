@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.PostProcessing;
@@ -28,7 +29,7 @@ public class ComboCounter : MonoBehaviour
     private float psychoTimer, hueShiftVal;
     private ColorGrading colorGrading;
     private PostProcessVolume ppv;
-    private float hueShiftMin = -180f;
+    private float hueShiftMin = -179f;
     private float hueShiftMax = 180f;
 
     public bool IsCheating { get { return isCheating; } set { isCheating = value; } }
@@ -38,10 +39,6 @@ public class ComboCounter : MonoBehaviour
     {
         ppv = Camera.main.GetComponent<PostProcessVolume>();
         colorGrading = ppv.profile.GetSetting<ColorGrading>();
-        var mesherenderers = GetComponentsInChildren<MeshRenderer>();
-        meshRenderers = mesherenderers
-            .Where(mr => mr.enabled)
-            .ToArray();
         shield = GameObject.Find("Shield").GetComponent<MeshRenderer>();
         hudController = FindFirstObjectByType<HUDController>();
         weaponSystem = FindFirstObjectByType<WeaponSystem>();
@@ -196,7 +193,6 @@ public class ComboCounter : MonoBehaviour
     }
     public void ActivatePsychoRush()
     {
-        ppv.profile.GetSetting<ColorGrading>().active = true;
         psychoTimer = Time.unscaledTime+10f;
         isPsychorushActive = true;
         StopAllCoroutines();
@@ -204,7 +200,6 @@ public class ComboCounter : MonoBehaviour
     }
     private void DeactivatePsychoRush()
     {
-        ppv.profile.GetSetting<ColorGrading>().active = false;
         isPsychorushActive = false;
         weaponSystem.PsychoRush = false;
         psychoTimer = 0;
@@ -219,9 +214,9 @@ public class ComboCounter : MonoBehaviour
             DeactivatePsychoRush();
             StartCoroutine("ComboLevelCountDown");
         }
-
         if (hueShiftVal >= hueShiftMax) hueShiftVal = hueShiftMin;
-        colorGrading.hueShift.value += 1f;
+        hueShiftVal += 1;
+        colorGrading.hueShift.value = hueShiftVal;
     }
 }
 

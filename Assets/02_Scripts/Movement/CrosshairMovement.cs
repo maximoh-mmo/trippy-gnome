@@ -7,16 +7,22 @@ public class CrosshairMovement : MonoBehaviour
     [SerializeField] private Vector2 boundary;
     [SerializeField] private float barrelRollReuseTime;
     [SerializeField] private float barrelRollSpeed;
+    [SerializeField] private float barrelRollDistance;
     private bool isRolling;
+    private Animation animation;
     private Vector2 inputVector;
     private static Vector2 rollDirection;
     private Vector3 rollStart;
     private PlayerInputSystem playerInputSystem;
+    private string left, right;
     private float BarrelRollReuseTime { get { return barrelRollReuseTime; } set { barrelRollReuseTime = value; } }
     public Vector2 Boundry => boundary;
     public Vector2 InputVector => inputVector;
     private void Awake()
     {
+        animation = FindObjectOfType<ComboCounter>().GetComponentInChildren<Animation>();
+        left = "BarrelRollLeft";
+        right = "BarrelRollRight";
         playerInputSystem = new PlayerInputSystem();
         playerInputSystem.InGame.Enable();
         playerInputSystem.InGame.BarrelRoll.performed += BarrelRoll;
@@ -28,7 +34,24 @@ public class CrosshairMovement : MonoBehaviour
         var startPosition = transform.localPosition;
         if (isRolling)
         {
-            DoRoll(startPosition);
+            if (!animation.isPlaying)
+            {
+                if (rollDirection.x < 0)
+                {
+                    animation.Play(left);
+                }
+                else
+                {
+                    animation.Play(right);    
+                }
+                
+            }
+            var pos = startPosition;
+            var endPos = new Vector3(rollDirection.x, rollDirection.y);
+            pos += endPos * barrelRollSpeed;
+            if (Vector3.Distance(pos, rollStart) > barrelRollDistance) isRolling = false; 
+            transform.localPosition = new Vector3(Mathf.Clamp(pos.x, -boundary.x, boundary.x),
+                Mathf.Clamp(pos.y, -boundary.y, boundary.y), pos.z);
             return;
         }
         var multiple = (Time.deltaTime * xySpeedMultiple);
@@ -44,13 +67,7 @@ public class CrosshairMovement : MonoBehaviour
         rollStart = transform.position;
         isRolling = true;
     }
-
-    private void DoRoll(Vector3 position)
-    {
-        var endPosition = new Vector3(rollDirection.x, rollDirection.y); 
-        transform.localPosition = new Vector3(Mathf.Clamp(endPosition.x, -boundary.x, boundary.x),
-            Mathf.Clamp(endPosition.y, -boundary.y, boundary.y), endPosition.z);
-    }
+    
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
