@@ -313,7 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7042781d3c720b74489da22767723dc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileHit: {fileID: 5580125614850984573, guid: 3617efdf92c13604698e6ae95c3d5060, type: 3}
+  projectileHit: {fileID: 9034638774410894581, guid: 7c2ee658c1673964f8e4549c4b54c069, type: 3}
 --- !u!135 &2115963000912765306
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -353,9 +353,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0e09767281dd05546af26b5816f424b9, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 45f7e8ed247d88f49888ec8c0f9e92c9, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.108
   m_Pitch: 1
   Loop: 0
   Mute: 0
