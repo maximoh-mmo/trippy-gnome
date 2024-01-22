@@ -4,6 +4,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -24,14 +25,20 @@ public class ComboCounter : MonoBehaviour
     private bool isCheating, isPsychorushActive;
     [SerializeField]private float secondsUntilNextRespawn;
     [FormerlySerializedAs("stepDownTime")] [SerializeField] private float comboLevelDownTime;
-    private float psychoTimer, flashTimer;
-    [SerializeField] private float flashDelay = 0.3f;
+    private float psychoTimer, hueShiftVal;
+    private ColorGrading colorGrading;
+    private PostProcessVolume ppv;
+    private float hueShiftMin = -180f;
+    private float hueShiftMax = 180f;
+    private float hueMultiplier = 1f;
 
     public bool IsCheating { get { return isCheating; } set { isCheating = value; } }
     public int ShotFired { get { return ShotFired; } set { shotsFired += 1; } }
     
     private void Start()
     {
+        ppv = Camera.main.GetComponent<PostProcessVolume>();
+        colorGrading = ppv.profile.GetSetting<ColorGrading>();
         var mesherenderers = GetComponentsInChildren<MeshRenderer>();
         meshRenderers = mesherenderers
             .Where(mr => mr.enabled)
@@ -190,6 +197,7 @@ public class ComboCounter : MonoBehaviour
     }
     public void ActivatePsychoRush()
     {
+        ppv.profile.GetSetting<ColorGrading>().active = true;
         psychoTimer = Time.unscaledTime+10f;
         isPsychorushActive = true;
         StopAllCoroutines();
@@ -197,6 +205,7 @@ public class ComboCounter : MonoBehaviour
     }
     private void DeactivatePsychoRush()
     {
+        ppv.profile.GetSetting<ColorGrading>().active = false;
         isPsychorushActive = false;
         weaponSystem.PsychoRush = false;
         psychoTimer = 0;
@@ -205,16 +214,15 @@ public class ComboCounter : MonoBehaviour
     private void Update()
     {
         if (psychoTimer == 0) return;
-        if (Time.unscaledTime > psychoTimer) {
+        if (Time.unscaledTime > psychoTimer)
+        {
             psychoTimer = 0;
             DeactivatePsychoRush();
             StartCoroutine("ComboLevelCountDown");
-            foreach (var meshRenderer in meshRenderers) meshRenderer.enabled = true; }
-        if (Time.unscaledTime > flashTimer) { 
-            foreach (var meshRenderer in meshRenderers) meshRenderer.enabled = !meshRenderer.enabled;
-            flashTimer = Time.unscaledTime + flashDelay; }
-        var currentT = psychoTimer - Time.unscaledTime;
-        if (currentT < 2) flashDelay = Mathf.Sqrt(currentT / 7);
+        }
+
+        if (hueShiftVal >= hueShiftMax) hueShiftVal = hueShiftMin;
+        colorGrading.hueShift.value += 1f;
     }
 }
 
