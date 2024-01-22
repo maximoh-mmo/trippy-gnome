@@ -154,6 +154,7 @@ public class ComboCounter : MonoBehaviour
             runningScore = 0;
             UpdateHUD();
             UpdateDependants(); }
+        StartCoroutine("ComboLevelCountDown");
     }
     private void UpdateDependants()
     {
@@ -181,7 +182,7 @@ public class ComboCounter : MonoBehaviour
         }
         if (currentComboLevel > 0)
         {
-            for (float t = 0; t <= comboLevelDownTime; t += 0.5f)
+            for (float t = 0; t < comboLevelDownTime; t += 0.5f)
             {
                 yield return new WaitForSeconds(.5f);
                 hudController.Timer(comboLevelDownTime - t);
