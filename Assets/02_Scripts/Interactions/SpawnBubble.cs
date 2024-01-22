@@ -76,7 +76,9 @@ public class SpawnBubble : MonoBehaviour
     }
     public int CountSpawns()
     {
-        var enemies = GameObject.FindObjectsOfType<EnemyBehaviour>().Distinct();
+        var enemies = FindObjectsOfType<EnemyBehaviour>().Distinct();
+        var spawning = FindObjectsOfType<TrailRenderer>().Distinct();
+        if (spawning.Any()) return spawning.Count() / 3 + enemies.Count();
         return enemies.Count();
     }
     void SpawnEnemy(Vector3 pos)

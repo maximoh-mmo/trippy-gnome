@@ -54,7 +54,7 @@ public class EnemyBehaviour : MonoBehaviour
             element.enabled = true; 
         }
         spawned = true;
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.45f);
         readyToShoot = true;
     }
     void Update()

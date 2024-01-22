@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 67650553489357030}
   - component: {fileID: 4216934875241287664}
   - component: {fileID: -7228882026709010799}
+  - component: {fileID: 5071497907223828915}
   m_Layer: 7
   m_Name: Watcher
   m_TagString: Enemy
@@ -178,7 +179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forwardMovementSpeed: 4
   spawn: {fileID: 5048798298744062456, guid: cc6e8d5aa175acc41ba5f93067963380, type: 3}
-  die: {fileID: 0}
+  die: {fileID: 5048798298744062456, guid: 05b43aeb346d5604ea55a6aa5df83b89, type: 3}
 --- !u!136 &132302715674916368
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -274,6 +275,18 @@ MonoBehaviour:
     type: 2
     chance: 3
   scale: 4
+--- !u!114 &5071497907223828915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744851290034003747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98504be446f70574b822b251518fe1fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3518828880503170422
 GameObject:
   m_ObjectHideFlags: 0

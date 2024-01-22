@@ -35,8 +35,7 @@ public class WeaponSystem : MonoBehaviour
     }
     private void Update()
     {
-        if (Time.timeScale == 0) return;
-        //if (enemyType == "Player") Shoot();
+        if (Time.timeScale == 0 || enemyType == "Player") return; 
         if (psychoRush) return;
         if (allowButtonHold == false)
         {

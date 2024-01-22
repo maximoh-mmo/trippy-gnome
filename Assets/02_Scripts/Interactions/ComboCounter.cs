@@ -41,7 +41,6 @@ public class ComboCounter : MonoBehaviour
         weaponSystem = FindFirstObjectByType<WeaponSystem>();
         autoSpawner = FindFirstObjectByType<AutoSpawner>();
         UpdateDependants();
-        StartCoroutine("ComboLevelCountDown");
         Time.timeScale = 1;
         playerInputSystem = new PlayerInputSystem();
         playerInputSystem.InGame.Enable();

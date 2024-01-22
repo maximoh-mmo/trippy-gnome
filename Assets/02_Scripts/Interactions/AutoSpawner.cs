@@ -12,14 +12,19 @@ public class AutoSpawner : MonoBehaviour
     private List<GameObject>enemiesToSpawn;
     [SerializeField] private int shopValue;
     [SerializeField] private bool useShop;
+    [SerializeField] private float delay;
+    private float startTime;
     private ComboCounter player;
+    private bool isSpawning;
+    private bool startDelay;
     public int MinSpawns { get; set; }
     public int NumToSpawn { set => numToSpawn = value; }
     public int ShopValue { set => shopValue = value; }
     void Start()
     {
+        startTime = Time.time + delay;
         player = FindFirstObjectByType<ComboCounter>();
-        spawnBubble = GameObject.FindFirstObjectByType<SpawnBubble>();
+        spawnBubble = FindFirstObjectByType<SpawnBubble>();
         enemiesToSpawn = new List<GameObject>();
         minCost = enemies
             .OrderBy(t => t.cost)
@@ -29,9 +34,20 @@ public class AutoSpawner : MonoBehaviour
     }
     void Update()
     {
-        if (!player) Destroy(gameObject);
-        if (spawnBubble.CountSpawns() < MinSpawns && !spawnBubble.SpawnStarted)
+        if (!startDelay)
         {
+            if (Time.time > startTime)
+            {
+                startDelay = true;
+                player.StartCoroutine("ComboLevelCountDown");
+            }
+            else
+                return;
+        }
+        if (!player) Destroy(gameObject);
+        if (spawnBubble.CountSpawns() < MinSpawns && !spawnBubble.SpawnStarted && !isSpawning)
+        {
+            isSpawning = true;
             if (useShop) ShopAndSpawn();
             else
             {
@@ -56,6 +72,7 @@ public class AutoSpawner : MonoBehaviour
             }
         }
         spawnBubble.SpawnEnemies(enemiesToSpawn.ToArray());
+        isSpawning = false;
     }
 
     public void AddMoney(int coins)
