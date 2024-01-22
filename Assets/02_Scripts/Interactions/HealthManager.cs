@@ -10,10 +10,13 @@ public class HealthManager : MonoBehaviour
     [SerializeField] private bool lootDropOnBoom = true;
     private AutoSpawner autoSpawner;
     private ComboCounter counter;
+    private GameObject poof;
+    
     public int MaxHealth => maxHealth;
 
     private void Start()
     {
+        poof = GetComponentInChildren<EnemyBehaviour>().DeathPrefab;
         currentHealth = maxHealth;
         counter = FindObjectOfType<ComboCounter>();
         loot = GetComponent<Loot>();
@@ -26,6 +29,7 @@ public class HealthManager : MonoBehaviour
             counter.AddKill(maxHealth);
             autoSpawner.AddMoney(CoinsForSpawnSystem);
             if (loot) GetComponent<Loot>().GetLoot(transform.position);
+            Instantiate(poof, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

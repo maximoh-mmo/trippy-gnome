@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField]private GameObject spawn, die;
     private bool spawned, readyToShoot;
     public float ForwardMovementSpeed => forwardMovementSpeed;
+    public GameObject DeathPrefab { get => die; }
     public bool IsTargetted { get => isTargetted; set => isTargetted = value; }
     void Start()
     {
