@@ -5,16 +5,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.PostProcessing;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ComboCounter : MonoBehaviour
 {
     public ComboLevel[] combos;
-    private bool isShielded, cheatsEnabled;
+    private bool isShielded, cheatsEnabled, isCheating, isPsychorushActive;
     private int currentComboLevel, currentComboKills, totalKillCount, score, runningScore, shotsFired,maxComboLevel;
-    [SerializeField]private TMP_Text DSScore, DSComboLvl, DSKillCount, DSAccuracy;
-    [SerializeField]private GameObject[] WeaponIcons;
     private AutoSpawner autoSpawner;
     private WeaponSystem weaponSystem;
     private HUDController hudController;
@@ -22,9 +19,13 @@ public class ComboCounter : MonoBehaviour
     private MeshRenderer[] meshRenderers;
     private PlayerInputSystem playerInputSystem;
     private Coroutine coroutine;
-    private bool isCheating, isPsychorushActive;
+    
     [SerializeField]private float secondsUntilNextRespawn;
-    [FormerlySerializedAs("stepDownTime")] [SerializeField] private float comboLevelDownTime;
+    [SerializeField] private float psychoRushDuration;
+    [SerializeField] private float comboLevelDownTime;
+    [SerializeField]private TMP_Text DSScore, DSComboLvl, DSKillCount, DSAccuracy;
+    [SerializeField]private GameObject[] WeaponIcons;
+    
     private float psychoTimer, hueShiftVal;
     private ColorGrading colorGrading;
     private PostProcessVolume ppv;
@@ -38,10 +39,6 @@ public class ComboCounter : MonoBehaviour
     {
         ppv = Camera.main.GetComponent<PostProcessVolume>();
         colorGrading = ppv.profile.GetSetting<ColorGrading>();
-        var mesherenderers = GetComponentsInChildren<MeshRenderer>();
-        meshRenderers = mesherenderers
-            .Where(mr => mr.enabled)
-            .ToArray();
         shield = GameObject.Find("Shield").GetComponent<MeshRenderer>();
         hudController = FindFirstObjectByType<HUDController>();
         weaponSystem = FindFirstObjectByType<WeaponSystem>();
@@ -196,15 +193,13 @@ public class ComboCounter : MonoBehaviour
     }
     public void ActivatePsychoRush()
     {
-        ppv.profile.GetSetting<ColorGrading>().active = true;
-        psychoTimer = Time.unscaledTime+10f;
+        psychoTimer = Time.unscaledTime + psychoRushDuration;
         isPsychorushActive = true;
         StopAllCoroutines();
         weaponSystem.PsychoRush = true;
     }
     private void DeactivatePsychoRush()
     {
-        ppv.profile.GetSetting<ColorGrading>().active = false;
         isPsychorushActive = false;
         weaponSystem.PsychoRush = false;
         psychoTimer = 0;
@@ -219,9 +214,9 @@ public class ComboCounter : MonoBehaviour
             DeactivatePsychoRush();
             StartCoroutine("ComboLevelCountDown");
         }
-
         if (hueShiftVal >= hueShiftMax) hueShiftVal = hueShiftMin;
-        colorGrading.hueShift.value += 1f;
+        hueShiftVal += 1;
+        colorGrading.hueShift.value = hueShiftVal;
     }
 }
 
