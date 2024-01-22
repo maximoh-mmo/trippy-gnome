@@ -16,7 +16,10 @@ public class HealthManager : MonoBehaviour
 
     private void Start()
     {
-        poof = GetComponentInChildren<EnemyBehaviour>().DeathPrefab;
+        if (GetComponentInChildren<EnemyBehaviour>().DeathPrefab != null)
+        {
+            poof = GetComponentInChildren<EnemyBehaviour>().DeathPrefab;
+        }
         currentHealth = maxHealth;
         counter = FindObjectOfType<ComboCounter>();
         loot = GetComponent<Loot>();
@@ -29,7 +32,7 @@ public class HealthManager : MonoBehaviour
             counter.AddKill(maxHealth);
             autoSpawner.AddMoney(CoinsForSpawnSystem);
             if (loot) GetComponent<Loot>().GetLoot(transform.position);
-            Instantiate(poof, transform.position, Quaternion.identity);
+            if (poof) Instantiate(poof, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

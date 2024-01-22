@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
     Vector3 startPos = Vector3.zero;
     string targetTag = string.Empty;
     private Rigidbody rb;
-    private GameObject projectileHit;
+    [SerializeField]private GameObject projectileHit;
 
     public void Setup(string tg, float rng, float spd, int dmg)
     {

@@ -313,6 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7042781d3c720b74489da22767723dc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileHit: {fileID: 5580125614850984573, guid: 3617efdf92c13604698e6ae95c3d5060, type: 3}
 --- !u!135 &2115963000912765306
 SphereCollider:
   m_ObjectHideFlags: 0

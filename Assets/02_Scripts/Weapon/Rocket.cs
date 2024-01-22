@@ -9,6 +9,7 @@ public class Rocket : MonoBehaviour
         private Vector3 startPos = Vector3.zero;
         private string targetTag = string.Empty;
         private Rigidbody rb;
+        [SerializeField] private GameObject projectileHit;
         public Transform Target { set { target = value; } }
         public void Setup(string tg, float rng, float spd, int dmg)
         {
@@ -48,8 +49,8 @@ public class Rocket : MonoBehaviour
             if (other.gameObject.CompareTag(targetTag) && other.gameObject.GetComponent<HealthManager>() != null)
             {
                 other.gameObject.GetComponent<HealthManager>().TakeDamage(damage);
-                Destroy(gameObject); 
-            }
+                if (projectileHit) Instantiate(projectileHit, other.ClosestPointOnBounds(transform.position) , Quaternion.identity);
+                Destroy(gameObject);             }
 
             if (other.gameObject.GetComponent<ComboCounter>() != null)
             {
