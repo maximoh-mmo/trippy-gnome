@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: VortexTrail
+  m_Name: VortexTrail_Poof
   m_Shader: {fileID: -6465566751694194690, guid: f537d4dbe6f0cec4cb29bf0a9186b776, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
