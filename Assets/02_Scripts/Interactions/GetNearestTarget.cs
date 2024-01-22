@@ -36,6 +36,7 @@ public class GetNearestTarget : MonoBehaviour
             Vector3.Normalize(t.transform.position - aimDirection.position)))
          //.Where(t => t.IsTargetted == false)
          .Distinct();
-      return target.Last().transform;
+      if(target.Last()) return target.Last().transform;
+      return null;
    }
 }
