@@ -12738,7 +12738,7 @@ MonoBehaviour:
     - {fileID: 713030342}
     projectile: {fileID: 2033890919814722285, guid: f732c060d688e7749a88915f61530193, type: 3}
     speed: 100
-    rateOfFire: 0.075
+    rateOfFire: 0.5
     range: 100
     allowButtonHold: 0
   - weaponName: Rocket1
@@ -12748,7 +12748,7 @@ MonoBehaviour:
     - {fileID: 1044872519}
     projectile: {fileID: 2033890919814722285, guid: f732c060d688e7749a88915f61530193, type: 3}
     speed: 100
-    rateOfFire: 0.07
+    rateOfFire: 0.4
     range: 100
     allowButtonHold: 0
 --- !u!114 &888316172577334581
