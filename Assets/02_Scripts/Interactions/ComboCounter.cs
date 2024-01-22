@@ -103,6 +103,8 @@ public class ComboCounter : MonoBehaviour
     }
     public void AddKill(int basePoints)
     {
+        colorGrading.saturation.value = 0;
+        colorGrading.postExposure.value = 0;
         totalKillCount += 1;
         if (isPsychorushActive) return;
         StopCoroutine("ComboLevelCountDown");
@@ -164,13 +166,20 @@ public class ComboCounter : MonoBehaviour
     {
         return points * combos[currentComboLevel].scoreMultiplier;
     }
+
     IEnumerator ComboLevelCountDown()
     {
-        for (float t = 0; t<comboLevelDownTime;t+=1)
+        if (currentComboLevel == 0)
         {
-            yield return new WaitForSeconds(1);
-            hudController.Timer(comboLevelDownTime-t);
+            for (float t = 0; t <= comboLevelDownTime; t += 0.5f)
+            {
+                yield return new WaitForSeconds(.5f);
+                hudController.Timer(comboLevelDownTime - t);
+                colorGrading.saturation.value = 5f * -t;
+                colorGrading.postExposure.value = 0.1f * -t;
+            }
         }
+        else yield return new WaitForSeconds(comboLevelDownTime);
         Debug.Log("CountDownTimer run out");
         ImHit();
     }
@@ -199,6 +208,8 @@ public class ComboCounter : MonoBehaviour
     public void ActivatePsychoRush()
     {
         if (isPsychorushActive) return;
+        colorGrading.saturation.value = 0;
+        colorGrading.postExposure.value = 0;
         isPsychorushActive = true;
         psychoTimer = Time.unscaledTime + psychoRushDuration;
         oldSpeed = moveWithPath.Speed;
