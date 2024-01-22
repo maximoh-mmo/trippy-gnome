@@ -1,4 +1,3 @@
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,7 +8,8 @@ public class CrosshairMovement : MonoBehaviour
     [SerializeField] private float barrelRollReuseTime;
     [SerializeField] private float barrelRollSpeed;
     private bool isRolling;
-    private Vector2 inputVector, rollDirection;
+    private Vector2 inputVector;
+    private static Vector2 rollDirection;
     private Vector3 rollStart;
     private PlayerInputSystem playerInputSystem;
     private float BarrelRollReuseTime { get { return barrelRollReuseTime; } set { barrelRollReuseTime = value; } }
@@ -29,6 +29,7 @@ public class CrosshairMovement : MonoBehaviour
         if (isRolling)
         {
             DoRoll(startPosition);
+            return;
         }
         var multiple = (Time.deltaTime * xySpeedMultiple);
         var endPosition = new Vector3( inputVector.x * multiple,inputVector.y * multiple) + startPosition; 
@@ -44,7 +45,7 @@ public class CrosshairMovement : MonoBehaviour
         isRolling = true;
     }
 
-    private void DoRoll(Vector3 position);
+    private void DoRoll(Vector3 position)
     {
         var endPosition = new Vector3(rollDirection.x, rollDirection.y); 
         transform.localPosition = new Vector3(Mathf.Clamp(endPosition.x, -boundary.x, boundary.x),
