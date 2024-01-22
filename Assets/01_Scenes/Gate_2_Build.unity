@@ -3088,9 +3088,9 @@ MonoBehaviour:
   - prefab: {fileID: 744851290034003747, guid: d4a8904f82a337c40b9001d7cce81643, type: 3}
     cost: 2
   - prefab: {fileID: 744851290034003747, guid: 13fc4d34d198ff6468a40ced187bb983, type: 3}
-    cost: 11
-  - prefab: {fileID: 744851290034003747, guid: 642f9e8590f598d4b99dec649cbfe8f6, type: 3}
     cost: 5
+  - prefab: {fileID: 744851290034003747, guid: 642f9e8590f598d4b99dec649cbfe8f6, type: 3}
+    cost: 11
   - prefab: {fileID: 744851290034003747, guid: 94cebc8b9cb1cf54aa4bbcf104938c15, type: 3}
     cost: 15
   shopValue: 10
@@ -12818,7 +12818,6 @@ MonoBehaviour:
   - {fileID: 426532611}
   secondsUntilNextRespawn: 0
   comboLevelDownTime: 10
-  flashDelay: 0.3
 --- !u!135 &888316172577334582
 SphereCollider:
   m_ObjectHideFlags: 0

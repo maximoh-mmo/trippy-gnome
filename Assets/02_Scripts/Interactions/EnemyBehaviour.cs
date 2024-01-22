@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour
 {
-    private bool isTargetted = false;
     [SerializeField] private float forwardMovementSpeed;
     private int nearestWp;
     private Vector3 startPosition;
@@ -18,7 +16,6 @@ public class EnemyBehaviour : MonoBehaviour
     private bool spawned, readyToShoot;
     public float ForwardMovementSpeed => forwardMovementSpeed;
     public GameObject DeathPrefab { get => die; }
-    public bool IsTargetted { get => isTargetted; set => isTargetted = value; }
     void Start()
     {
         ws = GetComponent<WeaponSystem>();

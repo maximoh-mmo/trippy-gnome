@@ -30,7 +30,6 @@ public class ComboCounter : MonoBehaviour
     private PostProcessVolume ppv;
     private float hueShiftMin = -180f;
     private float hueShiftMax = 180f;
-    private float hueMultiplier = 1f;
 
     public bool IsCheating { get { return isCheating; } set { isCheating = value; } }
     public int ShotFired { get { return ShotFired; } set { shotsFired += 1; } }
