@@ -12770,42 +12770,43 @@ MonoBehaviour:
     minEnemies: 2
     enemiesToSpawn: 3
   - weapon: DblMG
-    killsNeeded: 10
+    killsNeeded: 5
     scoreMultiplier: 2
     minEnemies: 3
     enemiesToSpawn: 4
   - weapon: TripleMG
-    killsNeeded: 15
+    killsNeeded: 10
     scoreMultiplier: 3
     minEnemies: 4
     enemiesToSpawn: 4
   - weapon: Laser
-    killsNeeded: 20
+    killsNeeded: 15
     scoreMultiplier: 4
     minEnemies: 4
     enemiesToSpawn: 6
   - weapon: DblLaser
-    killsNeeded: 25
+    killsNeeded: 20
     scoreMultiplier: 5
     minEnemies: 5
     enemiesToSpawn: 7
   - weapon: RingLaser
-    killsNeeded: 30
+    killsNeeded: 25
     scoreMultiplier: 6
     minEnemies: 4
     enemiesToSpawn: 7
   - weapon: Rocket
-    killsNeeded: 40
+    killsNeeded: 30
     scoreMultiplier: 7
     minEnemies: 4
     enemiesToSpawn: 9
   - weapon: DblRocket
-    killsNeeded: 10
+    killsNeeded: 40
     scoreMultiplier: 8
     minEnemies: 5
     enemiesToSpawn: 10
   secondsUntilNextRespawn: 0
   psychoRushDuration: 5
+  psychoRushSpeedMultiplier: 4
   comboLevelDownTime: 10
   DSScore: {fileID: 95082797}
   DSComboLvl: {fileID: 113185776}
