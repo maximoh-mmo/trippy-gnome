@@ -137,7 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forwardMovementSpeed: 3
   spawn: {fileID: 5048798298744062456, guid: cc6e8d5aa175acc41ba5f93067963380, type: 3}
-  die: {fileID: 0}
+  die: {fileID: 5048798298744062456, guid: 05b43aeb346d5604ea55a6aa5df83b89, type: 3}
 --- !u!114 &4595849469710577974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10384,7 +10384,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forwardMovementSpeed: 3
   spawn: {fileID: 5048798298744062456, guid: cc6e8d5aa175acc41ba5f93067963380, type: 3}
-  die: {fileID: 0}
+  die: {fileID: 5048798298744062456, guid: 05b43aeb346d5604ea55a6aa5df83b89, type: 3}
 --- !u!114 &6342799077357994108
 MonoBehaviour:
   m_ObjectHideFlags: 0
