@@ -31,7 +31,7 @@ Material:
     - _DissolveScale: 35
     m_Colors:
     - _Color_01: {r: 1, g: 1, b: 1, a: 0}
-    - _Color_02: {r: 0.6027511, g: 0, b: 0.7921569, a: 0}
+    - _Color_02: {r: 1, g: 0.90871257, b: 0.33490568, a: 0}
     - _DissolveSpeed: {r: -0.5, g: 0, b: 0, a: 0}
     - _MainTexSpeed: {r: -0.4, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

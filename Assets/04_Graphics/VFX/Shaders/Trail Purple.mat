@@ -43,7 +43,7 @@ Material:
     - _BUILTIN_QueueOffset: 0
     - _DissolveScale: 35
     m_Colors:
-    - _Color_01: {r: 3.6742723, g: 12.996039, b: 7.541503, a: 1}
+    - _Color_01: {r: 7.7007427, g: 4.5046844, b: 10.052559, a: 1}
     - _Color_02: {r: 1, g: 1, b: 1, a: 0.62352943}
     - _DissolveSpeed: {r: -0.5, g: 0, b: 0, a: 0}
     - _MainTexSpeed: {r: -0.4, g: 0, b: 0, a: 0}
