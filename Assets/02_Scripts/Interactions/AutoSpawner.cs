@@ -45,7 +45,7 @@ public class AutoSpawner : MonoBehaviour
                 return;
         }
         if (!player) Destroy(gameObject);
-        if (spawnBubble.CountSpawns() < MinSpawns && !spawnBubble.SpawnStarted)
+        if (spawnBubble.CountSpawns() < MinSpawns && !spawnBubble.SpawnStarted && !isSpawning)
         {
             isSpawning = true;
             if (useShop) ShopAndSpawn();
@@ -72,6 +72,7 @@ public class AutoSpawner : MonoBehaviour
             }
         }
         spawnBubble.SpawnEnemies(enemiesToSpawn.ToArray());
+        isSpawning = false;
     }
 
     public void AddMoney(int coins)
