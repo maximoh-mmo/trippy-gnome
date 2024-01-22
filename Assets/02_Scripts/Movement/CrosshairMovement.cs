@@ -9,9 +9,9 @@ public class CrosshairMovement : MonoBehaviour
     [SerializeField] private float barrelRollSpeed;
     [SerializeField] private float barrelRollDistance;
     private bool isRolling;
-    private Animation animation;
+    private Animation ani;
     private Vector2 inputVector;
-    private static Vector2 rollDirection;
+    private Vector2 rollDirection;
     private Vector3 rollStart;
     private PlayerInputSystem playerInputSystem;
     private string left, right;
@@ -20,7 +20,7 @@ public class CrosshairMovement : MonoBehaviour
     public Vector2 InputVector => inputVector;
     private void Awake()
     {
-        animation = FindObjectOfType<ComboCounter>().GetComponentInChildren<Animation>();
+        ani = FindObjectOfType<ComboCounter>().GetComponentInChildren<Animation>();
         left = "BarrelRollLeft";
         right = "BarrelRollRight";
         playerInputSystem = new PlayerInputSystem();
@@ -34,15 +34,15 @@ public class CrosshairMovement : MonoBehaviour
         var startPosition = transform.localPosition;
         if (isRolling)
         {
-            if (!animation.isPlaying)
+            if (!ani.isPlaying)
             {
                 if (rollDirection.x < 0)
                 {
-                    animation.Play(left);
+                    ani.Play(left);
                 }
                 else
                 {
-                    animation.Play(right);    
+                    ani.Play(right);    
                 }
                 
             }

@@ -16,17 +16,18 @@ public class ComboCounter : MonoBehaviour
     private WeaponSystem weaponSystem;
     private HUDController hudController;
     private MeshRenderer shield;
-    private MeshRenderer[] meshRenderers;
+    private MoveWithPath moveWithPath;
     private PlayerInputSystem playerInputSystem;
     private Coroutine coroutine;
     
     [SerializeField]private float secondsUntilNextRespawn;
-    [SerializeField] private float psychoRushDuration;
-    [SerializeField] private float comboLevelDownTime;
+    [SerializeField]private float psychoRushDuration;
+    [SerializeField]private float psychoRushSpeedMultiplier = 2f;
+    [SerializeField]private float comboLevelDownTime;
     [SerializeField]private TMP_Text DSScore, DSComboLvl, DSKillCount, DSAccuracy;
     [SerializeField]private GameObject[] WeaponIcons;
     
-    private float psychoTimer, hueShiftVal;
+    private float psychoTimer, hueShiftVal, oldSpeed;
     private ColorGrading colorGrading;
     private PostProcessVolume ppv;
     private float hueShiftMin = -180f;
@@ -37,6 +38,7 @@ public class ComboCounter : MonoBehaviour
     
     private void Start()
     {
+        moveWithPath = FindFirstObjectByType<MoveWithPath>();
         ppv = Camera.main.GetComponent<PostProcessVolume>();
         colorGrading = ppv.profile.GetSetting<ColorGrading>();
         shield = GameObject.Find("Shield").GetComponent<MeshRenderer>();
@@ -193,16 +195,20 @@ public class ComboCounter : MonoBehaviour
     }
     public void ActivatePsychoRush()
     {
-        psychoTimer = Time.unscaledTime + psychoRushDuration;
+        if (isPsychorushActive) return;
         isPsychorushActive = true;
+        psychoTimer = Time.unscaledTime + psychoRushDuration;
+        oldSpeed = moveWithPath.Speed;
+        moveWithPath.Speed *= psychoRushSpeedMultiplier;
         StopAllCoroutines();
         weaponSystem.PsychoRush = true;
     }
     private void DeactivatePsychoRush()
     {
-        isPsychorushActive = false;
+        moveWithPath.Speed = oldSpeed;
         weaponSystem.PsychoRush = false;
         psychoTimer = 0;
+        isPsychorushActive = false;
     }
 
     private void Update()
