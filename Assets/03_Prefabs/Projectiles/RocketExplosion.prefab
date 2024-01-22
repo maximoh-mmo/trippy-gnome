@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9034638774410894580}
   - component: {fileID: 3538150884868365665}
+  - component: {fileID: 621472448141868133}
   m_Layer: 0
   m_Name: RocketExplosion
   m_TagString: Untagged
@@ -132,6 +133,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &621472448141868133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9034638774410894581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98504be446f70574b822b251518fe1fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9034638774416520560
 GameObject:
   m_ObjectHideFlags: 0

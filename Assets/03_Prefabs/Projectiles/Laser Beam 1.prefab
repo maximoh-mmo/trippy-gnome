@@ -4827,6 +4827,7 @@ GameObject:
   - component: {fileID: 1731478302174149562}
   - component: {fileID: 7427288553196203034}
   - component: {fileID: -6371860784982426280}
+  - component: {fileID: -6412622651904479332}
   m_Layer: 0
   m_Name: Laser Beam 1
   m_TagString: Untagged
@@ -5039,3 +5040,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-6412622651904479332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5580125614850984573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98504be446f70574b822b251518fe1fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
