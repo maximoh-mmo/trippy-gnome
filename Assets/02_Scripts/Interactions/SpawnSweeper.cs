@@ -7,10 +7,11 @@ public class SpawnSweeper : MonoBehaviour
     void Start()
     {
         GameObject child = new GameObject("Sweeper", typeof(BoxCollider));
-        child.transform.SetParent(this.transform);
+        var t = transform;
+        child.transform.SetParent(t);
         child.transform.parent = transform;
-        child.transform.position = transform.position;
-        child.transform.rotation = transform.rotation;
+        child.transform.position = t.position;
+        child.transform.rotation = t.rotation;
         sweepArea = child.GetComponent<BoxCollider>();
         sweepArea.isTrigger = true;
         sweepArea.size = size;

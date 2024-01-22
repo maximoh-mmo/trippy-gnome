@@ -1,3 +1,4 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,7 +7,10 @@ public class CrosshairMovement : MonoBehaviour
     [SerializeField] private float xySpeedMultiple;
     [SerializeField] private Vector2 boundary;
     [SerializeField] private float barrelRollReuseTime;
-    private Vector2 inputVector;
+    [SerializeField] private float barrelRollSpeed;
+    private bool isRolling;
+    private Vector2 inputVector, rollDirection;
+    private Vector3 rollStart;
     private PlayerInputSystem playerInputSystem;
     private float BarrelRollReuseTime { get { return barrelRollReuseTime; } set { barrelRollReuseTime = value; } }
     public Vector2 Boundry => boundary;
@@ -21,21 +25,31 @@ public class CrosshairMovement : MonoBehaviour
     private void Update()
     {
         inputVector = playerInputSystem.InGame.Move.ReadValue<Vector2>();
-        var targetPosition = transform.localPosition;
+        var startPosition = transform.localPosition;
+        if (isRolling)
+        {
+            DoRoll(startPosition);
+        }
         var multiple = (Time.deltaTime * xySpeedMultiple);
-        targetPosition += new Vector3( inputVector.x * multiple,inputVector.y * multiple);
-        transform.localPosition = new Vector3(Mathf.Clamp(targetPosition.x, -boundary.x, boundary.x),
-            Mathf.Clamp(targetPosition.y, -boundary.y, boundary.y), targetPosition.z);
+        var endPosition = new Vector3( inputVector.x * multiple,inputVector.y * multiple) + startPosition; 
+        transform.localPosition = new Vector3(Mathf.Clamp(endPosition.x, -boundary.x, boundary.x),
+            Mathf.Clamp(endPosition.y, -boundary.y, boundary.y), endPosition.z);
     }
 
     private void BarrelRoll(InputAction.CallbackContext context)
     {
         if (Time.time < BarrelRollReuseTime) return;
-        var direction = inputVector.normalized;
-        Debug.Log("BarrelRoll in direction "+direction);
-        
+        rollDirection = inputVector.normalized;
+        rollStart = transform.position;
+        isRolling = true;
     }
 
+    private void DoRoll(Vector3 position);
+    {
+        var endPosition = new Vector3(rollDirection.x, rollDirection.y); 
+        transform.localPosition = new Vector3(Mathf.Clamp(endPosition.x, -boundary.x, boundary.x),
+            Mathf.Clamp(endPosition.y, -boundary.y, boundary.y), endPosition.z);
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;

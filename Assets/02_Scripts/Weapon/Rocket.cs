@@ -30,7 +30,6 @@ public class Rocket : MonoBehaviour
         private void Start()
         {
             startPos = transform.position;
-            if (target!=null) target.GetComponent<EnemyBehaviour>().IsTargetted = true;
             rb = GetComponent<Rigidbody>();
         }
 
