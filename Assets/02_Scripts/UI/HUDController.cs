@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class HUDController : MonoBehaviour
 {
-    private TMP_Text HUDScore, HUDComboLvl, HUDComboScore;
+    private TMP_Text HUDScore, HUDComboLvl, HUDComboScore, HUDTimer;
     [SerializeField] private PowerUpUI[] PowerUps;
     [SerializeField] private GameObject[] Icons;
     [SerializeField] GameObject pauseMenu, deathScreen;
@@ -22,6 +22,7 @@ public class HUDController : MonoBehaviour
         HUDScore = GameObject.Find("Score").GetComponent<TMP_Text>();
         HUDComboLvl = GameObject.Find("ComboLevel").GetComponent<TMP_Text>();
         HUDComboScore = GameObject.Find("RunningScore").GetComponent<TMP_Text>();
+        HUDTimer = GameObject.Find("Timer").GetComponent<TMP_Text>();
     }
 
     public void Pause(InputAction.CallbackContext context)
@@ -51,6 +52,7 @@ public class HUDController : MonoBehaviour
     public void DeathScreen() => deathScreen.SetActive(true);
 
     public void Score(int score) => HUDScore.SetText(score.ToString());
+    public void Timer(float timer) => HUDTimer.SetText(timer.ToString("0:##"));
     public void ComboLvl(int comboLvl) => HUDComboLvl.SetText(comboLvl.ToString());
     public void RunningScore(int runningScore) => HUDComboScore.SetText(runningScore.ToString());
     public void ToggleIcon(int id, bool setTo)

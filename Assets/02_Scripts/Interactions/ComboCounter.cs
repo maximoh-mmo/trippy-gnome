@@ -26,7 +26,6 @@ public class ComboCounter : MonoBehaviour
     [SerializeField]private float comboLevelDownTime;
     [SerializeField]private TMP_Text DSScore, DSComboLvl, DSKillCount, DSAccuracy;
     [SerializeField]private GameObject[] WeaponIcons;
-    
     private float psychoTimer, hueShiftVal, oldSpeed;
     private ColorGrading colorGrading;
     private PostProcessVolume ppv;
@@ -167,7 +166,11 @@ public class ComboCounter : MonoBehaviour
     }
     IEnumerator ComboLevelCountDown()
     {
-        yield return new WaitForSeconds(comboLevelDownTime);
+        for (float t = 0; t<comboLevelDownTime;t+=1)
+        {
+            yield return new WaitForSeconds(1);
+            hudController.Timer(comboLevelDownTime-t);
+        }
         Debug.Log("CountDownTimer run out");
         ImHit();
     }
