@@ -6355,6 +6355,7 @@ MonoBehaviour:
   xySpeedMultiple: 30
   boundary: {x: 32, y: 18}
   barrelRollReuseTime: 0
+  barrelRollSpeed: 0
 --- !u!1001 &959350062
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12735,7 +12736,7 @@ MonoBehaviour:
     firePoints:
     - {fileID: 713030342}
     projectile: {fileID: 2033890919814722285, guid: f732c060d688e7749a88915f61530193, type: 3}
-    speed: 25
+    speed: 100
     rateOfFire: 0.075
     range: 100
     allowButtonHold: 0
@@ -12745,7 +12746,7 @@ MonoBehaviour:
     - {fileID: 440080261}
     - {fileID: 1044872519}
     projectile: {fileID: 2033890919814722285, guid: f732c060d688e7749a88915f61530193, type: 3}
-    speed: 25
+    speed: 100
     rateOfFire: 0.07
     range: 100
     allowButtonHold: 0
