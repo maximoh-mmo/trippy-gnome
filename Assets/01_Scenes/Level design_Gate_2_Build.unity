@@ -297,7 +297,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 196.8, y: -84.9}
+  m_AnchoredPosition: {x: 183.9, y: -84.9}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &14548533
@@ -494,7 +494,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 282.6, y: -84.9}
+  m_AnchoredPosition: {x: 262.2, y: -84.9}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &35176915
@@ -8217,7 +8217,7 @@ GameObject:
   - component: {fileID: 945283939}
   - component: {fileID: 945283938}
   m_Layer: 5
-  m_Name: Button_TryAgain
+  m_Name: play level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10859,7 +10859,7 @@ GameObject:
   - component: {fileID: 1227138795}
   - component: {fileID: 1227138794}
   m_Layer: 0
-  m_Name: Button_Main_ Menu_normal
+  m_Name: Button_Main_ Menu_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12903,7 +12903,7 @@ GameObject:
   - component: {fileID: 1411910894}
   - component: {fileID: 1411910893}
   m_Layer: 5
-  m_Name: 01_Try_again_normal
+  m_Name: PLAY level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
