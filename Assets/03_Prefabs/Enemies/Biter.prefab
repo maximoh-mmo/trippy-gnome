@@ -4977,7 +4977,7 @@ MonoBehaviour:
     chance: 0
   - powerUp: {fileID: 2041170997438138626, guid: b916f5c9add51de44937f01e20aeb1e6, type: 3}
     type: 2
-    chance: 0
+    chance: 5
   - powerUp: {fileID: 0}
     type: 0
     chance: 5
