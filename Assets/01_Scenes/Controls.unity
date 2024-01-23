@@ -3097,7 +3097,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4fb60c7b3546f346b7a49f8229408d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 0}
+  pauseMenuPanel: {fileID: 0}
+  howToPlayPanel: {fileID: 0}
 --- !u!1001 &910788089
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5268,7 +5269,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 43a113c63fb8f734abb0b1c85f587571, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 45f77c25fc3273d4ba6a8a95db9eb1a9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
