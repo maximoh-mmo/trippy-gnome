@@ -1,9 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject pauseMenu;
+    public GameObject pauseMenuPanel;
+    public GameObject howToPlayPanel;
 
     public void StartGame()
     {
@@ -29,10 +31,17 @@ public class MainMenu : MonoBehaviour
 
     public void HowToPlayPanel()
     {
-        return;
+        pauseMenuPanel.SetActive(false);
+        howToPlayPanel.SetActive(true);
     }
 
-    public void ReturnToMenu()
+    public void CloseHowToPlayPanel()
+    {
+        howToPlayPanel.SetActive(false);
+        pauseMenuPanel.SetActive(true);
+    }
+    
+    public void QuitToMainMenu()
     {
         StopAllCoroutines();
         SceneManager.LoadScene(0);
@@ -40,7 +49,8 @@ public class MainMenu : MonoBehaviour
     
     public void Resume()
     {
-        pauseMenu.SetActive(false);
+        howToPlayPanel.SetActive(false);
+        pauseMenuPanel.SetActive(false);
         Time.timeScale = 1f;
     }
     

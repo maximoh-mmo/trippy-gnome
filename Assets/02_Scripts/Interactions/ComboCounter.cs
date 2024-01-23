@@ -12,6 +12,7 @@ public class ComboCounter : MonoBehaviour
     public ComboLevel[] combos;
     private bool isShielded, cheatsEnabled, isCheating, isPsychorushActive;
     private int currentComboLevel, currentComboKills, totalKillCount, score, runningScore, shotsFired,maxComboLevel;
+    private float psychoTimer, hueShiftVal, oldSpeed;
     private AutoSpawner autoSpawner;
     private WeaponSystem weaponSystem;
     private HUDController hudController;
@@ -19,16 +20,16 @@ public class ComboCounter : MonoBehaviour
     private MoveWithPath moveWithPath;
     private PlayerInputSystem playerInputSystem;
     private Coroutine coroutine;
-    
+    private ColorGrading colorGrading;
+    private PostProcessVolume ppv;
+
     [SerializeField]private float secondsUntilNextRespawn;
     [SerializeField]private float psychoRushDuration;
     [SerializeField]private float psychoRushSpeedMultiplier = 2f;
     [SerializeField]private float comboLevelDownTime;
     [SerializeField]private TMP_Text DSScore, DSComboLvl, DSKillCount, DSAccuracy;
     [SerializeField]private GameObject[] WeaponIcons;
-    private float psychoTimer, hueShiftVal, oldSpeed;
-    private ColorGrading colorGrading;
-    private PostProcessVolume ppv;
+    
     private float hueShiftMin = -180f;
     private float hueShiftMax = 180f;
 
@@ -56,12 +57,7 @@ public class ComboCounter : MonoBehaviour
     }
     private void ToggleCheats(InputAction.CallbackContext context)
     {
-        if (!isCheating)
-        {
-            isCheating = true;
-            return;
-        }
-        isCheating = false;
+        isCheating = isCheating ? isCheating = false : isCheating = true;
     }
     private void ChangeCombo(InputAction.CallbackContext context)
     { 
