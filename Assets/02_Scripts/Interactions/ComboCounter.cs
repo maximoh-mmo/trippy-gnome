@@ -117,6 +117,7 @@ public class ComboCounter : MonoBehaviour
     }
     private void ComboLevelUp()
     {
+        if (currentComboLevel>=combos.Length-1) return;
         hudController.ToggleIcon(currentComboLevel, false);
         currentComboLevel++;
         hudController.ToggleIcon(currentComboLevel, true);

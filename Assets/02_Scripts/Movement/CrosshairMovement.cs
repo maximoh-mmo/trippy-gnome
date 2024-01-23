@@ -15,6 +15,8 @@ public class CrosshairMovement : MonoBehaviour
     private Vector3 rollStart;
     private PlayerInputSystem playerInputSystem;
     private string left, right;
+    private float adjustment = -1f;
+
     private float BarrelRollReuseTime { get { return barrelRollReuseTime; } set { barrelRollReuseTime = value; } }
     public Vector2 Boundry => boundary;
     public Vector2 InputVector => inputVector;
@@ -30,6 +32,7 @@ public class CrosshairMovement : MonoBehaviour
     }
     private void Update()
     {
+        RenderSettings.skybox.SetFloat("_Rotation", adjustment * Time.unscaledTime);
         inputVector = playerInputSystem.InGame.Move.ReadValue<Vector2>();
         var startPosition = transform.localPosition;
         if (isRolling)
