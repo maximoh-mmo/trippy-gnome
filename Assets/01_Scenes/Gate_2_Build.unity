@@ -2541,7 +2541,7 @@ GameObject:
   - component: {fileID: 389713687}
   - component: {fileID: 389713686}
   m_Layer: 0
-  m_Name: Button_Main_ Menu_normal
+  m_Name: Main_ Menu_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2564,8 +2564,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -1496, y: 86}
-  m_SizeDelta: {x: 208.69666, y: 113.892334}
+  m_AnchoredPosition: {x: -1505.3, y: 88.4}
+  m_SizeDelta: {x: 208.69666, y: 35.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &389713686
 MonoBehaviour:
@@ -2643,7 +2643,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 907847775}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: ReturnToMenu
+        m_MethodName: CloseHowToPlayPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6862,7 +6862,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4fb60c7b3546f346b7a49f8229408d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 1687923423}
+  pauseMenuPanel: {fileID: 1687923423}
+  howToPlayPanel: {fileID: 1142322111}
 --- !u!1001 &910788089
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7126,7 +7127,7 @@ GameObject:
   - component: {fileID: 961272955}
   - component: {fileID: 961272954}
   m_Layer: 5
-  m_Name: 01_Try_again_normal
+  m_Name: Back button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7141,7 +7142,7 @@ RectTransform:
   m_GameObject: {fileID: 961272952}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 3.8, y: 3.8, z: 3.8}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1142322112}
@@ -7149,8 +7150,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -652.58, y: 192.5}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -714.9, y: 187.8}
+  m_SizeDelta: {x: 100, y: 25.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &961272954
 MonoBehaviour:
@@ -7172,7 +7173,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c85089f39aa9d734098098ef9f3caa9a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0957c305d384f604bbf53d8a93f50703, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -7219,8 +7220,8 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: c15bc60525feba24798dbb2737567312, type: 3}
-    m_PressedSprite: {fileID: 21300000, guid: 2aa9be26343ec7f43a2783a8c7016f91, type: 3}
+    m_HighlightedSprite: {fileID: 21300000, guid: 5af5fd857d16ad74fbfdab86f5a8fb80, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: e4719026deab0044d95bff92596f66ec, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -7236,7 +7237,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 907847775}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: Resume
+        m_MethodName: CloseHowToPlayPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8136,7 +8137,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 907847775}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: HowToPlayPanel
         m_Mode: 1
@@ -8561,7 +8562,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1142322112
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8605,7 +8606,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0d37ef9589960c74e8806515d50d2047, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2892e28d433517641a3947097f72c308, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15557,7 +15558,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00012207031, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0.00012207031, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2091374453
