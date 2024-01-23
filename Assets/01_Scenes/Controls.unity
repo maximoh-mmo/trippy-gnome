@@ -3316,6 +3316,7 @@ MonoBehaviour:
   boundary: {x: 32, y: 18}
   barrelRollReuseTime: 0
   barrelRollSpeed: 0
+  barrelRollDistance: 0
 --- !u!1001 &959350062
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3580,9 +3581,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11500000, guid: e4fb60c7b3546f346b7a49f8229408d5, type: 3}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: QuitGame
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5609,7 +5610,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 219778173}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: 
         m_Mode: 1
@@ -7211,6 +7212,10 @@ MonoBehaviour:
     scoreMultiplier: 8
     minEnemies: 5
     enemiesToSpawn: 10
+  secondsUntilNextRespawn: 0
+  psychoRushDuration: 0
+  psychoRushSpeedMultiplier: 2
+  comboLevelDownTime: 10
   DSScore: {fileID: 0}
   DSComboLvl: {fileID: 0}
   DSKillCount: {fileID: 0}
@@ -7225,8 +7230,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  secondsUntilNextRespawn: 0
-  comboLevelDownTime: 10
 --- !u!135 &888316172577334582
 SphereCollider:
   m_ObjectHideFlags: 0
