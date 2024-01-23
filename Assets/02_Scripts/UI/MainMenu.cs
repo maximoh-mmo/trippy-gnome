@@ -31,14 +31,14 @@ public class MainMenu : MonoBehaviour
 
     public void HowToPlayPanel()
     {
-        pauseMenuPanel.SetActive(false);
-        howToPlayPanel.SetActive(true);
+        if (pauseMenuPanel) pauseMenuPanel.SetActive(false);
+        if (howToPlayPanel) howToPlayPanel.SetActive(true);
     }
 
     public void CloseHowToPlayPanel()
     {
-        howToPlayPanel.SetActive(false);
-        pauseMenuPanel.SetActive(true);
+        if (howToPlayPanel) howToPlayPanel.SetActive(false);
+        if (pauseMenuPanel) pauseMenuPanel.SetActive(true);
     }
     
     public void QuitToMainMenu()
@@ -49,8 +49,8 @@ public class MainMenu : MonoBehaviour
     
     public void Resume()
     {
-        howToPlayPanel.SetActive(false);
-        pauseMenuPanel.SetActive(false);
+        if (howToPlayPanel) howToPlayPanel.SetActive(false);
+        if (pauseMenuPanel) pauseMenuPanel.SetActive(false);
         Time.timeScale = 1f;
     }
     
