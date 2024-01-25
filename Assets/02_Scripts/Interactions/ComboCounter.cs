@@ -5,14 +5,15 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ComboCounter : MonoBehaviour
 {
     public ComboLevel[] combos;
-    private bool isShielded, cheatsEnabled, isCheating, isPsychorushActive;
+    private bool isShielded, cheatsEnabled, isCheating, isPsychorushActive,booomed;
     private int currentComboLevel, currentComboKills, totalKillCount, score, runningScore, shotsFired,maxComboLevel;
-    private float psychoTimer, hueShiftVal, oldSpeed;
+    private float psychoTimer, hueShiftVal, oldSpeed, boomStartTime;
     private AutoSpawner autoSpawner;
     private WeaponSystem weaponSystem;
     private HUDController hudController;
@@ -23,7 +24,7 @@ public class ComboCounter : MonoBehaviour
     private ColorGrading colorGrading;
     private PostProcessVolume ppv;
 
-    [SerializeField]private float secondsUntilNextRespawn;
+    [SerializeField]private float PauseRespawnAfterBigBoomSeconds;
     [SerializeField]private float psychoRushDuration;
     [SerializeField]private float psychoRushSpeedMultiplier = 2f;
     [SerializeField]private float comboLevelDownTime;
@@ -69,6 +70,9 @@ public class ComboCounter : MonoBehaviour
     private void BigBoom(InputAction.CallbackContext context)
     {
         if (!hudController.PowerUpAvailable(1)) return;
+        StopCoroutine("ComboLevelCountDown");
+        booomed = true;
+        boomStartTime = Time.time;
         var enemies = GameObject.FindGameObjectsWithTag("Enemy");
         var bullets = GameObject.FindObjectsOfType<Bullet>();
         foreach (var bullet in bullets)
@@ -81,34 +85,39 @@ public class ComboCounter : MonoBehaviour
         }
         hudController.RemovePowerUp(1);
         StartCoroutine("PauseRespawn");
-
+        colorGrading.postExposure.value = 5f;
     }
     IEnumerator PauseRespawn()
     {
         var d = autoSpawner.MinSpawns;
         autoSpawner.MinSpawns = 0;
-        yield return new WaitForSeconds(secondsUntilNextRespawn);
+        yield return new WaitForSeconds(PauseRespawnAfterBigBoomSeconds);
         autoSpawner.MinSpawns = d;
+        StartCoroutine("ComboLevelCountDown");
+        booomed = false;
     }
     private void AcivateShield(InputAction.CallbackContext context)
-    {        
+    {
+        if(isShielded) return;
         if (!(hudController.PowerUpAvailable(0) && isShielded == false)) return;
         shield.enabled = true;
+        var source = shield.GetComponent<AudioSource>();
+        if (source) source.PlayOneShot(source.clip);
         isShielded = true;
         hudController.RemovePowerUp(0);
     }
     public void AddKill(int basePoints)
     {
         colorGrading.saturation.value = 0;
-        colorGrading.postExposure.value = 0;
+        if (!booomed) colorGrading.postExposure.value = 0;
         totalKillCount += 1;
-        if (isPsychorushActive) return;
         StopCoroutine("ComboLevelCountDown");
+        if (isPsychorushActive) basePoints*=2;
         currentComboKills += 1;
         var toAdd = CalculateScore(basePoints);
         score += toAdd;
         runningScore += toAdd;
-        StartCoroutine("ComboLevelCountDown");
+        if (!booomed) StartCoroutine("ComboLevelCountDown");
         if (currentComboLevel < combos.Length - 1 && currentComboKills >= combos[currentComboLevel].killsNeeded)
         {
             ComboLevelUp();
@@ -131,6 +140,8 @@ public class ComboCounter : MonoBehaviour
         if (isCheating || isPsychorushActive) return;
         if (isShielded)
         {
+            var source = GetComponent<AudioSource>();
+            if (source) source.PlayOneShot(source.clip);
             shield.enabled = false;
             isShielded = false;
             return;
@@ -183,6 +194,8 @@ public class ComboCounter : MonoBehaviour
             {
                 yield return new WaitForSeconds(.5f);
                 hudController.Timer(comboLevelDownTime - t);
+                colorGrading.saturation.value = 5f * -t;
+                colorGrading.postExposure.value = 0.1f * -t;
             }
             Debug.Log("CountDownTimer run out");
             ImHit();
@@ -232,16 +245,23 @@ public class ComboCounter : MonoBehaviour
 
     private void Update()
     {
-        if (psychoTimer == 0) return;
-        if (Time.unscaledTime > psychoTimer)
+        if (psychoTimer > 0)
         {
-            psychoTimer = 0;
-            DeactivatePsychoRush();
-            StartCoroutine("ComboLevelCountDown");
+            if (Time.unscaledTime > psychoTimer)
+            {
+                psychoTimer = 0;
+                DeactivatePsychoRush();
+                StartCoroutine("ComboLevelCountDown");
+            }
+
+            if (hueShiftVal >= hueShiftMax) hueShiftVal = hueShiftMin;
+            hueShiftVal += 1;
+            colorGrading.hueShift.value = hueShiftVal;
         }
-        if (hueShiftVal >= hueShiftMax) hueShiftVal = hueShiftMin;
-        hueShiftVal += 1;
-        colorGrading.hueShift.value = hueShiftVal;
+        if (booomed && colorGrading.postExposure.value > 0f)
+        {
+            colorGrading.postExposure.value -= 5 / PauseRespawnAfterBigBoomSeconds * Time.deltaTime;
+        }
     }
 }
 

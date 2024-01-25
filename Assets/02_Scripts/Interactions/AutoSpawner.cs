@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Pool;
 using Random = UnityEngine.Random;
 
 public class AutoSpawner : MonoBehaviour
 {
     private SpawnBubble spawnBubble;
-    private int numToSpawn, extraCash, minCost;
+    private int numToSpawn, minCost;
     [SerializeField] private List<Enemy> enemies;
     private List<GameObject>enemiesToSpawn;
     [SerializeField] private int shopValue;
@@ -16,7 +17,13 @@ public class AutoSpawner : MonoBehaviour
     private float startTime;
     private ComboCounter player;
     private bool isSpawning;
-    private bool startDelay;
+    private bool isStartDelayOver;
+    
+    /// <summary>
+    /// Return to private when Alex finished
+    /// </summary>
+    
+    public int extraCash;
     public int MinSpawns { get; set; }
     public int NumToSpawn { set => numToSpawn = value; }
     public int ShopValue { set => shopValue = value; }
@@ -34,11 +41,11 @@ public class AutoSpawner : MonoBehaviour
     }
     void Update()
     {
-        if (!startDelay)
+        if (!isStartDelayOver)
         {
             if (Time.time > startTime)
             {
-                startDelay = true;
+                isStartDelayOver = true;
                 player.StartCoroutine("ComboLevelCountDown");
             }
             else
