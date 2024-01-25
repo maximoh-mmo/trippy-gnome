@@ -45,6 +45,8 @@ public class LootBehaviour : MonoBehaviour
     private void PickUpItem()
     {
         hud.AddPowerUp(type);
+        var source = GetComponent<AudioSource>();
+        if (source) source.PlayOneShot(source.clip);
         Destroy(gameObject);
     }
 
