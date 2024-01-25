@@ -258,7 +258,7 @@ public class ComboCounter : MonoBehaviour
             hueShiftVal += 1;
             colorGrading.hueShift.value = hueShiftVal;
         }
-        if (booomed && colorGrading.postExposure.value >0f)
+        if (booomed && colorGrading.postExposure.value > 0f)
         {
             colorGrading.postExposure.value -= 5 / PauseRespawnAfterBigBoomSeconds * Time.deltaTime;
         }
