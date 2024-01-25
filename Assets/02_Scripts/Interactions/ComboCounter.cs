@@ -197,6 +197,8 @@ public class ComboCounter : MonoBehaviour
             {
                 yield return new WaitForSeconds(.5f);
                 hudController.Timer(comboLevelDownTime - t);
+                colorGrading.saturation.value = 5f * -t;
+                colorGrading.postExposure.value = 0.1f * -t;
             }
             Debug.Log("CountDownTimer run out");
             ImHit();

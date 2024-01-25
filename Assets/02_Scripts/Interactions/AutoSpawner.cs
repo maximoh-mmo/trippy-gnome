@@ -18,6 +18,11 @@ public class AutoSpawner : MonoBehaviour
     private ComboCounter player;
     private bool isSpawning;
     private bool startDelay;
+    
+    /// <summary>
+    /// Return to private when Alex finished
+    /// </summary>
+    
     public int extraCash;
     public int MinSpawns { get; set; }
     public int NumToSpawn { set => numToSpawn = value; }
