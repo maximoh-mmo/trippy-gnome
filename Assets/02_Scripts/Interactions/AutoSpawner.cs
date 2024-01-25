@@ -17,7 +17,7 @@ public class AutoSpawner : MonoBehaviour
     private float startTime;
     private ComboCounter player;
     private bool isSpawning;
-    private bool startDelay;
+    private bool isStartDelayOver;
     
     /// <summary>
     /// Return to private when Alex finished
@@ -41,11 +41,11 @@ public class AutoSpawner : MonoBehaviour
     }
     void Update()
     {
-        if (!startDelay)
+        if (!isStartDelayOver)
         {
             if (Time.time > startTime)
             {
-                startDelay = true;
+                isStartDelayOver = true;
                 player.StartCoroutine("ComboLevelCountDown");
             }
             else

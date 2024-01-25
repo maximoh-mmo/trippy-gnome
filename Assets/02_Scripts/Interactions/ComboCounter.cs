@@ -5,14 +5,15 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ComboCounter : MonoBehaviour
 {
     public ComboLevel[] combos;
-    private bool isShielded, cheatsEnabled, isCheating, isPsychorushActive;
+    private bool isShielded, cheatsEnabled, isCheating, isPsychorushActive,booomed;
     private int currentComboLevel, currentComboKills, totalKillCount, score, runningScore, shotsFired,maxComboLevel;
-    private float psychoTimer, hueShiftVal, oldSpeed;
+    private float psychoTimer, hueShiftVal, oldSpeed, boomStartTime;
     private AutoSpawner autoSpawner;
     private WeaponSystem weaponSystem;
     private HUDController hudController;
@@ -23,7 +24,7 @@ public class ComboCounter : MonoBehaviour
     private ColorGrading colorGrading;
     private PostProcessVolume ppv;
 
-    [SerializeField]private float secondsUntilNextRespawn;
+    [SerializeField]private float PauseRespawnAfterBigBoomSeconds;
     [SerializeField]private float psychoRushDuration;
     [SerializeField]private float psychoRushSpeedMultiplier = 2f;
     [SerializeField]private float comboLevelDownTime;
@@ -69,7 +70,9 @@ public class ComboCounter : MonoBehaviour
     private void BigBoom(InputAction.CallbackContext context)
     {
         if (!hudController.PowerUpAvailable(1)) return;
-        
+        StopCoroutine("ComboLevelCountDown");
+        booomed = true;
+        boomStartTime = Time.time;
         var enemies = GameObject.FindGameObjectsWithTag("Enemy");
         var bullets = GameObject.FindObjectsOfType<Bullet>();
         foreach (var bullet in bullets)
@@ -82,22 +85,16 @@ public class ComboCounter : MonoBehaviour
         }
         hudController.RemovePowerUp(1);
         StartCoroutine("PauseRespawn");
-
-    }
-    IEnumerator Oversaturation(float fadeback)
-    {
-        var start = Time.time;
-        while (Time.time < fadeback)
-        {
-        }
-        yield return new WaitForSeconds(fadeback);
+        colorGrading.postExposure.value = 5f;
     }
     IEnumerator PauseRespawn()
     {
         var d = autoSpawner.MinSpawns;
         autoSpawner.MinSpawns = 0;
-        yield return new WaitForSeconds(secondsUntilNextRespawn);
+        yield return new WaitForSeconds(PauseRespawnAfterBigBoomSeconds);
         autoSpawner.MinSpawns = d;
+        StartCoroutine("ComboLevelCountDown");
+        booomed = false;
     }
     private void AcivateShield(InputAction.CallbackContext context)
     {
@@ -112,15 +109,15 @@ public class ComboCounter : MonoBehaviour
     public void AddKill(int basePoints)
     {
         colorGrading.saturation.value = 0;
-        colorGrading.postExposure.value = 0;
+        if (!booomed) colorGrading.postExposure.value = 0;
         totalKillCount += 1;
-        if (isPsychorushActive) return;
         StopCoroutine("ComboLevelCountDown");
+        if (isPsychorushActive) basePoints*=2;
         currentComboKills += 1;
         var toAdd = CalculateScore(basePoints);
         score += toAdd;
         runningScore += toAdd;
-        StartCoroutine("ComboLevelCountDown");
+        if (!booomed) StartCoroutine("ComboLevelCountDown");
         if (currentComboLevel < combos.Length - 1 && currentComboKills >= combos[currentComboLevel].killsNeeded)
         {
             ComboLevelUp();
@@ -248,16 +245,23 @@ public class ComboCounter : MonoBehaviour
 
     private void Update()
     {
-        if (psychoTimer == 0) return;
-        if (Time.unscaledTime > psychoTimer)
+        if (psychoTimer > 0)
         {
-            psychoTimer = 0;
-            DeactivatePsychoRush();
-            StartCoroutine("ComboLevelCountDown");
+            if (Time.unscaledTime > psychoTimer)
+            {
+                psychoTimer = 0;
+                DeactivatePsychoRush();
+                StartCoroutine("ComboLevelCountDown");
+            }
+
+            if (hueShiftVal >= hueShiftMax) hueShiftVal = hueShiftMin;
+            hueShiftVal += 1;
+            colorGrading.hueShift.value = hueShiftVal;
         }
-        if (hueShiftVal >= hueShiftMax) hueShiftVal = hueShiftMin;
-        hueShiftVal += 1;
-        colorGrading.hueShift.value = hueShiftVal;
+        if (booomed && colorGrading.postExposure.value >0f)
+        {
+            colorGrading.postExposure.value -= 5 / PauseRespawnAfterBigBoomSeconds * Time.deltaTime;
+        }
     }
 }
 

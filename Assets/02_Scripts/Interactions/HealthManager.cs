@@ -39,10 +39,12 @@ public class HealthManager : MonoBehaviour
     public void TakeDamage(float dmg)
     {
         currentHealth -= dmg;
-    }public void Kill()
+    }
+    public void Kill()
     {
         counter.AddKill(maxHealth);
         if (loot && lootDropOnBoom) GetComponent<Loot>().GetLoot(transform.position);
+        if (poof) Instantiate(poof, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }
