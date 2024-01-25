@@ -69,6 +69,7 @@ public class ComboCounter : MonoBehaviour
     private void BigBoom(InputAction.CallbackContext context)
     {
         if (!hudController.PowerUpAvailable(1)) return;
+        
         var enemies = GameObject.FindGameObjectsWithTag("Enemy");
         var bullets = GameObject.FindObjectsOfType<Bullet>();
         foreach (var bullet in bullets)
@@ -82,6 +83,14 @@ public class ComboCounter : MonoBehaviour
         hudController.RemovePowerUp(1);
         StartCoroutine("PauseRespawn");
 
+    }
+    IEnumerator Oversaturation(float fadeback)
+    {
+        var start = Time.time;
+        while (Time.time < fadeback)
+        {
+        }
+        yield return new WaitForSeconds(fadeback);
     }
     IEnumerator PauseRespawn()
     {

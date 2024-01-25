@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 public class AutoSpawner : MonoBehaviour
 {
     private SpawnBubble spawnBubble;
-    private int numToSpawn, extraCash, minCost;
+    private int numToSpawn, minCost;
     [SerializeField] private List<Enemy> enemies;
     private List<GameObject>enemiesToSpawn;
     [SerializeField] private int shopValue;
@@ -18,6 +18,7 @@ public class AutoSpawner : MonoBehaviour
     private ComboCounter player;
     private bool isSpawning;
     private bool startDelay;
+    public int extraCash;
     public int MinSpawns { get; set; }
     public int NumToSpawn { set => numToSpawn = value; }
     public int ShopValue { set => shopValue = value; }
