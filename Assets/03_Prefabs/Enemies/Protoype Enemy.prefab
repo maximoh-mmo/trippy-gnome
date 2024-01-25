@@ -71,7 +71,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23e08de4aa500a340a152dd005bbc490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapons: []
+  weapons:
+  - weaponName: 
+    damage: 0
+    firePoints: []
+    projectile: {fileID: 0}
+    speed: 0
+    rateOfFire: 0
+    range: 0
+    allowButtonHold: 0
 --- !u!114 &7596434589679192236
 MonoBehaviour:
   m_ObjectHideFlags: 0

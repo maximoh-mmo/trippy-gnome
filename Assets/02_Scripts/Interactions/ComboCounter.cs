@@ -91,9 +91,12 @@ public class ComboCounter : MonoBehaviour
         autoSpawner.MinSpawns = d;
     }
     private void AcivateShield(InputAction.CallbackContext context)
-    {        
+    {
+        if(isShielded) return;
         if (!(hudController.PowerUpAvailable(0) && isShielded == false)) return;
         shield.enabled = true;
+        var source = shield.GetComponent<AudioSource>();
+        if (source) source.PlayOneShot(source.clip);
         isShielded = true;
         hudController.RemovePowerUp(0);
     }
@@ -131,6 +134,8 @@ public class ComboCounter : MonoBehaviour
         if (isCheating || isPsychorushActive) return;
         if (isShielded)
         {
+            var source = GetComponent<AudioSource>();
+            if (source) source.PlayOneShot(source.clip);
             shield.enabled = false;
             isShielded = false;
             return;
