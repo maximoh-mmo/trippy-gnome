@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 816089905}
-  m_IndirectSpecularColor: {r: 0.48622012, g: 0.05357999, b: 0.31305718, a: 1}
+  m_IndirectSpecularColor: {r: 0.48649716, g: 0.05391854, b: 0.31337062, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -58630,6 +58630,8 @@ MonoBehaviour:
     scoreMultiplier: 8
     minEnemies: 5
     enemiesToSpawn: 10
+  shatter: {fileID: 8300000, guid: d97ee68bbbee33a4486aa453510bb5ff, type: 3}
+  bigboom: {fileID: 8300000, guid: 87b7611487857044aa57c165eb37e6aa, type: 3}
   PauseRespawnAfterBigBoomSeconds: 2
   psychoRushDuration: 5
   psychoRushSpeedMultiplier: 4
@@ -58707,8 +58709,8 @@ AudioSource:
   m_GameObject: {fileID: 888316172577334578}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 356578144544661331, guid: ad3731f4adfc67141bf63d126027b232, type: 2}
-  m_audioClip: {fileID: 8300000, guid: d97ee68bbbee33a4486aa453510bb5ff, type: 3}
+  OutputAudioMixerGroup: {fileID: -938442425233451465, guid: ad3731f4adfc67141bf63d126027b232, type: 2}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
