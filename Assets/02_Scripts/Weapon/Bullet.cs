@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
 {
     private float range;
     private float speed = 1f;
@@ -9,7 +11,7 @@ public class Bullet : MonoBehaviour
     string targetTag = string.Empty;
     private Rigidbody rb;
     [SerializeField]private GameObject projectileHit;
-
+    private AudioSource source;
     public void Setup(string tg, float rng, float spd, int dmg)
     {
         targetTag = tg;
@@ -17,14 +19,15 @@ public class Bullet : MonoBehaviour
         speed = spd; 
         damage = dmg; 
     }
-    
+
     private void Start()
     {
+        source = GetComponent<AudioSource>();
         startPos = transform.position;
         rb = GetComponent<Rigidbody>();
         rb.AddForce(transform.forward * speed, ForceMode.Impulse);
+        PlayAudioOnFirstFreeAvailable();
     }
-
     private void Update()
     {
         var currentRange = Vector3.Distance(startPos, transform.position);
@@ -48,5 +51,11 @@ public class Bullet : MonoBehaviour
             other.gameObject.GetComponent<ComboCounter>().ImHit();
             Destroy(gameObject);
         }
+    }
+
+    public void PlayAudioOnFirstFreeAvailable()
+    {
+        source.pitch = Random.Range(0.975f,1.025f);
+        source.Play();
     }
 }

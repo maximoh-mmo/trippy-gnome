@@ -9,6 +9,8 @@ public class Rocket : MonoBehaviour
         private Vector3 startPos = Vector3.zero;
         private string targetTag = string.Empty;
         private Rigidbody rb;
+        private AudioSource source;
+
         [SerializeField] private GameObject projectileHit;
         public Transform Target { set { target = value; } }
         public void Setup(string tg, float rng, float spd, int dmg)
@@ -25,8 +27,10 @@ public class Rocket : MonoBehaviour
     
         private void Start()
         {
+            source = GetComponent<AudioSource>();
             startPos = transform.position;
             rb = GetComponent<Rigidbody>();
+            PlayAudioOnFirstFreeAvailable();
         }
 
         private void Update()
@@ -52,5 +56,10 @@ public class Rocket : MonoBehaviour
                 other.gameObject.GetComponent<ComboCounter>().ImHit();
                 Destroy(gameObject);
             }
+        }
+        public void PlayAudioOnFirstFreeAvailable()
+        {
+            source.pitch = Random.Range(0.975f,1.025f);
+            source.Play();
         }
 }

@@ -67,6 +67,7 @@ public class EnemyBehaviour : MonoBehaviour
             var groundMotion = MoveWithGround();
             var sidewardMotion = Vector3.zero;
             if (movementPattern) sidewardMotion += movementPattern.ProcessMove(player.transform);
+            if (!transform) return;
             var endPoint = transform.position + forwardMotion + groundMotion + sidewardMotion;
             var minHeight = moveWithPath.MapheightAtPos(endPoint) + GetSize(gameObject).y;
             if (endPoint.y < minHeight) endPoint.y = minHeight;
