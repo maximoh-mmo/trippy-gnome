@@ -23,7 +23,9 @@ public class ComboCounter : MonoBehaviour
     private Coroutine coroutine;
     private ColorGrading colorGrading;
     private PostProcessVolume ppv;
+    private AudioSource audioSource;
 
+    [SerializeField] private AudioClip shatter, bigboom;
     [SerializeField]private float PauseRespawnAfterBigBoomSeconds;
     [SerializeField]private float psychoRushDuration;
     [SerializeField]private float psychoRushSpeedMultiplier = 2f;
@@ -39,6 +41,7 @@ public class ComboCounter : MonoBehaviour
     
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         moveWithPath = FindFirstObjectByType<MoveWithPath>();
         ppv = Camera.main.GetComponent<PostProcessVolume>();
         colorGrading = ppv.profile.GetSetting<ColorGrading>();
@@ -72,6 +75,7 @@ public class ComboCounter : MonoBehaviour
         if (!hudController.PowerUpAvailable(1)) return;
         StopCoroutine("ComboLevelCountDown");
         booomed = true;
+        audioSource.PlayOneShot(bigboom);
         boomStartTime = Time.time;
         var enemies = GameObject.FindGameObjectsWithTag("Enemy");
         var bullets = GameObject.FindObjectsOfType<Bullet>();
@@ -140,8 +144,7 @@ public class ComboCounter : MonoBehaviour
         if (isCheating || isPsychorushActive) return;
         if (isShielded)
         {
-            var source = GetComponent<AudioSource>();
-            if (source) source.PlayOneShot(source.clip);
+            audioSource.PlayOneShot(shatter);
             shield.enabled = false;
             isShielded = false;
             return;

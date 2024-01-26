@@ -13,7 +13,10 @@ public class HealthManager : MonoBehaviour
     private AutoSpawner autoSpawner;
     private ComboCounter counter;
     private GameObject poof;
-    
+    private float intensity = 1f;
+    private Color[] colours = { Color.blue, Color.green, Color.red, Color.yellow, Color.cyan, Color.magenta };
+    private static readonly int EmissionColor = Shader.PropertyToID("_EmissionColor");
+
     public int MaxHealth => maxHealth;
 
     private void Start()
@@ -49,16 +52,20 @@ public class HealthManager : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
+        var c = GetColor();
         foreach (var m in materials)
         {
+            m.material.SetColor(EmissionColor, c * intensity);
             m.material.EnableKeyword("_EMISSION");
         }
         bright = true;
-        currentDelay = Time.unscaledTime + 0.03f;
+        currentDelay = Time.unscaledTime + 0.05f;
         currentHealth -= dmg;
     }
-    
-    public void Kill()
+    private Color GetColor()
+    {
+        return colours[Random.Range(0, colours.Length)];
+    }public void Kill()
     {
         counter.AddKill(maxHealth);
         if (loot && lootDropOnBoom) GetComponent<Loot>().GetLoot(transform.position);

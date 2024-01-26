@@ -63,18 +63,12 @@ public class EnemyBehaviour : MonoBehaviour
         if (ws && readyToShoot) ws.Shoot();
         if (Vector3.Dot(player.transform.forward, transform.position - player.transform.position) > 0)
         {
-            if (!transform) return;
             var forwardMotion = PathDirection() * (forwardMovementSpeed*Time.deltaTime);
-            if (!transform) return;
             var groundMotion = MoveWithGround();
-            if (!transform) return;
             var sidewardMotion = Vector3.zero;
             if (movementPattern) sidewardMotion += movementPattern.ProcessMove(player.transform);
-            if (!transform) return;
             var endPoint = transform.position + forwardMotion + groundMotion + sidewardMotion;
-            if (!transform) return;
             var minHeight = moveWithPath.MapheightAtPos(endPoint) + GetSize(gameObject).y;
-            if (!transform) return;
             if (endPoint.y < minHeight) endPoint.y = minHeight;
             transform.position = endPoint;
         }
