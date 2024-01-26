@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.48603457, g: 0.053488065, b: 0.31277278, a: 1}
+  m_IndirectSpecularColor: {r: 0.48618233, g: 0.053794824, b: 0.31250897, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2462,7 +2462,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &316734787
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4094,6 +4094,7 @@ MonoBehaviour:
   shopValue: 0
   useShop: 0
   delay: 0
+  extraCash: 0
 --- !u!114 &480956534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4927,7 +4928,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4fb60c7b3546f346b7a49f8229408d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 1295741113}
+  pauseMenuPanel: {fileID: 0}
+  howToPlayPanel: {fileID: 0}
 --- !u!114 &556340187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8150,7 +8152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4fb60c7b3546f346b7a49f8229408d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 1236413180}
+  pauseMenuPanel: {fileID: 0}
+  howToPlayPanel: {fileID: 0}
 --- !u!4 &918939123 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1321510378843764568, guid: a7cddada7568c284f8f71a67b4abf630, type: 3}
