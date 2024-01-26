@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 816089905}
-  m_IndirectSpecularColor: {r: 0.48649716, g: 0.05391854, b: 0.31337062, a: 1}
+  m_IndirectSpecularColor: {r: 0.48637736, g: 0.05418992, b: 0.3129796, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -34160,7 +34160,7 @@ Terrain:
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 80
+  m_DetailObjectDistance: 250
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
@@ -58630,6 +58630,7 @@ MonoBehaviour:
     scoreMultiplier: 8
     minEnemies: 5
     enemiesToSpawn: 10
+  m: 1
   shatter: {fileID: 8300000, guid: d97ee68bbbee33a4486aa453510bb5ff, type: 3}
   bigboom: {fileID: 8300000, guid: 87b7611487857044aa57c165eb37e6aa, type: 3}
   PauseRespawnAfterBigBoomSeconds: 2
@@ -59050,7 +59051,7 @@ Transform:
   - {fileID: 1858329174}
   m_Father: {fileID: 511227236918280072}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -252}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!111 &7022367312767008682
 Animation:
   m_ObjectHideFlags: 0
@@ -59064,6 +59065,7 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: 97bc865be0723bf4b9d15e03bdb2e0fe, type: 2}
   - {fileID: 7400000, guid: 842871fe1be01a741b049c0cad9b6d7c, type: 2}
+  - {fileID: 7400000, guid: d51af13c74fc18d4cb4bd9920b5ed282, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
