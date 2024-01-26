@@ -1,12 +1,14 @@
 using UnityEngine;
 
+
 public class HealthManager : MonoBehaviour
 {
     [SerializeField] private int maxHealth;
     [SerializeField] private int CoinsForSpawnSystem;
-    private float currentHealth;
+    private MeshRenderer[] materials;
+    private float currentHealth, currentDelay;
     private int pointValue;
-    private bool loot;
+    private bool loot, bright;
     [SerializeField] private bool lootDropOnBoom = true;
     private AutoSpawner autoSpawner;
     private ComboCounter counter;
@@ -16,6 +18,8 @@ public class HealthManager : MonoBehaviour
 
     private void Start()
     {
+        materials = GetComponentsInChildren<MeshRenderer>();
+       
         if (GetComponentInChildren<EnemyBehaviour>().DeathPrefab != null)
         {
             poof = GetComponentInChildren<EnemyBehaviour>().DeathPrefab;
@@ -27,19 +31,33 @@ public class HealthManager : MonoBehaviour
     }
     private void Update()
     {
-        if (currentHealth < 1)
+        if (currentDelay < Time.unscaledTime && bright)
         {
-            counter.AddKill(maxHealth);
-            autoSpawner.AddMoney(CoinsForSpawnSystem);
-            if (loot) GetComponent<Loot>().GetLoot(transform.position);
-            if (poof) Instantiate(poof, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            foreach (var m in materials)
+            {
+                m.material.DisableKeyword("_EMISSION");
+            }
+            bright = false;
         }
+        if (!(currentHealth < 1)) return;
+        counter.AddKill(maxHealth);
+        autoSpawner.AddMoney(CoinsForSpawnSystem);
+        if (loot) GetComponent<Loot>().GetLoot(transform.position);
+        if (poof) Instantiate(poof, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
+
     public void TakeDamage(float dmg)
     {
+        foreach (var m in materials)
+        {
+            m.material.EnableKeyword("_EMISSION");
+        }
+        bright = true;
+        currentDelay = Time.unscaledTime + 0.03f;
         currentHealth -= dmg;
     }
+    
     public void Kill()
     {
         counter.AddKill(maxHealth);

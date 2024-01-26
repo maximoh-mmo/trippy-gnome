@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 816089905}
-  m_IndirectSpecularColor: {r: 0.4858938, g: 0.05349094, b: 0.31248882, a: 1}
+  m_IndirectSpecularColor: {r: 0.48622012, g: 0.05357999, b: 0.31305718, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -18240,6 +18240,7 @@ GameObject:
   - component: {fileID: 480956534}
   - component: {fileID: 480956533}
   - component: {fileID: 480956536}
+  - component: {fileID: 480956537}
   m_Layer: 0
   m_Name: Watcher
   m_TagString: Untagged
@@ -18334,6 +18335,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5873feed8574c1bb18037e28b639126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &480956537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480956532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e625d643f75fa9a4796ee3d64a417dc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myClip: {fileID: 8300000, guid: c4dbb77abf76be14481bb3531c26ebb2, type: 3}
+  startingVolume: 1.5
+  distortingSound: 2
 --- !u!1 &486479251
 GameObject:
   m_ObjectHideFlags: 0
@@ -58444,6 +58460,7 @@ GameObject:
   - component: {fileID: 888316172577334580}
   - component: {fileID: 888316172577334584}
   - component: {fileID: 888316172577334585}
+  - component: {fileID: 888316172577334586}
   m_Layer: 6
   m_Name: spaceship_ufo_clean
   m_TagString: Player
@@ -58777,6 +58794,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &888316172577334586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888316172577334578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e625d643f75fa9a4796ee3d64a417dc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myClip: {fileID: 8300000, guid: c4dbb77abf76be14481bb3531c26ebb2, type: 3}
+  startingVolume: 1.5
+  distortingSound: 2
 --- !u!65 &944795701627333662
 BoxCollider:
   m_ObjectHideFlags: 0
