@@ -5,27 +5,31 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.PostProcessing;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class ComboCounter : MonoBehaviour
 {
     public ComboLevel[] combos;
-    private bool isShielded, cheatsEnabled, isCheating, isPsychorushActive,booomed;
+    private bool isShielded, cheatsEnabled, isCheating, isPsychoRushActive,isBoomActivated, isShaking;
     private int currentComboLevel, currentComboKills, totalKillCount, score, runningScore, shotsFired,maxComboLevel;
-    private float psychoTimer, hueShiftVal, oldSpeed, boomStartTime;
+    private float psychoTimer, hueShiftVal, oldSpeed, boomStartTime, shakeDuration, shakeMagnitude;
+    private Quaternion? originalRotation = null;
+    private AudioSource audioSource;
     private AutoSpawner autoSpawner;
-    private WeaponSystem weaponSystem;
+    private GameObject model;
+    private DynamicChaseCamera dcc;
     private HUDController hudController;
     private MeshRenderer shield;
     private MoveWithPath moveWithPath;
-    private PlayerInputSystem playerInputSystem;
-    private Coroutine coroutine;
     private ColorGrading colorGrading;
+    private Coroutine coroutine;
+    private PlayerInputSystem playerInputSystem;
     private PostProcessVolume ppv;
-    private AudioSource audioSource;
+    private WeaponSystem weaponSystem;
 
-    [SerializeField] private AudioClip shatter, bigboom;
+    [SerializeField]private float m;
+    [SerializeField]private AudioClip shatter, bigboom;
     [SerializeField]private float PauseRespawnAfterBigBoomSeconds;
     [SerializeField]private float psychoRushDuration;
     [SerializeField]private float psychoRushSpeedMultiplier = 2f;
@@ -35,12 +39,13 @@ public class ComboCounter : MonoBehaviour
     
     private float hueShiftMin = -180f;
     private float hueShiftMax = 180f;
-
     public bool IsCheating { get { return isCheating; } set { isCheating = value; } }
     public int ShotFired { get { return ShotFired; } set { shotsFired += 1; } }
     
     private void Start()
     {
+        model = GetComponentInChildren<Animation>().gameObject;
+        dcc = FindFirstObjectByType<DynamicChaseCamera>();
         audioSource = GetComponent<AudioSource>();
         moveWithPath = FindFirstObjectByType<MoveWithPath>();
         ppv = Camera.main.GetComponent<PostProcessVolume>();
@@ -74,7 +79,7 @@ public class ComboCounter : MonoBehaviour
     {
         if (!hudController.PowerUpAvailable(1)) return;
         StopCoroutine("ComboLevelCountDown");
-        booomed = true;
+        isBoomActivated = true;
         audioSource.PlayOneShot(bigboom);
         boomStartTime = Time.time;
         var enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -98,7 +103,7 @@ public class ComboCounter : MonoBehaviour
         yield return new WaitForSeconds(PauseRespawnAfterBigBoomSeconds);
         autoSpawner.MinSpawns = d;
         StartCoroutine("ComboLevelCountDown");
-        booomed = false;
+        isBoomActivated = false;
     }
     private void AcivateShield(InputAction.CallbackContext context)
     {
@@ -113,15 +118,15 @@ public class ComboCounter : MonoBehaviour
     public void AddKill(int basePoints)
     {
         colorGrading.saturation.value = 0;
-        if (!booomed) colorGrading.postExposure.value = 0;
+        if (!isBoomActivated) colorGrading.postExposure.value = 0;
         totalKillCount += 1;
         StopCoroutine("ComboLevelCountDown");
-        if (isPsychorushActive) basePoints*=2;
+        if (isPsychoRushActive) basePoints*=2;
         currentComboKills += 1;
         var toAdd = CalculateScore(basePoints);
         score += toAdd;
         runningScore += toAdd;
-        if (!booomed) StartCoroutine("ComboLevelCountDown");
+        if (!isBoomActivated) StartCoroutine("ComboLevelCountDown");
         if (currentComboLevel < combos.Length - 1 && currentComboKills >= combos[currentComboLevel].killsNeeded)
         {
             ComboLevelUp();
@@ -141,7 +146,7 @@ public class ComboCounter : MonoBehaviour
     }
     public void ImHit()
     {
-        if (isCheating || isPsychorushActive) return;
+        if (isCheating || isPsychoRushActive) return;
         if (isShielded)
         {
             audioSource.PlayOneShot(shatter);
@@ -149,6 +154,8 @@ public class ComboCounter : MonoBehaviour
             isShielded = false;
             return;
         }
+        dcc.NewShake(0.45f,m);
+        NewShake(0.45f, m);
         currentComboKills = 0;
         ComboLevelDown();
     }
@@ -228,10 +235,10 @@ public class ComboCounter : MonoBehaviour
     }
     public void ActivatePsychoRush()
     {
-        if (isPsychorushActive) return;
+        if (isPsychoRushActive) return;
         colorGrading.saturation.value = 0;
         colorGrading.postExposure.value = 0;
-        isPsychorushActive = true;
+        isPsychoRushActive = true;
         psychoTimer = Time.unscaledTime + psychoRushDuration;
         oldSpeed = moveWithPath.Speed;
         moveWithPath.Speed *= psychoRushSpeedMultiplier;
@@ -243,11 +250,25 @@ public class ComboCounter : MonoBehaviour
         moveWithPath.Speed = oldSpeed;
         weaponSystem.PsychoRush = false;
         psychoTimer = 0;
-        isPsychorushActive = false;
+        isPsychoRushActive = false;
     }
 
     private void Update()
     {
+        if (isShaking)
+        {
+            if (Time.time < shakeDuration)
+            {
+                if (originalRotation == null) originalRotation = transform.localRotation;
+                float x = Random.Range(-1f, 1f) * shakeMagnitude; 
+                float y = Random.Range(-1f, 1f) * shakeMagnitude;
+                float z = Random.Range(-1f, 1f) * shakeMagnitude;
+                transform.localRotation *= Quaternion.Euler(x, y, z);
+            }
+            if (originalRotation != null) transform.localRotation = (Quaternion)originalRotation;
+            isShaking = false;
+        }
+
         if (psychoTimer > 0)
         {
             if (Time.unscaledTime > psychoTimer)
@@ -261,10 +282,16 @@ public class ComboCounter : MonoBehaviour
             hueShiftVal += 1;
             colorGrading.hueShift.value = hueShiftVal;
         }
-        if (booomed && colorGrading.postExposure.value > 0f)
+        if (isBoomActivated && colorGrading.postExposure.value > 0f)
         {
             colorGrading.postExposure.value -= 5 / PauseRespawnAfterBigBoomSeconds * Time.deltaTime;
         }
+    }
+    public void NewShake(float duration, float magnitude)
+    {
+        isShaking = true;
+        shakeDuration = Time.time + duration;
+        shakeMagnitude = magnitude;
     }
 }
 

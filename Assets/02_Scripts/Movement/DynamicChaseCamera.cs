@@ -5,7 +5,9 @@ public class DynamicChaseCamera : MonoBehaviour
     Vector2 limits;
     private Vector3 velocity = Vector3.zero;
     private Vector3 screenBounds = Vector3.zero;
-    float smoothTime = .5f;
+    private bool isShaking;
+    private float smoothTime = .5f;
+    private float magnitude, duration;
     Vector3 offset;
     public Vector2 Limits => limits;
     
@@ -41,15 +43,30 @@ public class DynamicChaseCamera : MonoBehaviour
     {
         Vector3 localPos = transform.localPosition;
         transform.localPosition = new Vector3(Mathf.Clamp(localPos.x, -limits.x, limits.x), Mathf.Clamp(localPos.y, -limits.y, limits.y), localPos.z);
+        if (isShaking) ShakeCam();
     }
 
     public void FollowTarget(Transform t)
     {
         Vector3 localPos = transform.localPosition;
         Vector3 targetLocalPos = t.transform.localPosition;
-        localPos = Vector3.SmoothDamp(localPos, new Vector3(targetLocalPos.x + offset.x, targetLocalPos.y + offset.y, targetLocalPos.z), ref velocity, smoothTime);
-        localPos = new Vector3(localPos.x,localPos.y,targetLocalPos.z + offset.z);
+        localPos = Vector3.SmoothDamp(localPos,
+            new Vector3(targetLocalPos.x + offset.x, targetLocalPos.y + offset.y, targetLocalPos.z), ref velocity,
+            smoothTime);
+        localPos = new Vector3(localPos.x, localPos.y, targetLocalPos.z + offset.z);
         transform.localPosition = localPos;
+    }
+
+    private void ShakeCam()
+    {
+        transform.localPosition += Vector3.right * (Random.Range(-1, 2) * magnitude) + Vector3.up * (Random.Range(-1, 2) * magnitude);
+        if (Time.time > duration) isShaking = false;
+    }
+    public void NewShake(float d, float m)
+    {
+        isShaking = true;
+        duration = Time.time + d;
+        magnitude = m;
     }
 
     private void OnDrawGizmos()
