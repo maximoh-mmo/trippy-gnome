@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 816089905}
-  m_IndirectSpecularColor: {r: 0.48620903, g: 0.05376062, b: 0.31270146, a: 1}
+  m_IndirectSpecularColor: {r: 0.48663756, g: 0.054091416, b: 0.31290033, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -52360,7 +52360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loop: 1
-  speed: 10
+  speed: 25
   minHeight: 1
   maxHeight: 30
   terrainTiles: {fileID: 1316456239}
@@ -63446,6 +63446,7 @@ MonoBehaviour:
     scoreMultiplier: 8
     minEnemies: 5
     enemiesToSpawn: 10
+  m: 0
   shatter: {fileID: 8300000, guid: d97ee68bbbee33a4486aa453510bb5ff, type: 3}
   bigboom: {fileID: 8300000, guid: 87b7611487857044aa57c165eb37e6aa, type: 3}
   PauseRespawnAfterBigBoomSeconds: 2
