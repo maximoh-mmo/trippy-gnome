@@ -9,7 +9,7 @@ public class HUDController : MonoBehaviour
     private TMP_Text HUDScore, HUDComboLvl, HUDComboScore, HUDTimer;
     [SerializeField] private PowerUpUI[] PowerUps;
     [SerializeField] private GameObject[] Icons;
-    [SerializeField] GameObject pauseMenu, deathScreen;
+    [SerializeField] GameObject pauseMenu, audioScreen, settingsScreen, deathScreen;
     private PlayerInputSystem playerInputSystem;
     private ComboCounter cc;
     
@@ -33,20 +33,21 @@ public class HUDController : MonoBehaviour
             pauseMenu.SetActive(true);
             playerInputSystem.UI.Enable();
             playerInputSystem.InGame.Disable();
-            playerInputSystem.UI.UnPause.performed += UnPause;
+            playerInputSystem.UI.Back.performed += Back;
         }
     }
 
-    public void UnPause(InputAction.CallbackContext context)
+    public void Back(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
+            if (audioScreen) {audioScreen.SetActive(false); return;}
+            if (settingsScreen) {settingsScreen.SetActive(false); return;}
             playerInputSystem.UI.Disable();
             pauseMenu.SetActive(false);
             Time.timeScale = 1f;
             playerInputSystem.InGame.Enable();
             playerInputSystem.InGame.Pause.performed += Pause;
-
         }
     }
     public void DeathScreen() => deathScreen.SetActive(true);

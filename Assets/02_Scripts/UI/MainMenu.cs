@@ -1,12 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public class MainMenu : MonoBehaviour
 {
     public GameObject pauseMenuPanel;
     public GameObject howToPlayPanel;
-
+    public GameObject audioPanel;
     public void StartGame()
     {
         SceneManager.LoadScene(1);
@@ -31,14 +30,21 @@ public class MainMenu : MonoBehaviour
 
     public void HowToPlayPanel()
     {
-        if (pauseMenuPanel) pauseMenuPanel.SetActive(false);
         if (howToPlayPanel) howToPlayPanel.SetActive(true);
+    }
+
+    public void AudioPanel()
+    {
+        if (audioPanel) audioPanel.SetActive(true);
+    }
+    public void AudioPanelBack()
+    {
+        if (audioPanel) audioPanel.SetActive(false);
     }
 
     public void CloseHowToPlayPanel()
     {
         if (howToPlayPanel) howToPlayPanel.SetActive(false);
-        if (pauseMenuPanel) pauseMenuPanel.SetActive(true);
     }
     
     public void QuitToMainMenu()
