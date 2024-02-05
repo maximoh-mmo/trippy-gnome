@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 816089905}
-  m_IndirectSpecularColor: {r: 0.48605278, g: 0.05355067, b: 0.31285852, a: 1}
+  m_IndirectSpecularColor: {r: 0.48636085, g: 0.05380806, b: 0.31314638, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11418,7 +11418,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 219778173}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f046d1578a594841b9847d770773494, type: 3}
   m_Name: 
@@ -23159,6 +23159,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e625d643f75fa9a4796ee3d64a417dc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  masterMixer: {fileID: 0}
+  masterSlider: {fileID: 0}
+  musicSlider: {fileID: 0}
+  SFXSlider: {fileID: 0}
   myClip: {fileID: 8300000, guid: c4dbb77abf76be14481bb3531c26ebb2, type: 3}
   startingVolume: 1.5
   distortingSound: 2
@@ -57172,7 +57176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loop: 1
-  speed: 25
+  speed: 5
   minHeight: 1
   maxHeight: 30
   terrainTiles: {fileID: 1316456239}
@@ -62364,7 +62368,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 219778173}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
@@ -68437,6 +68441,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e625d643f75fa9a4796ee3d64a417dc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  masterMixer: {fileID: 0}
+  masterSlider: {fileID: 0}
+  musicSlider: {fileID: 0}
+  SFXSlider: {fileID: 0}
   myClip: {fileID: 8300000, guid: c4dbb77abf76be14481bb3531c26ebb2, type: 3}
   startingVolume: 1.5
   distortingSound: 2
