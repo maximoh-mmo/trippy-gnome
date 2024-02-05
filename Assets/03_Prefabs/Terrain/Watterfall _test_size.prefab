@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 8273068808739590556}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8273068809016579422}
   m_RootOrder: 0
@@ -4880,7 +4880,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8273068809016579422}
   m_Layer: 0
-  m_Name: Watterfall
+  m_Name: Watterfall _test_size
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4928,14 +4928,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8273068809743670476}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.8, y: -47, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalRotation: {x: -0, y: -0.97316945, z: -0, w: 0.23008956}
+  m_LocalPosition: {x: -50.2, y: -403.8, z: 43.3}
+  m_LocalScale: {x: 1.69, y: 1.69, z: 1.69}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8273068809016579422}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -153.395, z: 0}
 --- !u!198 &8273068809743670473
 ParticleSystem:
   m_ObjectHideFlags: 0
