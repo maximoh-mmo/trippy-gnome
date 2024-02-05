@@ -41,8 +41,8 @@ public class HUDController : MonoBehaviour
     {
         if (context.performed)
         {
-            if (audioScreen) {audioScreen.SetActive(false); return;}
-            if (settingsScreen) {settingsScreen.SetActive(false); return;}
+            if (audioScreen.activeSelf) { audioScreen.SetActive(false); return; }
+            if (settingsScreen.activeSelf) { settingsScreen.SetActive(false); return; }
             playerInputSystem.UI.Disable();
             pauseMenu.SetActive(false);
             Time.timeScale = 1f;

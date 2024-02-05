@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -7,22 +6,20 @@ public class SoundManager : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
 {
 
     AudioSource[] myQueue = new AudioSource[2];
-    [SerializeField] private AudioMixer masterMixer;
-    [SerializeField] Slider masterSlider;
-    [SerializeField] Slider musicSlider;
-    [SerializeField] Slider SFXSlider;
+    public AudioMixer masterMixer;
+    public Slider masterSlider, musicSlider, sfxSlider;
     [SerializeField] AudioClip myClip;
     [SerializeField] float startingVolume = 1.5f;
     [SerializeField] float distortingSound = 2f;
-    // Start is called before the first frame update
+
     private void Awake()
     {
         masterSlider.onValueChanged.AddListener(SetMainVolume);
-        SFXSlider.onValueChanged.AddListener(SetSFXVolume);
+        sfxSlider.onValueChanged.AddListener(SetSfxVolume);
         musicSlider.onValueChanged.AddListener(SetMusicVolume);
-        SetMusicVolume(1);
-        SetSFXVolume(1);
-        SetMusicVolume(1);    
+        SetMainVolume(1);
+        SetSfxVolume(1);
+        SetMusicVolume(1); 
     }
 
     void Start()
@@ -34,11 +31,13 @@ public class SoundManager : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
     {
         masterMixer.SetFloat("MasterVol", Mathf.Log10(value)*80);
     }
+
     private void SetMusicVolume(float value)
     {
         masterMixer.SetFloat("MusicVol", Mathf.Log10(value)*80);
     }
-    private void SetSFXVolume(float value)
+
+    private void SetSfxVolume(float value)
     {
         masterMixer.SetFloat("SFXVol", Mathf.Log10(value)*80);
     }
