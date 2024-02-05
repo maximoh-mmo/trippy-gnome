@@ -18,10 +18,10 @@ public class HUDController : MonoBehaviour
         HUDComboScore = GameObject.Find("RunningScore").GetComponent<TMP_Text>();
         HUDTimer = GameObject.Find("Timer").GetComponent<TMP_Text>();
     }
-    public void Score(int score) => HUDScore.SetText(score.ToString("#,#"));
+    public void Score(int score) => HUDScore.SetText(score.ToString("#,#0"));
     public void Timer(float timer) => HUDTimer.SetText(timer.ToString("0:##"));
     public void ComboLvl(int comboLvl) => HUDComboLvl.SetText(comboLvl.ToString());
-    public void RunningScore(int runningScore) => HUDComboScore.SetText(runningScore.ToString("#,#"));
+    public void RunningScore(int runningScore) => HUDComboScore.SetText(runningScore.ToString("#,#0"));
     public void ToggleIcon(int id, bool setTo)
     {
         var spriteImage = Icons[id].GetComponent<Image>();
