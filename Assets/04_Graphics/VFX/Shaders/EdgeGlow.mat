@@ -37,5 +37,6 @@ Material:
     m_Floats:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
-    m_Colors: []
+    m_Colors:
+    - _GlowClolour: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

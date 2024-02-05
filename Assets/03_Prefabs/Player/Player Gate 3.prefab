@@ -6027,7 +6027,10 @@ MonoBehaviour:
     scoreMultiplier: 8
     minEnemies: 5
     enemiesToSpawn: 10
-  secondsUntilNextRespawn: 0
+  m: 0
+  shatter: {fileID: 0}
+  bigboom: {fileID: 0}
+  PauseRespawnAfterBigBoomSeconds: 0
   psychoRushDuration: 5
   psychoRushSpeedMultiplier: 4
   comboLevelDownTime: 10
