@@ -31,8 +31,8 @@ public class HUDController : MonoBehaviour
         {
             Time.timeScale = 0f;
             pauseMenu.SetActive(true);
-            playerInputSystem.UI.Enable();
             playerInputSystem.InGame.Disable();
+            playerInputSystem.UI.Enable();
             playerInputSystem.UI.Back.performed += Back;
         }
     }
@@ -43,11 +43,14 @@ public class HUDController : MonoBehaviour
         {
             if (audioScreen.activeSelf) { audioScreen.SetActive(false); return; }
             if (settingsScreen.activeSelf) { settingsScreen.SetActive(false); return; }
-            playerInputSystem.UI.Disable();
-            pauseMenu.SetActive(false);
-            Time.timeScale = 1f;
-            playerInputSystem.InGame.Enable();
-            playerInputSystem.InGame.Pause.performed += Pause;
+            if (pauseMenu.activeSelf)
+            {
+                playerInputSystem.UI.Disable();
+                pauseMenu.SetActive(false);
+                Time.timeScale = 1f;
+                playerInputSystem.InGame.Enable();
+                playerInputSystem.InGame.Pause.performed += Pause;
+            }
         }
     }
     public void DeathScreen() => deathScreen.SetActive(true);
