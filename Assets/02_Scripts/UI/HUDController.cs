@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using TMPro;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class HUDController : MonoBehaviour
@@ -9,56 +8,20 @@ public class HUDController : MonoBehaviour
     private TMP_Text HUDScore, HUDComboLvl, HUDComboScore, HUDTimer;
     [SerializeField] private PowerUpUI[] PowerUps;
     [SerializeField] private GameObject[] Icons;
-    [SerializeField] GameObject pauseMenu, audioScreen, settingsScreen, deathScreen;
-    private PlayerInputSystem playerInputSystem;
     private ComboCounter cc;
     
     private void Awake()
     {
         cc = FindFirstObjectByType<ComboCounter>();
-        playerInputSystem = new PlayerInputSystem();
-        playerInputSystem.InGame.Enable();
-        playerInputSystem.InGame.Pause.performed += Pause;
         HUDScore = GameObject.Find("Score").GetComponent<TMP_Text>();
         HUDComboLvl = GameObject.Find("ComboLevel").GetComponent<TMP_Text>();
         HUDComboScore = GameObject.Find("RunningScore").GetComponent<TMP_Text>();
         HUDTimer = GameObject.Find("Timer").GetComponent<TMP_Text>();
     }
-
-    public void Pause(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            Time.timeScale = 0f;
-            pauseMenu.SetActive(true);
-            playerInputSystem.InGame.Disable();
-            playerInputSystem.UI.Enable();
-            playerInputSystem.UI.Back.performed += Back;
-        }
-    }
-
-    public void Back(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            if (audioScreen.activeSelf) { audioScreen.SetActive(false); return; }
-            if (settingsScreen.activeSelf) { settingsScreen.SetActive(false); return; }
-            if (pauseMenu.activeSelf)
-            {
-                playerInputSystem.UI.Disable();
-                pauseMenu.SetActive(false);
-                Time.timeScale = 1f;
-                playerInputSystem.InGame.Enable();
-                playerInputSystem.InGame.Pause.performed += Pause;
-            }
-        }
-    }
-    public void DeathScreen() => deathScreen.SetActive(true);
-
-    public void Score(int score) => HUDScore.SetText(score.ToString());
+    public void Score(int score) => HUDScore.SetText(score.ToString("#,#"));
     public void Timer(float timer) => HUDTimer.SetText(timer.ToString("0:##"));
     public void ComboLvl(int comboLvl) => HUDComboLvl.SetText(comboLvl.ToString());
-    public void RunningScore(int runningScore) => HUDComboScore.SetText(runningScore.ToString());
+    public void RunningScore(int runningScore) => HUDComboScore.SetText(runningScore.ToString("#,#"));
     public void ToggleIcon(int id, bool setTo)
     {
         var spriteImage = Icons[id].GetComponent<Image>();

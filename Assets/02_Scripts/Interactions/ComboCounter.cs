@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -27,8 +28,9 @@ public class ComboCounter : MonoBehaviour
     private PlayerInputSystem playerInputSystem;
     private PostProcessVolume ppv;
     private WeaponSystem weaponSystem;
+    private MainMenu mainMenu;
 
-    [SerializeField]private float m;
+    [FormerlySerializedAs("m")] [SerializeField]private float imHitShipShakeMagnitude;
     [SerializeField]private AudioClip shatter, bigboom;
     [SerializeField]private float PauseRespawnAfterBigBoomSeconds;
     [SerializeField]private float psychoRushDuration;
@@ -44,6 +46,7 @@ public class ComboCounter : MonoBehaviour
     
     private void Start()
     {
+        mainMenu = FindFirstObjectByType<MainMenu>();
         model = GetComponentInChildren<Animation>().gameObject;
         dcc = FindFirstObjectByType<DynamicChaseCamera>();
         audioSource = GetComponent<AudioSource>();
@@ -154,8 +157,8 @@ public class ComboCounter : MonoBehaviour
             isShielded = false;
             return;
         }
-        dcc.NewShake(0.45f,m);
-        NewShake(0.45f, m);
+        dcc.NewShake(0.45f,imHitShipShakeMagnitude);
+        NewShake(0.45f, imHitShipShakeMagnitude);
         currentComboKills = 0;
         ComboLevelDown();
     }
@@ -231,7 +234,7 @@ public class ComboCounter : MonoBehaviour
         DSComboLvl.SetText((maxComboLevel+1).ToString());
         WeaponIcons[maxComboLevel].GetComponent<Image>().enabled = true;
         if (shotsFired!=0) DSAccuracy.SetText(((100f*(float)totalKillCount/(float)shotsFired)).ToString("0.00") + "%");
-        hudController.DeathScreen();
+        mainMenu.DeathScreen();
     }
     public void ActivatePsychoRush()
     {

@@ -51,7 +51,8 @@ public class AutoSpawner : MonoBehaviour
             else
                 return;
         }
-        if (!player) Destroy(gameObject);
+
+        if (!player) MinSpawns = 0;
         if (spawnBubble.CountSpawns() < MinSpawns && !spawnBubble.SpawnStarted && !isSpawning)
         {
             isSpawning = true;

@@ -9,9 +9,7 @@ public class ICollide : MonoBehaviour
         {
             other.gameObject.GetComponent<ComboCounter>().DeathHandler();
         }
-
-        if (other != null)
-        {
+        if (!other.gameObject.CompareTag("Player")){
             Destroy(other.gameObject);
         }
     }
