@@ -25,7 +25,6 @@ public class ComboCounter : MonoBehaviour
     private MoveWithPath moveWithPath;
     private ColorGrading colorGrading;
     private Coroutine coroutine;
-    private PlayerInputSystem playerInputSystem;
     private PostProcessVolume ppv;
     private WeaponSystem weaponSystem;
     private MainMenu mainMenu;
@@ -59,13 +58,11 @@ public class ComboCounter : MonoBehaviour
         autoSpawner = FindFirstObjectByType<AutoSpawner>();
         UpdateDependants();
         Time.timeScale = 1;
-        playerInputSystem = new PlayerInputSystem();
-        playerInputSystem.InGame.Enable();
-        playerInputSystem.InGame.Boom.performed += BigBoom;
-        playerInputSystem.InGame.Shield.performed += AcivateShield;
-        playerInputSystem.Cheater.Enable();
-        playerInputSystem.Cheater.ComboLevel.performed += ChangeCombo;
-        playerInputSystem.Cheater.ToggleCheats.performed += ToggleCheats;
+        mainMenu.playerInputSystem.InGame.Boom.performed += BigBoom;
+        mainMenu.playerInputSystem.InGame.Shield.performed += AcivateShield;
+        mainMenu.playerInputSystem.Cheater.Enable();
+        mainMenu.playerInputSystem.Cheater.ComboLevel.performed += ChangeCombo;
+        mainMenu.playerInputSystem.Cheater.ToggleCheats.performed += ToggleCheats;
     }
     private void ToggleCheats(InputAction.CallbackContext context)
     {

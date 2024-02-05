@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -16,30 +17,43 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject pauseMenuButton;
     [SerializeField] private GameObject howToPlayMenuButton;
     [SerializeField] private GameObject audioPanelSlider;
+    [SerializeField] private GameObject deathScreenButton;
+    
+    public PlayerInputSystem playerInputSystem;
 
-    private PlayerInputSystem playerInputSystem;
-    public void DeathScreen() => deathScreen.SetActive(true);
+    private void Awake()
+    {
+        playerInputSystem = new PlayerInputSystem();
+    }
+
+    public void DeathScreen()
+    {
+        deathScreen.SetActive(true);
+        playerInputSystem.InGame.Disable();
+        playerInputSystem.UI.Enable();
+        EventSystem.current.SetSelectedGameObject(deathScreenButton);
+    }
 
     private void Start()
     {
-        playerInputSystem = new PlayerInputSystem();
-
         if (SceneManager.GetActiveScene().Equals(SceneManager.GetSceneByBuildIndex(0)))
         {
+            Debug.Log(SceneManager.GetSceneByBuildIndex(0).name);
             playerInputSystem.UI.Enable();
-            playerInputSystem.UI.Back.performed += Back;
+            playerInputSystem.UI.Back.started += Back;
         }
         else
         {
             playerInputSystem.InGame.Enable();
-            playerInputSystem.InGame.Pause.performed += Pause;
+            playerInputSystem.InGame.Pause.started += Pause;
         }
     }
-
+    
     private void Back(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.started)
         {
+            Debug.Log("Back");
             if (audioPanel.activeSelf)
             {
                 audioPanel.SetActive(false);
@@ -47,14 +61,13 @@ public class MainMenu : MonoBehaviour
                 EventSystem.current.SetSelectedGameObject(pauseMenuButton);
                 return;
             }
-
             if (howToPlayPanel.activeSelf)
             {
                 howToPlayPanel.SetActive(false);
                 pauseMenuPanel.SetActive(true);
                 EventSystem.current.SetSelectedGameObject(pauseMenuButton);
+                return;
             }
-
             if (pauseMenuPanel.activeSelf)
             {
                 Resume();
@@ -64,12 +77,13 @@ public class MainMenu : MonoBehaviour
 
     private void Pause(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.started)
         {
+            Debug.Log("Pause");
             Time.timeScale = 0f;
             playerInputSystem.InGame.Disable();
             playerInputSystem.UI.Enable();
-            playerInputSystem.UI.Back.performed += Back;
+            playerInputSystem.UI.Back.started += Back;
             pauseMenuPanel.SetActive(true);
             EventSystem.current.SetSelectedGameObject(pauseMenuButton);
         }
@@ -85,7 +99,6 @@ public class MainMenu : MonoBehaviour
         foreach (var go in FindObjectsOfType<Rigidbody>())
         {
             Destroy(go.gameObject);
-            continue;
         }
 
         Application.Quit();
@@ -99,18 +112,17 @@ public class MainMenu : MonoBehaviour
 
     public void HowToPlayPanel()
     {
-        howToPlayPanel.SetActive(true);
         pauseMenuPanel.SetActive(false);
+        howToPlayPanel.SetActive(true);
         EventSystem.current.SetSelectedGameObject(howToPlayMenuButton);
 
     }
 
     public void AudioPanel()
     {
-        audioPanel.SetActive(true);
         pauseMenuPanel.SetActive(false);
+        audioPanel.SetActive(true);
         EventSystem.current.SetSelectedGameObject(audioPanelSlider);
-
     }
     public void AudioPanelBack()
     {
@@ -137,9 +149,10 @@ public class MainMenu : MonoBehaviour
         howToPlayPanel.SetActive(false);
         audioPanel.SetActive(false);
         pauseMenuPanel.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
         playerInputSystem.UI.Disable();
         playerInputSystem.InGame.Enable();
-        playerInputSystem.InGame.Pause.performed += Pause;
+        playerInputSystem.InGame.Pause.started += Pause;
         Time.timeScale = 1f;
     }
     

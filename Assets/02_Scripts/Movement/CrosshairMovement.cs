@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,7 +14,7 @@ public class CrosshairMovement : MonoBehaviour
     private Vector2 inputVector;
     private Vector2 rollDirection;
     private Vector3 rollStart;
-    private PlayerInputSystem playerInputSystem;
+    private MainMenu mainMenu;
     private string left, right;
     private float adjustment = -1f;
     private static readonly int Rotation = Shader.PropertyToID("_Rotation");
@@ -26,15 +27,19 @@ public class CrosshairMovement : MonoBehaviour
         ani = FindObjectOfType<ComboCounter>().GetComponentInChildren<Animation>();
         left = "BarrelRollLeft";
         right = "BarrelRollRight";
-        playerInputSystem = new PlayerInputSystem();
-        playerInputSystem.InGame.Enable();
-        playerInputSystem.InGame.BarrelRoll.performed += BarrelRoll;
         if (xySpeedMultiple==0) { xySpeedMultiple = 1; }
     }
+
+    private void Start()
+    {
+        mainMenu = FindFirstObjectByType<MainMenu>();
+        mainMenu.playerInputSystem.InGame.BarrelRoll.performed += BarrelRoll;
+    }
+
     private void Update()
     {
         RenderSettings.skybox.SetFloat(Rotation, adjustment * Time.unscaledTime);
-        inputVector = playerInputSystem.InGame.Move.ReadValue<Vector2>();
+        inputVector = mainMenu.playerInputSystem.InGame.Move.ReadValue<Vector2>();
         var startPosition = transform.localPosition;
         if (isRolling)
         {
