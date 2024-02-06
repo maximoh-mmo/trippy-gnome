@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 816089905}
-  m_IndirectSpecularColor: {r: 0.486286, g: 0.054019935, b: 0.3131587, a: 1}
+  m_IndirectSpecularColor: {r: 0.4863289, g: 0.05348765, b: 0.31307006, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11270,7 +11270,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8273068808739590555, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -31.3
+      value: -29.3
       objectReference: {fileID: 0}
     - target: {fileID: 8273068808739590555, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11278,19 +11278,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8273068808739590555, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7332845
+      value: 0.73149294
       objectReference: {fileID: 0}
     - target: {fileID: 8273068808739590555, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.080164544
+      value: -0.09537786
       objectReference: {fileID: 0}
     - target: {fileID: 8273068808739590555, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.671473
+      value: 0.6694815
       objectReference: {fileID: 0}
     - target: {fileID: 8273068808739590555, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.07065038
+      value: -0.08726849
       objectReference: {fileID: 0}
     - target: {fileID: 8273068808739590555, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -11302,7 +11302,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8273068808739590555, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -12.2
+      value: -14.8
       objectReference: {fileID: 0}
     - target: {fileID: 8273068809016579422, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_RootOrder
@@ -17719,7 +17719,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2075737496886413644, guid: de6dedec8a81c3e40a51ead62e081d79, type: 3}
       propertyPath: m_RootOrder
-      value: 34
+      value: 33
       objectReference: {fileID: 0}
     - target: {fileID: 2075737496886413644, guid: de6dedec8a81c3e40a51ead62e081d79, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17781,31 +17781,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8273068808739590555, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.7
+      value: -7.4
       objectReference: {fileID: 0}
     - target: {fileID: 8273068808739590555, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -30.2
+      value: -29.3
       objectReference: {fileID: 0}
     - target: {fileID: 8273068808739590555, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 58.5
+      value: 60.1
       objectReference: {fileID: 0}
     - target: {fileID: 8273068808739590555, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.6936076
+      value: 0.6862906
       objectReference: {fileID: 0}
     - target: {fileID: 8273068808739590555, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.08221856
+      value: -0.12334146
       objectReference: {fileID: 0}
     - target: {fileID: 8273068808739590555, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7111385
+      value: 0.70671463
       objectReference: {fileID: 0}
     - target: {fileID: 8273068808739590555, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.080191724
+      value: -0.119776905
       objectReference: {fileID: 0}
     - target: {fileID: 8273068808739590555, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -17813,11 +17813,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8273068808739590555, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 91.43
+      value: 91.68
       objectReference: {fileID: 0}
     - target: {fileID: 8273068808739590555, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -13.19
+      value: -19.8
       objectReference: {fileID: 0}
     - target: {fileID: 8273068809016579422, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_RootOrder
@@ -24011,7 +24011,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2075737496886413644, guid: de6dedec8a81c3e40a51ead62e081d79, type: 3}
       propertyPath: m_RootOrder
-      value: 35
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 2075737496886413644, guid: de6dedec8a81c3e40a51ead62e081d79, type: 3}
       propertyPath: m_LocalPosition.x
@@ -25251,10 +25251,12 @@ MonoBehaviour:
   howToPlayPanel: {fileID: 1142322111}
   audioPanel: {fileID: 498523732}
   deathScreen: {fileID: 1357416254}
+  mainMenu: {fileID: 0}
   pauseMenuButton: {fileID: 1013344709}
   howToPlayMenuButton: {fileID: 961272952}
   audioPanelSlider: {fileID: 966026593}
   deathScreenButton: {fileID: 0}
+  mainMenuButton: {fileID: 0}
 --- !u!1 &483587102
 GameObject:
   m_ObjectHideFlags: 0
@@ -32730,7 +32732,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7689414303410218171, guid: 94ff54772ba7f47468e63654e2718751, type: 3}
       propertyPath: m_RootOrder
-      value: 33
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 7689414303410218171, guid: 94ff54772ba7f47468e63654e2718751, type: 3}
       propertyPath: m_LocalScale.x
@@ -33757,7 +33759,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8273068809016579423, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_Name
-      value: Watterfall (2)
+      value: Watterfall 3rd from start
       objectReference: {fileID: 0}
     - target: {fileID: 8273068809743670475, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_LocalScale.x
@@ -33872,11 +33874,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7689414303410218171, guid: 94ff54772ba7f47468e63654e2718751, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -130.73682
+      value: -50.5
       objectReference: {fileID: 0}
     - target: {fileID: 7689414303410218171, guid: 94ff54772ba7f47468e63654e2718751, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -51.09631
+      value: -52.9
       objectReference: {fileID: 0}
     - target: {fileID: 7689414303410218171, guid: 94ff54772ba7f47468e63654e2718751, type: 3}
       propertyPath: m_LocalPosition.z
@@ -73364,7 +73366,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 219778173}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
@@ -73424,7 +73426,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 219778173}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
@@ -74276,47 +74278,72 @@ MonoBehaviour:
     scoreMultiplier: 1
     minEnemies: 2
     enemiesToSpawn: 3
+    positive: {fileID: 0}
+    negative: {fileID: 8300000, guid: da5ab9c9d0ee299458dadfc09920acb2, type: 3}
   - weapon: DblMG
     killsNeeded: 5
     scoreMultiplier: 2
     minEnemies: 3
     enemiesToSpawn: 4
+    positive: {fileID: 8300000, guid: 21a113b5c0a0028459d6b1a90677b996, type: 3}
+    negative: {fileID: 8300000, guid: ef80bbb817441e8469b6ff656ea5e8ab, type: 3}
   - weapon: TripleMG
     killsNeeded: 10
     scoreMultiplier: 3
     minEnemies: 4
     enemiesToSpawn: 4
+    positive: {fileID: 8300000, guid: be9a5da7ec12e5644ad48c704bc184a2, type: 3}
+    negative: {fileID: 8300000, guid: 0bca55198fc6f9b45ae59296a749d3ab, type: 3}
   - weapon: Laser
     killsNeeded: 15
     scoreMultiplier: 4
     minEnemies: 4
     enemiesToSpawn: 6
+    positive: {fileID: 8300000, guid: 3c648f443dae1e948939a867147b8ac7, type: 3}
+    negative: {fileID: 8300000, guid: a3f5689f0ee471c44aecaa0cb4e886f7, type: 3}
   - weapon: DblLaser
     killsNeeded: 20
     scoreMultiplier: 5
     minEnemies: 5
     enemiesToSpawn: 7
+    positive: {fileID: 8300000, guid: e1a63551d08f2d54ab330d15c4128b39, type: 3}
+    negative: {fileID: 8300000, guid: 43fa61b1361832741b08068fde26bd54, type: 3}
   - weapon: RingLaser
     killsNeeded: 25
     scoreMultiplier: 6
     minEnemies: 4
     enemiesToSpawn: 7
+    positive: {fileID: 8300000, guid: f66eec3ad97a8874ab6123b522c4e5aa, type: 3}
+    negative: {fileID: 8300000, guid: 26328e8f52a196e4282a93b0e48877a2, type: 3}
   - weapon: Rocket
     killsNeeded: 30
     scoreMultiplier: 7
     minEnemies: 4
     enemiesToSpawn: 9
+    positive: {fileID: 8300000, guid: 06382fef64bb6eb4e8ef3eb06ca659c2, type: 3}
+    negative: {fileID: 8300000, guid: 1a951347d80436e4fad23a311dae27b8, type: 3}
   - weapon: DblRocket
     killsNeeded: 40
     scoreMultiplier: 8
     minEnemies: 5
     enemiesToSpawn: 10
-  imHitShipShakeMagnitude: 1
+    positive: {fileID: 8300000, guid: e0dbcc76d8b939f4c8503cab6100683e, type: 3}
+    negative: {fileID: 8300000, guid: 94d1f15927fe40348a65f8d0acf3817f, type: 3}
   shatter: {fileID: 8300000, guid: d97ee68bbbee33a4486aa453510bb5ff, type: 3}
   bigboom: {fileID: 8300000, guid: 87b7611487857044aa57c165eb37e6aa, type: 3}
-  PauseRespawnAfterBigBoomSeconds: 2
+  positives: []
+  negatives:
+  - {fileID: 8300000, guid: a30be01ed97313a45bfa52b86dd3558d, type: 3}
+  - {fileID: 8300000, guid: 267932611d632984d82872beefb6e266, type: 3}
+  - {fileID: 8300000, guid: d9337cf813a43424e84460a0661de76e, type: 3}
+  psychoRush:
+  - {fileID: 8300000, guid: f4112154ac7d02f4aa0b1d87273a15d2, type: 3}
+  - {fileID: 8300000, guid: 469d9eadf4c82c54fbc0e0f56998a948, type: 3}
+  - {fileID: 8300000, guid: 12be05f842309d649815b8b62110d91f, type: 3}
   psychoRushDuration: 5
   psychoRushSpeedMultiplier: 4
+  imHitShipShakeMagnitude: 1
+  PauseRespawnAfterBigBoomSeconds: 2
   comboLevelDownTime: 10
   DSScore: {fileID: 95082797}
   DSComboLvl: {fileID: 113185776}

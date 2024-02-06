@@ -5,13 +5,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.PostProcessing;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class ComboCounter : MonoBehaviour
 {
     public ComboLevel[] combos;
+     
     private bool isShielded, cheatsEnabled, isCheating, isPsychoRushActive,isBoomActivated, isShaking;
     private int currentComboLevel, currentComboKills, totalKillCount, score, runningScore, shotsFired,maxComboLevel;
     private float psychoTimer, hueShiftVal, oldSpeed, boomStartTime, shakeDuration, shakeMagnitude;
@@ -29,14 +29,25 @@ public class ComboCounter : MonoBehaviour
     private WeaponSystem weaponSystem;
     private MainMenu mainMenu;
 
-    [SerializeField]private float imHitShipShakeMagnitude;
-    [SerializeField]private AudioClip shatter, bigboom;
-    [SerializeField]private float PauseRespawnAfterBigBoomSeconds;
-    [SerializeField]private float psychoRushDuration;
-    [SerializeField]private float psychoRushSpeedMultiplier = 2f;
-    [SerializeField]private float comboLevelDownTime;
-    [SerializeField]private TMP_Text DSScore, DSComboLvl, DSKillCount, DSAccuracy;
-    [SerializeField]private GameObject[] WeaponIcons;
+    [Header("SFX")] 
+    [SerializeField] private AudioClip shatter;
+    [SerializeField] private AudioClip bigboom;
+    [SerializeField] private AudioClip[] positives;
+    [SerializeField] private AudioClip[] negatives;
+    [SerializeField] private AudioClip[] psychoRush;
+
+    [Header("Psycho Rush Controls")]
+    [SerializeField] private float psychoRushDuration;
+    [SerializeField] private float psychoRushSpeedMultiplier = 2f;
+    
+    [Header("Playability Control")]
+    [SerializeField] private float imHitShipShakeMagnitude;
+    [SerializeField] private float PauseRespawnAfterBigBoomSeconds;
+    [SerializeField] private float comboLevelDownTime;
+    
+    [Header("UI Elements")]
+    [SerializeField] private TMP_Text DSScore, DSComboLvl, DSKillCount, DSAccuracy;
+    [SerializeField] private GameObject[] WeaponIcons;
     
     private float hueShiftMin = -180f;
     private float hueShiftMax = 180f;
@@ -142,6 +153,7 @@ public class ComboCounter : MonoBehaviour
         if (maxComboLevel < currentComboLevel) maxComboLevel = currentComboLevel;
         currentComboKills = 0;
         runningScore = 0;
+        if (combos[currentComboLevel].positive) audioSource.PlayOneShot(combos[currentComboLevel].positive);
         UpdateDependants();
     }
     public void ImHit()
@@ -171,6 +183,7 @@ public class ComboCounter : MonoBehaviour
             hudController.ToggleIcon(currentComboLevel, true);
             runningScore = 0;
             UpdateHUD();
+            if (combos[currentComboLevel].negative) audioSource.PlayOneShot(combos[currentComboLevel].negative);
             UpdateDependants(); }
         StartCoroutine("ComboLevelCountDown");
     }
@@ -300,4 +313,5 @@ public class ComboLevel
 {
     public string weapon = string.Empty;
     public int killsNeeded, scoreMultiplier, minEnemies, enemiesToSpawn;
+    public AudioClip positive, negative;
 }
