@@ -13,9 +13,11 @@ public class EnemyBehaviour : MonoBehaviour
     private EnemyMovement movementPattern;
     private WeaponSystem ws;
     [SerializeField]private GameObject spawn, die;
-    private bool spawned, readyToShoot;
+    private bool spawned;
     public float ForwardMovementSpeed => forwardMovementSpeed;
     public GameObject DeathPrefab { get => die; }
+    public bool ReadyToShoot { get; set; }
+
     void Start()
     {
         ws = GetComponent<WeaponSystem>();
@@ -31,7 +33,7 @@ public class EnemyBehaviour : MonoBehaviour
         if (spawn!=null) StartCoroutine(SpawnEntityWithDelay(spawn, transform.position, 0.75f));
         else
         {
-            readyToShoot = true;
+            ReadyToShoot = true;
             spawned = true;
         }
     }
@@ -54,13 +56,13 @@ public class EnemyBehaviour : MonoBehaviour
         }
         spawned = true;
         yield return new WaitForSeconds(0.45f);
-        readyToShoot = true;
+        ReadyToShoot = true;
     }
     void Update()
     {
         if (!spawned) return;
         if (!player) Destroy(gameObject);
-        if (ws && readyToShoot) ws.Shoot();
+        if (ws && ReadyToShoot) ws.Shoot();
         if (Vector3.Dot(player.transform.forward, transform.position - player.transform.position) > 0)
         {
             var forwardMotion = PathDirection() * (forwardMovementSpeed*Time.deltaTime);

@@ -272,7 +272,6 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
                 colorGrading.saturation.value = 5f * -t;
                 colorGrading.postExposure.value = 0.1f * -t;
             }
-
             Debug.Log("CountDownTimer run out");
             ImHit();
         }
@@ -298,10 +297,17 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
         StartCoroutine(DeathScreenDelay(clipToPlay.length));
         var bullets = FindObjectsByType<Bullet>(FindObjectsSortMode.None)
             .Distinct();
-        foreach (var bullet in bullets) Destroy(bullet);
         var rockets = FindObjectsByType<Rocket>(FindObjectsSortMode.None)
             .Distinct();
+        var enemies = FindObjectsByType<EnemyBehaviour>(FindObjectsSortMode.None)
+            .Distinct();
         foreach (var rocket in rockets) Destroy(rocket);
+        foreach (var bullet in bullets) Destroy(bullet);
+        foreach (var enemy in enemies)
+        {
+            enemy.ReadyToShoot = false;
+            enemy.GetComponent<EnemyMovement>().moveToPlayerSpeed = 0;
+        }
         if (score == 0)
         {
             DSScore.SetText(score.ToString());
@@ -318,7 +324,8 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
         {
             WeaponIcons[i].GetComponent<Image>().enabled = false;
         }
-        WeaponIcons[maxComboLevel].GetComponent<Image>().enabled = true;
+        currentComboLevel = currentComboLevel < 0 ? currentComboLevel = 0 : currentComboLevel;
+        WeaponIcons[currentComboLevel].GetComponent<Image>().enabled = true;
         if (shotsFired != 0)
             DSAccuracy.SetText(((100f * (float)totalKillCount / (float)shotsFired)).ToString("0.00") + "%");
     }
