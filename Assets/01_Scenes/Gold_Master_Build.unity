@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 816089905}
-  m_IndirectSpecularColor: {r: 0.48565102, g: 0.053224478, b: 0.31254318, a: 1}
+  m_IndirectSpecularColor: {r: 0.4861333, g: 0.05368438, b: 0.3127463, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -62897,8 +62897,44 @@ PrefabInstance:
     m_TransformParent: {fileID: 301515046}
     m_Modifications:
     - target: {fileID: 8273068808739590555, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 8273068808739590555, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.5
+      value: -9.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 8273068808739590555, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8273068808739590555, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9975737
+      objectReference: {fileID: 0}
+    - target: {fileID: 8273068808739590555, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.0020117068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8273068808739590555, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.06145117
+      objectReference: {fileID: 0}
+    - target: {fileID: 8273068808739590555, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.032657243
+      objectReference: {fileID: 0}
+    - target: {fileID: 8273068808739590555, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8273068808739590555, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 7.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8273068808739590555, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -3.75
       objectReference: {fileID: 0}
     - target: {fileID: 8273068809016579422, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_RootOrder
@@ -62947,6 +62983,10 @@ PrefabInstance:
     - target: {fileID: 8273068809016579423, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_Name
       value: Watterfall (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8273068809743670476, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
