@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -53,7 +52,6 @@ public class MainMenu : MonoBehaviour
     {
         if (context.started)
         {
-            Debug.Log("Back");
             if (audioPanel.activeSelf)
             {
                 audioPanel.SetActive(false);
@@ -79,7 +77,6 @@ public class MainMenu : MonoBehaviour
     {
         if (context.started)
         {
-            Debug.Log("Pause");
             Time.timeScale = 0f;
             playerInputSystem.InGame.Disable();
             playerInputSystem.UI.Enable();
@@ -161,5 +158,4 @@ public class MainMenu : MonoBehaviour
         StopAllCoroutines();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
 }
