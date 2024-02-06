@@ -1,6 +1,6 @@
 using System.Linq;
 using UnityEngine;
-
+ 
 public class GetNearestTarget : MonoBehaviour
 {
    private Transform aimDirection;
@@ -12,6 +12,7 @@ public class GetNearestTarget : MonoBehaviour
    public Transform[] GetTargets(int numberToGet)
    {
       var potentials = FindObjectsOfType<EnemyBehaviour>();
+      if (potentials.Length<1) return null;
       var targets = potentials
          //.Where(t => t.IsTargetted == false)
          .Select(t => t.GetComponent<Transform>())
@@ -29,6 +30,7 @@ public class GetNearestTarget : MonoBehaviour
    public Transform GetTarget()
    {
       var potentials = FindObjectsOfType<EnemyBehaviour>();
+      if (potentials.Length<1) return null;
       var target = potentials
          .Where(t => Vector3.Dot(Vector3.Normalize(aimDirection.TransformDirection(Vector3.forward)),
             Vector3.Normalize(t.transform.position - aimDirection.position)) > 0)
@@ -36,7 +38,6 @@ public class GetNearestTarget : MonoBehaviour
             Vector3.Normalize(t.transform.position - aimDirection.position)))
          //.Where(t => t.IsTargetted == false)
          .Distinct();
-      if(target.Last()) return target.Last().transform;
-      return null;
+      return target.Any() ? target.Last().transform : null;
    }
 }
