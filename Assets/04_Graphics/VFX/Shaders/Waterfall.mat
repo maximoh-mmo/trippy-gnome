@@ -45,5 +45,5 @@ Material:
     - _VonoroiSpeed: 2
     m_Colors:
     - _RippleSpeed: {r: 0, g: 0.2, b: 0, a: 0}
-    - _RipplesColor: {r: 0.78431374, g: 2.2901962, b: 3.137255, a: 1}
+    - _RipplesColor: {r: 0, g: 2.386449, b: 5.591952, a: 1}
   m_BuildTextureStacks: []

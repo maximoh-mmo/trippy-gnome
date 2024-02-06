@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 816089905}
-  m_IndirectSpecularColor: {r: 0.4861128, g: 0.05355775, b: 0.3129427, a: 1}
+  m_IndirectSpecularColor: {r: 0.48565102, g: 0.053224478, b: 0.31254318, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -16610,7 +16610,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8273068808739590555, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.4
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 8273068808739590555, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_LocalPosition.y
@@ -16654,7 +16654,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8273068809016579422, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 870.6037
+      value: 855.2
       objectReference: {fileID: 0}
     - target: {fileID: 8273068809016579422, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_LocalPosition.y
@@ -16695,6 +16695,10 @@ PrefabInstance:
     - target: {fileID: 8273068809016579423, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_Name
       value: Watterfall (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8273068809743670476, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
@@ -17720,6 +17724,10 @@ PrefabInstance:
     - target: {fileID: 8273068809016579423, guid: 480ea427ee7fb424dabfd37de0236db5, type: 3}
       propertyPath: m_Name
       value: Watterfall _thin_long
+      objectReference: {fileID: 0}
+    - target: {fileID: 8273068809743670476, guid: 480ea427ee7fb424dabfd37de0236db5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 480ea427ee7fb424dabfd37de0236db5, type: 3}
@@ -25349,6 +25357,7 @@ MonoBehaviour:
   pauseMenuButton: {fileID: 1013344709}
   howToPlayMenuButton: {fileID: 961272952}
   audioPanelSlider: {fileID: 966026593}
+  deathScreenButton: {fileID: 0}
 --- !u!1 &483587102
 GameObject:
   m_ObjectHideFlags: 0
@@ -34199,6 +34208,7 @@ MonoBehaviour:
   pauseMenuButton: {fileID: 0}
   howToPlayMenuButton: {fileID: 0}
   audioPanelSlider: {fileID: 0}
+  deathScreenButton: {fileID: 0}
 --- !u!1001 &910788089
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34745,7 +34755,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8273068809016579422, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 830.09534
+      value: 823.82
       objectReference: {fileID: 0}
     - target: {fileID: 8273068809016579422, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_LocalPosition.y
@@ -34786,6 +34796,10 @@ PrefabInstance:
     - target: {fileID: 8273068809016579423, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
       propertyPath: m_Name
       value: Watterfall (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8273068809743670476, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2dd328ac82d5c64fa8096768726e4da, type: 3}
@@ -48951,6 +48965,10 @@ PrefabInstance:
     - target: {fileID: 8273068809016579423, guid: 480ea427ee7fb424dabfd37de0236db5, type: 3}
       propertyPath: m_Name
       value: Watterfall _thin_long (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8273068809743670476, guid: 480ea427ee7fb424dabfd37de0236db5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 480ea427ee7fb424dabfd37de0236db5, type: 3}
@@ -73370,7 +73388,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 219778173}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
