@@ -293,6 +293,16 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
 
     public void DeathHandler()
     {
+        // Stop World Rail
+        moveWithPath.Speed = 0f;
+        // Shake ship + sound
+        NewShake(3,3);
+        clipToPlay = deathCry[Random.Range(0,deathCry.Length)];
+        PlayAudioOnFirstFreeAvailable();
+        for (var pauseTime = 0f; pauseTime < clipToPlay.length; pauseTime += Time.deltaTime)
+        {
+            if (!isShaking) NewShake(3,3);
+        }
         var toDelete = FindObjectsByType<GameObject>(FindObjectsSortMode.None)
             .Where(t => t.CompareTag("Enemy"))
             .Distinct();
@@ -309,6 +319,10 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
         }
 
         DSComboLvl.SetText((maxComboLevel + 1).ToString());
+        for (var i = 0; i < WeaponIcons.Length; i++)
+        {
+            WeaponIcons[i].GetComponent<Image>().enabled = false;
+        }
         WeaponIcons[maxComboLevel].GetComponent<Image>().enabled = true;
         if (shotsFired != 0)
             DSAccuracy.SetText(((100f * (float)totalKillCount / (float)shotsFired)).ToString("0.00") + "%");
