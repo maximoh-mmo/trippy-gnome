@@ -306,7 +306,7 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
         foreach (var enemy in enemies)
         {
             enemy.ReadyToShoot = false;
-            enemy.GetComponent<EnemyMovement>().moveToPlayerSpeed = 0;
+            if (enemy.GetComponent<EnemyMovement>()) enemy.GetComponent<EnemyMovement>().moveToPlayerSpeed = 0;
         }
         if (score == 0)
         {
