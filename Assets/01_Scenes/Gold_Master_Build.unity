@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 816089905}
-  m_IndirectSpecularColor: {r: 0.48640198, g: 0.054013632, b: 0.31320736, a: 1}
+  m_IndirectSpecularColor: {r: 0.48634005, g: 0.053508136, b: 0.31306243, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -41533,7 +41533,7 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 21300000, guid: 2102bf693c72ff94eb0599659fad135f, type: 3}
     m_PressedSprite: {fileID: 21300000, guid: 9aabb0b0ed0f9674787dc5308781499f, type: 3}
-    m_SelectedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 21300000, guid: 2102bf693c72ff94eb0599659fad135f, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -55645,7 +55645,7 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 21300000, guid: cd914343e0fc85d4e98e70f8326a8514, type: 3}
     m_PressedSprite: {fileID: 21300000, guid: 245dbac63281f344facace3a8e460ec9, type: 3}
-    m_SelectedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 21300000, guid: cd914343e0fc85d4e98e70f8326a8514, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal

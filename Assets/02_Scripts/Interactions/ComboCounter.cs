@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Linq;
-using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -63,12 +62,9 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
 
     private float hueShiftMin = -180f;
     private float hueShiftMax = 180f;
+    public bool IsPsychoRushActive => isPsychoRushActive;
 
-    public bool IsCheating
-    {
-        get { return isCheating; }
-        set { isCheating = value; }
-    }
+    public bool IsCheating => isCheating;
 
     public int ShotFired
     {
@@ -239,7 +235,6 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
             }
             UpdateDependants();
         }
-
         StartCoroutine("ComboLevelCountDown");
     }
 
@@ -293,20 +288,19 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
 
     public void DeathHandler()
     {
+        Debug.Log("DeathHandler");
         // Stop World Rail
         moveWithPath.Speed = 0f;
         // Shake ship + sound
         NewShake(3,3);
+        
         clipToPlay = deathCry[Random.Range(0,deathCry.Length)];
         PlayAudioOnFirstFreeAvailable();
-        for (var pauseTime = 0f; pauseTime < clipToPlay.length; pauseTime += Time.deltaTime)
-        {
-            if (!isShaking) NewShake(3,3);
-        }
+        Debug.Log(clipToPlay.length);
         var toDelete = FindObjectsByType<GameObject>(FindObjectsSortMode.None)
             .Where(t => t.CompareTag("Enemy"))
             .Distinct();
-        foreach (var enemy in toDelete) Destroy(gameObject);
+        foreach (var enemy in toDelete) Destroy(enemy);
         if (score == 0)
         {
             DSScore.SetText(score.ToString());
@@ -326,7 +320,7 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
         WeaponIcons[maxComboLevel].GetComponent<Image>().enabled = true;
         if (shotsFired != 0)
             DSAccuracy.SetText(((100f * (float)totalKillCount / (float)shotsFired)).ToString("0.00") + "%");
-        mainMenu.DeathScreen();
+        StartCoroutine(DeathScreenDelay());
     }
 
     public void ActivatePsychoRush()
@@ -404,6 +398,11 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
         audioSource.PlayOneShot(clipToPlay);
     }
 
+    private IEnumerator DeathScreenDelay()
+    {
+        yield return new WaitForSeconds(4); 
+        mainMenu.DeathScreen();
+    }
     private IEnumerator FadeSwapMixMusic(AudioSource trackA, AudioSource trackB, float fadeDuration)
     {
         var startVolumeA = trackA.volume;

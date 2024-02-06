@@ -7,7 +7,7 @@ public class ICollide : MonoBehaviour
     {
         if (other.gameObject.GetComponent<ComboCounter>() != null)
         {
-            other.gameObject.GetComponent<ComboCounter>().DeathHandler();
+            if (!other.gameObject.GetComponent<ComboCounter>().IsPsychoRushActive) other.gameObject.GetComponent<ComboCounter>().DeathHandler();
         }
         if (!other.gameObject.CompareTag("Player")){
             Destroy(other.gameObject);
