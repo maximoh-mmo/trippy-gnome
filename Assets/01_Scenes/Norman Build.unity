@@ -3193,57 +3193,80 @@ MonoBehaviour:
     scoreMultiplier: 1
     minEnemies: 0
     enemiesToSpawn: 0
+    positive: {fileID: 0}
+    negative: {fileID: 0}
   - weapon: 
     killsNeeded: 10
     scoreMultiplier: 2
     minEnemies: 0
     enemiesToSpawn: 0
+    positive: {fileID: 0}
+    negative: {fileID: 0}
   - weapon: 
     killsNeeded: 10
     scoreMultiplier: 3
     minEnemies: 0
     enemiesToSpawn: 0
+    positive: {fileID: 0}
+    negative: {fileID: 0}
   - weapon: 
     killsNeeded: 10
     scoreMultiplier: 4
     minEnemies: 0
     enemiesToSpawn: 0
+    positive: {fileID: 0}
+    negative: {fileID: 0}
   - weapon: 
     killsNeeded: 10
     scoreMultiplier: 5
     minEnemies: 0
     enemiesToSpawn: 0
+    positive: {fileID: 0}
+    negative: {fileID: 0}
   - weapon: 
     killsNeeded: 10
     scoreMultiplier: 6
     minEnemies: 0
     enemiesToSpawn: 0
+    positive: {fileID: 0}
+    negative: {fileID: 0}
   - weapon: 
     killsNeeded: 10
     scoreMultiplier: 7
     minEnemies: 0
     enemiesToSpawn: 0
+    positive: {fileID: 0}
+    negative: {fileID: 0}
   - weapon: 
     killsNeeded: 10
     scoreMultiplier: 8
     minEnemies: 0
     enemiesToSpawn: 0
+    positive: {fileID: 0}
+    negative: {fileID: 0}
   - weapon: 
     killsNeeded: 10
     scoreMultiplier: 9
     minEnemies: 0
     enemiesToSpawn: 0
+    positive: {fileID: 0}
+    negative: {fileID: 0}
   - weapon: 
     killsNeeded: 10
     scoreMultiplier: 10
     minEnemies: 0
     enemiesToSpawn: 0
-  m: 0
+    positive: {fileID: 0}
+    negative: {fileID: 0}
   shatter: {fileID: 0}
   bigboom: {fileID: 0}
-  PauseRespawnAfterBigBoomSeconds: 0
+  positives: []
+  negatives: []
+  psychoRush: []
   psychoRushDuration: 0
   psychoRushSpeedMultiplier: 2
+  imHitShipShakeMagnitude: 0
+  PauseRespawnAfterBigBoomSeconds: 0
   comboLevelDownTime: 10
   DSScore: {fileID: 0}
   DSComboLvl: {fileID: 0}
@@ -3620,6 +3643,63 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1001 &2814124978370059478
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2814124979294617432, guid: 38dd24a98a4e73446bc57d7a760c9f35, type: 3}
+      propertyPath: m_RootOrder
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814124979294617432, guid: 38dd24a98a4e73446bc57d7a760c9f35, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 591.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814124979294617432, guid: 38dd24a98a4e73446bc57d7a760c9f35, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814124979294617432, guid: 38dd24a98a4e73446bc57d7a760c9f35, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 494.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814124979294617432, guid: 38dd24a98a4e73446bc57d7a760c9f35, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814124979294617432, guid: 38dd24a98a4e73446bc57d7a760c9f35, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814124979294617432, guid: 38dd24a98a4e73446bc57d7a760c9f35, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814124979294617432, guid: 38dd24a98a4e73446bc57d7a760c9f35, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814124979294617432, guid: 38dd24a98a4e73446bc57d7a760c9f35, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814124979294617432, guid: 38dd24a98a4e73446bc57d7a760c9f35, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814124979294617432, guid: 38dd24a98a4e73446bc57d7a760c9f35, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814124979294617435, guid: 38dd24a98a4e73446bc57d7a760c9f35, type: 3}
+      propertyPath: m_Name
+      value: Lake
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 38dd24a98a4e73446bc57d7a760c9f35, type: 3}
 --- !u!1001 &8273068808222484423
 PrefabInstance:
   m_ObjectHideFlags: 0
