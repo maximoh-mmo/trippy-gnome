@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
     string targetTag = string.Empty;
     private Rigidbody rb;
     [SerializeField]private GameObject projectileHit;
-    private AudioSource source;
+    private AudioSource audioSource;
     public void Setup(string tg, float rng, float spd, int dmg)
     {
         targetTag = tg;
@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
 
     private void Start()
     {
-        source = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         startPos = transform.position;
         rb = GetComponent<Rigidbody>();
         rb.AddForce(transform.forward * speed, ForceMode.Impulse);
@@ -54,7 +54,7 @@ public class Bullet : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
 
     public void PlayAudioOnFirstFreeAvailable()
     {
-        source.pitch = Random.Range(0.975f,1.025f);
-        source.Play();
+        audioSource.pitch = Random.Range(0.975f,1.025f);
+        audioSource.Play();
     }
 }
