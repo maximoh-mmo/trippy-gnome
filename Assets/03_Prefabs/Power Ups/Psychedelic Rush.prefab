@@ -124,7 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialRadius: 6
   flyingRadius: 1
-  speed: 15
+  speed: 20
 --- !u!54 &1788057257658780482
 Rigidbody:
   m_ObjectHideFlags: 0
