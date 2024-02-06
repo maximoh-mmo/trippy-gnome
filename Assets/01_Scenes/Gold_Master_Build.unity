@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 816089905}
-  m_IndirectSpecularColor: {r: 0.4861333, g: 0.05368438, b: 0.3127463, a: 1}
+  m_IndirectSpecularColor: {r: 0.486504, g: 0.054161794, b: 0.31254023, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -25251,10 +25251,12 @@ MonoBehaviour:
   howToPlayPanel: {fileID: 1142322111}
   audioPanel: {fileID: 498523732}
   deathScreen: {fileID: 1357416254}
+  mainMenu: {fileID: 0}
   pauseMenuButton: {fileID: 1013344709}
   howToPlayMenuButton: {fileID: 961272952}
   audioPanelSlider: {fileID: 966026593}
   deathScreenButton: {fileID: 0}
+  mainMenuButton: {fileID: 0}
 --- !u!1 &483587102
 GameObject:
   m_ObjectHideFlags: 0
@@ -74276,47 +74278,72 @@ MonoBehaviour:
     scoreMultiplier: 1
     minEnemies: 2
     enemiesToSpawn: 3
+    positive: {fileID: 0}
+    negative: {fileID: 8300000, guid: da5ab9c9d0ee299458dadfc09920acb2, type: 3}
   - weapon: DblMG
     killsNeeded: 5
     scoreMultiplier: 2
     minEnemies: 3
     enemiesToSpawn: 4
+    positive: {fileID: 8300000, guid: 21a113b5c0a0028459d6b1a90677b996, type: 3}
+    negative: {fileID: 8300000, guid: ef80bbb817441e8469b6ff656ea5e8ab, type: 3}
   - weapon: TripleMG
     killsNeeded: 10
     scoreMultiplier: 3
     minEnemies: 4
     enemiesToSpawn: 4
+    positive: {fileID: 8300000, guid: be9a5da7ec12e5644ad48c704bc184a2, type: 3}
+    negative: {fileID: 8300000, guid: 0bca55198fc6f9b45ae59296a749d3ab, type: 3}
   - weapon: Laser
     killsNeeded: 15
     scoreMultiplier: 4
     minEnemies: 4
     enemiesToSpawn: 6
+    positive: {fileID: 8300000, guid: 3c648f443dae1e948939a867147b8ac7, type: 3}
+    negative: {fileID: 8300000, guid: a3f5689f0ee471c44aecaa0cb4e886f7, type: 3}
   - weapon: DblLaser
     killsNeeded: 20
     scoreMultiplier: 5
     minEnemies: 5
     enemiesToSpawn: 7
+    positive: {fileID: 8300000, guid: e1a63551d08f2d54ab330d15c4128b39, type: 3}
+    negative: {fileID: 8300000, guid: 43fa61b1361832741b08068fde26bd54, type: 3}
   - weapon: RingLaser
     killsNeeded: 25
     scoreMultiplier: 6
     minEnemies: 4
     enemiesToSpawn: 7
+    positive: {fileID: 8300000, guid: f66eec3ad97a8874ab6123b522c4e5aa, type: 3}
+    negative: {fileID: 8300000, guid: 26328e8f52a196e4282a93b0e48877a2, type: 3}
   - weapon: Rocket
     killsNeeded: 30
     scoreMultiplier: 7
     minEnemies: 4
     enemiesToSpawn: 9
+    positive: {fileID: 8300000, guid: 06382fef64bb6eb4e8ef3eb06ca659c2, type: 3}
+    negative: {fileID: 8300000, guid: 1a951347d80436e4fad23a311dae27b8, type: 3}
   - weapon: DblRocket
     killsNeeded: 40
     scoreMultiplier: 8
     minEnemies: 5
     enemiesToSpawn: 10
-  imHitShipShakeMagnitude: 1
+    positive: {fileID: 8300000, guid: e0dbcc76d8b939f4c8503cab6100683e, type: 3}
+    negative: {fileID: 8300000, guid: 94d1f15927fe40348a65f8d0acf3817f, type: 3}
   shatter: {fileID: 8300000, guid: d97ee68bbbee33a4486aa453510bb5ff, type: 3}
   bigboom: {fileID: 8300000, guid: 87b7611487857044aa57c165eb37e6aa, type: 3}
-  PauseRespawnAfterBigBoomSeconds: 2
+  positives: []
+  negatives:
+  - {fileID: 8300000, guid: a30be01ed97313a45bfa52b86dd3558d, type: 3}
+  - {fileID: 8300000, guid: 267932611d632984d82872beefb6e266, type: 3}
+  - {fileID: 8300000, guid: d9337cf813a43424e84460a0661de76e, type: 3}
+  psychoRush:
+  - {fileID: 8300000, guid: f4112154ac7d02f4aa0b1d87273a15d2, type: 3}
+  - {fileID: 8300000, guid: 469d9eadf4c82c54fbc0e0f56998a948, type: 3}
+  - {fileID: 8300000, guid: 12be05f842309d649815b8b62110d91f, type: 3}
   psychoRushDuration: 5
   psychoRushSpeedMultiplier: 4
+  imHitShipShakeMagnitude: 1
+  PauseRespawnAfterBigBoomSeconds: 2
   comboLevelDownTime: 10
   DSScore: {fileID: 95082797}
   DSComboLvl: {fileID: 113185776}
