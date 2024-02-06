@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 816089905}
-  m_IndirectSpecularColor: {r: 0.48606455, g: 0.053630088, b: 0.31283054, a: 1}
+  m_IndirectSpecularColor: {r: 0.48640198, g: 0.054013632, b: 0.31320736, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -75086,29 +75086,29 @@ MonoBehaviour:
     scoreMultiplier: 2
     minEnemies: 3
     enemiesToSpawn: 4
-    positive: {fileID: 8300000, guid: 21a113b5c0a0028459d6b1a90677b996, type: 3}
-    negative: {fileID: 8300000, guid: ef80bbb817441e8469b6ff656ea5e8ab, type: 3}
+    positive: {fileID: 8300000, guid: be9a5da7ec12e5644ad48c704bc184a2, type: 3}
+    negative: {fileID: 8300000, guid: 0bca55198fc6f9b45ae59296a749d3ab, type: 3}
   - weapon: TripleMG
     killsNeeded: 10
     scoreMultiplier: 3
     minEnemies: 4
     enemiesToSpawn: 4
-    positive: {fileID: 8300000, guid: be9a5da7ec12e5644ad48c704bc184a2, type: 3}
-    negative: {fileID: 8300000, guid: 0bca55198fc6f9b45ae59296a749d3ab, type: 3}
+    positive: {fileID: 8300000, guid: 21a113b5c0a0028459d6b1a90677b996, type: 3}
+    negative: {fileID: 8300000, guid: ef80bbb817441e8469b6ff656ea5e8ab, type: 3}
   - weapon: Laser
     killsNeeded: 15
     scoreMultiplier: 4
     minEnemies: 4
     enemiesToSpawn: 6
-    positive: {fileID: 8300000, guid: 3c648f443dae1e948939a867147b8ac7, type: 3}
-    negative: {fileID: 8300000, guid: a3f5689f0ee471c44aecaa0cb4e886f7, type: 3}
+    positive: {fileID: 8300000, guid: e1a63551d08f2d54ab330d15c4128b39, type: 3}
+    negative: {fileID: 8300000, guid: 43fa61b1361832741b08068fde26bd54, type: 3}
   - weapon: DblLaser
     killsNeeded: 20
     scoreMultiplier: 5
     minEnemies: 5
     enemiesToSpawn: 7
-    positive: {fileID: 8300000, guid: e1a63551d08f2d54ab330d15c4128b39, type: 3}
-    negative: {fileID: 8300000, guid: 43fa61b1361832741b08068fde26bd54, type: 3}
+    positive: {fileID: 8300000, guid: 3c648f443dae1e948939a867147b8ac7, type: 3}
+    negative: {fileID: 8300000, guid: a3f5689f0ee471c44aecaa0cb4e886f7, type: 3}
   - weapon: RingLaser
     killsNeeded: 25
     scoreMultiplier: 6
