@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class WeaponSystem : MonoBehaviour
 {
-    private PlayerInputSystem playerInputSystem;
     public Weapon[] weapons;
     private Transform[] attackPoints;
     private int damage = 1;
@@ -13,16 +12,15 @@ public class WeaponSystem : MonoBehaviour
     private GameObject bulletPrefab;
     private GetNearestTarget getNearestTarget;
     private ComboCounter cc;
-
+    private MainMenu mainMenu;
     public bool PsychoRush { set => psychoRush = value; }
 
     // public RaycastHit raycastHit;
     // public LayerMask layerMask;
     private void Awake()
     {
+        mainMenu = FindFirstObjectByType<MainMenu>();
         getNearestTarget = FindFirstObjectByType<GetNearestTarget>();
-        playerInputSystem = new PlayerInputSystem();
-        playerInputSystem.InGame.Enable();
         cc = GetComponent<ComboCounter>();
     }
 
@@ -39,10 +37,10 @@ public class WeaponSystem : MonoBehaviour
         if (psychoRush) return;
         if (allowButtonHold == false)
         {
-            if (playerInputSystem.FindAction("Fire").WasPressedThisFrame()) Shoot();
+            if (mainMenu.playerInputSystem.FindAction("Fire").WasPressedThisFrame()) Shoot();
             return;
         }
-        if (playerInputSystem.FindAction("Fire").IsPressed()) Shoot(); 
+        if (mainMenu.playerInputSystem.FindAction("Fire").IsPressed()) Shoot(); 
     }
     public void Shoot()
     {

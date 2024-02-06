@@ -13,23 +13,20 @@ public class SpawnBubble : MonoBehaviour
     private bool spawnStarted = false;
     BoxCollider spawnArea;
     MoveWithPath moveWithPath;
-    private PlayerInputSystem playerInputSystem;
+    private MainMenu mainMenu;
     private ComboCounter comboCounter;
 
     public bool SpawnStarted => spawnStarted;
-    private void Awake()
-    {        
-        playerInputSystem = new PlayerInputSystem();
-        playerInputSystem.Cheater.Enable();
-        playerInputSystem.Cheater.SpawnAdds.performed += ManualSpawn;
-        comboCounter = FindFirstObjectByType<ComboCounter>();
-    }
     public void ManualSpawn(InputAction.CallbackContext context)
     {
         if (comboCounter.IsCheating) spawned = false;
     }
     void Start()
     {
+        mainMenu = FindFirstObjectByType<MainMenu>();
+        mainMenu.playerInputSystem.Cheater.Enable();
+        mainMenu.playerInputSystem.Cheater.SpawnAdds.performed += ManualSpawn;
+        comboCounter = FindFirstObjectByType<ComboCounter>();
         moveWithPath = FindObjectOfType<MoveWithPath>();
         GameObject child = new GameObject("SpawnArea", typeof(BoxCollider));
         var t = transform;

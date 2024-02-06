@@ -29,7 +29,7 @@ public class ComboCounter : MonoBehaviour
     private WeaponSystem weaponSystem;
     private MainMenu mainMenu;
 
-    [FormerlySerializedAs("m")] [SerializeField]private float imHitShipShakeMagnitude;
+    [SerializeField]private float imHitShipShakeMagnitude;
     [SerializeField]private AudioClip shatter, bigboom;
     [SerializeField]private float PauseRespawnAfterBigBoomSeconds;
     [SerializeField]private float psychoRushDuration;
