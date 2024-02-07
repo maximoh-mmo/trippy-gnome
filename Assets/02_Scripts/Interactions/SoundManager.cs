@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -74,6 +75,23 @@ public class SoundManager : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
         }
     }
 
+    public void MixTracks(AudioSource trackA, AudioSource trackB, float fadeDuration)
+    {
+        StartCoroutine(FadeSwapMixMusic(trackA, trackB, fadeDuration));
+    }
+
+    private IEnumerator FadeSwapMixMusic(AudioSource trackA, AudioSource trackB, float fadeDuration)
+    {
+        var startVolumeA = trackA.volume;
+        var startVolumeB = trackB.volume;
+        for (var timePassed = 0f; timePassed < fadeDuration; timePassed += Time.deltaTime)
+        {
+            trackA.volume = Mathf.Lerp(startVolumeA, startVolumeB, timePassed / fadeDuration);
+            trackB.volume = Mathf.Lerp(startVolumeB, startVolumeA, timePassed / fadeDuration);
+        }
+
+        yield return null;
+    }
 }
 
 public interface IPlaySoundIfFreeSourceAvailable

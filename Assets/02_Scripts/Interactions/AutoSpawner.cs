@@ -1,8 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Pool;
 using Random = UnityEngine.Random;
 
 public class AutoSpawner : MonoBehaviour
@@ -86,6 +86,20 @@ public class AutoSpawner : MonoBehaviour
     public void AddMoney(int coins)
     {
          extraCash += coins;
+    }
+
+    public void PauseRespawn(float pauseSeconds)
+    {
+        StartCoroutine(PauseRespawnForSeconds(pauseSeconds));
+    }
+    IEnumerator PauseRespawnForSeconds(float pauseSeconds)
+    {
+        var d = MinSpawns;
+        MinSpawns = 0;
+        yield return new WaitForSeconds(pauseSeconds);
+        MinSpawns = d;
+        player.StartCoroutine("ComboLevelCountDown");
+        player.IsBoomActivated = false;
     }
 }
 

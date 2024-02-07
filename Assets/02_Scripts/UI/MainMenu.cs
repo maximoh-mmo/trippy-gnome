@@ -30,6 +30,7 @@ public class MainMenu : MonoBehaviour
     {
         deathScreen.SetActive(true);
         playerInputSystem.InGame.Disable();
+        Cursor.visible = true;
         playerInputSystem.UI.Enable();
         EventSystem.current.SetSelectedGameObject(deathScreenButton);
     }
@@ -40,6 +41,7 @@ public class MainMenu : MonoBehaviour
         {
             playerInputSystem.InGame.Enable();
             playerInputSystem.InGame.Pause.started += Pause;
+            Cursor.visible = false;
             return;
         }
         EventSystem.current.SetSelectedGameObject(pauseMenuButton);
@@ -79,6 +81,7 @@ public class MainMenu : MonoBehaviour
         {
             Time.timeScale = 0f;
             playerInputSystem.InGame.Disable();
+            Cursor.visible = true;
             playerInputSystem.UI.Enable();
             playerInputSystem.UI.Back.started += Back;
             pauseMenuPanel.SetActive(true);
@@ -148,6 +151,7 @@ public class MainMenu : MonoBehaviour
         pauseMenuPanel.SetActive(false);
         EventSystem.current.SetSelectedGameObject(null);
         playerInputSystem.UI.Disable();
+        Cursor.visible = false;
         playerInputSystem.InGame.Enable();
         playerInputSystem.InGame.Pause.started += Pause;
         Time.timeScale = 1f;

@@ -43,7 +43,7 @@ public class Bullet : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
             if (projectileHit) Instantiate(projectileHit, other.ClosestPointOnBounds(transform.position) , Quaternion.identity);
             Destroy(gameObject); 
         }
-
+        
         if (other.gameObject.GetComponent<ComboCounter>() != null)
         {
             Debug.Log(gameObject.name);

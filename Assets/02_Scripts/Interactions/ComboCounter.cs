@@ -15,20 +15,22 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
     private bool isShielded, cheatsEnabled, isCheating, isPsychoRushActive, isBoomActivated, isShaking;
     private int currentComboLevel, currentComboKills, totalKillCount, score, runningScore, shotsFired, maxComboLevel;
     private float psychoTimer, hueShiftVal, oldSpeed, boomStartTime, shakeDuration, shakeMagnitude;
+    private float hueShiftMin = -180f;
+    private float hueShiftMax = 180f;
     private Quaternion? originalRotation = null;
     private AudioSource audioSource;
     private AudioClip clipToPlay;
     private AutoSpawner autoSpawner;
     private GameObject model;
-    private DynamicChaseCamera dcc;
+    private DynamicChaseCamera dynamicChaseCamera;
     private HUDController hudController;
     private MeshRenderer shield;
     private MoveWithPath moveWithPath;
     private ColorGrading colorGrading;
-    private Coroutine coroutine;
     private PostProcessVolume ppv;
     private WeaponSystem weaponSystem;
     private MainMenu mainMenu;
+    private SoundManager soundManager;
 
     [Header("SFX")]
     [SerializeField] private AudioClip shatter;
@@ -59,12 +61,10 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
     private TMP_Text DSScore, DSComboLvl, DSKillCount, DSAccuracy;
 
     [SerializeField] private GameObject[] WeaponIcons;
-
-    private float hueShiftMin = -180f;
-    private float hueShiftMax = 180f;
-    public bool IsPsychoRushActive => isPsychoRushActive;
-
+    
+    public bool IsBoomActivated { set => isBoomActivated = value; }
     public bool IsCheating => isCheating;
+    public bool IsPsychoRushActive => isPsychoRushActive;
 
     public int ShotFired
     {
@@ -74,9 +74,10 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
 
     private void Start()
     {
+        soundManager = FindFirstObjectByType<SoundManager>();
         mainMenu = FindFirstObjectByType<MainMenu>();
         model = GetComponentInChildren<Animation>().gameObject;
-        dcc = FindFirstObjectByType<DynamicChaseCamera>();
+        dynamicChaseCamera = FindFirstObjectByType<DynamicChaseCamera>();
         audioSource = GetComponent<AudioSource>();
         moveWithPath = FindFirstObjectByType<MoveWithPath>();
         ppv = Camera.main.GetComponent<PostProcessVolume>();
@@ -110,7 +111,7 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
     private void BigBoom(InputAction.CallbackContext context)
     {
         if (!hudController.PowerUpAvailable(1)) return;
-        StopCoroutine("ComboLevelCountDown");
+        StopAllCoroutines();
         isBoomActivated = true;
         clipToPlay = bigboom;
         PlayAudioOnFirstFreeAvailable();
@@ -128,18 +129,8 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
         }
 
         hudController.RemovePowerUp(1);
-        StartCoroutine("PauseRespawn");
+        autoSpawner.PauseRespawn(PauseRespawnAfterBigBoomSeconds);
         colorGrading.postExposure.value = 5f;
-    }
-
-    IEnumerator PauseRespawn()
-    {
-        var d = autoSpawner.MinSpawns;
-        autoSpawner.MinSpawns = 0;
-        yield return new WaitForSeconds(PauseRespawnAfterBigBoomSeconds);
-        autoSpawner.MinSpawns = d;
-        StartCoroutine("ComboLevelCountDown");
-        isBoomActivated = false;
     }
 
     private void AcivateShield(InputAction.CallbackContext context)
@@ -159,21 +150,25 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
 
     public void AddKill(int basePoints)
     {
+        if (positives.Length>0 && Random.Range(0,100)>90)
+        {
+            clipToPlay = positives[Random.Range(0,positives.Length)];
+            PlayAudioOnFirstFreeAvailable();
+        }
         colorGrading.saturation.value = 0;
         if (!isBoomActivated) colorGrading.postExposure.value = 0;
         totalKillCount += 1;
-        StopCoroutine("ComboLevelCountDown");
         if (isPsychoRushActive) basePoints *= 2;
         currentComboKills += 1;
         var toAdd = CalculateScore(basePoints);
         score += toAdd;
         runningScore += toAdd;
+        StopAllCoroutines();
         if (!isBoomActivated) StartCoroutine("ComboLevelCountDown");
         if (currentComboLevel < combos.Length - 1 && currentComboKills >= combos[currentComboLevel].killsNeeded)
         {
             ComboLevelUp();
         }
-
         UpdateHUD();
     }
 
@@ -196,6 +191,11 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
 
     public void ImHit()
     {
+        if (negatives.Length>0 && Random.Range(0,100)>90)
+        {
+            clipToPlay = negatives[Random.Range(0,negatives.Length)];
+            PlayAudioOnFirstFreeAvailable();
+        }
         if (isCheating || isPsychoRushActive) return;
         clipToPlay = playerHit;
         PlayAudioOnFirstFreeAvailable();
@@ -207,7 +207,7 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
             isShielded = false;
             return;
         }
-        dcc.NewShake(0.45f, imHitShipShakeMagnitude);
+        dynamicChaseCamera.NewShake(0.45f, imHitShipShakeMagnitude);
         NewShake(0.45f, imHitShipShakeMagnitude);
         currentComboKills = 0;
         ComboLevelDown();
@@ -234,6 +234,7 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
             }
             UpdateDependants();
         }
+        StopAllCoroutines();
         StartCoroutine("ComboLevelCountDown");
     }
 
@@ -249,34 +250,7 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
     {
         return points * combos[currentComboLevel].scoreMultiplier;
     }
-
-    IEnumerator ComboLevelCountDown()
-    {
-        if (currentComboLevel == 0)
-        {
-            for (float t = 0; t <= comboLevelDownTime; t += 0.5f)
-            {
-                yield return new WaitForSeconds(.5f);
-                hudController.Timer(comboLevelDownTime - t);
-                colorGrading.saturation.value = 5f * -t;
-                colorGrading.postExposure.value = 0.1f * -t;
-            }
-        }
-
-        if (currentComboLevel > 0)
-        {
-            for (float t = 0; t < comboLevelDownTime; t += 0.5f)
-            {
-                yield return new WaitForSeconds(.5f);
-                hudController.Timer(comboLevelDownTime - t);
-                colorGrading.saturation.value = 5f * -t;
-                colorGrading.postExposure.value = 0.1f * -t;
-            }
-            Debug.Log("CountDownTimer run out");
-            ImHit();
-        }
-    }
-
+   
     private void UpdateHUD()
     {
         hudController.Score(score);
@@ -342,7 +316,7 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
         oldSpeed = moveWithPath.Speed;
         moveWithPath.Speed *= psychoRushSpeedMultiplier;
         StopAllCoroutines();
-        StartCoroutine(FadeSwapMixMusic(mainMusic,psyRushMusic,2f));
+        soundManager.MixTracks(mainMusic,psyRushMusic,2f);
         weaponSystem.PsychoRush = true;
     }
 
@@ -352,7 +326,8 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
         weaponSystem.PsychoRush = false;
         psychoTimer = 0;
         isPsychoRushActive = false;
-        StartCoroutine(FadeSwapMixMusic(mainMusic,psyRushMusic,2f));
+        soundManager.MixTracks(mainMusic,psyRushMusic,2f);
+        StopAllCoroutines();
         StartCoroutine(ComboLevelCountDown());
     }
 
@@ -368,11 +343,10 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
                 float z = Random.Range(-1f, 1f) * shakeMagnitude;
                 transform.localRotation *= Quaternion.Euler(x, y, z);
             }
-
             if (originalRotation != null) transform.localRotation = (Quaternion)originalRotation;
             isShaking = false;
         }
-
+        
         if (psychoTimer > 0)
         {
             if (Time.unscaledTime > psychoTimer)
@@ -404,28 +378,46 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
         audioSource.pitch = Random.Range(0.975f, 1.025f);
         audioSource.PlayOneShot(clipToPlay);
     }
-
+    private void PauseRespawn()
+    {
+        autoSpawner.PauseRespawn(PauseRespawnAfterBigBoomSeconds);
+    }
     private IEnumerator DeathScreenDelay(float delay)
     {
         for (var d = 0f; d < delay; d += Time.deltaTime)
         {
             NewShake(delay, 2);
-            dcc.NewShake(delay, 1);
+            dynamicChaseCamera.NewShake(delay, 1);
         }
 
         yield return new WaitForSeconds(delay); 
         mainMenu.DeathScreen();
     }
-    private IEnumerator FadeSwapMixMusic(AudioSource trackA, AudioSource trackB, float fadeDuration)
+    IEnumerator ComboLevelCountDown()
     {
-        var startVolumeA = trackA.volume;
-        var startVolumeB = trackB.volume;
-        for (var timePassed = 0f; timePassed < fadeDuration; timePassed += Time.deltaTime)
+        if (currentComboLevel == 0)
         {
-            trackA.volume = Mathf.Lerp(startVolumeA, startVolumeB, timePassed / fadeDuration);
-            trackB.volume = Mathf.Lerp(startVolumeB, startVolumeA, timePassed / fadeDuration);
+            for (float t = 0; t <= comboLevelDownTime; t += 0.5f)
+            {
+                yield return new WaitForSeconds(.5f);
+                hudController.Timer(comboLevelDownTime - t);
+                colorGrading.saturation.value = 5f * -t;
+                colorGrading.postExposure.value = 0.1f * -t;
+            }
         }
-        yield return null;
+
+        if (currentComboLevel > 0)
+        {
+            for (float t = 0; t < comboLevelDownTime; t += 0.5f)
+            {
+                yield return new WaitForSeconds(.5f);
+                hudController.Timer(comboLevelDownTime - t);
+                colorGrading.saturation.value = 5f * -t;
+                colorGrading.postExposure.value = 0.1f * -t;
+            }
+            Debug.Log("CountDownTimer run out");
+            ImHit();
+        }
     }
 }
 
