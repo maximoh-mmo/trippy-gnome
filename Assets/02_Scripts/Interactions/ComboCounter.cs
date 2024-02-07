@@ -12,7 +12,7 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
 {
     public ComboLevel[] combos;
 
-    private bool isShielded, cheatsEnabled, isCheating, isPsychoRushActive, isBoomActivated, isShaking, isDead;
+    private bool isShielded, cheatsEnabled, isCheating, isPsychoRushActive, isBoomActivated, isShaking;
     private int currentComboLevel, currentComboKills, totalKillCount, score, runningScore, shotsFired, maxComboLevel;
     private float psychoTimer, hueShiftVal, oldSpeed, boomStartTime, shakeDuration, shakeMagnitude;
     private float hueShiftMin = -180f;
@@ -261,7 +261,6 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
 
     public void DeathHandler()
     {
-        isDead = true;
         // Stop World Rail
         moveWithPath.Speed = 0f;
         // Stop Movement

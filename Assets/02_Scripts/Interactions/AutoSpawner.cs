@@ -7,23 +7,20 @@ using Random = UnityEngine.Random;
 
 public class AutoSpawner : MonoBehaviour
 {
-    private SpawnBubble spawnBubble;
+    private SpawnBubbleV2 spawnBubble;
     private int numToSpawn, minCost;
-    [SerializeField] private List<Enemy> enemies;
     private List<GameObject>enemiesToSpawn;
+    
+    [SerializeField] private List<Enemy> enemies;
     [SerializeField] private int shopValue;
     [SerializeField] private bool useShop;
     [SerializeField] private float delay;
+    [SerializeField] public int extraCash;
     private float startTime;
     private ComboCounter player;
     private bool isSpawning;
     private bool isStartDelayOver;
     
-    /// <summary>
-    /// Return to private when Alex finished
-    /// </summary>
-    
-    public int extraCash;
     public int MinSpawns { get; set; }
     public int NumToSpawn { set => numToSpawn = value; }
     public int ShopValue { set => shopValue = value; }
@@ -31,7 +28,7 @@ public class AutoSpawner : MonoBehaviour
     {
         startTime = Time.time + delay;
         player = FindFirstObjectByType<ComboCounter>();
-        spawnBubble = FindFirstObjectByType<SpawnBubble>();
+        spawnBubble = FindFirstObjectByType<SpawnBubbleV2>();
         enemiesToSpawn = new List<GameObject>();
         minCost = enemies
             .OrderBy(t => t.cost)

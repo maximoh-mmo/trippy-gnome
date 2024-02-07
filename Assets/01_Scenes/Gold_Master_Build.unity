@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 816089905}
-  m_IndirectSpecularColor: {r: 0.4872073, g: 0.054088403, b: 0.31615394, a: 1}
+  m_IndirectSpecularColor: {r: 0.48719788, g: 0.053807937, b: 0.3155219, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -26848,6 +26848,7 @@ GameObject:
   - component: {fileID: 219778177}
   - component: {fileID: 219778175}
   - component: {fileID: 219778179}
+  - component: {fileID: 2058057437}
   - component: {fileID: 219778178}
   - component: {fileID: 2058057432}
   - component: {fileID: 2058057433}
@@ -26952,7 +26953,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 219778173}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa70aaa155e18264bbbddc1b72371bc0, type: 3}
   m_Name: 
@@ -132158,6 +132159,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2058057437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219778173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8db791be654982984a14fab81e078e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberToSpawn: 3
+  enemyPrefab: {fileID: 744851290034003747, guid: faa51d6a8a9543546994bc83d70ea64a, type: 3}
+  maxSpawnDistance: 146
+  minSpawnDistance: 44
+  minHeightFromTerrain: 1
+  maxHeightFromTerrain: 26
+  maxDistanceFromPath: 70
 --- !u!4 &2069990294 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 365168172476151908, guid: db1a99ee42dccae41a336763d94a2bae, type: 3}
