@@ -12,7 +12,7 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
 {
     public ComboLevel[] combos;
 
-    private bool isShielded, cheatsEnabled, isCheating, isPsychoRushActive, isBoomActivated, isShaking;
+    private bool isShielded, cheatsEnabled, isCheating, isPsychoRushActive, isBoomActivated, isShaking, isDead;
     private int currentComboLevel, currentComboKills, totalKillCount, score, runningScore, shotsFired, maxComboLevel;
     private float psychoTimer, hueShiftVal, oldSpeed, boomStartTime, shakeDuration, shakeMagnitude;
     private float hueShiftMin = -180f;
@@ -221,6 +221,7 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
         {
             Debug.Log("You DIED!");
             DeathHandler();
+            return;
         }
         else
         {
@@ -260,6 +261,7 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
 
     public void DeathHandler()
     {
+        isDead = true;
         // Stop World Rail
         moveWithPath.Speed = 0f;
         // Stop Movement
@@ -268,6 +270,7 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
         
         clipToPlay = deathCry[Random.Range(0,deathCry.Length)];
         PlayAudioOnFirstFreeAvailable();
+        StopAllCoroutines();
         StartCoroutine(DeathScreenDelay(clipToPlay.length));
         var bullets = FindObjectsByType<Bullet>(FindObjectsSortMode.None)
             .Distinct();
@@ -292,11 +295,10 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
             DSScore.SetText(score.ToString("#,#"));
             DSKillCount.SetText(totalKillCount.ToString("#,#"));
         }
-
         DSComboLvl.SetText((maxComboLevel + 1).ToString());
-        for (var i = 0; i < WeaponIcons.Length; i++)
+        foreach (var t in WeaponIcons)
         {
-            WeaponIcons[i].GetComponent<Image>().enabled = false;
+            t.GetComponent<Image>().enabled = false;
         }
         currentComboLevel = currentComboLevel < 0 ? currentComboLevel = 0 : currentComboLevel;
         WeaponIcons[currentComboLevel].GetComponent<Image>().enabled = true;
@@ -346,7 +348,6 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
             if (originalRotation != null) transform.localRotation = (Quaternion)originalRotation;
             isShaking = false;
         }
-        
         if (psychoTimer > 0)
         {
             if (Time.unscaledTime > psychoTimer)
@@ -359,7 +360,6 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
             hueShiftVal += 1;
             colorGrading.hueShift.value = hueShiftVal;
         }
-
         if (isBoomActivated && colorGrading.postExposure.value > 0f)
         {
             colorGrading.postExposure.value -= 5 / PauseRespawnAfterBigBoomSeconds * Time.deltaTime;
