@@ -1548,12 +1548,12 @@ AudioSource:
   m_GameObject: {fileID: 8682465729969389804}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -670372817576698509, guid: ad3731f4adfc67141bf63d126027b232, type: 2}
   m_audioClip: {fileID: 8300000, guid: dd1924c630cefee4fba2157453bedcbe, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1826,6 +1826,7 @@ GameObject:
   - component: {fileID: 1322084831}
   - component: {fileID: 1322084830}
   - component: {fileID: 1322084829}
+  - component: {fileID: 1322084832}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -1899,6 +1900,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1322084832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322084828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e625d643f75fa9a4796ee3d64a417dc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterMixer: {fileID: 24100000, guid: ad3731f4adfc67141bf63d126027b232, type: 2}
+  masterSlider: {fileID: 25753425}
+  musicSlider: {fileID: 734742882}
+  sfxSlider: {fileID: 1215220476}
+  myClip: {fileID: 8300000, guid: c4dbb77abf76be14481bb3531c26ebb2, type: 3}
+  startingVolume: 1.5
+  distortingSound: 2
 --- !u!1 &1388392391
 GameObject:
   m_ObjectHideFlags: 0
