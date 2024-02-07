@@ -2169,7 +2169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6169800758059279204, guid: 9f1feda795d39cf43a635beda05e05d6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 15.85
+      value: 52.7
       objectReference: {fileID: 0}
     - target: {fileID: 6169800758059279204, guid: 9f1feda795d39cf43a635beda05e05d6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3259,10 +3259,15 @@ MonoBehaviour:
     positive: {fileID: 0}
     negative: {fileID: 0}
   shatter: {fileID: 0}
+  playerHit: {fileID: 0}
+  deathExplosion: {fileID: 0}
   bigboom: {fileID: 0}
   positives: []
   negatives: []
   psychoRush: []
+  deathCry: []
+  mainMusic: {fileID: 0}
+  psyRushMusic: {fileID: 0}
   psychoRushDuration: 0
   psychoRushSpeedMultiplier: 2
   imHitShipShakeMagnitude: 0
