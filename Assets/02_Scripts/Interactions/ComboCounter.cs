@@ -280,8 +280,11 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
             .Distinct();
         var enemies = FindObjectsByType<EnemyBehaviour>(FindObjectsSortMode.None)
             .Distinct();
+        var lootItems = FindObjectsByType<LootBehaviour>(FindObjectsSortMode.None)
+            .Distinct();
         foreach (var rocket in rockets) Destroy(rocket);
         foreach (var bullet in bullets) Destroy(bullet);
+        foreach (var loot in lootItems) loot.IsPlayerDead=true;
         foreach (var enemy in enemies)
         {
             enemy.ReadyToShoot = false;

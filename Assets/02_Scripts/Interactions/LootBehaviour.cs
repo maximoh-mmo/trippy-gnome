@@ -4,11 +4,12 @@ public class LootBehaviour : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
 {
     private int type;
     private SphereCollider sc;
-    private bool flyToPlayer = false;
+    private bool flyToPlayer, isPlayerDead;
     private Transform player;
     private HUDController hud;
     [SerializeField] private float initialRadius, flyingRadius, speed;
     
+    public bool IsPlayerDead { set => isPlayerDead = true; }
     public int Type { set => type = value; }
     
     void Start()
@@ -27,6 +28,7 @@ public class LootBehaviour : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
 
     private void Update()
     {
+        if (isPlayerDead) return;
         if (flyToPlayer!=true) return;
         var transform1 = transform;
         transform1.LookAt(player);
