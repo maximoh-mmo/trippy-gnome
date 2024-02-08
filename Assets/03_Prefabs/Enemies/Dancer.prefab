@@ -232,9 +232,6 @@ MonoBehaviour:
   - powerUp: {fileID: 1688644051278918043, guid: f19e4d440132a974abbf1bcac3a062aa, type: 3}
     type: 1
     chance: 3.3
-  - powerUp: {fileID: 2041170997438138626, guid: b916f5c9add51de44937f01e20aeb1e6, type: 3}
-    type: 2
-    chance: 0
   scale: 4
 --- !u!114 &4602904122800230435
 MonoBehaviour:
