@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 816089905}
-  m_IndirectSpecularColor: {r: 0.48696285, g: 0.05386529, b: 0.31548816, a: 1}
+  m_IndirectSpecularColor: {r: 0.4873987, g: 0.054073155, b: 0.3158253, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -132156,8 +132156,8 @@ MonoBehaviour:
   maxSpawnDistance: 140.1
   minSpawnDistance: 75.8
   minHeightFromTerrain: 1
-  maxHeightFromTerrain: 22
-  maxDistanceFromPath: 40.1
+  maxHeightFromTerrain: 35
+  maxDistanceFromPath: 35
 --- !u!4 &2069990294 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 365168172476151908, guid: db1a99ee42dccae41a336763d94a2bae, type: 3}
