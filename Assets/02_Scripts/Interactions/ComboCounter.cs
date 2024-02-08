@@ -32,6 +32,8 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
     private MainMenu mainMenu;
     private SoundManager soundManager;
 
+    #region exposed variables
+    
     [Header("SFX")]
     [SerializeField] private AudioClip shatter;
     [SerializeField] private AudioClip playerHit;
@@ -62,15 +64,16 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
 
     [SerializeField] private GameObject[] WeaponIcons;
     
+    #endregion
+
+    #region getters and setters
     public bool IsBoomActivated { set => isBoomActivated = value; }
     public bool IsCheating => isCheating;
     public bool IsPsychoRushActive => isPsychoRushActive;
-
-    public int ShotFired
-    {
-        get { return ShotFired; }
-        set { shotsFired += 1; }
-    }
+    public int ShotFired { set => shotsFired += value; }
+    
+    #endregion
+    
 
     private void Start()
     {
@@ -284,25 +287,18 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
             enemy.ReadyToShoot = false;
             if (enemy.GetComponent<EnemyMovement>()) enemy.GetComponent<EnemyMovement>().moveToPlayerSpeed = 0;
         }
-        if (score == 0)
-        {
-            DSScore.SetText(score.ToString());
-            DSKillCount.SetText(totalKillCount.ToString());
-        }
-        else
-        {
-            DSScore.SetText(score.ToString("#,#"));
-            DSKillCount.SetText(totalKillCount.ToString("#,#"));
-        }
-        DSComboLvl.SetText((maxComboLevel + 1).ToString());
+        currentComboLevel = currentComboLevel < 0 ? currentComboLevel = 0 : currentComboLevel;
         foreach (var t in WeaponIcons)
         {
             t.GetComponent<Image>().enabled = false;
         }
-        currentComboLevel = currentComboLevel < 0 ? currentComboLevel = 0 : currentComboLevel;
+        var scoreFormat = score == 0 ? "" : "#,#";
+        string accuracyText = shotsFired != 0 ? ((100f * (float)totalKillCount / (float)shotsFired)).ToString("0.00") + "%" : "0.00%";
+        DSScore.SetText(score.ToString(scoreFormat));
+        DSKillCount.SetText(totalKillCount.ToString(scoreFormat));
+        DSComboLvl.SetText((maxComboLevel + 1).ToString());
+        DSAccuracy.SetText(accuracyText);
         WeaponIcons[currentComboLevel].GetComponent<Image>().enabled = true;
-        if (shotsFired != 0)
-            DSAccuracy.SetText(((100f * (float)totalKillCount / (float)shotsFired)).ToString("0.00") + "%");
     }
 
     public void ActivatePsychoRush()

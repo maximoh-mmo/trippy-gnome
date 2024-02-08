@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class AutoSpawner : MonoBehaviour
@@ -10,12 +11,12 @@ public class AutoSpawner : MonoBehaviour
     private SpawnBubbleV2 spawnBubble;
     private int numToSpawn, minCost;
     private List<GameObject>enemiesToSpawn;
-    
+    [Header("Random Spawn Settings")]
     [SerializeField] private List<Enemy> enemies;
     [SerializeField] private int shopValue;
-    [SerializeField] private bool useShop;
-    [SerializeField] private float delay;
-    [SerializeField] public int extraCash;
+    [SerializeField] private bool spawnEnemiesUsingShop;
+    [SerializeField] private float initialSpawnDelay;
+    private int extraCash;
     private float startTime;
     private ComboCounter player;
     private bool isSpawning;
@@ -26,7 +27,7 @@ public class AutoSpawner : MonoBehaviour
     public int ShopValue { set => shopValue = value; }
     void Start()
     {
-        startTime = Time.time + delay;
+        startTime = Time.time + initialSpawnDelay;
         player = FindFirstObjectByType<ComboCounter>();
         spawnBubble = FindFirstObjectByType<SpawnBubbleV2>();
         enemiesToSpawn = new List<GameObject>();
@@ -48,12 +49,11 @@ public class AutoSpawner : MonoBehaviour
             else
                 return;
         }
-
         if (!player) MinSpawns = 0;
         if (spawnBubble.CountSpawns() < MinSpawns && !spawnBubble.SpawnStarted && !isSpawning)
         {
             isSpawning = true;
-            if (useShop) ShopAndSpawn();
+            if (spawnEnemiesUsingShop) ShopAndSpawn();
             else
             {
                 spawnBubble.SpawnEnemies(numToSpawn);

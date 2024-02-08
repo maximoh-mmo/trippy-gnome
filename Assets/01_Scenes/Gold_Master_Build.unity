@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 816089905}
-  m_IndirectSpecularColor: {r: 0.48719788, g: 0.053807937, b: 0.3155219, a: 1}
+  m_IndirectSpecularColor: {r: 0.4869971, g: 0.054057118, b: 0.3157419, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -26847,7 +26847,6 @@ GameObject:
   - component: {fileID: 219778174}
   - component: {fileID: 219778177}
   - component: {fileID: 219778175}
-  - component: {fileID: 219778179}
   - component: {fileID: 2058057437}
   - component: {fileID: 219778178}
   - component: {fileID: 2058057432}
@@ -26946,22 +26945,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: {x: 302.52, y: 237.22, z: 178.8}
---- !u!114 &219778179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 219778173}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa70aaa155e18264bbbddc1b72371bc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  numberToSpawn: 3
-  spawnBoxSize: {x: 71.4, y: 43.4, z: 100.3}
-  center: {x: 0, y: 0, z: 125}
-  enemyPrefab: {fileID: 744851290034003747, guid: faa51d6a8a9543546994bc83d70ea64a, type: 3}
 --- !u!4 &220060203 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7096906512839087226, guid: bb5c5d0046f5e934a95b4c540b46dfc9, type: 3}
@@ -35970,9 +35953,8 @@ MonoBehaviour:
   - prefab: {fileID: 6833185169319360990, guid: 85db778a84091fc469a9aeb2fe224356, type: 3}
     cost: 40
   shopValue: 10
-  useShop: 1
-  delay: 0
-  extraCash: 0
+  spawnEnemiesUsingShop: 1
+  initialSpawnDelay: 1
 --- !u!114 &480956534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132173,11 +132155,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberToSpawn: 3
   enemyPrefab: {fileID: 744851290034003747, guid: faa51d6a8a9543546994bc83d70ea64a, type: 3}
-  maxSpawnDistance: 146
-  minSpawnDistance: 44
+  maxSpawnDistance: 117.4
+  minSpawnDistance: 40.57
   minHeightFromTerrain: 1
-  maxHeightFromTerrain: 26
-  maxDistanceFromPath: 70
+  maxHeightFromTerrain: 36.9
+  maxDistanceFromPath: 46.11
 --- !u!4 &2069990294 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 365168172476151908, guid: db1a99ee42dccae41a336763d94a2bae, type: 3}

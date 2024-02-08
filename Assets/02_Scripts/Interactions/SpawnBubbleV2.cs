@@ -59,7 +59,7 @@ public class SpawnBubbleV2 : MonoBehaviour
             spawned = true;
             for (int i = 0; i < number; i++)
             {
-                SpawnEnemy(RandomSpawnPoint(GetSize(enemyPrefab).y));
+                SpawnEnemy(GenerateRandomSpawnPoint(GetSize(enemyPrefab).y));
             }
         }
         public void SpawnEnemies(GameObject[] enemies)
@@ -67,7 +67,7 @@ public class SpawnBubbleV2 : MonoBehaviour
             spawnStarted = true;
             foreach (var enemy in enemies)
             {
-                StartCoroutine(SpawnEnemyWithDelay(RandomSpawnPoint(GetSize(enemy).y), enemy));
+                StartCoroutine(SpawnEnemyWithDelay(GenerateRandomSpawnPoint(GetSize(enemy).y), enemy));
             }
         }
         public int CountSpawns()
@@ -78,49 +78,53 @@ public class SpawnBubbleV2 : MonoBehaviour
 
     #endregion
     #region private methods
-        private Vector3 RandomSpawnPoint(float minHeight)
+
+    private Vector3 GenerateRandomSpawnPoint(float minHeight)
+    {
+        var player = comboCounter.transform;
+        var playerPosition = player.position;
+        var returnVector = Vector3.zero;
+        var playerPositionZeroY = new Vector3(playerPosition.x, 0, playerPosition.z);
+        var spawnPoint = Random.insideUnitCircle * maxDistanceFromPath;
+        var spawnDistanceOnPath = Random.Range(minSpawnDistance, maxSpawnDistance);
+        var closestWp = waypoints
+            .OrderBy(t => Vector3.Distance(t, playerPositionZeroY))
+            .First();
+        var nearestWpAhead = Vector3.Dot(player.forward, closestWp - playerPositionZeroY) > 0
+            ? closestWp
+            : waypoints[waypoints.IndexOf(closestWp) + 1];
+        var distToFirstWp = Vector3.Distance(playerPositionZeroY, nearestWpAhead);
+        if (distToFirstWp > spawnDistanceOnPath)
         {
-            var player= comboCounter.transform;
-            var playerPosition = player.position;
-            var playerPositionZeroY = new Vector3(playerPosition.x,0,playerPosition.z);
-            var spawnPoint = Random.insideUnitCircle * maxDistanceFromPath;
-            var spawnDistanceOnPath = Random.Range(minSpawnDistance, maxSpawnDistance);
-            var closestWp = waypoints
-                .OrderBy(t => Vector3.Distance(t, playerPositionZeroY))
-                .First();
-            var nearestWpAhead = Vector3.Dot(player.forward, closestWp - playerPositionZeroY) > 0 ? closestWp : waypoints[waypoints.IndexOf(closestWp)+1];
-            
-            
-            // calculate which pair of points to use 
-            var distToFirstWp = Vector3.Distance(playerPositionZeroY, nearestWpAhead);
-            if (distToFirstWp > spawnDistanceOnPath)
-            {
-                var direction = (nearestWpAhead - playerPositionZeroY).normalized * spawnDistanceOnPath;
-                var returnVector = playerPositionZeroY + direction; // + new Vector3(spawnPoint.x, 0,spawnPoint.y);
-                returnVector.y = Random.Range(minHeightFromTerrain + minHeight, maxHeightFromTerrain);
-                return returnVector;
-            } 
-            var remainingDistance = spawnDistanceOnPath - distToFirstWp;
-            while (remainingDistance > 0)
-            {
-                var nextWaypoint = NextWaypoint(nearestWpAhead);
-                var distanceBetweenNextWaypoints = Vector3.Distance(nearestWpAhead, nextWaypoint);
-                if (distanceBetweenNextWaypoints > remainingDistance)
-                {
-                    Vector3 direction = (nextWaypoint - nearestWpAhead).normalized * remainingDistance;
-                    Vector3 returnVector = nearestWpAhead + direction; // + new Vector3(spawnPoint.x, 0, spawnPoint.y);
-                    returnVector.y = Random.Range(minHeightFromTerrain + minHeight, maxHeightFromTerrain);
-                    return returnVector;
-                }
-                nearestWpAhead = nextWaypoint;
-                remainingDistance -= distanceBetweenNextWaypoints;
-            }
-            return Vector3.zero;
+            var direction = (nearestWpAhead - playerPositionZeroY).normalized * spawnDistanceOnPath;
+            returnVector = playerPositionZeroY + direction + new Vector3(spawnPoint.x, 0, spawnPoint.y);
         }
+        var remainingDistance = spawnDistanceOnPath - distToFirstWp;
+        while (remainingDistance > 0)
+        {
+            var nextWaypoint = NextWaypoint(nearestWpAhead);
+            var distanceBetweenNextWaypoints = Vector3.Distance(nearestWpAhead, nextWaypoint);
+            if (distanceBetweenNextWaypoints > remainingDistance)
+            {
+                var direction = (nextWaypoint - nearestWpAhead).normalized * remainingDistance;
+                returnVector = nearestWpAhead + direction + new Vector3(spawnPoint.x, 0, spawnPoint.y);
+                break;
+            }
+            nearestWpAhead = nextWaypoint;
+            remainingDistance -= distanceBetweenNextWaypoints;
+        }
+        if (returnVector != Vector3.zero)
+        {
+            returnVector.y = Random.Range(minHeightFromTerrain + minHeight + terrain.SampleHeight(returnVector), 
+                maxHeightFromTerrain);
+        }
+        return returnVector;
+    }
         
         private Vector3 NextWaypoint(Vector3 waypoint)
         {
-            return waypoints.Count == waypoints.IndexOf(waypoint) ? waypoints[0] : waypoints[waypoints.IndexOf(waypoint)+1];
+            var index = waypoints.IndexOf(waypoint);
+            return index == waypoints.Count - 1 ? waypoints[0] : waypoints[index + 1];
         }
         private void SpawnEnemy(Vector3 pos)
         {
