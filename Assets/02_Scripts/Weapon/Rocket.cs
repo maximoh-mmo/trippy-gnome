@@ -14,8 +14,8 @@ public class Rocket : MonoBehaviour
         [Header("Sound Randomizer settings")]
         [SerializeField] private float minPitch = 0.975f;
         [SerializeField] private float maxPitch = 1.125f;
-        [SerializeField] private float minVolume = 0.975f;
-        [SerializeField] private float maxVolume = 1.125f;
+        [SerializeField] [Range(0,1)] private float minVolume = 0;
+        [SerializeField] [Range(0,1)] private float maxVolume = 1;
         
         [SerializeField] private GameObject projectileHit;
         public Transform Target { set { target = value; } }
@@ -67,11 +67,8 @@ public class Rocket : MonoBehaviour
         {
             // audioSource.pitch = Random.Range(0.975f,1.025f);
             // audioSource.Play();
-            
             audioSource.pitch = Random.Range(minPitch, maxPitch);
-            var startVol = audioSource.volume;
-            audioSource.volume = Random.Range(minVolume*startVol, maxVolume*startVol);
+            audioSource.volume = Random.Range(minVolume, maxVolume);
             audioSource.Play();
-            audioSource.volume = startVol;
         }
 }
