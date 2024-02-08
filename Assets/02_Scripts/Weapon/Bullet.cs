@@ -10,6 +10,11 @@ public class Bullet : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
     string targetTag = string.Empty;
     private Rigidbody rb;
     [SerializeField]private GameObject projectileHit;
+    [Header("Sound Randomizer settings")]
+    [SerializeField] private float minPitch = 0.975f;
+    [SerializeField] private float maxPitch = 1.125f;
+    [SerializeField] private float minVolume = 0.975f;
+    [SerializeField] private float maxVolume = 1.125f;
     private AudioSource audioSource;
     public void Setup(string tg, float rng, float spd, int dmg)
     {
@@ -54,7 +59,10 @@ public class Bullet : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
 
     public void PlayAudioOnFirstFreeAvailable()
     {
-        audioSource.pitch = Random.Range(0.975f,1.025f);
+        audioSource.pitch = Random.Range(minPitch, maxPitch);
+        var startVol = audioSource.volume;
+        audioSource.volume = Random.Range(minVolume*startVol, maxVolume*startVol);
         audioSource.Play();
+        audioSource.volume = startVol;
     }
 }
