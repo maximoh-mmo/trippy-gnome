@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LootBehaviour : MonoBehaviour
+public class LootBehaviour : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
 {
     private int type;
     private SphereCollider sc;
@@ -45,8 +45,7 @@ public class LootBehaviour : MonoBehaviour
     private void PickUpItem()
     {
         hud.AddPowerUp(type);
-        var source = GetComponent<AudioSource>();
-        if (source) source.PlayOneShot(source.clip);
+        if (GetComponent<AudioSource>()) PlayAudioOnFirstFreeAvailable();
         Destroy(gameObject);
     }
 
@@ -55,6 +54,11 @@ public class LootBehaviour : MonoBehaviour
         sc.radius = flyingRadius;
         flyToPlayer = true;
         player = target;
+    }
+    public void PlayAudioOnFirstFreeAvailable()
+    {
+        var source = GetComponent<AudioSource>();
+        source.PlayOneShot(source.clip);
     }
 }
 
