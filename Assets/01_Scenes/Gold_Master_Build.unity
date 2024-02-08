@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 816089905}
-  m_IndirectSpecularColor: {r: 0.4869971, g: 0.054057118, b: 0.3157419, a: 1}
+  m_IndirectSpecularColor: {r: 0.4873375, g: 0.05420597, b: 0.3155669, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -85172,7 +85172,6 @@ MonoBehaviour:
   - {x: 689.41986, y: 0, z: 719.75555}
   - {x: 884.1591, y: 0, z: 719.8416}
   - {x: 923.73047, y: 0, z: 647.0332}
-  - {x: 903.0664, y: 0, z: 573.6205}
   - {x: 850.4887, y: 0, z: 406.77283}
   - {x: 774.93396, y: 0, z: 163.05765}
   - {x: 641.4367, y: 0, z: 122.609665}
@@ -85180,7 +85179,6 @@ MonoBehaviour:
   - {x: 285.4643, y: 0, z: 151.7492}
   - {x: 186.8187, y: 0, z: 217.07687}
   - {x: 98.84691, y: 0, z: 279.55524}
-  - {x: 129.5264, y: 0, z: 361.76166}
   - {x: 103.69086, y: 0, z: 421.87012}
   - {x: 117.35926, y: 0, z: 571.606}
   - {x: 151.57477, y: 0, z: 648.0066}
@@ -132155,11 +132153,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberToSpawn: 3
   enemyPrefab: {fileID: 744851290034003747, guid: faa51d6a8a9543546994bc83d70ea64a, type: 3}
-  maxSpawnDistance: 117.4
-  minSpawnDistance: 40.57
+  maxSpawnDistance: 140.1
+  minSpawnDistance: 75.8
   minHeightFromTerrain: 1
-  maxHeightFromTerrain: 36.9
-  maxDistanceFromPath: 46.11
+  maxHeightFromTerrain: 22
+  maxDistanceFromPath: 40.1
 --- !u!4 &2069990294 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 365168172476151908, guid: db1a99ee42dccae41a336763d94a2bae, type: 3}
@@ -137850,7 +137848,7 @@ MonoBehaviour:
   mainMusic: {fileID: 2058057432}
   psyRushMusic: {fileID: 2058057436}
   psychoRushDuration: 5
-  psychoRushSpeedMultiplier: 4
+  psychoRushSpeedMultiplier: 3
   imHitShipShakeMagnitude: 1
   PauseRespawnAfterBigBoomSeconds: 2
   comboLevelDownTime: 10
