@@ -32,6 +32,8 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
     private MainMenu mainMenu;
     private SoundManager soundManager;
 
+    #region exposed variables
+    
     [Header("SFX")]
     [SerializeField] private AudioClip shatter;
     [SerializeField] private AudioClip playerHit;
@@ -62,15 +64,16 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
 
     [SerializeField] private GameObject[] WeaponIcons;
     
+    #endregion
+
+    #region getters and setters
     public bool IsBoomActivated { set => isBoomActivated = value; }
     public bool IsCheating => isCheating;
     public bool IsPsychoRushActive => isPsychoRushActive;
-
-    public int ShotFired
-    {
-        get { return ShotFired; }
-        set { shotsFired += 1; }
-    }
+    public int ShotFired { set => shotsFired += value; }
+    
+    #endregion
+    
 
     private void Start()
     {
@@ -221,6 +224,7 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
         {
             Debug.Log("You DIED!");
             DeathHandler();
+            return;
         }
         else
         {
@@ -268,6 +272,7 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
         
         clipToPlay = deathCry[Random.Range(0,deathCry.Length)];
         PlayAudioOnFirstFreeAvailable();
+        StopAllCoroutines();
         StartCoroutine(DeathScreenDelay(clipToPlay.length));
         var bullets = FindObjectsByType<Bullet>(FindObjectsSortMode.None)
             .Distinct();
@@ -282,26 +287,18 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
             enemy.ReadyToShoot = false;
             if (enemy.GetComponent<EnemyMovement>()) enemy.GetComponent<EnemyMovement>().moveToPlayerSpeed = 0;
         }
-        if (score == 0)
-        {
-            DSScore.SetText(score.ToString());
-            DSKillCount.SetText(totalKillCount.ToString());
-        }
-        else
-        {
-            DSScore.SetText(score.ToString("#,#"));
-            DSKillCount.SetText(totalKillCount.ToString("#,#"));
-        }
-
-        DSComboLvl.SetText((maxComboLevel + 1).ToString());
-        for (var i = 0; i < WeaponIcons.Length; i++)
-        {
-            WeaponIcons[i].GetComponent<Image>().enabled = false;
-        }
         currentComboLevel = currentComboLevel < 0 ? currentComboLevel = 0 : currentComboLevel;
+        foreach (var t in WeaponIcons)
+        {
+            t.GetComponent<Image>().enabled = false;
+        }
+        var scoreFormat = score == 0 ? "" : "#,#";
+        string accuracyText = shotsFired != 0 ? ((100f * (float)totalKillCount / (float)shotsFired)).ToString("0.00") + "%" : "0.00%";
+        DSScore.SetText(score.ToString(scoreFormat));
+        DSKillCount.SetText(totalKillCount.ToString(scoreFormat));
+        DSComboLvl.SetText((maxComboLevel + 1).ToString());
+        DSAccuracy.SetText(accuracyText);
         WeaponIcons[currentComboLevel].GetComponent<Image>().enabled = true;
-        if (shotsFired != 0)
-            DSAccuracy.SetText(((100f * (float)totalKillCount / (float)shotsFired)).ToString("0.00") + "%");
     }
 
     public void ActivatePsychoRush()
@@ -346,7 +343,6 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
             if (originalRotation != null) transform.localRotation = (Quaternion)originalRotation;
             isShaking = false;
         }
-        
         if (psychoTimer > 0)
         {
             if (Time.unscaledTime > psychoTimer)
@@ -359,7 +355,6 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
             hueShiftVal += 1;
             colorGrading.hueShift.value = hueShiftVal;
         }
-
         if (isBoomActivated && colorGrading.postExposure.value > 0f)
         {
             colorGrading.postExposure.value -= 5 / PauseRespawnAfterBigBoomSeconds * Time.deltaTime;

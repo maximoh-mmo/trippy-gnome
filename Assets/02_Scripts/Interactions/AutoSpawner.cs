@@ -3,35 +3,33 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class AutoSpawner : MonoBehaviour
 {
-    private SpawnBubble spawnBubble;
+    private SpawnBubbleV2 spawnBubble;
     private int numToSpawn, minCost;
-    [SerializeField] private List<Enemy> enemies;
     private List<GameObject>enemiesToSpawn;
+    [Header("Random Spawn Settings")]
+    [SerializeField] private List<Enemy> enemies;
     [SerializeField] private int shopValue;
-    [SerializeField] private bool useShop;
-    [SerializeField] private float delay;
+    [SerializeField] private bool spawnEnemiesUsingShop;
+    [SerializeField] private float initialSpawnDelay;
+    private int extraCash;
     private float startTime;
     private ComboCounter player;
     private bool isSpawning;
     private bool isStartDelayOver;
     
-    /// <summary>
-    /// Return to private when Alex finished
-    /// </summary>
-    
-    public int extraCash;
     public int MinSpawns { get; set; }
     public int NumToSpawn { set => numToSpawn = value; }
     public int ShopValue { set => shopValue = value; }
     void Start()
     {
-        startTime = Time.time + delay;
+        startTime = Time.time + initialSpawnDelay;
         player = FindFirstObjectByType<ComboCounter>();
-        spawnBubble = FindFirstObjectByType<SpawnBubble>();
+        spawnBubble = FindFirstObjectByType<SpawnBubbleV2>();
         enemiesToSpawn = new List<GameObject>();
         minCost = enemies
             .OrderBy(t => t.cost)
@@ -51,12 +49,11 @@ public class AutoSpawner : MonoBehaviour
             else
                 return;
         }
-
         if (!player) MinSpawns = 0;
         if (spawnBubble.CountSpawns() < MinSpawns && !spawnBubble.SpawnStarted && !isSpawning)
         {
             isSpawning = true;
-            if (useShop) ShopAndSpawn();
+            if (spawnEnemiesUsingShop) ShopAndSpawn();
             else
             {
                 spawnBubble.SpawnEnemies(numToSpawn);
