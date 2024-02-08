@@ -316,8 +316,8 @@ MonoBehaviour:
   projectileHit: {fileID: 9034638774410894581, guid: 7c2ee658c1673964f8e4549c4b54c069, type: 3}
   minPitch: 0.9
   maxPitch: 1.1
-  minVolume: 0.9
-  maxVolume: 1
+  minVolume: 0.55
+  maxVolume: 0.75
 --- !u!135 &2115963000912765306
 SphereCollider:
   m_ObjectHideFlags: 0
