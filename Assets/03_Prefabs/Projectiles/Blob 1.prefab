@@ -4984,9 +4984,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileHit: {fileID: 0}
-  minPitch: 0.9
+  minPitch: 0.7
   maxPitch: 1
-  minVolume: 0.975
+  minVolume: 0.828
   maxVolume: 1.125
 --- !u!135 &7190952852743195846
 SphereCollider:
