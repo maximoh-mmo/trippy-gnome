@@ -102,6 +102,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileHit: {fileID: 9034638774410894581, guid: 8be7729704056fc48ad5019db11496e5, type: 3}
+  minPitch: 0.9
+  maxPitch: 1
+  minVolume: 0.5
+  maxVolume: 1
 --- !u!136 &7041873510837775842
 CapsuleCollider:
   m_ObjectHideFlags: 0
