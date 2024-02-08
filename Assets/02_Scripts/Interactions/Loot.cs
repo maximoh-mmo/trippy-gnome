@@ -8,11 +8,10 @@ public class Loot:MonoBehaviour
     {
         foreach (LootItem loot in loots)
         {
-            var temp = loot;
-            if (Random.Range(0f, 100f) <= temp.chance)
+            if (Random.Range(0f, 100f) <= loot.chance)
             {
-                GameObject powerup = Instantiate(temp.powerUp);
-                powerup.GetComponent<LootBehaviour>().Type = temp.type;
+                GameObject powerup = Instantiate(loot.powerUp);
+                powerup.GetComponent<LootBehaviour>().Type = loot.type;
                 powerup.transform.position = position;
                 powerup.transform.localScale = Vector3.one * scale;
                 return;
