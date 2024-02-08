@@ -18,9 +18,12 @@ public class SoundManager : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
         masterSlider.onValueChanged.AddListener(SetMainVolume);
         sfxSlider.onValueChanged.AddListener(SetSfxVolume);
         musicSlider.onValueChanged.AddListener(SetMusicVolume);
-        SetMainVolume(PlayerAudioSettings.mainVolume);
-        SetSfxVolume(PlayerAudioSettings.sfxVolume);
-        SetMusicVolume(PlayerAudioSettings.musicVolume); 
+        sfxSlider.value = PlayerAudioSettings.sfxVolume;
+        musicSlider.value = PlayerAudioSettings.musicVolume;
+        masterSlider.value = PlayerAudioSettings.mainVolume;
+        SetMainVolume(masterSlider.value);
+        SetSfxVolume(sfxSlider.value);
+        SetMusicVolume(musicSlider.value); 
     }
 
     void Start()
@@ -31,19 +34,19 @@ public class SoundManager : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
     private void SetMainVolume(float value)
     {
         masterMixer.SetFloat("MasterVol", Mathf.Log10(value)*80);
-        PlayerAudioSettings.mainVolume = Mathf.Log10(value) * 80;
+        PlayerAudioSettings.mainVolume = value;
     }
 
     private void SetMusicVolume(float value)
     {
         masterMixer.SetFloat("MusicVol", Mathf.Log10(value)*80);
-        PlayerAudioSettings.musicVolume = Mathf.Log10(value) * 80;
+        PlayerAudioSettings.musicVolume = value;
     }
 
     private void SetSfxVolume(float value)
     {
         masterMixer.SetFloat("SFXVol", Mathf.Log10(value)*80);
-        PlayerAudioSettings.sfxVolume = Mathf.Log10(value) * 80;
+        PlayerAudioSettings.sfxVolume = value;
     }
 
     // Update is called once per frame
