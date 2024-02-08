@@ -92,7 +92,11 @@ public class SpawnBubbleV2 : MonoBehaviour
             .First();
         Vector3 nearestWpAhead;
         if (Vector3.Dot(player.forward, closestWp - playerPositionZeroY) > 0) nearestWpAhead = closestWp;
-        else nearestWpAhead = waypoints.IndexOf(closestWp) == waypoints.Count - 1 ? waypoints[waypoints.IndexOf(closestWp) + 1] : waypoints[0];
+        else
+        {
+            var closestWpIndex = waypoints.IndexOf(closestWp);
+            nearestWpAhead = closestWpIndex < waypoints.Count - 1 ? waypoints[closestWpIndex + 1] : waypoints[0];
+        }
         var distToFirstWp = Vector3.Distance(playerPositionZeroY, nearestWpAhead);
         if (distToFirstWp > spawnDistanceOnPath)
         {
