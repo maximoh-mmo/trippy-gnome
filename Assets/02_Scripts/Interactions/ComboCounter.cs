@@ -283,11 +283,6 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
         PlayAudioOnFirstFreeAvailable();
         StopAllCoroutines();
         StartCoroutine(DeathScreenDelay(1.5f));
-        currentComboLevel = currentComboLevel < 0 ? currentComboLevel = 0 : currentComboLevel;
-        foreach (var t in WeaponIcons)
-        {
-            t.GetComponent<Image>().enabled = false;
-        }
     }
 
     public void ActivatePsychoRush()

@@ -51,7 +51,6 @@ public class MainMenu : MonoBehaviour
         {
             playerInputSystem.InGame.Enable();
             playerInputSystem.InGame.Pause.started += Pause;
-            Time.timeScale = 1;
             Cursor.visible = false;
             return;
         }
@@ -152,6 +151,7 @@ public class MainMenu : MonoBehaviour
     public void QuitToMainMenu()
     {
         StopAllCoroutines();
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
     
