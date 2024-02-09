@@ -60,7 +60,7 @@ public class LootBehaviour : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
     public void PlayAudioOnFirstFreeAvailable()
     {
         var source = GetComponent<AudioSource>();
-        source.PlayOneShot(source.clip);
+        AudioSource.PlayClipAtPoint(source.clip, transform.position);
     }
 }
 

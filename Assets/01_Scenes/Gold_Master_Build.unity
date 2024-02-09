@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 816089905}
-  m_IndirectSpecularColor: {r: 0.48739094, g: 0.054062814, b: 0.3156821, a: 1}
+  m_IndirectSpecularColor: {r: 0.48742744, g: 0.054083474, b: 0.3158064, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -41394,13 +41394,13 @@ MonoBehaviour:
   audioPanel: {fileID: 498523732}
   deathScreen: {fileID: 1357416254}
   successScreen: {fileID: 0}
-  mainMenu: {fileID: 0}
+  credits: {fileID: 0}
   pauseMenuButton: {fileID: 1013344709}
   howToPlayMenuButton: {fileID: 961272952}
   audioPanelSlider: {fileID: 966026593}
   deathScreenButton: {fileID: 1555215925}
   successScreenButton: {fileID: 0}
-  mainMenuButton: {fileID: 0}
+  creditsButton: {fileID: 0}
 --- !u!1 &483587102
 GameObject:
   m_ObjectHideFlags: 0
@@ -64251,12 +64251,12 @@ GameObject:
   - component: {fileID: 743475194}
   - component: {fileID: 743475193}
   m_Layer: 0
-  m_Name: 
+  m_Name: Shield1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &743475192
 RectTransform:
   m_ObjectHideFlags: 0
@@ -148931,6 +148931,11 @@ MonoBehaviour:
   deathCry:
   - {fileID: 8300000, guid: fbe214b2cb36ab7489a72ac9e3452214, type: 3}
   - {fileID: 8300000, guid: 047c3950455018a449128f34c662e565, type: 3}
+  weaponUpgraded:
+  - {fileID: 8300000, guid: 8ed243cb93b1e044ea0ffb85647d4e35, type: 3}
+  - {fileID: 8300000, guid: f686429c734977a45ab6c3c0e0c58211, type: 3}
+  - {fileID: 8300000, guid: 8ca95f350b0f8584d884344856856c37, type: 3}
+  - {fileID: 8300000, guid: f29b79cb98118b34886e218e664db660, type: 3}
   mainMusic: {fileID: 2058057432}
   psyRushMusic: {fileID: 2058057436}
   psychoRushDuration: 5
