@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 816089905}
-  m_IndirectSpecularColor: {r: 0.4868361, g: 0.053480677, b: 0.31508285, a: 1}
+  m_IndirectSpecularColor: {r: 0.48743665, g: 0.053903, b: 0.31537446, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -147429,7 +147429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapons:
   - weaponName: MG0
-    damage: 3
+    damage: 4
     firePoints:
     - {fileID: 713030342}
     projectile: {fileID: 2033890919814722285, guid: 00d2424bda8614b499174b1c99810c98, type: 3}
@@ -147597,7 +147597,7 @@ MonoBehaviour:
   psychoRushSpeedMultiplier: 3
   imHitShipShakeMagnitude: 1
   PauseRespawnAfterBigBoomSeconds: 2
-  comboLevelDownTime: 10
+  comboLevelDownTime: 12
   DSScore: {fileID: 95082797}
   DSComboLvl: {fileID: 113185776}
   DSKillCount: {fileID: 719447695}
