@@ -11,7 +11,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject audioPanel;
     [SerializeField] private GameObject deathScreen;
     [SerializeField] private GameObject successScreen;
-    [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject credits;
+    
 
     
     [Header("First Selected Items")]
@@ -20,7 +21,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject audioPanelSlider;
     [SerializeField] private GameObject deathScreenButton;
     [SerializeField] private GameObject successScreenButton;
-    [SerializeField] private GameObject mainMenuButton;
+    [SerializeField] private GameObject creditsButton;
     public PlayerInputSystem playerInputSystem;
 
     private void Awake()
@@ -117,7 +118,9 @@ public class MainMenu : MonoBehaviour
 
     public void CreditsPanel()
     {
-        return;
+        pauseMenuPanel.SetActive(false);
+        credits.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(creditsButton);;
     }
 
     public void HowToPlayPanel()
@@ -137,6 +140,12 @@ public class MainMenu : MonoBehaviour
     public void AudioPanelBack()
     {
         audioPanel.SetActive(false);
+        pauseMenuPanel.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(pauseMenuButton);
+    } 
+    public void CreditsBack()
+    {
+        credits.SetActive(false);
         pauseMenuPanel.SetActive(true);
         EventSystem.current.SetSelectedGameObject(pauseMenuButton);
     }

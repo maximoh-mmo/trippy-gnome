@@ -7891,7 +7891,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8682465729969389803}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: QuitToMainMenu
+        m_MethodName: CreditsBack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8763,12 +8763,14 @@ MonoBehaviour:
   howToPlayPanel: {fileID: 1242756585}
   audioPanel: {fileID: 2130565200}
   deathScreen: {fileID: 0}
-  mainMenu: {fileID: 8682465729956579038}
+  successScreen: {fileID: 0}
+  credits: {fileID: 2023211318}
   pauseMenuButton: {fileID: 1767251261}
   howToPlayMenuButton: {fileID: 504988085}
   audioPanelSlider: {fileID: 25753423}
   deathScreenButton: {fileID: 0}
-  mainMenuButton: {fileID: 1767251261}
+  successScreenButton: {fileID: 0}
+  creditsButton: {fileID: 1789591359}
 --- !u!1 &8682465729969389804
 GameObject:
   m_ObjectHideFlags: 0
