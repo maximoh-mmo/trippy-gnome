@@ -122,6 +122,8 @@ public class HUDController : MonoBehaviour
             else
             {
                 levelSuccessTimer = 0;
+                var successScreenDelay = cc.SuccessScreenDelay(2f);
+                cc.StartCoroutine(successScreenDelay);
             }
             DisplayTime(levelSuccessTimer);
         }

@@ -76,8 +76,16 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
     public bool IsBoomActivated { set => isBoomActivated = value; }
     public bool IsCheating => isCheating;
     public bool IsPsychoRushActive => isPsychoRushActive;
-    public int ShotFired { set => shotsFired += value; }
-    
+
+    public int ShotFired
+    {
+        set
+        {
+            shotsFired += value;
+            shotsPerWeapon[currentComboLevel] += value;
+        }
+    }
+
     #endregion
     
 
@@ -269,44 +277,17 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
 
     public void DeathHandler()
     {
-        // Stop World Rail
-        moveWithPath.Speed = 0f;
-        // Stop Movement
-        mainMenu.playerInputSystem.InGame.Disable();
-        // Shake ship + sound
+        stopRail();
         explosion.SetActive(true);
         clipToPlay = deathCry[Random.Range(0,deathCry.Length)];
         PlayAudioOnFirstFreeAvailable();
         StopAllCoroutines();
         StartCoroutine(DeathScreenDelay(1.5f));
-        var bullets = FindObjectsByType<Bullet>(FindObjectsSortMode.None)
-            .Distinct();
-        var rockets = FindObjectsByType<Rocket>(FindObjectsSortMode.None)
-            .Distinct();
-        var enemies = FindObjectsByType<EnemyBehaviour>(FindObjectsSortMode.None)
-            .Distinct();
-        var lootItems = FindObjectsByType<LootBehaviour>(FindObjectsSortMode.None)
-            .Distinct();
-        foreach (var rocket in rockets) Destroy(rocket);
-        foreach (var bullet in bullets) Destroy(bullet);
-        foreach (var loot in lootItems) loot.IsPlayerDead=true;
-        foreach (var enemy in enemies)
-        {
-            enemy.ReadyToShoot = false;
-            if (enemy.GetComponent<EnemyMovement>()) enemy.GetComponent<EnemyMovement>().moveToPlayerSpeed = 0;
-        }
         currentComboLevel = currentComboLevel < 0 ? currentComboLevel = 0 : currentComboLevel;
         foreach (var t in WeaponIcons)
         {
             t.GetComponent<Image>().enabled = false;
         }
-        var scoreFormat = score == 0 ? "" : "#,#";
-        string accuracyText = shotsFired != 0 ? ((100f * (float)totalKillCount / (float)shotsFired)).ToString("0.00") + "%" : "0.00%";
-        DSScore.SetText(score.ToString(scoreFormat));
-        DSKillCount.SetText(totalKillCount.ToString(scoreFormat));
-        DSComboLvl.SetText((maxComboLevel + 1).ToString());
-        DSAccuracy.SetText(accuracyText);
-        WeaponIcons[currentComboLevel].GetComponent<Image>().enabled = true;
     }
 
     public void ActivatePsychoRush()
@@ -395,6 +376,52 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
         yield return new WaitForSeconds(delay); 
         mainMenu.DeathScreen();
         explosion.SetActive(false);
+    }
+
+    private void stopRail()
+    {
+        //stop movement
+        moveWithPath.Speed = 0f;
+        mainMenu.playerInputSystem.InGame.Disable();
+        //stop enemies and bullets
+        var bullets = FindObjectsByType<Bullet>(FindObjectsSortMode.None)
+            .Distinct();
+        var rockets = FindObjectsByType<Rocket>(FindObjectsSortMode.None)
+            .Distinct();
+        var enemies = FindObjectsByType<EnemyBehaviour>(FindObjectsSortMode.None)
+            .Distinct();
+        var lootItems = FindObjectsByType<LootBehaviour>(FindObjectsSortMode.None)
+            .Distinct();
+        foreach (var rocket in rockets) Destroy(rocket);
+        foreach (var bullet in bullets) Destroy(bullet);
+        foreach (var loot in lootItems) loot.IsPlayerDead=true;
+        foreach (var enemy in enemies)
+        {
+            enemy.ReadyToShoot = false;
+            if (enemy.GetComponent<EnemyMovement>()) enemy.GetComponent<EnemyMovement>().moveToPlayerSpeed = 0;
+        }
+        
+        //set hud elements
+        currentComboLevel = currentComboLevel < 0 ? currentComboLevel = 0 : currentComboLevel;
+        foreach (var t in WeaponIcons)
+        {
+            t.GetComponent<Image>().enabled = false;
+        }
+        var scoreFormat = score == 0 ? "" : "#,#";
+        string accuracyText = shotsFired != 0 ? ((100f * (float)totalKillCount / (float)shotsFired)).ToString("0.00") + "%" : "0.00%";
+        DSScore.SetText(score.ToString(scoreFormat));
+        DSKillCount.SetText(totalKillCount.ToString(scoreFormat));
+        DSComboLvl.SetText((maxComboLevel + 1).ToString());
+        DSAccuracy.SetText(accuracyText);
+        var mostUsed = shotsPerWeapon.Max();
+        var mostUsedIndex = Array.FindIndex(shotsPerWeapon, x => x == mostUsed);
+        WeaponIcons[mostUsedIndex].GetComponent<Image>().enabled = true;
+    }
+    public IEnumerator SuccessScreenDelay(float delay)
+    {
+        stopRail();
+        yield return new WaitForSeconds(delay);
+        mainMenu.SuccessScreen();
     }
     IEnumerator ComboLevelCountDown()
     {
