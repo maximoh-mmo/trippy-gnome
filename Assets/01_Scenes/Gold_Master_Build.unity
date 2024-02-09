@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 816089905}
-  m_IndirectSpecularColor: {r: 0.48720187, g: 0.054056387, b: 0.31612504, a: 1}
+  m_IndirectSpecularColor: {r: 0.48743513, g: 0.05390253, b: 0.31537405, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11357,7 +11357,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 413.1, y: -134.2}
+  m_AnchoredPosition: {x: 404.5, y: -134.2}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &113185776
@@ -41820,7 +41820,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 590, y: 112.4}
+  m_AnchoredPosition: {x: 573.5, y: 112.4}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &502913344
@@ -63580,7 +63580,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 650.2, y: -134.2}
+  m_AnchoredPosition: {x: 632.3, y: -134.2}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &719447695
@@ -64536,7 +64536,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 869.4, y: -134.2}
+  m_AnchoredPosition: {x: 873.2, y: -134.2}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &772567987
@@ -78420,7 +78420,7 @@ GameObject:
   - component: {fileID: 1097527262}
   - component: {fileID: 1097527261}
   m_Layer: 0
-  m_Name: Button_Main_ Menu_normal
+  m_Name: Quit to main menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91448,7 +91448,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f170fff1be56503449a985dc131e0690, type: 3}
+  m_Sprite: {fileID: 21300000, guid: af2014d724cca2e498e1931af4c5f4e5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -99368,7 +99368,7 @@ GameObject:
   - component: {fileID: 1555215928}
   - component: {fileID: 1555215927}
   m_Layer: 5
-  m_Name: 01_Try_again_normal
+  m_Name: Try again
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
