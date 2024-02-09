@@ -389,8 +389,8 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
     {
         for (var d = 0f; d < delay; d += Time.deltaTime)
         {
-            NewShake(delay, 2);
-            dynamicChaseCamera.NewShake(delay, 1);
+            NewShake(delay, 1);
+            dynamicChaseCamera.NewShake(delay, 0.5f);
         }
 
         yield return new WaitForSeconds(delay); 
