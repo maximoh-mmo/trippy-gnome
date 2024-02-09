@@ -11,7 +11,8 @@ using Random = UnityEngine.Random;
 public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
 {
     #region private variables
-    
+
+    private int[] shotsPerWeapon;
     private bool isShielded, cheatsEnabled, isCheating, isPsychoRushActive, isBoomActivated, isShaking;
     private int currentComboLevel, currentComboKills, totalKillCount, score, runningScore, shotsFired, maxComboLevel;
     private float psychoTimer, hueShiftVal, oldSpeed, boomStartTime, shakeDuration, shakeMagnitude;
@@ -82,6 +83,7 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
 
     private void Start()
     {
+        shotsPerWeapon = new int[8];
         soundManager = FindFirstObjectByType<SoundManager>();
         mainMenu = FindFirstObjectByType<MainMenu>();
         model = GetComponentInChildren<Animation>().gameObject;
@@ -130,12 +132,10 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
         {
             Destroy(bullet.gameObject);
         }
-
         foreach (var enemy in enemies)
         {
             if (enemy.GetComponent<HealthManager>()) enemy.GetComponent<HealthManager>().Kill();
         }
-
         hudController.RemovePowerUp(1);
         autoSpawner.PauseRespawn(PauseRespawnAfterBigBoomSeconds);
         colorGrading.postExposure.value = 5f;
