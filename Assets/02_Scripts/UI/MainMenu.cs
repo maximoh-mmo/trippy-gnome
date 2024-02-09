@@ -51,6 +51,7 @@ public class MainMenu : MonoBehaviour
         {
             playerInputSystem.InGame.Enable();
             playerInputSystem.InGame.Pause.started += Pause;
+            Time.timeScale = 1;
             Cursor.visible = false;
             return;
         }
