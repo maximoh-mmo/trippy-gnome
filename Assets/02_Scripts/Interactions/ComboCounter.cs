@@ -48,6 +48,7 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
     [SerializeField] private AudioClip[] negatives;
     [SerializeField] private AudioClip[] psychoRush;
     [SerializeField] private AudioClip[] deathCry;
+    [SerializeField] private AudioClip[] weaponUpgraded;
 
     [Header("Music")] 
     [SerializeField] private AudioSource mainMusic;
