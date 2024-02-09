@@ -392,9 +392,9 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
             NewShake(delay, 1);
             dynamicChaseCamera.NewShake(delay, 0.5f);
         }
-
         yield return new WaitForSeconds(delay); 
         mainMenu.DeathScreen();
+        explosion.SetActive(false);
     }
     IEnumerator ComboLevelCountDown()
     {
