@@ -10,8 +10,8 @@ using Random = UnityEngine.Random;
 
 public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
 {
-    public ComboLevel[] combos;
-
+    #region private variables
+    
     private bool isShielded, cheatsEnabled, isCheating, isPsychoRushActive, isBoomActivated, isShaking;
     private int currentComboLevel, currentComboKills, totalKillCount, score, runningScore, shotsFired, maxComboLevel;
     private float psychoTimer, hueShiftVal, oldSpeed, boomStartTime, shakeDuration, shakeMagnitude;
@@ -32,7 +32,11 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
     private MainMenu mainMenu;
     private SoundManager soundManager;
 
+    #endregion
+    
     #region exposed variables
+    
+    public ComboLevel[] combos;
     
     [Header("SFX")]
     [SerializeField] private AudioClip shatter;
@@ -48,9 +52,8 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
     [SerializeField] private AudioSource mainMusic;
     [SerializeField] private AudioSource psyRushMusic;
     
-    [Header("Psycho Rush Controls")] [SerializeField]
-    private float psychoRushDuration;
-
+    [Header("Psycho Rush Controls")] 
+    [SerializeField] private float psychoRushDuration;
     [SerializeField] private float psychoRushSpeedMultiplier = 2f;
 
     [Header("Playability Control")] [SerializeField]
@@ -59,11 +62,13 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
     [SerializeField] private float PauseRespawnAfterBigBoomSeconds;
     [SerializeField] private float comboLevelDownTime;
 
-    [Header("UI Elements")] [SerializeField]
-    private TMP_Text DSScore, DSComboLvl, DSKillCount, DSAccuracy;
-
+    [Header("UI Elements")]
+    [SerializeField] private TMP_Text DSScore;
+    [SerializeField] private TMP_Text DSComboLvl;
+    [SerializeField] private TMP_Text DSKillCount;
+    [SerializeField] private TMP_Text DSAccuracy;
     [SerializeField] private GameObject[] WeaponIcons;
-    
+    [SerializeField] private GameObject explosion;
     #endregion
 
     #region getters and setters
@@ -269,11 +274,11 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
         // Stop Movement
         mainMenu.playerInputSystem.InGame.Disable();
         // Shake ship + sound
-        
+        explosion.SetActive(true);
         clipToPlay = deathCry[Random.Range(0,deathCry.Length)];
         PlayAudioOnFirstFreeAvailable();
         StopAllCoroutines();
-        StartCoroutine(DeathScreenDelay(clipToPlay.length));
+        StartCoroutine(DeathScreenDelay(1.5f));
         var bullets = FindObjectsByType<Bullet>(FindObjectsSortMode.None)
             .Distinct();
         var rockets = FindObjectsByType<Rocket>(FindObjectsSortMode.None)

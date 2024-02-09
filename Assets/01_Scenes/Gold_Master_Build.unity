@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 816089905}
-  m_IndirectSpecularColor: {r: 0.48730567, g: 0.05405154, b: 0.315615, a: 1}
+  m_IndirectSpecularColor: {r: 0.4867776, g: 0.053522676, b: 0.3154071, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -147634,6 +147634,7 @@ MonoBehaviour:
   - {fileID: 1582634375}
   - {fileID: 462819708}
   - {fileID: 426532611}
+  explosion: {fileID: 2125518084}
 --- !u!135 &888316172577334582
 SphereCollider:
   m_ObjectHideFlags: 0
