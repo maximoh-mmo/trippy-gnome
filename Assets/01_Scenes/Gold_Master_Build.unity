@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 816089905}
-  m_IndirectSpecularColor: {r: 0.48687154, g: 0.05341628, b: 0.31538206, a: 1}
+  m_IndirectSpecularColor: {r: 0.48702046, g: 0.05379052, b: 0.31519413, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -64221,7 +64221,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f170fff1be56503449a985dc131e0690, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 36502b674751cc34cb3b32b2eb1e0a90, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -148916,7 +148916,7 @@ MonoBehaviour:
     negative: {fileID: 8300000, guid: 94d1f15927fe40348a65f8d0acf3817f, type: 3}
   shatter: {fileID: 8300000, guid: 3ef639fb1b1ad234b9fcdc9b6604f0c6, type: 3}
   playerHit: {fileID: 8300000, guid: 4eb57af531e489140bfeca01c67115b2, type: 3}
-  deathExplosion: {fileID: 0}
+  deathExplosion: {fileID: 8300000, guid: 09e3bbde7ed373647b1c49a39dcf623b, type: 3}
   bigboom: {fileID: 8300000, guid: 87b7611487857044aa57c165eb37e6aa, type: 3}
   positives:
   - {fileID: 8300000, guid: 6e22d33e2c1404d4abe2634e98bbe604, type: 3}
