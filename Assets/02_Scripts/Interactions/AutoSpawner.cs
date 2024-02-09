@@ -18,6 +18,7 @@ public class AutoSpawner : MonoBehaviour
     private int extraCash;
     private float startTime;
     private ComboCounter player;
+    private HUDController hudController;
     private bool isSpawning;
     private bool isStartDelayOver;
     
@@ -27,6 +28,7 @@ public class AutoSpawner : MonoBehaviour
     void Start()
     {
         startTime = Time.time + initialSpawnDelay;
+        hudController = FindObjectOfType<HUDController>();
         player = FindFirstObjectByType<ComboCounter>();
         spawnBubble = FindFirstObjectByType<SpawnBubbleV2>();
         enemiesToSpawn = new List<GameObject>();
@@ -44,6 +46,7 @@ public class AutoSpawner : MonoBehaviour
             {
                 isStartDelayOver = true;
                 player.StartCoroutine("ComboLevelCountDown");
+                hudController.LevelTimer=true;
             }
             else
                 return;

@@ -10,6 +10,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject howToPlayPanel;
     [SerializeField] private GameObject audioPanel;
     [SerializeField] private GameObject deathScreen;
+    [SerializeField] private GameObject successScreen;
     [SerializeField] private GameObject mainMenu;
 
     
@@ -18,6 +19,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject howToPlayMenuButton;
     [SerializeField] private GameObject audioPanelSlider;
     [SerializeField] private GameObject deathScreenButton;
+    [SerializeField] private GameObject successScreenButton;
     [SerializeField] private GameObject mainMenuButton;
     public PlayerInputSystem playerInputSystem;
 
@@ -33,6 +35,14 @@ public class MainMenu : MonoBehaviour
         Cursor.visible = true;
         playerInputSystem.UI.Enable();
         EventSystem.current.SetSelectedGameObject(deathScreenButton);
+    }
+    public void SuccessScreen()
+    {
+        deathScreen.SetActive(true);
+        playerInputSystem.InGame.Disable();
+        Cursor.visible = true;
+        playerInputSystem.UI.Enable();
+        EventSystem.current.SetSelectedGameObject(successScreenButton);
     }
 
     private void Start()
@@ -141,6 +151,7 @@ public class MainMenu : MonoBehaviour
     public void QuitToMainMenu()
     {
         StopAllCoroutines();
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
     
