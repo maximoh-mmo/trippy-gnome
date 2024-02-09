@@ -1,16 +1,20 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 
 public class HealthManager : MonoBehaviour
 {
     [SerializeField] private int maxHealth;
     [SerializeField] private int CoinsForSpawnSystem;
+    [SerializeField] private AudioClip[] wingSound;
     private MeshRenderer[] materials;
     private float currentHealth, currentDelay;
     private int pointValue;
     private bool loot, bright;
     [SerializeField] private bool lootDropOnBoom = true;
     private AutoSpawner autoSpawner;
+    private AudioSource audioSource;
     private ComboCounter counter;
     private GameObject poof;
     private float intensity = 1f;
@@ -19,8 +23,17 @@ public class HealthManager : MonoBehaviour
 
     public int MaxHealth => maxHealth;
 
-    private void Start()
+    private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
+        if (wingSound.Length != 0)
+        {
+            audioSource.clip = wingSound[Random.Range(0, wingSound.Length)];
+        } 
+    }
+
+    private void Start()
+    { 
         materials = GetComponentsInChildren<MeshRenderer>();
        
         if (GetComponentInChildren<EnemyBehaviour>().DeathPrefab != null)

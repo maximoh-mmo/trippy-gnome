@@ -279,6 +279,8 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
     public void DeathHandler()
     {
         stopRail();
+        clipToPlay = deathExplosion;
+        PlayAudioOnFirstFreeAvailable();
         explosion.SetActive(true);
         clipToPlay = deathCry[Random.Range(0,deathCry.Length)];
         PlayAudioOnFirstFreeAvailable();
