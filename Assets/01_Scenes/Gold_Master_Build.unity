@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 816089905}
-  m_IndirectSpecularColor: {r: 0.48742744, g: 0.054083474, b: 0.3158064, a: 1}
+  m_IndirectSpecularColor: {r: 0.48687154, g: 0.05341628, b: 0.31538206, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -148919,6 +148919,10 @@ MonoBehaviour:
   deathExplosion: {fileID: 0}
   bigboom: {fileID: 8300000, guid: 87b7611487857044aa57c165eb37e6aa, type: 3}
   positives:
+  - {fileID: 8300000, guid: 6e22d33e2c1404d4abe2634e98bbe604, type: 3}
+  - {fileID: 8300000, guid: 2e1291506818f3b4486982dfc4f5a13c, type: 3}
+  - {fileID: 8300000, guid: db10e8c2953d05545a26a161182b1442, type: 3}
+  - {fileID: 8300000, guid: e891a4f1488da3944bfb995a96f43a62, type: 3}
   - {fileID: 8300000, guid: d76b8500f81133e4cb3313cab28d56d3, type: 3}
   negatives:
   - {fileID: 8300000, guid: a30be01ed97313a45bfa52b86dd3558d, type: 3}
