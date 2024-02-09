@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 816089905}
-  m_IndirectSpecularColor: {r: 0.48695832, g: 0.05342133, b: 0.31555256, a: 1}
+  m_IndirectSpecularColor: {r: 0.48729378, g: 0.054231565, b: 0.31592092, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -41293,7 +41293,7 @@ MonoBehaviour:
   - prefab: {fileID: 744851290034003747, guid: 94cebc8b9cb1cf54aa4bbcf104938c15, type: 3}
     cost: 15
   - prefab: {fileID: 6833185169319360990, guid: 85db778a84091fc469a9aeb2fe224356, type: 3}
-    cost: 40
+    cost: 50
   shopValue: 10
   spawnEnemiesUsingShop: 1
   initialSpawnDelay: 1
