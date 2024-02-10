@@ -206,6 +206,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3443063868475380010}
   - component: {fileID: 2901023109288347241}
+  - component: {fileID: 5172653895426093876}
   m_Layer: 0
   m_Name: Even_Bigger_BIG_Fern 9
   m_TagString: Untagged
@@ -222,7 +223,7 @@ Transform:
   m_GameObject: {fileID: 2631202742953397136}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 193.0727, y: -0.59330225, z: 123.38646}
-  m_LocalScale: {x: 18, y: 18, z: 18}
+  m_LocalScale: {x: 37.380005, y: 37.380005, z: 37.38}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5105507565300500611}
@@ -252,6 +253,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5172653895426093876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2631202742953397136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f39a2994829bc3b44bde24e55f6cd870, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2698867944342834192
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,8 +387,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2968541954353027243}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1.517, z: 0}
-  m_LocalScale: {x: 16.64, y: 16.64, z: 16.64}
+  m_LocalPosition: {x: -0, y: 1.467, z: 0}
+  m_LocalScale: {x: 30, y: 30, z: 30}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3443063868475380010}

@@ -5529,6 +5529,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7096906512839087226}
   - component: {fileID: 7347622389011036032}
+  - component: {fileID: 1432374643481721369}
   m_Layer: 0
   m_Name: BIG_Fern 4
   m_TagString: Untagged
@@ -5575,6 +5576,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1432374643481721369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7581412446869278400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f39a2994829bc3b44bde24e55f6cd870, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7677739449172789450
 GameObject:
   m_ObjectHideFlags: 0
