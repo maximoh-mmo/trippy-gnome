@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6853177699382341084}
   - component: {fileID: 7544861277758104185}
   - component: {fileID: 5715151569445443251}
+  - component: {fileID: -8650684447871138744}
   m_Layer: 0
   m_Name: rock_one
   m_TagString: Untagged
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &-8650684447871138744
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6075549833498752870}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.7763401
+  m_Center: {x: 0.24155523, y: 1.17, z: 0.07}
