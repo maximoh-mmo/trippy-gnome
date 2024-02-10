@@ -32,6 +32,7 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
     private WeaponSystem weaponSystem;
     private MainMenu mainMenu;
     private SoundManager soundManager;
+    private ShowNumbers showNumbers;
 
     #endregion
     
@@ -101,6 +102,7 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
         moveWithPath = FindFirstObjectByType<MoveWithPath>();
         ppv = Camera.main.GetComponent<PostProcessVolume>();
         colorGrading = ppv.profile.GetSetting<ColorGrading>();
+        showNumbers = FindFirstObjectByType<ShowNumbers>();
         shield = GameObject.Find("Shield").GetComponent<MeshRenderer>();
         hudController = FindFirstObjectByType<HUDController>();
         weaponSystem = FindFirstObjectByType<WeaponSystem>();
@@ -191,9 +193,11 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
 
     private void ComboLevelUp()
     {
+        
         if (currentComboLevel >= combos.Length - 1) return;
         hudController.ToggleIcon(currentComboLevel, false);
         currentComboLevel++;
+        showNumbers.ShowNumber(currentComboLevel);
         hudController.ToggleIcon(currentComboLevel, true);
         if (maxComboLevel < currentComboLevel) maxComboLevel = currentComboLevel;
         currentComboKills = 0;
