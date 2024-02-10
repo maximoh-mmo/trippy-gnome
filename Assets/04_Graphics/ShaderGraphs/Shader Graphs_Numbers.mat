@@ -52,6 +52,6 @@ Material:
     - _SmokeSlider: 0.79
     - _Speed: 2.67
     m_Colors:
-    - _Fire: {r: 7.2470584, g: 0.60708344, b: 0, a: 0}
+    - _Fire: {r: 20.865906, g: 1.8571749, b: 0, a: 0}
     - _Smoke: {r: 0.02132353, g: 0.015931373, b: 0.017401962, a: 0}
   m_BuildTextureStacks: []
