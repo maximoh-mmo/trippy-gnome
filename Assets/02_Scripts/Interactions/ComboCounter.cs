@@ -71,7 +71,7 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
     [SerializeField] private TMP_Text DSKillCount;
     [SerializeField] private TMP_Text DSAccuracy;
     [SerializeField] private GameObject[] WeaponIcons;
-    [SerializeField] private GameObject explosion;
+    public GameObject explosion;
     #endregion
 
     #region getters and setters
@@ -376,7 +376,8 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
             dynamicChaseCamera.NewShake(delay, 0.5f);
         }
 
-        yield return new WaitForSeconds(delay); 
+        yield return new WaitForSeconds(delay);
+        explosion.SetActive(false);
         mainMenu.DeathScreen();
     }
 
