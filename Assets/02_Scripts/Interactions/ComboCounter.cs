@@ -212,12 +212,12 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
 
     public void ImHit()
     {
+        if (isCheating || isPsychoRushActive) return;
         if (negatives.Length>0 && Random.Range(0,100)>90)
         {
             clipToPlay = negatives[Random.Range(0,negatives.Length)];
             PlayAudioOnFirstFreeAvailable();
         }
-        if (isCheating || isPsychoRushActive) return;
         clipToPlay = playerHit;
         PlayAudioOnFirstFreeAvailable();
         if (isShielded)
