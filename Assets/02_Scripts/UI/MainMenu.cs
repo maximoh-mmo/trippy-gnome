@@ -39,7 +39,7 @@ public class MainMenu : MonoBehaviour
     }
     public void SuccessScreen()
     {
-        deathScreen.SetActive(true);
+        successScreen.SetActive(true);
         playerInputSystem.InGame.Disable();
         Cursor.visible = true;
         playerInputSystem.UI.Enable();

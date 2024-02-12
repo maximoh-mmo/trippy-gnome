@@ -66,12 +66,21 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
     [SerializeField] private float comboLevelDownTime;
 
     [Header("UI Elements")]
+    [Header("Death Screen")]
     [SerializeField] private TMP_Text DSScore;
     [SerializeField] private TMP_Text DSComboLvl;
     [SerializeField] private TMP_Text DSKillCount;
     [SerializeField] private TMP_Text DSAccuracy;
-    [SerializeField] private GameObject[] WeaponIcons;
+    [SerializeField] private GameObject[] DSWeaponIcons;
     public GameObject explosion;
+    
+    [Header("Success Screen")]
+    [SerializeField] private TMP_Text SSScore;
+    [SerializeField] private TMP_Text SSComboLvl;
+    [SerializeField] private TMP_Text SSKillCount;
+    [SerializeField] private TMP_Text SSAccuracy;
+    [SerializeField] private GameObject[] SSWeaponIcons;
+    
     #endregion
 
     #region getters and setters
@@ -290,6 +299,19 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
         PlayAudioOnFirstFreeAvailable();
         StopAllCoroutines();
         StartCoroutine(DeathScreenDelay(1.5f));
+        foreach (var t in DSWeaponIcons)
+        {
+            t.GetComponent<Image>().enabled = false;
+        }
+        var scoreFormat = score == 0 ? "" : "#,#";
+        string accuracyText = shotsFired != 0 ? ((100f * (float)totalKillCount / (float)shotsFired)).ToString("0.00") + "%" : "0.00%";
+        DSScore.SetText(score.ToString(scoreFormat));
+        DSKillCount.SetText(totalKillCount.ToString(scoreFormat));
+        DSComboLvl.SetText((maxComboLevel + 1).ToString());
+        DSAccuracy.SetText(accuracyText);
+        var mostUsed = shotsPerWeapon.Max();
+        var mostUsedIndex = Array.FindIndex(shotsPerWeapon, x => x == mostUsed);
+        DSWeaponIcons[mostUsedIndex].GetComponent<Image>().enabled = true;
     }
 
     public void ActivatePsychoRush()
@@ -403,26 +425,23 @@ public class ComboCounter : MonoBehaviour, IPlaySoundIfFreeSourceAvailable
             enemy.ReadyToShoot = false;
             if (enemy.GetComponent<EnemyMovement>()) enemy.GetComponent<EnemyMovement>().moveToPlayerSpeed = 0;
         }
-        
-        //set hud elements
-        currentComboLevel = currentComboLevel < 0 ? currentComboLevel = 0 : currentComboLevel;
-        foreach (var t in WeaponIcons)
+    }
+    public IEnumerator SuccessScreenDelay(float delay)
+    {
+        stopRail();
+        foreach (var t in SSWeaponIcons)
         {
             t.GetComponent<Image>().enabled = false;
         }
         var scoreFormat = score == 0 ? "" : "#,#";
         string accuracyText = shotsFired != 0 ? ((100f * (float)totalKillCount / (float)shotsFired)).ToString("0.00") + "%" : "0.00%";
-        DSScore.SetText(score.ToString(scoreFormat));
-        DSKillCount.SetText(totalKillCount.ToString(scoreFormat));
-        DSComboLvl.SetText((maxComboLevel + 1).ToString());
-        DSAccuracy.SetText(accuracyText);
+        SSScore.SetText(score.ToString(scoreFormat));
+        SSKillCount.SetText(totalKillCount.ToString(scoreFormat));
+        SSComboLvl.SetText((maxComboLevel + 1).ToString());
+        SSAccuracy.SetText(accuracyText);
         var mostUsed = shotsPerWeapon.Max();
         var mostUsedIndex = Array.FindIndex(shotsPerWeapon, x => x == mostUsed);
-        WeaponIcons[mostUsedIndex].GetComponent<Image>().enabled = true;
-    }
-    public IEnumerator SuccessScreenDelay(float delay)
-    {
-        stopRail();
+        SSWeaponIcons[mostUsedIndex].GetComponent<Image>().enabled = true;
         yield return new WaitForSeconds(delay);
         mainMenu.SuccessScreen();
     }
